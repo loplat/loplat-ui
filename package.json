@@ -16,8 +16,6 @@
     "@types/node": "^12.0.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
-    "babel-preset-react-app": "^10.0.0",
-    "typescript": "^4.1.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "^4.0.3"
@@ -33,22 +31,6 @@
     "build-storybook": "build-storybook -s public",
     "build:types": "tsc --emitDeclarationOnly"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ],
-    "overrides": [
-      {
-        "files": [
-          "**/*.stories.*"
-        ],
-        "rules": {
-          "import/no-anonymous-default-export": "off"
-        }
-      }
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -62,6 +44,13 @@
     ]
   },
   "devDependencies": {
+    "typescript": "^4.1.2",
+    "babel-preset-react-app": "^10.0.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-import-resolver-typescript": "^2.4.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "prettier": "^2.3.2",
     "@babel/cli": "^7.14.8",
     "@babel/preset-env": "^7.15.0",
     "@babel/preset-react": "^7.14.5",
