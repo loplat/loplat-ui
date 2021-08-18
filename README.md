@@ -9,5 +9,5 @@ yarn storybook
 
 ## Build
 ```bash
-yarn buid:types && yarn buid
+yarn build:types && yarn build
 ```
