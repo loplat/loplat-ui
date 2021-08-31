@@ -3,9 +3,9 @@ import { css } from '@emotion/css';
 
 // TODO: color set 완성되면, color type의 유니온 타입으로 변경
 export type ColorSet = '#000000' | string;
-export type FontWeightSet = 'extra-bold' | 'bold' | 'regular';
+export type FontWeightSet = 'extraBold' | 'bold' | 'regular';
 export const FontWeight = {
-  'extra-bold': 800,
+  extraBold: 800,
   bold: 700,
   regular: 400,
 };
