@@ -26,7 +26,7 @@ export interface TypographyProps extends TypographyStyle {
 }
 
 const TextElementStyle = (props: TypographyStyle): string => css`
-  font-size: ${`${props.size}pt` || '16pt'};
+  font-size: ${`${props.size}px` || '16px'};
   font-weight: ${props.weight ? FontWeight[props.weight] : 400};
   font-family: ${props.fontFamily || "'NanumSquareRound', 'Noto Sans KR', 'Montserrat', sans-serif"};
   color: ${props.color || '#000000'};
