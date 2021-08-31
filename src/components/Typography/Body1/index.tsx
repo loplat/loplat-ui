@@ -7,7 +7,6 @@ const Body1 = (props: TypographyProps): React.ReactElement => {
       className={TextElementStyle({
         ...props,
         size: 16,
-        weight: 'regular',
       })}
     >
       {props.children}
