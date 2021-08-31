@@ -7,7 +7,7 @@ const Headline1 = (props: TypographyProps): React.ReactElement => {
       className={TextElementStyle({
         ...props,
         size: 28,
-        weight: 'Extra-bold',
+        weight: 'extra-bold',
       })}
     >
       {props.children}

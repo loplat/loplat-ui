@@ -3,11 +3,11 @@ import { css } from '@emotion/css';
 
 // TODO: color set 완성되면, color type의 유니온 타입으로 변경
 export type ColorSet = '#000000' | string;
-export type FontWeightSet = 'Extra-bold' | 'Bold' | 'Regular';
+export type FontWeightSet = 'extra-bold' | 'bold' | 'regular';
 export const FontWeight = {
-  'Extra-bold': 800,
-  Bold: 700,
-  Regular: 400,
+  'extra-bold': 800,
+  bold: 700,
+  regular: 400,
 };
 
 export type FontFamilySet = 'NanumSquareRound' | 'Noto Sans KR' | 'Montserrat';
