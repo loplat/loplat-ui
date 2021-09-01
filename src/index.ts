@@ -1,5 +1,3 @@
-import * as Button from './components/Button';
-import * as Header from './components/Header';
-import * as Page from './components/Page';
+import * as Typography from './core/Typography';
 
-export { Button, Header, Page };
+export { Typography };
