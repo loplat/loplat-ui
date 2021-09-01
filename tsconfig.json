@@ -19,8 +19,7 @@
     "declarationDir": "dist/types",
     "allowJs": true,
     "noFallthroughCasesInSwitch": true,
-    "isolatedModules": true,
-    "noEmit": false
+    "isolatedModules": true
   },
   "include": [
     "src",
