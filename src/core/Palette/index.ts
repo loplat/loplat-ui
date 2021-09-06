@@ -1,37 +1,33 @@
-// background color
-export const white500 = '#ffffff';
-export const white100 = '#f7f7f7';
+export const white = '#ffffff';
+export const background = '#f7f7f7';
 
-// primary
-export const blue500 = '#41a7fd';
-export const blue400 = '#5cb3fc';
-export const blue300 = '#82c5fd';
-export const blue200 = '#a8d8ff';
-export const blue100 = '#cee9ff';
+export const blue100 = '#ebf6fe';
+export const blue200 = '#CEE9FF';
+export const blue300 = '#8BC9FE';
+export const blue400 = '#5CB3FC';
+export const blue500 = '#40A6FD';
+export const blue600 = '#0C8EFC';
 
-export const black500 = '#222222';
-export const black400 = '#444444';
-export const black300 = '#666666';
-export const black200 = '#888888';
 export const black100 = '#aaaaaa';
+export const black200 = '#888888';
+export const black300 = '#666666';
+export const black400 = '#444444';
+export const black500 = '#222222';
 
-// supporting color 1
-export const coolGray500 = '#9eaab7';
-export const coolGray400 = '#b8c4d1';
-export const coolGray300 = '#c8d3e0';
-export const coolGray200 = '#d5e0ed';
-export const coolGray100 = '#edf2f8';
+export const blueScale100 = '#EEF2F8'
+export const blueScale200 = '#D5E0EE'
+export const blueScale300 = '#C8D4E0'
+export const blueScale400 = '#B8C4D1'
+export const blueScale500 = '#9DAAB7'
 
-export const warmGray500 = '#b5b5b5';
-export const warmGray400 = '#c1c1c1';
-export const warmGray300 = '#d1d1d1';
-export const warmGray200 = '#e1e1e1';
-export const warmGray100 = '#f0f0f0';
+export const grayScale100 = '#F0F0F0'
+export const grayScale200 = '#E1E1E1'
+export const grayScale300 = '#D1D1D1'
+export const grayScale400 = '#5CB3FC'
+export const grayScale500 = '#B5B5B5'
 
-// supporting color 2
-export const red500 = '#d83a5e';
-export const red400 = '#ed6489';
-export const red300 = '#f47e9e';
-export const red200 = '#f59fb6';
-export const red100 = '#fac7d5';
+export const danger100 = '#F7D7DE';
+export const danger200 = '#E57A92';
+export const danger300 = '#d83a5e';
+export const danger400 = '#ba2547';
 
