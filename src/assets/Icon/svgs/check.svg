@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon/check</title>
+    <defs>
+        <path d="M9.75501096,18.9904887 L0.414213562,12.0561221 C-0.138071187,11.5038373 -0.138071187,10.6084068 0.414213562,10.0561221 C0.966498312,9.50383733 1.86192881,9.50383733 2.41421356,10.0561221 L10.755011,15.9894887 L25.22288,0.414213562 C25.7751647,-0.138071187 26.6705952,-0.138071187 27.22288,0.414213562 C27.7751647,0.966498312 27.7751647,1.86192881 27.22288,2.41421356 L11.755011,18.9904887 C11.4895866,19.2553679 11.1299923,19.40424 10.755011,19.4044887 C10.379986,19.4044887 10.0203113,19.2555537 9.75501096,18.9904887 Z" id="path-1"></path>
+    </defs>
+    <g id="icon/check" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="color/primary/500" transform="translate(2.030203, 5.805725)">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <g id="Mask" fill-rule="nonzero"></g>
+            <g id="Group" mask="url(#mask-2)">
+                <g transform="translate(-2.030203, -5.805725)" id="color/primary/500">
+                    <rect id="Rectangle-Copy-4" fill="#9DAAB7" x="0" y="2.27373675e-15" width="32" height="32"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

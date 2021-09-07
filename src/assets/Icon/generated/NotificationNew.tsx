@@ -1,0 +1,31 @@
+import React from 'react';
+import type { IconProps } from '../index';
+export const NotificationNew = React.memo<IconProps>(({ size = 18, fillColor = '#9DAAB7', className, style }) => (
+  <svg
+    width={size}
+    height={size}
+    xmlns="http://www.w3.org/2000/svg"
+    xmlnsXlink="http://www.w3.org/1999/xlink"
+    style={style}
+    className={className}
+    viewBox="0 0 32 32"
+  >
+    <defs>
+      <path
+        d="M16.492 26.673a3.188 3.188 0 01-2.582 1.629l-.202.006-.199-.006a3.19 3.19 0 01-2.987-3.127l-9.108-.001a1.414 1.414 0 01-1.075-2.332c1.846-2.165 2.783-5.125 2.783-8.8v-2.994a11.416 11.416 0 01.767-4.135 1.414 1.414 0 012.637 1.021 8.581 8.581 0 00-.577 3.114v2.994a17.378 17.378 0 01-1.87 8.3h19.263a17.366 17.366 0 01-1.87-8.3v-2.994a8.01 8.01 0 00-7.761-8.22 7.5 7.5 0 00-5.6 2.529 1.414 1.414 0 11-2.094-1.9A10.288 10.288 0 0113.71 0C19.682.136 24.418 5.078 24.3 11.05v2.994c0 3.673.936 6.633 2.783 8.8a1.414 1.414 0 01-1.076 2.332v-.002h-9.112a3.185 3.185 0 01-.403 1.499z"
+        id="notification_new_svg__a"
+      />
+    </defs>
+    <g fill="none" fillRule="evenodd">
+      <g transform="translate(2 2)">
+        <mask id="notification_new_svg__b" fill="#fff">
+          <use xlinkHref="#notification_new_svg__a" />
+        </mask>
+        <g mask="url(#notification_new_svg__b)">
+          <path fill={fillColor} d="M-2-2h32v32H-2z" />
+        </g>
+      </g>
+      <circle fill="#D83A5E" cx={25} cy={6} r={4} />
+    </g>
+  </svg>
+));

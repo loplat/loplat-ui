@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon/desktop</title>
+    <defs>
+        <path d="M6.894,26.307 C6.11306936,26.307 5.48,25.6739306 5.48,24.893 C5.48,24.1120694 6.11306936,23.479 6.894,23.479 L12.725,23.479 L12.725,21.114 L1.414,21.114 C0.633069364,21.114 0,20.4809306 0,19.7 L0,1.414 C0,0.633069364 0.633069364,0 1.414,0 L26.865,0 C27.6457021,0.000551538227 28.2784485,0.633297932 28.2790032,1.414 L28.2790032,19.696 C28.2797965,20.0716276 28.1312055,20.4321579 27.8659715,20.6981422 C27.6007375,20.9641266 27.2406284,21.1137354 26.865,21.114 L15.552,21.114 L15.552,23.479 L21.385,23.479 C22.1659306,23.479 22.799,24.1120694 22.799,24.893 C22.799,25.6739306 22.1659306,26.307 21.385,26.307 L6.894,26.307 Z M25.451,2.832 L2.828,2.832 L2.828,18.286 L25.451,18.286 L25.451,2.832 Z" id="path-1"></path>
+    </defs>
+    <g id="icon/desktop" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="color/primary/500" transform="translate(2.000000, 3.000000)">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <g id="Mask" fill-rule="nonzero"></g>
+            <g id="Group" mask="url(#mask-2)">
+                <g transform="translate(-2.000000, -3.000000)" id="color/primary/500">
+                    <rect id="Rectangle-Copy-4" fill="#9DAAB7" x="0" y="2.27373675e-15" width="32" height="32"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

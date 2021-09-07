@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon/delete</title>
+    <defs>
+        <path d="M26.9005999,0.000502078055 C27.4145588,-0.0131695084 27.8954369,0.253211968 28.1564442,0.696174573 C28.4174516,1.13913718 28.4174516,1.68886698 28.1564442,2.13182958 C27.9191649,2.53452286 27.5001741,2.79128132 27.03981,2.82436497 L26.9005999,2.82750208 L26.9005999,2.82750208 L1.45159987,2.82750208 C0.937640936,2.84117366 0.456762822,2.57479219 0.195755495,2.13182958 C-0.0652518318,1.68886698 -0.0652518318,1.13913718 0.195755495,0.696174573 C0.456762822,0.253211968 0.937640936,-0.0131695084 1.45159987,0.000502078055 L26.9005999,0.000502078055 Z" id="path-1"></path>
+    </defs>
+    <g id="icon/delete" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="color/primary/500" transform="translate(2.000000, 14.724498)">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <g id="Mask" fill-rule="nonzero"></g>
+            <g id="Group" mask="url(#mask-2)">
+                <g transform="translate(-2.000000, -14.724498)" id="color/primary/500">
+                    <rect id="Rectangle-Copy-4" fill="#9DAAB7" x="0" y="2.27373675e-15" width="32" height="32"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
