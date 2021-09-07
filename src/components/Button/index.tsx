@@ -33,20 +33,24 @@ export interface ButtonProps {
 
 const SizeSet = {
   fullWidth: {
-    width: '100%',
+    minWidth: '100%',
     height: 'auto',
+    padding: '15px',
   },
   sm: {
-    width: '80px',
+    minWidth: '86px',
     height: '38px',
+    padding: '7px',
   },
   md: {
-    width: '144px',
+    minWidth: '144px',
     height: '54px',
+    padding: '15px 34px',
   },
   lg: {
-    width: '192px',
+    minWidth: '192px',
     height: '70px',
+    padding: '23px 58px',
   },
 } as const;
 
@@ -175,23 +179,36 @@ const ColorSet = {
 
 const BaseButton = styled.button(
   {
+    width: 'auto',
     display: 'flex',
     flexFlow: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     outline: 'none',
-    padding: '15px',
     borderRadius: '4px',
+    lineHeight: '24px',
+    div: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContents: 'center',
+      '&:first-child': {
+        marginRight: '4px',
+      },
+      '&:last-child': {
+        marginLeft: '4px',
+      },
+    },
   },
   (props: ButtonProps) => {
-    const { width, height } = SizeSet[props.fullWidth ? 'fullWidth' : props.size ?? 'sm'];
+    const { minWidth, height, padding } = SizeSet[props.fullWidth ? 'fullWidth' : props.size ?? 'sm'];
     const { background, border, text } = ColorSet[props.color ?? 'default'];
 
     return {
-      width,
+      minWidth,
       height,
       fontSize: '18px',
       color: text.default,
+      padding,
       backgroundColor: background.default,
       border: `1px solid ${border.default}`,
       '&:disabled': {

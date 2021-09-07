@@ -2,6 +2,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import Button, { ButtonProps } from './index';
+import { Alert } from '../../assets/Icon/generated/Alert';
 
 export default {
   title: 'Components/Button',
@@ -41,4 +42,23 @@ export const Solid = Template.bind({});
 Solid.args = {
   color: 'solid',
   onClick: () => alert('click!'),
+};
+
+export const WithLeftIcon = Template.bind({});
+WithLeftIcon.args = {
+  onClick: () => alert('click!'),
+  leftIcon: <Alert />,
+};
+
+export const WithRightIcon = Template.bind({});
+WithRightIcon.args = {
+  onClick: () => alert('click!'),
+  rightIcon: <Alert />,
+};
+
+export const WithIcons = Template.bind({});
+WithIcons.args = {
+  onClick: () => alert('click!'),
+  leftIcon: <Alert />,
+  rightIcon: <Alert />,
 };
