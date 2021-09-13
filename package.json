@@ -25,6 +25,7 @@
     "build": "rollup -c",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
+    "publish-storybook": "firebase deploy",
     "build:types": "tsc --emitDeclarationOnly",
     "test": "react-scripts test --env=jsdom"
   },

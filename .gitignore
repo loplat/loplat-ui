@@ -11,6 +11,7 @@
 # production
 /build
 /dist
+/storybook-static
 
 # misc
 .DS_Store
@@ -24,3 +25,5 @@ yarn-debug.log*
 yarn-error.log*
 
 .idea
+
+.firebase
