@@ -11,9 +11,8 @@ const useMockInput = () => {
 
 describe('<Input />', () => {
   test('<Input />에 아무것도 입력하지 않았을 때, placeholder만 보인다.', () => {
-    const { getByText } = render(<Input placeholder={'검색어를 입력해주세요.'} />);
-    const label = getByText('검색어를 입력해주세요.');
-    expect(label).toBeInTheDocument();
+    const { getByPlaceholderText } = render(<Input placeholder={'검색어를 입력해주세요.'} />);
+    expect(getByPlaceholderText('검색어를 입력해주세요.')).toBeInTheDocument();
   });
   test('<Input />을 클릭하고, 검색어를 입력한다.', () => {
     const { result } = renderHook(() => useMockInput());
