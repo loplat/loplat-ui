@@ -30,7 +30,7 @@ pipelines:
               MESSAGE: 'deploying to loplat UI'
               DEBUG: 'false'
           - export COMMIT_MESSAGE=`git log --format=%B -n 1 $BITBUCKET_COMMIT`
-          - echo COMMIT_MESSAGE
+          - echo $COMMIT_MESSAGE
           - curl -X POST -H "Content-type:application/json" --data "{
               \"text\":\"스토리북이 업데이트 되었습니다. https://loplat-ui.web.app/  \n\n*개발자 커밋메시지* $COMMIT_MESSAGE\"
-            }" https://hooks.slack.com/services/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
+            }" $WEBHOOK_URL
