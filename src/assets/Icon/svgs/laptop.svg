@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon/laptop</title>
+    <defs>
+        <path d="M24.7884122,0 C25.5693428,0 26.2024122,0.633069364 26.2024122,1.414 L26.202,15.305 L28.1854122,20.464 C28.3527701,20.8987337 28.2952707,21.3880045 28.0316842,21.7720933 C27.7680978,22.1561822 27.332247,22.3858039 26.8664122,22.386 L26.8644122,22.385 L1.41341216,22.385 C0.947577374,22.3848039 0.511726558,22.1551822 0.248140079,21.7710933 C-0.0154464015,21.3870045 -0.072945794,20.8977337 0.0944121639,20.463 L2.074,15.314 L2.07441216,1.414 C2.07441216,0.633069364 2.70748153,0 3.48841216,0 L24.7884122,0 Z M23.8174122,16.989 L4.46141216,16.989 L3.47341216,19.557 L24.8054122,19.557 L23.8174122,16.989 Z M23.3744122,2.828 L4.90441216,2.828 L4.904,14.156 L23.374,14.156 L23.3744122,2.828 Z" id="path-1"></path>
+    </defs>
+    <g id="icon/laptop" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="color/primary/500" transform="translate(2.000588, 5.002000)">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <g id="Mask" fill-rule="nonzero"></g>
+            <g id="Group" mask="url(#mask-2)">
+                <g transform="translate(-2.000588, -5.002000)" id="color/primary/500">
+                    <rect id="Rectangle-Copy-4" fill="#9DAAB7" x="0" y="2.27373675e-15" width="32" height="32"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

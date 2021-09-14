@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon/cheveron_up</title>
+    <defs>
+        <path d="M26.1562136,15.1933543 C25.7810793,15.1938754 25.4212019,15.0448861 25.1562136,14.7793543 L13.7852136,3.3983543 L2.41421356,14.7793543 C1.86192881,15.3316391 0.966498312,15.3316391 0.414213562,14.7793543 C-0.138071187,14.2270696 -0.138071187,13.3316391 0.414213562,12.7793543 L12.7852136,0.397354304 C13.3466199,-0.132451435 14.2238072,-0.132451435 14.7852136,0.397354304 L27.1572136,12.7793543 C27.5610275,13.1838542 27.681608,13.7916834 27.4627859,14.3197011 C27.2439638,14.8477188 26.7287779,15.1920725 26.1572136,15.1923543 L26.1562136,15.1933543 Z" id="path-1"></path>
+    </defs>
+    <g id="icon/cheveron_up" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="color/primary/500" transform="translate(2.000000, 8.000000)">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <g id="Mask" fill-rule="nonzero"></g>
+            <g id="Group" mask="url(#mask-2)">
+                <g transform="translate(-2.000000, -8.000000)" id="color/primary/500">
+                    <rect id="Rectangle-Copy-4" fill="#9DAAB7" x="0" y="2.27373675e-15" width="32" height="32"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

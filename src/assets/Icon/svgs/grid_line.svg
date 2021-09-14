@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon/grid_line</title>
+    <defs>
+        <path d="M26.864,16.471 C27.6449306,16.471 28.278,17.1040694 28.278,17.885 L28.278,26.865 C28.2774809,27.5997784 27.7169553,28.2034958 27.0001365,28.2724387 L26.864,28.279 L26.864,28.279 L1.413,28.279 C0.632459917,28.278448 0,27.6455403 0,26.865 L0,17.885 C0,17.1044597 0.632459917,16.471552 1.413,16.471 L26.864,16.471 Z M25.45,19.299 L2.827,19.299 L2.827,25.451 L25.45,25.451 L25.45,19.299 Z M26.864,0 C27.6449306,0 28.278,0.633069364 28.278,1.414 L28.278,10.393 C28.278,11.1279935 27.7172188,11.7320096 27.0001776,11.8005271 L26.864,11.807 L26.864,11.807 L1.413,11.807 C0.632459917,11.806448 0,11.1735403 0,10.393 L0,1.414 C0,0.633459721 0.632459917,0.000552008684 1.413,0 L26.864,0 Z M25.45,2.828 L2.827,2.828 L2.827,8.979 L25.45,8.979 L25.45,2.828 Z" id="path-1"></path>
+    </defs>
+    <g id="icon/grid_line" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="color/primary/500" transform="translate(2.000000, 2.000000)">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <g id="Mask" fill-rule="nonzero"></g>
+            <g id="Group" mask="url(#mask-2)">
+                <g transform="translate(-2.000000, -2.000000)" id="color/primary/500">
+                    <rect id="Rectangle-Copy-4" fill="#9DAAB7" x="0" y="2.27373675e-15" width="32" height="32"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
