@@ -84,6 +84,7 @@ const Input = React.memo<InputProps>((props): React.ReactElement => {
         display: flex;
         flex-flow: column;
       `}
+      aria-label="input"
     >
       <BaseInput
         id={id}
