@@ -191,10 +191,10 @@ const BaseButton = styled.button(
       display: 'flex',
       alignItems: 'center',
       justifyContents: 'center',
-      '&:first-child': {
+      '&:first-of-type': {
         marginRight: '4px',
       },
-      '&:last-child': {
+      '&:last-of-type': {
         marginLeft: '4px',
       },
     },
