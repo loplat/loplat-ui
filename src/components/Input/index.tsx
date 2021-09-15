@@ -47,7 +47,7 @@ const BaseInput = styled.input(
       backgroundColor: background,
     },
     '&:hover:not(:disabled)': {
-      color: grayScale200,
+      color: blueScale500,
       borderColor: grayScale500,
       backgroundColor: white,
     },
