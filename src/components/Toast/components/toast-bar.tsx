@@ -9,17 +9,43 @@ import { CloseIcon } from '../../../assets/Icon';
 import { ActionType, dispatch } from '../core/store';
 
 const enterAnimation = (factor: number) => `
-0% {transform: translate3d(0,${factor * -200}%,0) scale(.6); opacity:.5;}
-100% {transform: translate3d(0,0,0) scale(1); opacity:1;}
+  0% {
+    transform: translate3d(0, ${factor * -200}%, 0) scale(0.6);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 1;
+  }
 `;
 
 const exitAnimation = (factor: number) => `
-0% {transform: translate3d(0,0,-1px) scale(1); opacity:1;}
-100% {transform: translate3d(0,${factor * -150}%,-1px) scale(.6); opacity:0;}
+  0% {
+    transform: translate3d(0, 0, -1px) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(0, ${factor * -150}%, -1px) scale(0.6);
+    opacity: 0;
+  }
 `;
 
-const fadeInAnimation = `0%{opacity:0;} 100%{opacity:1;}`;
-const fadeOutAnimation = `0%{opacity:1;} 100%{opacity:0;}`;
+const fadeInAnimation = `
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`;
+const fadeOutAnimation = `
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+`;
 
 const ToastBarBase = styled.div(
   {
