@@ -7,8 +7,7 @@ interface RadioStyleProps {
   isSelected: boolean;
 }
 
-const RadioButtonContainer = styled.label(
-  `
+const RadioButtonContainer = styled.label<RadioStyleProps>`
   display: block;
   position: relative;
   padding-left: 28px;
@@ -23,25 +22,21 @@ const RadioButtonContainer = styled.label(
     opacity: 0;
     cursor: pointer;
   }
-`,
-  ({ isSelected, isDisabled }: RadioStyleProps) => `
-    font-weight: ${isSelected ? 'bold' : 'normal'};
-    color: ${isDisabled ? grayScale500 : black300};
-    pointer-events: ${isDisabled ? 'none' : 'auto'};
-  `,
-);
+  font-weight: ${({ isSelected }) => (isSelected ? 'bold' : 'normal')};
+  color: ${({ isDisabled }) => (isDisabled ? grayScale500 : black300)};
+  pointer-events: ${({ isDisabled }) => (isDisabled ? 'none' : 'auto')};
+`;
 
-const Checkmark = styled.span(
-  `
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 20px;
-    width: 20px;
-    border-radius: 50%;
-    box-sizing: border-box;
-    
-    :after {
+const Checkmark = styled.span<RadioStyleProps>`
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  box-sizing: border-box;
+
+  :after {
     content: '';
     position: absolute;
     top: 4px;
@@ -50,16 +45,13 @@ const Checkmark = styled.span(
     height: 10px;
     border-radius: 50%;
   }
-`,
-  ({ isSelected, isDisabled }: RadioStyleProps) => `
-    border: 1px solid ${!isDisabled && isSelected ? blue500 : grayScale500};
-    background-color: ${isSelected ? background : 'white'};
-    :after {
-      background: ${isDisabled ? grayScale500 : blue500};
-      display: ${isSelected ? 'block' : 'none'};
-    }
-`,
-);
+  border: 1px solid ${({ isDisabled, isSelected }) => (!isDisabled && isSelected ? blue500 : grayScale500)};
+  background-color: ${({ isSelected }) => (isSelected ? background : 'white')};
+  :after {
+    background: ${({ isDisabled }) => (isDisabled ? grayScale500 : blue500)};
+    display: ${({ isSelected }) => (isSelected ? 'block' : 'none')};
+  }
+`;
 
 export interface RadioButtonProps {
   selected: string;
