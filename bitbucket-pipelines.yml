@@ -16,6 +16,8 @@ pipelines:
           - yarn build-storybook
         caches:
           - node
+        artifacts: # defining the artifacts to be passed to each future step.
+          - storybook-static/**
     - step:
         size: 2x
         name: Publish Storybook
