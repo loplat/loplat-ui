@@ -5,8 +5,10 @@ import {
   black300,
   blue100,
   blue200,
+  blue300,
   blue500,
   blue600,
+  blueScale100,
   blueScale200,
   blueScale400,
   danger100,
@@ -18,7 +20,7 @@ import {
 } from '../../core/Palette';
 
 export type Size = 'sm' | 'md' | 'lg';
-export type Color = 'default' | 'primary1' | 'primary2' | 'danger1' | 'danger2' | 'solid';
+export type Color = 'default' | 'primary1' | 'primary2' | 'danger1' | 'danger2' | 'solid' | 'white';
 export interface ButtonProps {
   size?: Size;
   fullWidth?: boolean;
@@ -161,19 +163,39 @@ const ColorSet = {
     background: {
       default: blueScale200,
       hover: blueScale400,
-      act: blueScale200,
+      act: blueScale100,
       disabled: background,
     },
     border: {
       default: blueScale200,
       hover: blueScale400,
-      act: blueScale200,
+      act: blueScale100,
       disabled: background,
     },
     text: {
       default: black300,
       hover: black300,
       act: black300,
+      disabled: grayScale500,
+    },
+  },
+  white: {
+    background: {
+      default: white,
+      hover: blue100,
+      act: blue300,
+      disabled: background,
+    },
+    border: {
+      default: white,
+      hover: blue100,
+      act: blue300,
+      disabled: background,
+    },
+    text: {
+      default: blue500,
+      hover: blue500,
+      act: white,
       disabled: grayScale500,
     },
   },
