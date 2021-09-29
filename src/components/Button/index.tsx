@@ -5,8 +5,10 @@ import {
   black300,
   blue100,
   blue200,
+  blue300,
   blue500,
   blue600,
+  blueScale100,
   blueScale200,
   blueScale400,
   danger100,
@@ -18,7 +20,7 @@ import {
 } from '../../core/Palette';
 
 export type Size = 'sm' | 'md' | 'lg';
-export type Color = 'default' | 'primary1' | 'primary2' | 'danger1' | 'danger2' | 'solid';
+export type Color = 'default' | 'primary1' | 'primary2' | 'danger1' | 'danger2' | 'solid' | 'white';
 export interface ButtonProps {
   size?: Size;
   fullWidth?: boolean;
@@ -30,6 +32,8 @@ export interface ButtonProps {
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
   children?: React.ReactNode;
 }
+
+type BaseButtonProps = typeof SizeSet[keyof typeof SizeSet] & typeof ColorSet[keyof typeof ColorSet];
 
 const SizeSet = {
   fullWidth: {
@@ -159,13 +163,13 @@ const ColorSet = {
     background: {
       default: blueScale200,
       hover: blueScale400,
-      act: blueScale200,
+      act: blueScale100,
       disabled: background,
     },
     border: {
       default: blueScale200,
       hover: blueScale400,
-      act: blueScale200,
+      act: blueScale100,
       disabled: background,
     },
     text: {
@@ -175,66 +179,92 @@ const ColorSet = {
       disabled: grayScale500,
     },
   },
-} as const;
-
-const BaseButton = styled.button(
-  {
-    width: 'auto',
-    display: 'flex',
-    flexFlow: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    outline: 'none',
-    borderRadius: '4px',
-    lineHeight: '24px',
-    div: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContents: 'center',
-      '&:first-of-type': {
-        marginRight: '4px',
-      },
-      '&:last-of-type': {
-        marginLeft: '4px',
-      },
+  white: {
+    background: {
+      default: white,
+      hover: blue100,
+      act: blue300,
+      disabled: background,
+    },
+    border: {
+      default: white,
+      hover: blue100,
+      act: blue300,
+      disabled: background,
+    },
+    text: {
+      default: blue500,
+      hover: blue500,
+      act: white,
+      disabled: grayScale500,
     },
   },
-  (props: ButtonProps) => {
-    const { minWidth, height, padding } = SizeSet[props.fullWidth ? 'fullWidth' : props.size ?? 'sm'];
-    const { background, border, text } = ColorSet[props.color ?? 'default'];
+} as const;
 
-    return {
-      minWidth,
-      height,
-      fontSize: '18px',
-      color: text.default,
-      padding,
-      backgroundColor: background.default,
-      border: `1px solid ${border.default}`,
-      '&:disabled': {
-        color: text.disabled,
-        backgroundColor: background.disabled,
-        borderColor: border.disabled,
-        cursor: 'not-allowed',
-      },
-      '&:hover:not(:disabled)': {
-        color: text.hover,
-        backgroundColor: background.hover,
-        borderColor: border.hover,
-      },
-      '&:active:not(:disabled)': {
-        color: text.act,
-        backgroundColor: background.act,
-        borderColor: border.act,
-        boxShadow: `inset 2px 2px 0 0 rgba(102, 102, 102, 0.2)`,
-      },
-    };
-  },
-);
+const BaseButton = styled.button<BaseButtonProps>`
+  width: auto;
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  border-radius: 4px;
+  line-height: 24px;
+
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:first-of-type {
+      margin-right: 4px;
+    }
+    &:last-of-type {
+      margin-left: 4px;
+    }
+  }
+
+  min-width: ${({ minWidth }) => minWidth};
+  height: ${({ height }) => height};
+  font-size: 18px;
+  color: ${({ text }) => text.default};
+  padding: ${({ padding }) => padding};
+  background-color: ${({ background }) => background.default};
+  border: 1px solid ${({ border }) => border.default};
+
+  &:disabled {
+    color: ${({ text }) => text.disabled};
+    svg path {
+      fill: ${({ text }) => text.disabled};
+    }
+    background-color: ${({ background }) => background.disabled};
+    border-color: ${({ border }) => border.disabled};
+    cursor: not-allowed;
+  }
+  &:hover:not(:disabled) {
+    color: ${({ text }) => text.hover};
+    svg path {
+      fill: ${({ text }) => text.hover};
+    }
+    background-color: ${({ background }) => background.hover};
+    border-color: ${({ border }) => border.hover};
+  }
+  &:active:not(:disabled) {
+    color: ${({ text }) => text.act};
+    svg path {
+      fill: ${({ text }) => text.act};
+    }
+    background-color: ${({ background }) => background.act};
+    border-color: ${({ border }) => border.act};
+  }
+`;
 
 const Button = ({ disabled = false, ...props }: ButtonProps): React.ReactElement => {
   return (
-    <BaseButton {...props} disabled={disabled}>
+    <BaseButton
+      disabled={disabled}
+      {...ColorSet[props.color ?? 'default']}
+      {...SizeSet[props.fullWidth ? 'fullWidth' : props.size ?? 'sm']}
+    >
       <div>{props.leftIcon}</div>
       <div>{props.children}</div>
       <div>{props.rightIcon}</div>
