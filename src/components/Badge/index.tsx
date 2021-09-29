@@ -5,11 +5,14 @@ import { css } from '@emotion/css';
 type BadgeType = 'pill' | 'round';
 type Color = 'primary' | 'danger' | 'success' | 'new' | 'light' | 'warning';
 type variant = 'filled' | 'outlined';
+type Size = 'normal' | 'small';
+
 export interface BadgeProps {
   type?: BadgeType;
   color?: Color;
   text: string;
   variant?: variant;
+  size?: Size;
 }
 
 const ColorSet = {
@@ -20,8 +23,14 @@ const ColorSet = {
   light: blueScale300,
   warning: warning300,
 } as const;
-const Badge = ({ type = 'pill', color = 'primary', text, variant = 'filled' }: BadgeProps): React.ReactElement => {
-  const [padding, fontSize] = color === 'new' ? ['1px 5px', '8px'] : ['3px 11px', '12px'];
+const Badge = ({
+  type = 'pill',
+  color = 'primary',
+  text,
+  variant = 'filled',
+  size = 'normal',
+}: BadgeProps): React.ReactElement => {
+  const [padding, fontSize] = size === 'small' ? ['1px 5px', '8px'] : ['3px 11px', '12px'];
   const [fontColor, backgroundColor] = variant === 'filled' ? [white, ColorSet[color]] : [ColorSet[color], white];
   return (
     <div

@@ -30,4 +30,5 @@ New.args = {
   color: 'new',
   text: 'N',
   variant: 'filled',
+  size: 'small',
 };
