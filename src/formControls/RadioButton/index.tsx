@@ -74,7 +74,14 @@ const RadioButton = ({
   return (
     <RadioButtonContainer isSelected={isSelected} isDisabled={disabled}>
       {children}
-      <input type="radio" name={name} value={value} disabled={disabled} onClick={() => onChange(value)} />
+      <input
+        type="radio"
+        name={name}
+        value={value}
+        disabled={disabled}
+        onChange={() => onChange(value)}
+        checked={isSelected}
+      />
       <Checkmark isSelected={isSelected} isDisabled={disabled} />
     </RadioButtonContainer>
   );
