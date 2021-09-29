@@ -7,7 +7,7 @@ import {
   ValueOrFunction,
   resolveValue,
 } from './types';
-import { genId } from './utils';
+import { generateId } from './utils';
 import { dispatch, ActionType } from './store';
 
 type Message = ValueOrFunction<Renderable, Toast>;
@@ -25,7 +25,7 @@ const createToast = (message: Message, type: ToastType = 'white', opts?: ToastOp
   message,
   pauseDuration: 0,
   ...opts,
-  id: opts?.id || genId(),
+  id: opts?.id || generateId(),
 });
 
 const createHandler =

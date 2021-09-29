@@ -15,7 +15,7 @@ import {
   warning300,
 } from '../../../core/Palette';
 
-export const genId = (() => {
+export const generateId = (() => {
   let count = 0;
   return () => {
     return (++count).toString();
