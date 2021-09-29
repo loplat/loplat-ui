@@ -137,7 +137,7 @@ export const ToastBar: React.FC<ToastBarProps> = React.memo(({ toast, position, 
           <CloseButton
             onClick={() => {
               dispatch({
-                type: ActionType.DISMISS_TOAST,
+                type: ActionType.REMOVE_TOAST,
                 toastId: toast.id,
               });
             }}

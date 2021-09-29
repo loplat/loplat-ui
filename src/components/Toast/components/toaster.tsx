@@ -30,14 +30,6 @@ const getPositionStyle = (position: ToastPosition, offset: number): React.CSSPro
   };
 };
 
-const activeClass = css`
-  z-index: 9999;
-
-  > * {
-    pointer-events: auto;
-  }
-`;
-
 export interface ToasterProps {
   position?: ToastPosition;
   toastOptions?: DefaultToastOptions;
@@ -60,12 +52,11 @@ export const Toaster: React.FC<ToasterProps> = ({
   containerClassName,
 }) => {
   const { toasts, handlers } = useToaster(toastOptions);
-
   return (
     <div
       style={{
         position: 'fixed',
-        zIndex: 9999,
+        zIndex: 9000,
         top: DEFAULT_OFFSET,
         left: DEFAULT_OFFSET,
         right: DEFAULT_OFFSET,
@@ -77,7 +68,7 @@ export const Toaster: React.FC<ToasterProps> = ({
       onMouseEnter={handlers.startPause}
       onMouseLeave={handlers.endPause}
     >
-      {toasts.map((t) => {
+      {toasts.map((t, index) => {
         const toastPosition = t.position || position;
         const offset = handlers.calculateOffset(t, {
           reverseOrder,
@@ -93,7 +84,15 @@ export const Toaster: React.FC<ToasterProps> = ({
             });
 
         return (
-          <div ref={ref} className={t.visible ? activeClass : ''} key={t.id} style={positionStyle}>
+          <div
+            ref={ref}
+            className={css`
+              z-index: ${9999 - index};
+              pointer-events: auto;
+            `}
+            key={t.id}
+            style={positionStyle}
+          >
             {t.type === 'custom' ? (
               resolveValue(t.message, t)
             ) : children ? (
