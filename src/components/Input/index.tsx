@@ -27,40 +27,36 @@ export interface InputProps {
   ref?: React.RefObject<HTMLInputElement>;
 }
 
-const BaseInput = styled.input(
-  {
-    height: 'auto',
-    color: black500,
-    backgroundColor: white,
-    border: `1px solid ${grayScale200}`,
-    borderRadius: '4px',
-    padding: '15px 23px',
-    outline: 'none',
-    fontSize: '16px',
-    '::placeholder': {
-      color: blueScale500,
-    },
-    '&:disabled': {
-      cursor: 'not-allowed',
-      color: grayScale500,
-      borderColor: grayScale200,
-      backgroundColor: background,
-    },
-    '&:hover:not(:disabled)': {
-      color: blueScale500,
-      borderColor: grayScale500,
-      backgroundColor: white,
-    },
-    '&:focus:not(:disabled)': {
-      color: black500,
-      borderColor: blue500,
-    },
+const BaseInput = styled.input<InputProps>`
+  width: ${({ fullWidth }) => (fullWidth ? '100%' : 'auto')};
+  height: auto;
+  color: ${black500};
+  background-color: white;
+  border: 1px solid ${grayScale200};
+  border-color: ${({ error }) => error && danger300};
+  border-radius: 4px;
+  padding: 15px 23px;
+  outline: none;
+  font-size: 16px;
+  ::placeholder {
+    color: ${blueScale500};
+  }
+  &:disabled {
+    cursor: not-allowed;
+    color: ${grayScale500};
+    border-color: ${grayScale200};
+    background-color: ${background},
+  }
+  &:hover:not(:disabled) {
+    color: ${({ error }) => !error && grayScale200};
+    border-color: ${({ error }) => !error && grayScale500};
+    background-color: ${white};
+  }
+  &:focus:not(:disabled) {
+    color: ${black500};
+    border-color: ${({ error }) => !error && blue500};
   },
-  (props: InputProps) => ({
-    width: props.fullWidth ? '100%' : 'auto',
-    borderColor: props.error ? danger300 : grayScale200,
-  }),
-);
+`;
 
 const InlineError = React.memo(({ children }): React.ReactElement => {
   return (
