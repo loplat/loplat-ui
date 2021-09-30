@@ -59,7 +59,7 @@ const IconDocument = (props: IconProps) => {
 };
 
 export default {
-  title: 'Icon/Search',
+  title: 'Icon',
   component: IconDocument,
 } as ComponentMeta<typeof IconDocument>;
 
