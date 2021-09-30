@@ -26,6 +26,7 @@ const Help = ({ title, text, maxWidth = 400 }: HelpProps): React.ReactElement =>
         <p
           data-testid="help-title"
           className={css`
+            font-weight: bold;
             margin: 0 0 4px 0;
           `}
         >
