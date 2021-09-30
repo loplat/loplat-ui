@@ -62,8 +62,8 @@ const ColorSet = {
   default: {
     background: {
       default: white,
-      hover: background,
-      act: white,
+      hover: blue100,
+      act: blue500,
       disabled: background,
     },
     border: {
@@ -75,7 +75,7 @@ const ColorSet = {
     text: {
       default: black300,
       hover: black300,
-      act: blue500,
+      act: white,
       disabled: grayScale500,
     },
   },
