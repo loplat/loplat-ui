@@ -48,7 +48,7 @@ const BaseInput = styled.input<InputProps>`
     background-color: ${background},
   }
   &:hover:not(:disabled) {
-    color: ${({ error }) => !error && grayScale200};
+    color: ${({ error }) => !error && black500};
     border-color: ${({ error }) => !error && grayScale500};
     background-color: ${white};
   }
