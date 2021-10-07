@@ -261,6 +261,7 @@ const BaseButton = styled.button<BaseButtonProps>`
 const Button = ({ disabled = false, ...props }: ButtonProps): React.ReactElement => {
   return (
     <BaseButton
+      className={props.className}
       disabled={disabled}
       {...ColorSet[props.color ?? 'default']}
       {...SizeSet[props.fullWidth ? 'fullWidth' : props.size ?? 'sm']}
