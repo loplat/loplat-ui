@@ -23,12 +23,12 @@ export interface InputProps {
   onChange?: (e?: React.ChangeEvent<HTMLInputElement>) => void;
   onEnter?: (e?: React.KeyboardEvent<HTMLInputElement>) => void;
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
-  style?: React.CSSProperties;
+  className?: string | undefined;
   ref?: React.RefObject<HTMLInputElement>;
 }
 
 const BaseInput = styled.input<InputProps>`
-  width: ${({ fullWidth }) => (fullWidth ? '100%' : 'auto')};
+  width: ${({ fullWidth }) => fullWidth && '100%'};
   height: auto;
   color: ${black500};
   background-color: white;
