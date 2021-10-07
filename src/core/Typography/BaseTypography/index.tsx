@@ -11,7 +11,7 @@ export const FontWeight = {
 };
 
 export type FontFamilySet = 'NanumSquareRound' | 'Noto Sans KR' | 'Montserrat';
-export type TextAlign = 'left' | 'right' | 'center';
+export type TextAlign = 'center' | 'inherit' | 'justify' | 'left' | 'right';
 export interface TypographyStyle {
   size?: number;
   color?: ColorSet;
@@ -32,7 +32,7 @@ const TextElementStyle = (props: TypographyStyle): string => css`
   color: ${props.color || '#000000'};
   line-height: 1.14;
   letter-spacing: normal;
-  text-align: ${props.textAlign || 'left'};
+  text-align: ${props.textAlign || 'inherit'};
 `;
 
 export default TextElementStyle;
