@@ -4,6 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Button, { ButtonProps } from './index';
 import { Alert } from '../../assets/Icon/generated/Alert';
 import { black300, blue500, danger300, white } from '../../core/Palette';
+import { css } from '@emotion/css';
 
 export default {
   title: 'Components/Button',
@@ -14,6 +15,13 @@ const Template: ComponentStory<typeof Button> = (args: ButtonProps) => <Button {
 
 export const Default = Template.bind({});
 Default.args = {};
+
+export const DefaultWithClassName = Template.bind({});
+DefaultWithClassName.args = {
+  className: css`
+    box-shadow: 0 2px 12px 0 rgba(64, 166, 253, 0.3);
+  `,
+};
 
 export const Primary1 = Template.bind({});
 Primary1.args = {
