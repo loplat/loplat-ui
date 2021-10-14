@@ -4,23 +4,10 @@ import TextElementStyle, { TypographyProps } from '../BaseTypography';
 export const Caption1 = (props: TypographyProps): React.ReactElement => {
   return (
     <div
-      className={TextElementStyle({
+      className={`${TextElementStyle({
         ...props,
-        size: 10,
-      })}
-    >
-      {props.children}
-    </div>
-  );
-};
-
-export const Caption2 = (props: TypographyProps): React.ReactElement => {
-  return (
-    <div
-      className={TextElementStyle({
-        ...props,
-        size: 9,
-      })}
+        size: 0.63,
+      })} ${props.className}`}
     >
       {props.children}
     </div>
