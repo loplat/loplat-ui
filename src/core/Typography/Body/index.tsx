@@ -4,10 +4,10 @@ import TextElementStyle, { TypographyProps } from '../BaseTypography';
 export const Body1 = (props: TypographyProps): React.ReactElement => {
   return (
     <div
-      className={TextElementStyle({
+      className={`${TextElementStyle({
         ...props,
-        size: 16,
-      })}
+        size: 1,
+      })} ${props.className}`}
     >
       {props.children}
     </div>
@@ -17,10 +17,10 @@ export const Body1 = (props: TypographyProps): React.ReactElement => {
 export const Body2 = (props: TypographyProps): React.ReactElement => {
   return (
     <div
-      className={TextElementStyle({
+      className={`${TextElementStyle({
         ...props,
-        size: 14,
-      })}
+        size: 0.88,
+      })} ${props.className}`}
     >
       {props.children}
     </div>
@@ -30,23 +30,10 @@ export const Body2 = (props: TypographyProps): React.ReactElement => {
 export const Body3 = (props: TypographyProps): React.ReactElement => {
   return (
     <div
-      className={TextElementStyle({
+      className={`${TextElementStyle({
         ...props,
-        size: 12,
-      })}
-    >
-      {props.children}
-    </div>
-  );
-};
-
-export const Body4 = (props: TypographyProps): React.ReactElement => {
-  return (
-    <div
-      className={TextElementStyle({
-        ...props,
-        size: 11,
-      })}
+        size: 0.75,
+      })} ${props.className}`}
     >
       {props.children}
     </div>

@@ -10,14 +10,12 @@ export const FontWeight = {
   regular: 400,
 };
 
-export type FontFamilySet = 'NanumSquareRound' | 'Noto Sans KR' | 'Montserrat';
 export type TextAlign = 'center' | 'inherit' | 'justify' | 'left' | 'right';
 export interface TypographyStyle {
   size?: number;
   color?: ColorSet;
   textAlign?: TextAlign;
   weight?: FontWeightSet;
-  fontFamily?: FontFamilySet;
   className?: string;
 }
 
@@ -26,11 +24,11 @@ export interface TypographyProps extends TypographyStyle {
 }
 
 const TextElementStyle = (props: TypographyStyle): string => css`
-  font-size: ${`${props.size}px` || '16px'};
+  font-size: ${`${props.size}rem` || '1rem'};
   font-weight: ${props.weight ? FontWeight[props.weight] : 400};
-  font-family: ${props.fontFamily || "'NanumSquareRound', 'Noto Sans KR', 'Montserrat', sans-serif"};
+  font-family: inherit;
   color: ${props.color || '#000000'};
-  line-height: 1.14;
+  line-height: 1.5;
   letter-spacing: normal;
   text-align: ${props.textAlign || 'inherit'};
 `;
