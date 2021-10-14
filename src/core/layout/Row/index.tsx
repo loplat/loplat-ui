@@ -15,7 +15,7 @@ const Row = ({ className, divAttributes, children }: Props) => {
   );
 };
 
-export const StyledDiv = styled.div<Props>`
+const StyledDiv = styled.div<Props>`
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
