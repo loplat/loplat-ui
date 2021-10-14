@@ -18,7 +18,7 @@ const Col = ({ className, divAttributes, children, span }: Props): React.ReactEl
   );
 };
 
-export const StyledDiv = styled.div<Props>`
+const StyledDiv = styled.div<Props>`
   position: relative;
   box-sizing: border-box;
   padding-right: 10px;

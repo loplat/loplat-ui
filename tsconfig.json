@@ -20,11 +20,11 @@
     "allowJs": true,
     "noFallthroughCasesInSwitch": true,
     "isolatedModules": true,
-    "noEmit": true
+    "noEmit": true,
   },
   "include": [
     "src",
-    "./jest-setup.ts"
+    "./jest-setup.ts",
   ],
   "exclude": [
     "**/*.stories.tsx"
