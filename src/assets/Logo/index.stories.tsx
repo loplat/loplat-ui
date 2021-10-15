@@ -3,7 +3,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { LogoProps } from './index';
-import { LoplatLogo, LoplatILogo, LoplatXLogo } from './index';
+import { LoplatLogo, LoplatILogo, LoplatXLogo, LoplatXFullLogo } from './index';
 
 const LogoDocument = (props: LogoProps) => {
   return (
@@ -11,6 +11,7 @@ const LogoDocument = (props: LogoProps) => {
       <LoplatLogo {...props} />
       <LoplatILogo {...props} />
       <LoplatXLogo {...props} />
+      <LoplatXFullLogo {...props} />
     </>
   );
 };
