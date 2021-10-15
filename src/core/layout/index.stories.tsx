@@ -1,8 +1,8 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import Grid from './Grid';
-import Row from './Row';
-import Col from './Col';
+import {Grid} from './Grid';
+import {Row} from './Row';
+import {Col} from './Col';
 import styled from '@emotion/styled';
 
 const StyledCol = styled(Col)`

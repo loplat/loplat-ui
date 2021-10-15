@@ -7,7 +7,7 @@ interface Props {
   children?: React.ReactNode;
 }
 
-const Row = ({ className, divAttributes, children }: Props) => {
+export const Row = ({ className, divAttributes, children }: Props) => {
   return (
     <StyledDiv className={className} {...divAttributes}>
       {children}
@@ -23,5 +23,3 @@ const StyledDiv = styled.div<Props>`
   margin-top: 10px;
   margin-bottom: 10px;
 `;
-
-export default Row;

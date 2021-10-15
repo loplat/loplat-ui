@@ -1,7 +1,6 @@
-import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import Help, { HelpProps } from './index';
+import { Help, HelpProps } from './index';
 
 export default {
   title: 'Components/Help',
