@@ -10,11 +10,11 @@ interface RadioStyleProps {
 const RadioButtonContainer = styled.label<RadioStyleProps>`
   display: block;
   position: relative;
-  padding-left: 28px;
-  margin-bottom: 12px;
+  padding-left: 1.75rem;
+  margin-bottom: 0.75rem;
   cursor: pointer;
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 1rem;
+  line-height: 1.5rem;
   user-select: none;
 
   input {
