@@ -58,7 +58,7 @@ const SizeSet = {
   },
 } as const;
 
-const ColorSet = {
+export const ColorSet = {
   default: {
     background: {
       default: white,
@@ -258,7 +258,7 @@ const BaseButton = styled.button<BaseButtonProps>`
   }
 `;
 
-const Button = ({ disabled = false, ...props }: ButtonProps): React.ReactElement => {
+export const Button = ({ disabled = false, ...props }: ButtonProps): React.ReactElement => {
   return (
     <BaseButton
       disabled={disabled}
@@ -272,5 +272,3 @@ const Button = ({ disabled = false, ...props }: ButtonProps): React.ReactElement
     </BaseButton>
   );
 };
-
-export default Button;

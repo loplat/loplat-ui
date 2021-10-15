@@ -62,7 +62,7 @@ export interface RadioButtonProps {
   disabled?: boolean;
 }
 
-const RadioButton = ({
+export const RadioButton = ({
   selected,
   children,
   name,
@@ -86,5 +86,3 @@ const RadioButton = ({
     </RadioButtonContainer>
   );
 };
-
-export default React.memo(RadioButton);

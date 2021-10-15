@@ -23,7 +23,8 @@ const ColorSet = {
   light: blueScale300,
   warning: warning300,
 } as const;
-const Badge = ({
+
+export const Badge = ({
   type = 'pill',
   color = 'primary',
   text,
@@ -51,5 +52,3 @@ const Badge = ({
     </div>
   );
 };
-
-export default Badge;

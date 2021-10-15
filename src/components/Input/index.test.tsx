@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderHook } from '@testing-library/react-hooks';
-import Input from './index';
+import { Input } from './index';
 import React, { useState } from 'react';
 
 const useMockInput = () => {

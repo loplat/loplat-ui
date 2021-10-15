@@ -7,7 +7,7 @@ export interface HelpProps {
   text: string;
   maxWidth: number | '100%';
 }
-const Help = ({ title, text, maxWidth = 400 }: HelpProps): React.ReactElement => {
+export const Help = ({ title, text, maxWidth = 400 }: HelpProps): React.ReactElement => {
   return (
     <div
       className={css`
@@ -44,5 +44,3 @@ const Help = ({ title, text, maxWidth = 400 }: HelpProps): React.ReactElement =>
     </div>
   );
 };
-
-export default Help;
