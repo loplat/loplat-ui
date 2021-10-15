@@ -7,7 +7,7 @@ interface Props {
   children?: React.ReactNode;
 }
 
-export const Row = ({ className, divAttributes, children }: Props) => {
+const Row = ({ className, divAttributes, children }: Props): React.ReactElement => {
   return (
     <StyledDiv className={className} {...divAttributes}>
       {children}
@@ -20,6 +20,6 @@ const StyledDiv = styled.div<Props>`
   flex-wrap: wrap;
   justify-content: flex-start;
   align-content: stretch;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 `;
