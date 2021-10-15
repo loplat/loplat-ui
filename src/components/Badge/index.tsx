@@ -30,14 +30,14 @@ const Badge = ({
   variant = 'filled',
   size = 'normal',
 }: BadgeProps): React.ReactElement => {
-  const [padding, fontSize] = size === 'small' ? ['1px 5px', '8px'] : ['3px 11px', '12px'];
+  const [padding, fontSize] = size === 'small' ? ['1px 5px', '0.5rem'] : ['3px 11px', '0.75rem'];
   const [fontColor, backgroundColor] = variant === 'filled' ? [white, ColorSet[color]] : [ColorSet[color], white];
   return (
     <div
       className={css`
         width: fit-content;
         height: auto;
-        max-height: 24px;
+        max-height: 1.5rem;
         padding: ${padding};
         font-size: ${fontSize};
         box-sizing: border-box;
