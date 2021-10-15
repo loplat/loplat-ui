@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import RadioButton, { RadioButtonProps } from './index';
+import { RadioButton, RadioButtonProps } from './index';
 
 export default {
   title: 'Components/RadioButton',

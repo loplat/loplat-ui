@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import Help from './index';
+import { Help } from './index';
 
 describe('<Help />', () => {
   test('<Help />에 title과 text가 나온다.', () => {

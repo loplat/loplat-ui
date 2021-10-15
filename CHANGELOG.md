@@ -1,3 +1,13 @@
+## 1.0.4 (2021-10-14)
+
+### Added
+- none
+
+### Fixed
+- Badge, Button, Help, Input, Col, Grid, Row, RadioButton이 import 불가능한 상황
+
+---
+
 ## 1.0.0 (2021-10-14)
 
 ### Added

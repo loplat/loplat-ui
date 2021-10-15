@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { fireEvent, render } from '@testing-library/react';
-import RadioButton from './index';
+import { RadioButton } from './index';
 import { renderHook, act } from '@testing-library/react-hooks';
 
 const useSelect = (initialValue: string) => {

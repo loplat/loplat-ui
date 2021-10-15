@@ -72,7 +72,7 @@ const InlineError = React.memo(({ children }): React.ReactElement => {
   );
 });
 
-const Input = React.memo<InputProps>((props): React.ReactElement => {
+export const Input = React.memo<InputProps>((props): React.ReactElement => {
   const id = props.id && props.value && `input-${props.value}`;
   return (
     <div
@@ -95,5 +95,3 @@ const Input = React.memo<InputProps>((props): React.ReactElement => {
     </div>
   );
 });
-
-export default Input;

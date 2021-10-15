@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import Badge from './index';
+import { Badge } from './index';
 
 describe('<Badge />', () => {
   test('<Badge />에 텍스트가 나온다.', () => {
