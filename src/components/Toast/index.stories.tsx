@@ -2,7 +2,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { toast } from './index';
 import { Toaster } from './index';
-import Button from '../Button';
+import { Button } from '../Button';
 
 export default {
   title: 'Components/Toast',

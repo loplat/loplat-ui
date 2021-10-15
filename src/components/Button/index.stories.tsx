@@ -1,7 +1,6 @@
-import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import Button, { ButtonProps } from './index';
+import { Button, ButtonProps } from './index';
 import { Alert } from '../../assets/Icon/generated/Alert';
 import { black300, blue500, danger300, white } from '../../core/Palette';
 import { css } from '@emotion/css';
