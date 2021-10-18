@@ -264,7 +264,7 @@ export const Button = ({ disabled = false, ...props }: ButtonProps): React.React
       disabled={disabled}
       {...ColorSet[props.color ?? 'default']}
       {...SizeSet[props.fullWidth ? 'fullWidth' : props.size ?? 'sm']}
-      className={props.className}
+      className={props.className ?? ''}
     >
       <div>{props.leftIcon}</div>
       <div>{props.children}</div>
