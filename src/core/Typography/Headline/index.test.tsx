@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { Headline1, Headline2, Headline3, Headline4, Headline5 } from './index';
+import { Headline1, Headline2, Headline3, Headline4, Headline5, Headline6 } from './index';
 
 describe('<Headline1 />', () => {
   test('<Headline1 />에 텍스트가 나오는가?', () => {
@@ -37,6 +37,14 @@ describe('<Headline4 />', () => {
 describe('<Headline5 />', () => {
   test('<Headline5 />에 텍스트가 나오는가?', () => {
     const { getByText } = render(<Headline5>테스트</Headline5>);
+    const label = getByText('테스트');
+    expect(label).toBeInTheDocument();
+  });
+});
+
+describe('<Headline6 />', () => {
+  test('<Headline6 />에 텍스트가 나오는가?', () => {
+    const { getByText } = render(<Headline6>테스트</Headline6>);
     const label = getByText('테스트');
     expect(label).toBeInTheDocument();
   });
