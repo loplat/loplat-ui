@@ -31,7 +31,7 @@ export const Badge = ({
   text,
   variant = 'filled',
   size = 'normal',
-  className,
+  className = '',
 }: BadgeProps): React.ReactElement => {
   const [padding, fontSize] = size === 'small' ? ['1px 5px', '0.5rem'] : ['3px 11px', '0.75rem'];
   const [fontColor, backgroundColor] = variant === 'filled' ? [white, ColorSet[color]] : [ColorSet[color], white];
