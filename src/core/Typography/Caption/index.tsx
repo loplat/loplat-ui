@@ -7,7 +7,7 @@ export const Caption1 = (props: TypographyProps): React.ReactElement => {
       className={`${TextElementStyle({
         ...props,
         size: 0.63,
-      })} ${props.className}`}
+      })} ${props.className ?? ''}`}
     >
       {props.children}
     </div>
