@@ -30,7 +30,7 @@ const TextElementStyle = (props: TypographyStyle): string => css`
   color: ${props.color || '#000000'};
   line-height: 1.5;
   letter-spacing: normal;
-  text-align: ${props.textAlign || 'inherit'};
+  text-align: ${props.textAlign || ''};
 `;
 
 export default TextElementStyle;
