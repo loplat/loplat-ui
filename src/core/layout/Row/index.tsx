@@ -7,7 +7,7 @@ interface Props {
   children?: React.ReactNode;
 }
 
-const Row = ({ className, divAttributes, children }: Props): React.ReactElement => {
+export const Row = ({ className, divAttributes, children }: Props) => {
   return (
     <StyledDiv className={className} {...divAttributes}>
       {children}
