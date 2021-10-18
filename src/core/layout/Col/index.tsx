@@ -10,7 +10,7 @@ interface Props {
 }
 
 const sizeToPercent = (size?: ColSpan) => ((size !== undefined ? size : 12) / 12) * 100;
-const Col = ({ className, divAttributes, children, span }: Props): React.ReactElement => {
+export const Col = ({ className, divAttributes, children, span }: Props): React.ReactElement => {
   return (
     <StyledDiv className={className} {...divAttributes} span={span}>
       {children}
@@ -21,10 +21,8 @@ const Col = ({ className, divAttributes, children, span }: Props): React.ReactEl
 const StyledDiv = styled.div<Props>`
   position: relative;
   box-sizing: border-box;
-  padding-right: 10px;
-  padding-left: 10px;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
   min-height: 1px;
   width: ${(props) => sizeToPercent(props.span)}%;
 `;
-
-export default Col;

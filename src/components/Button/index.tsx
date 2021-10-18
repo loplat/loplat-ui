@@ -39,26 +39,26 @@ const SizeSet = {
   fullWidth: {
     minWidth: '100%',
     height: 'auto',
-    padding: '15px',
+    padding: '1rem',
   },
   sm: {
-    minWidth: '86px',
-    height: '38px',
-    padding: '7px',
+    minWidth: '5rem',
+    height: '2.38rem',
+    padding: '0.5rem',
   },
   md: {
-    minWidth: '144px',
-    height: '54px',
-    padding: '15px 34px',
+    minWidth: '9rem',
+    height: '3.38rem',
+    padding: '1.13rem 2.13rem',
   },
   lg: {
-    minWidth: '192px',
-    height: '70px',
-    padding: '23px 58px',
+    minWidth: '12rem',
+    height: '4.38rem',
+    padding: '1.5rem 3.63rem',
   },
 } as const;
 
-const ColorSet = {
+export const ColorSet = {
   default: {
     background: {
       default: white,
@@ -209,23 +209,23 @@ const BaseButton = styled.button<BaseButtonProps>`
   align-items: center;
   outline: none;
   border-radius: 4px;
-  line-height: 24px;
+  line-height: 1.5;
 
   div {
     display: flex;
     align-items: center;
     justify-content: center;
     &:first-of-type {
-      margin-right: 4px;
+      margin-right: 0.25rem;
     }
     &:last-of-type {
-      margin-left: 4px;
+      margin-left: 0.25rem;
     }
   }
 
   min-width: ${({ minWidth }) => minWidth};
   height: ${({ height }) => height};
-  font-size: 18px;
+  font-size: 1.13rem;
   color: ${({ text }) => text.default};
   padding: ${({ padding }) => padding};
   background-color: ${({ background }) => background.default};
@@ -258,7 +258,7 @@ const BaseButton = styled.button<BaseButtonProps>`
   }
 `;
 
-const Button = ({ disabled = false, ...props }: ButtonProps): React.ReactElement => {
+export const Button = ({ disabled = false, ...props }: ButtonProps): React.ReactElement => {
   return (
     <BaseButton
       disabled={disabled}
@@ -272,5 +272,3 @@ const Button = ({ disabled = false, ...props }: ButtonProps): React.ReactElement
     </BaseButton>
   );
 };
-
-export default Button;

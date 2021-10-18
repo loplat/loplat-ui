@@ -35,9 +35,9 @@ const BaseInput = styled.input<InputProps>`
   border: 1px solid ${grayScale200};
   border-color: ${({ error }) => error && danger300};
   border-radius: 4px;
-  padding: 15px 23px;
+  padding: 1rem 1.5rem;
   outline: none;
-  font-size: 16px;
+  font-size: 1rem;
   ::placeholder {
     color: ${blueScale500};
   }
@@ -64,7 +64,7 @@ const InlineError = React.memo(({ children }): React.ReactElement => {
       className={css`
         color: ${danger300};
         margin-top: 3px;
-        font-size: 16px;
+        font-size: 1rem;
       `}
     >
       {children}
@@ -72,7 +72,7 @@ const InlineError = React.memo(({ children }): React.ReactElement => {
   );
 });
 
-const Input = React.memo<InputProps>((props): React.ReactElement => {
+export const Input = React.memo<InputProps>((props): React.ReactElement => {
   const id = props.id && props.value && `input-${props.value}`;
   return (
     <div
@@ -95,5 +95,3 @@ const Input = React.memo<InputProps>((props): React.ReactElement => {
     </div>
   );
 });
-
-export default Input;

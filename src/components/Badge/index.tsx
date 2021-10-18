@@ -13,6 +13,7 @@ export interface BadgeProps {
   text: string;
   variant?: variant;
   size?: Size;
+  className?: string;
 }
 
 const ColorSet = {
@@ -23,21 +24,23 @@ const ColorSet = {
   light: blueScale300,
   warning: warning300,
 } as const;
-const Badge = ({
+
+export const Badge = ({
   type = 'pill',
   color = 'primary',
   text,
   variant = 'filled',
   size = 'normal',
+  className = '',
 }: BadgeProps): React.ReactElement => {
-  const [padding, fontSize] = size === 'small' ? ['1px 5px', '8px'] : ['3px 11px', '12px'];
+  const [padding, fontSize] = size === 'small' ? ['1px 5px', '0.5rem'] : ['3px 11px', '0.75rem'];
   const [fontColor, backgroundColor] = variant === 'filled' ? [white, ColorSet[color]] : [ColorSet[color], white];
   return (
     <div
-      className={css`
+      className={`${css`
         width: fit-content;
         height: auto;
-        max-height: 24px;
+        max-height: 1.5rem;
         padding: ${padding};
         font-size: ${fontSize};
         box-sizing: border-box;
@@ -45,11 +48,9 @@ const Badge = ({
         border: 1px solid ${ColorSet[color]};
         color: ${fontColor};
         background-color: ${backgroundColor};
-      `}
+      `} ${className}`}
     >
       {text}
     </div>
   );
 };
-
-export default Badge;

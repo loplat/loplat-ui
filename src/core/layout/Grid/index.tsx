@@ -7,7 +7,7 @@ interface Props {
   children?: React.ReactNode;
 }
 
-const Grid = ({ children, className, divAttributes }: Props) => {
+export const Grid = ({ children, className, divAttributes }: Props) => {
   return (
     <StyledDiv className={className} {...divAttributes}>
       {children}
@@ -20,5 +20,3 @@ const StyledDiv = styled.div<Props>`
   margin-left: auto;
   margin-right: auto;
 `;
-
-export default Grid;
