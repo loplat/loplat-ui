@@ -36,6 +36,11 @@ export interface ButtonProps {
 type BaseButtonProps = typeof SizeSet[keyof typeof SizeSet] & typeof ColorSet[keyof typeof ColorSet];
 
 const SizeSet = {
+  onlyIcon: {
+    minWidth: 'auto',
+    height: 'auto',
+    padding: '0.5rem',
+  },
   fullWidth: {
     minWidth: '100%',
     height: 'auto',
@@ -269,6 +274,27 @@ export const Button = ({ disabled = false, ...props }: ButtonProps): React.React
       <div>{props.leftIcon}</div>
       <div>{props.children}</div>
       <div>{props.rightIcon}</div>
+    </BaseButton>
+  );
+};
+
+export interface IconButtonProps {
+  icon: React.ReactElement;
+  disabled?: boolean;
+  onClick?: (event?: React.MouseEvent<HTMLElement>) => void;
+  className?: string;
+}
+
+export const IconButton = ({ icon, disabled = false, onClick, className }: IconButtonProps): React.ReactElement => {
+  return (
+    <BaseButton
+      disabled={disabled}
+      {...ColorSet['default']}
+      {...SizeSet['onlyIcon']}
+      className={className ?? ''}
+      onClick={onClick}
+    >
+      {icon}
     </BaseButton>
   );
 };
