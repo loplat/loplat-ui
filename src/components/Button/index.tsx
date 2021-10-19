@@ -281,17 +281,22 @@ export const Button = ({ disabled = false, ...props }: ButtonProps): React.React
 export interface IconButtonProps {
   icon: React.ReactElement;
   disabled?: boolean;
-  onClick?: (event?: React.MouseEvent<HTMLElement>) => void;
+  onClick?: (event: React.MouseEvent<HTMLElement>) => void;
   className?: string;
 }
 
-export const IconButton = ({ icon, disabled = false, onClick, className }: IconButtonProps): React.ReactElement => {
+export const IconButton = ({
+  icon,
+  disabled = false,
+  onClick,
+  className = '',
+}: IconButtonProps): React.ReactElement => {
   return (
     <BaseButton
       disabled={disabled}
       {...ColorSet['default']}
       {...SizeSet['onlyIcon']}
-      className={className ?? ''}
+      className={className}
       onClick={onClick}
     >
       {icon}
