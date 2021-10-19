@@ -20,8 +20,8 @@ export interface InputProps {
   errorMessage?: string;
   disabled?: boolean;
   value?: string;
-  onChange?: (e?: React.ChangeEvent<HTMLInputElement>) => void;
-  onEnter?: (e?: React.KeyboardEvent<HTMLInputElement>) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onEnter?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
   className?: string | undefined;
   ref?: React.RefObject<HTMLInputElement>;
