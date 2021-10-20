@@ -24,6 +24,7 @@ export interface TypographyProps extends TypographyStyle {
 }
 
 const TextElementStyle = (props: TypographyStyle): string => css`
+  width: fit-content;
   font-size: ${`${props.size}rem` || '1rem'};
   font-weight: ${props.weight ? FontWeight[props.weight] : 400};
   font-family: inherit;
