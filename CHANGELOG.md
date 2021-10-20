@@ -1,3 +1,14 @@
+## 1.0.9 (2021-10-28)
+
+### Added
+- IconButton
+
+### Fixed
+- Typography Headline에 font-weight를 weight prop으로 지정할 수 있습니다.
+- row, col의 간격을 gap prop으로 지정할 수 있습니다.
+
+---
+
 ## 1.0.4 (2021-10-14)
 
 ### Added
