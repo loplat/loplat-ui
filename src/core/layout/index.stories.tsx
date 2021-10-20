@@ -13,8 +13,19 @@ const StyledCol = styled(Col)`
 const Layout = () => {
   return (
     <Grid>
+      <Row gap={0}>
+        <StyledCol span={12}>Row에 gap 0를 주었어요! 위, 아래로 0rem씩 간격을 갖습니다.</StyledCol>
+      </Row>
+      <Row gap={0}>
+        <StyledCol span={12}>Row에 gap 0를 주었어요! 위, 아래로 0rem씩 간격을 갖습니다.</StyledCol>
+      </Row>
       <Row>
-        <StyledCol>12</StyledCol>
+        <StyledCol span={6} gap={0}>
+          Col에 gap 0을 주었어요! 좌, 우로 0rem씩 간격을 갖습니다.
+        </StyledCol>
+        <StyledCol span={6} gap={0}>
+          Col에 gap 0을 주었어요! 좌, 우로 0rem씩 간격을 갖습니다.
+        </StyledCol>
       </Row>
       <Row gap={4}>
         <StyledCol span={6}>Row에 gap 4를 주었어요! 위, 아래로 2rem씩 간격을 갖습니다.</StyledCol>
@@ -27,6 +38,9 @@ const Layout = () => {
         <StyledCol span={6} gap={4}>
           Col에 gap 4를 주었어요! 좌, 우로 2rem씩 간격을 갖습니다.
         </StyledCol>
+      </Row>
+      <Row>
+        <StyledCol>12</StyledCol>
       </Row>
       <Row>
         <StyledCol span={6}>6</StyledCol>

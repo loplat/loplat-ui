@@ -21,6 +21,6 @@ const StyledDiv = styled.div<Props>`
   flex-wrap: wrap;
   justify-content: flex-start;
   align-content: stretch;
-  margin-top: ${(props) => (props.gap ? `${props.gap / 2}rem` : '0.5rem')};
-  margin-bottom: ${(props) => (props.gap ? `${props.gap / 2}rem` : '0.5rem')};
+  margin-top: ${(props) => (typeof props.gap === 'number' ? `${props.gap / 2}rem` : '0.5rem')};
+  margin-bottom: ${(props) => (typeof props.gap === 'number' ? `${props.gap / 2}rem` : '0.5rem')};
 `;
