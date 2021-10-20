@@ -7,12 +7,13 @@ interface Props {
   divAttributes?: React.HTMLAttributes<HTMLDivElement>;
   children?: React.ReactNode;
   span?: ColSpan;
+  gap?: number;
 }
 
 const sizeToPercent = (size?: ColSpan) => ((size !== undefined ? size : 12) / 12) * 100;
-export const Col = ({ className, divAttributes, children, span }: Props): React.ReactElement => {
+export const Col = ({ className, divAttributes, children, span, gap }: Props): React.ReactElement => {
   return (
-    <StyledDiv className={className} {...divAttributes} span={span}>
+    <StyledDiv className={className} {...divAttributes} span={span} gap={gap}>
       {children}
     </StyledDiv>
   );
@@ -21,8 +22,8 @@ export const Col = ({ className, divAttributes, children, span }: Props): React.
 const StyledDiv = styled.div<Props>`
   position: relative;
   box-sizing: border-box;
-  padding-right: 0.5rem;
-  padding-left: 0.5rem;
+  padding-right: ${(props) => (props.gap ? `${props.gap / 2}rem` : '0.5rem')};
+  padding-left: ${(props) => (props.gap ? `${props.gap / 2}rem` : '0.5rem')};
   min-height: 1px;
   width: ${(props) => sizeToPercent(props.span)}%;
 `;
