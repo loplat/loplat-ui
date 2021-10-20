@@ -22,8 +22,8 @@ export const Col = ({ className, divAttributes, children, span, gap }: Props): R
 const StyledDiv = styled.div<Props>`
   position: relative;
   box-sizing: border-box;
-  padding-right: ${(props) => (props.gap ? `${props.gap / 2}rem` : '0.5rem')};
-  padding-left: ${(props) => (props.gap ? `${props.gap / 2}rem` : '0.5rem')};
+  padding-right: ${(props) => (typeof props.gap === 'number' ? `${props.gap / 2}rem` : '0.5rem')};
+  padding-left: ${(props) => (typeof props.gap === 'number' ? `${props.gap / 2}rem` : '0.5rem')};
   min-height: 1px;
   width: ${(props) => sizeToPercent(props.span)}%;
 `;
