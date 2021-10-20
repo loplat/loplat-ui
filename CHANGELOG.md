@@ -1,6 +1,16 @@
 ## 1.0.9 (2021-10-28)
 
 ### Added
+- none
+
+### Fixed
+- Typography의 width가 fit-content로 수정되었습니다.
+
+---
+
+## 1.0.9 (2021-10-28)
+
+### Added
 - IconButton
 
 ### Fixed
