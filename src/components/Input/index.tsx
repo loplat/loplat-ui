@@ -66,6 +66,7 @@ const InlineError = React.memo(({ children }): React.ReactElement => {
         color: ${danger300};
         margin-top: 3px;
         font-size: 1rem;
+        width: 100%;
       `}
     >
       {children}
