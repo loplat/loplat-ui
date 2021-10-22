@@ -39,27 +39,27 @@ const SizeSet = {
   onlyIcon: {
     minWidth: 'auto',
     height: 'auto',
-    padding: '0.5rem',
+    padding: '0 0.5rem',
   },
   fullWidth: {
     minWidth: '100%',
     height: 'auto',
-    padding: '1rem',
+    padding: '0 1rem',
   },
   sm: {
     minWidth: '5rem',
     height: '2.38rem',
-    padding: '0.5rem',
+    padding: '0 0.5rem',
   },
   md: {
     minWidth: '9rem',
     height: '3.38rem',
-    padding: '1.13rem 2.13rem',
+    padding: '0 2.13rem',
   },
   lg: {
     minWidth: '12rem',
     height: '4.38rem',
-    padding: '1.5rem 3.63rem',
+    padding: '0 3.63rem',
   },
 } as const;
 
