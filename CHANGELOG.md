@@ -1,3 +1,12 @@
+## 1.0.12 (2021-10-21)
+### Added
+- none
+
+### Fixed
+- Typo의 `font-family: inherit` 옵션을 삭제하였습니다.
+
+---
+
 ## 1.0.11 (2021-10-21)
 ### Added
 - none
@@ -7,6 +16,8 @@
 - Input 에 fullWidth가 안되는 버그 수정
 - Caption의 size가 고정되어있는 버그 수정
 - Caption의 태그를 div에서 small 로 수정
+
+---
 
 ## 1.0.10 (2021-10-21)
 
