@@ -25,6 +25,7 @@ export interface InputProps {
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
   className?: string | undefined;
   ref?: React.RefObject<HTMLInputElement>;
+  type?: 'email' | 'password' | 'text'
 }
 
 const BaseInput = styled.input<InputProps>`
@@ -65,6 +66,7 @@ const InlineError = React.memo(({ children }): React.ReactElement => {
         color: ${danger300};
         margin-top: 3px;
         font-size: 1rem;
+        width: 100%;
       `}
     >
       {children}
@@ -72,14 +74,14 @@ const InlineError = React.memo(({ children }): React.ReactElement => {
   );
 });
 
-export const Input = React.memo<InputProps>((props): React.ReactElement => {
+export const Input = React.memo<InputProps>(({ className = '', ...props }): React.ReactElement => {
   const id = props.id && props.value && `input-${props.value}`;
   return (
     <div
-      className={css`
+      className={`${css`
         display: flex;
         flex-flow: column;
-      `}
+      `} ${className}`}
       aria-label="input"
     >
       <BaseInput

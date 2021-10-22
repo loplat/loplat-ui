@@ -1,4 +1,14 @@
-## 1.0.9 (2021-10-28)
+## 1.0.11 (2021-10-21)
+### Added
+- none
+
+### Fixed
+- Input props에 type을 추가, 
+- Input 에 fullWidth가 안되는 버그 수정
+- Caption의 size가 고정되어있는 버그 수정
+- Caption의 태그를 div에서 small 로 수정
+
+## 1.0.10 (2021-10-21)
 
 ### Added
 - none
@@ -8,7 +18,7 @@
 
 ---
 
-## 1.0.9 (2021-10-28)
+## 1.0.9 (2021-10-21)
 
 ### Added
 - IconButton
