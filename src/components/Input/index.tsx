@@ -22,10 +22,12 @@ export interface InputProps {
   value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onEnter?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
   className?: string | undefined;
   ref?: React.RefObject<HTMLInputElement>;
-  type?: 'email' | 'password' | 'text'
+  type?: 'email' | 'password' | 'text';
 }
 
 const BaseInput = styled.input<InputProps>`
