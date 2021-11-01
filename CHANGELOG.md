@@ -1,3 +1,12 @@
+## 1.0.14 (2021-11-01)
+### Added
+- none
+
+### Fixed
+- Input에 OnBlur, onFocus를 추가하였습니다.
+
+---
+
 ## 1.0.13 (2021-10-22)
 ### Added
 - none
