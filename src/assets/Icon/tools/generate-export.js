@@ -28,7 +28,11 @@ const generateStorybook = [
   iconFiles
     .map((iconFile) => {
       const fileName = iconFile.split('.')[0];
-      return `<${fileName}Icon {...props} />`;
+      return `
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',border: '1px solid gray', margin: '1rem', minWidth:'4rem', minHeight:'3rem', padding: '0.5rem 1rem'}}>
+          <${fileName}Icon {...props} />
+          <span style={{marginTop: '0.5rem'}}>${fileName}</span>
+        </div>`;
     })
     .join('\n'),
 ];
@@ -52,9 +56,9 @@ import { ${generateIconFilesName} } from './index';
 
 const IconDocument = (props: IconProps) => {
   return (
-    <>
+    <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap'}}>
       ${generateStorybook}
-    </>
+    </div>
   );
 };
 
