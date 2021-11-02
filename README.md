@@ -2,6 +2,13 @@
 
 A React-based UI Component Library, powered by Loplat Frontend Team.
 
+## Install
+```bash
+yarn add loplat-ui
+
+npm install loplat-ui
+```
+
 ## Starts with Storybook
 ```bash
 yarn storybook
@@ -16,7 +23,7 @@ yarn test
 ## Build
 
 ```bash
-yarn build:types && yarn build
+yarn build
 ```
 
 ## Storybook Build
