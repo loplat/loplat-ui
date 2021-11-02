@@ -12,7 +12,7 @@ const SpinnerDocument = (props: SpinnerProps) => {
 };
 
 export default {
-  title: 'Spinner',
+  title: 'Components/Spinner',
   component: SpinnerDocument,
 } as ComponentMeta<typeof SpinnerDocument>;
 
