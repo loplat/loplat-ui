@@ -28,6 +28,7 @@ export interface InputProps {
   className?: string | undefined;
   ref?: React.RefObject<HTMLInputElement>;
   type?: 'email' | 'password' | 'text';
+  autocomplete?: 'username' | 'current-password' | 'new-password';
 }
 
 const BaseInput = styled.input<InputProps>`
@@ -48,7 +49,7 @@ const BaseInput = styled.input<InputProps>`
     cursor: not-allowed;
     color: ${grayScale500};
     border-color: ${grayScale200};
-    background-color: ${background},
+    background-color: ${background};
   }
   &:hover:not(:disabled) {
     color: ${({ error }) => !error && black500};
@@ -58,7 +59,7 @@ const BaseInput = styled.input<InputProps>`
   &:focus:not(:disabled) {
     color: ${black500};
     border-color: ${({ error }) => !error && blue500};
-  },
+  }
 `;
 
 const InlineError = React.memo(({ children }): React.ReactElement => {
