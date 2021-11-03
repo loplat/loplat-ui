@@ -1,3 +1,13 @@
+## 1.1.3 (2021-11-03)
+
+### Added
+
+- none
+
+### Fixed
+
+- Toast 에 padding과 box-sizing을 적용했습니다.
+
 ## 1.1.2 (2021-11-03)
 
 ### Added
