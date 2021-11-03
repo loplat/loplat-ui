@@ -38,7 +38,7 @@ interface WrapperProps {
 const Wrapper = styled.div<WrapperProps>`
   width: ${(props) => `calc(${props.width}px / ${props.steps})`};
   height: ${({ height }) => height}px;
-  overflow-x: hidden;
+  overflow: hidden;
   transform: scale(${({ scale }) => scale});
   z-index: ${({ zIndex }) => zIndex};
 `;
