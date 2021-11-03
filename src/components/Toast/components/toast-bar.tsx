@@ -52,15 +52,16 @@ const ToastBarBase = styled.div(
     display: 'flex',
     flexFlow: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
-    minWidth: '350px',
-    maxHeight: '54px',
+    alignItems: 'flex-start',
+    minWidth: '20.5rem',
+    minHeight: '3.375rem',
+    boxSizing: 'border-box',
     willChange: 'transform',
     boxShadow: '0 2px 6px 0 rgba(209, 209, 209, 0.3)',
     pointerEvents: 'auto',
-    padding: '13px 23px',
+    padding: '0.938rem',
     borderRadius: '4px',
-    fontSize: '18px',
+    fontSize: '1rem',
     lineHeight: '28px',
   },
   (props: ColorSet) => ({
@@ -76,12 +77,16 @@ const Message = styled.div`
   justify-content: left;
   margin: 0 16px;
   color: inherit;
+  word-break: break-all;
 `;
 
 const CloseButton = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
   cursor: pointer;
+  width: 28px;
+  height: 28px;
 `;
 
 interface ToastBarProps {
