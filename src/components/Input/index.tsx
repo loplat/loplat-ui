@@ -28,7 +28,7 @@ export interface InputProps {
   className?: string | undefined;
   ref?: React.RefObject<HTMLInputElement>;
   type?: 'email' | 'password' | 'text';
-  autocomplete?: 'username' | 'current-password' | 'new-password';
+  autoComplete?: 'username' | 'current-password' | 'new-password';
 }
 
 const BaseInput = styled.input<InputProps>`
