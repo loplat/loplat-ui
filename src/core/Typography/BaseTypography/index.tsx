@@ -23,7 +23,7 @@ export interface TypographyProps extends TypographyStyle {
   children?: React.ReactNode;
 }
 
-const TextElementStyle = (props: TypographyStyle): string => css`
+export const TextElementStyle = (props: TypographyStyle): string => css`
   width: fit-content;
   font-size: ${`${props.size}rem` || '1rem'};
   font-weight: ${props.weight ? FontWeight[props.weight] : 400};
@@ -32,5 +32,3 @@ const TextElementStyle = (props: TypographyStyle): string => css`
   letter-spacing: normal;
   text-align: ${props.textAlign || ''};
 `;
-
-export default TextElementStyle;
