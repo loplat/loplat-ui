@@ -1,5 +1,5 @@
 import React from 'react';
-import TextElementStyle, { TypographyProps } from '../BaseTypography';
+import { TextElementStyle, TypographyProps } from '../BaseTypography';
 
 export const Caption1 = (props: TypographyProps): React.ReactElement => {
   return (
