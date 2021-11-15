@@ -16,15 +16,15 @@
     "resolveJsonModule": true,
     "jsx": "react-jsx",
     "declaration": true,
-    "declarationDir": "dist/types",
+    "declarationDir": "dist",
     "allowJs": true,
     "noFallthroughCasesInSwitch": true,
     "isolatedModules": true,
-    "noEmit": true,
+    "noEmit": true
   },
   "include": [
     "src",
-    "./jest-setup.ts",
+    "./jest-setup.ts"
   ],
   "exclude": [
     "**/*.stories.tsx"
