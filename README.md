@@ -21,7 +21,6 @@ yarn test
 ```
 
 ## Build
-
 ```bash
 yarn build
 ```
@@ -43,8 +42,10 @@ yarn publish-storybook
 contribute를 하기 위해서는 npmjs.com 에서 loplat Organization 자격을 얻어야 합니다.
 
 순서는 다음과 같습니다.
-package.json에서 버전업을 한 후, build 합니다.
-이후 changelog.md에 업데이트 내용을 기재합니다. 그리고 배포합니다.
+1. changelog.md에 업데이트 내용을 기재합니다.
+2. package.json에서 버전업을 한 후, 문서 변경 사항을 commit 합니다.
+3. 빌드(`yarn build`) 합니다.
+4. 배포(`npm publish`)합니다.
 
 반드시 배포 전에는 모든 테스트 코드를 꼭 통과해야합니다.
 
@@ -53,7 +54,8 @@ npm login
 ```
 
 ## Deploy
-
+배포시 [https://www.npmjs.com/package/loplat-ui](https://www.npmjs.com/package/loplat-ui) 에 배포됩니다.
+postpublish script 에 의하여 `yarn build`를 통해 만들어진 파일들은 모두 자동 삭제됩니다.
 ```bash
 npm publish
 ```
