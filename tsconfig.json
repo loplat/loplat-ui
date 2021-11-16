@@ -16,7 +16,7 @@
     "resolveJsonModule": true,
     "jsx": "react-jsx",
     "declaration": true,
-    "declarationDir": "dist",
+    "declarationDir": ".",
     "allowJs": true,
     "noFallthroughCasesInSwitch": true,
     "isolatedModules": true,
