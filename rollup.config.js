@@ -12,13 +12,15 @@ export default [
     // NOTE: 실제로 사용할 cjs 파일들을 code splitting 하여 빌드한다.
     input: {
       index: 'src/index.ts',
-      core: 'src/core/index.ts',
+      'assets/Icon/index': 'src/assets/Icon/index.ts',
+      'assets/Logo/index': 'src/assets/Logo/index.ts',
+      'core/index': 'src/core/index.ts',
       'components/index': 'src/components/index.ts',
-      'components/Button': 'src/components/Button/index.tsx',
+      'components/Button/index': 'src/components/Button/index.tsx',
     },
     output: [
       {
-        dir: 'dist',
+        dir: '.',
         format: 'cjs',
         sourcemap: true,
         exports: 'auto',

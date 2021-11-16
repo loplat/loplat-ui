@@ -8,10 +8,6 @@
 # testing
 /coverage
 
-# production
-/build
-/dist
-
 # misc
 .DS_Store
 .env.local
@@ -24,8 +20,16 @@ yarn-debug.log*
 yarn-error.log*
 
 .idea
-
-.firebase
-
-.npmrc
 service_account.json
+
+# build
+dist/*
+assets/*
+components/*
+core/*
+formControls/*
+!rollup.config.js
+*.js
+*.js.map
+index.d.ts
+setupTests.d.ts
