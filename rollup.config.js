@@ -4,6 +4,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import typescript from 'rollup-plugin-typescript2';
 import postcss from 'rollup-plugin-postcss';
 import image from '@rollup/plugin-image';
+import copy from 'rollup-plugin-copy';
 
 const packageJson = require('./package.json');
 
@@ -35,6 +36,9 @@ export default [
         extensions: ['.css'],
       }),
       image(),
+      copy({
+        targets: [{ src: 'src/core/Palette/index.scss', dest: 'core/Palette' }],
+      }),
     ],
   },
   {
