@@ -13,7 +13,7 @@ const useMockInput = () => {
 
 describe('<Input />', () => {
   test('<Input />에 아무것도 입력하지 않았을 때, placeholder만 보인다.', () => {
-    const { getByPlaceholderText } = render(<Input placeholder={'검색어를 입력해주세요.'} />);
+    const { getByPlaceholderText } = render(<Input placeholder="검색어를 입력해주세요." />);
     expect(getByPlaceholderText('검색어를 입력해주세요.')).toBeVisible();
   });
   test('<Input />을 클릭하고, 검색어를 입력한다.', () => {
@@ -21,7 +21,7 @@ describe('<Input />', () => {
     const { getByDisplayValue, getByPlaceholderText } = render(
       <Input
         id="input-for-testing"
-        placeholder={'검색어를 입력해주세요.'}
+        placeholder="검색어를 입력해주세요."
         value={result.current.value}
         onChange={(e) => {
           result.current.setValue(e?.target.value);
@@ -39,13 +39,13 @@ describe('<Input />', () => {
     const { getByRole, getByLabelText } = render(
       <Input
         id="input-for-testing"
-        placeholder={'placeholder'}
+        placeholder="placeholder"
         value={result.current.value}
         onChange={(e) => result.current.setValue(e?.target.value)}
         rightIcon={<WarningCircleOutlineIcon fillColor={danger300} size={20} />}
         isIconVisible={true}
         error={true}
-        errorMessage={'에러메세지입니다.'}
+        errorMessage="에러메세지입니다."
       />,
     );
     expect(getByLabelText('warning icon')).toBeVisible();
@@ -58,12 +58,12 @@ describe('<Input />', () => {
     const { getByLabelText } = render(
       <Input
         id="input-for-testing"
-        placeholder={'placeholder'}
+        placeholder="placeholder"
         value={result.current.value}
         onChange={(e) => result.current.setValue(e?.target.value)}
         rightIcon={<WarningCircleOutlineIcon fillColor={danger300} size={20} />}
         error={false}
-        errorMessage={'에러메세지입니다.'}
+        errorMessage="에러메세지입니다."
       />,
     );
 
@@ -75,13 +75,13 @@ describe('<Input />', () => {
     const { getByPlaceholderText, getByDisplayValue, getByLabelText } = render(
       <Input
         id="input-for-testing"
-        placeholder={'검색어를 입력해주세요.'}
+        placeholder="검색어를 입력해주세요."
         value={result.current.value}
         onChange={(e) => result.current.setValue(e?.target.value)}
         rightIcon={<WarningCircleOutlineIcon fillColor={danger300} size={20} />}
         isIconVisible={result.current.value === '에러 생성'}
         error={result.current.value === '에러 생성'}
-        errorMessage={'에러메세지'}
+        errorMessage="에러메세지"
       />,
     );
     const warningIcon = getByLabelText('warning icon');
