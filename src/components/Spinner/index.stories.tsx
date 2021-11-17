@@ -20,7 +20,7 @@ const Template: ComponentStory<typeof SpinnerDocument> = (args: SpinnerProps) =>
 
 export const Default = Template.bind({});
 Default.args = {
-  duration: 2000,
+  duration: 1000,
   scale: 1,
   zIndex: 1,
 };
