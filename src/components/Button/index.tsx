@@ -18,6 +18,7 @@ import {
   grayScale500,
   white,
 } from '../../core/Palette';
+import { Desktop } from '../../core/MediaQuery';
 
 export type Size = 'sm' | 'md' | 'lg';
 export type Color = 'default' | 'primary1' | 'primary2' | 'danger1' | 'danger2' | 'solid' | 'white';
@@ -245,13 +246,16 @@ const BaseButton = styled.button<BaseButtonProps>`
     border-color: ${({ border }) => border.disabled};
     cursor: not-allowed;
   }
-  &:hover:not(:disabled) {
-    color: ${({ text }) => text.hover};
-    svg path {
-      fill: ${({ text }) => text.hover};
+  ${Desktop} {
+    cursor: pointer;
+    &:hover:not(:disabled) {
+      color: ${({ text }) => text.hover};
+      svg path {
+        fill: ${({ text }) => text.hover};
+      }
+      background-color: ${({ background }) => background.hover};
+      border-color: ${({ border }) => border.hover};
     }
-    background-color: ${({ background }) => background.hover};
-    border-color: ${({ border }) => border.hover};
   }
   &:active:not(:disabled) {
     color: ${({ text }) => text.act};
