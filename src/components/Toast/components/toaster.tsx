@@ -88,7 +88,7 @@ export const Toaster: React.FC<ToasterProps> = ({
             ref={ref}
             className={css`
               z-index: ${9999 - index};
-              pointer-events: auto;
+              pointer-events: none;
             `}
             key={t.id}
             style={positionStyle}
