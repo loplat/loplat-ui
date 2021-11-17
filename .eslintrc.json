@@ -7,7 +7,10 @@
   "rules": {
     "react/no-unescaped-entities": "off",
     "import/no-unresolved": "error",
-    "@typescript-eslint/no-empty-interface": "off"
+    "@typescript-eslint/no-empty-interface": "off",
+    "react/jsx-curly-brace-presence": [
+      "error", { "props": "never", "children": "ignore" }
+    ]
   },
   "settings": {
     "import/parsers": {
