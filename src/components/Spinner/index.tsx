@@ -9,19 +9,19 @@ export interface SpinnerProps {
   zIndex?: number;
 }
 
-export const CubeSpinner = ({ duration = 1200, scale = 1, zIndex = 0 }: SpinnerProps): React.ReactElement => {
-  const steps = 55;
+export const CubeSpinner = ({ duration = 1000, scale = 1, zIndex = 0 }: SpinnerProps): React.ReactElement => {
+  const steps = 28;
   return (
-    <Wrapper width={6380} height={132} steps={steps} scale={scale} zIndex={zIndex}>
+    <Wrapper width={3248} height={132} steps={steps} scale={scale} zIndex={zIndex}>
       <SpriteImage src={Cube} alt="" duration={duration} steps={steps} />
     </Wrapper>
   );
 };
 
-export const CircleSpinner = ({ duration = 1200, scale = 1, zIndex = 0 }: SpinnerProps): React.ReactElement => {
-  const steps = 60;
+export const CircleSpinner = ({ duration = 1000, scale = 1, zIndex = 0 }: SpinnerProps): React.ReactElement => {
+  const steps = 30;
   return (
-    <Wrapper width={6960} height={132} steps={steps} scale={scale} zIndex={zIndex}>
+    <Wrapper width={3480} height={132} steps={steps} scale={scale} zIndex={zIndex}>
       <SpriteImage src={Circle} alt="" duration={duration} steps={steps} />
     </Wrapper>
   );
