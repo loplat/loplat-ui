@@ -1,3 +1,32 @@
+## 1.2.0 (2021-11-17)
+
+### Breaking changes
+
+- code splitting을 통해 bundle 용량을 최적화했습니다.
+  - 기존 ```import { Button } from 'loplat-ui';``` 으로 import 했을 때, import cost 가 너무 큰 문제를 해결했습니다.
+  - 이제 ```import { Button } from 'loplat-ui/core/Button';``` 으로 import 가능합니다. 
+
+### Docs
+
+- 배포 방법과 폴더 구조에 대한 README가 추가되었습니다.
+- Logo를 generate하는 방법에 대한 README가 추가되었습니다.
+
+### Added
+
+- palette.scss
+  - ```'loplat-ui/core/Palette/index.scss'``` 으로 import 가능합니다.
+
+### Fixed
+
+- Input의 autoComplete prop 오타를 수정했습니다.
+- Input에 rightIcon prop이 추가되었습니다.
+- Toast 양 옆 빈 공백이 클릭되지 않는 버그를 수정했습니다.
+- Button css를 수정했습니다.
+  - Desktop에서 pointer cursor를 적용했습니다.
+  - Desktop에서만 hover style이 나타나도록 수정했습니다.
+- Spinner 이미지의 용량을 줄였습니다.
+  - 안드로이드 기기에서 이미지가 잘리는 문제를 해결했습니다.
+
 ## 1.1.3 (2021-11-03)
 
 ### Added
