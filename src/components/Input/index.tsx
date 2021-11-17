@@ -14,7 +14,6 @@ import { css } from '@emotion/css';
 
 export interface InputProps {
   id?: string;
-  fullWidth?: boolean;
   placeholder?: string;
   error?: boolean;
   errorMessage?: string;
@@ -34,7 +33,7 @@ export interface InputProps {
 }
 
 const BaseInput = styled.input<InputProps>`
-  width: ${({ fullWidth }) => fullWidth && '100%'};
+  width: 100%;
   height: auto;
   color: ${black500};
   background-color: white;
@@ -62,6 +61,7 @@ const BaseInput = styled.input<InputProps>`
     color: ${black500};
     border-color: ${({ error }) => !error && blue500};
   }
+  transition: border-color ease 0.3s;
 `;
 
 const InlineError = React.memo(({ children }): React.ReactElement => {
@@ -70,7 +70,7 @@ const InlineError = React.memo(({ children }): React.ReactElement => {
       role="alert"
       className={css`
         color: ${danger300};
-        margin-top: 3px;
+        margin: 3px 0 0 0;
         font-size: 1rem;
         width: 100%;
       `}
@@ -87,34 +87,46 @@ export const Input = React.memo<InputProps>(({ className = '', ...props }): Reac
       className={`${css`
         display: flex;
         flex-flow: column;
-        position: relative;
+        width: 100%;
       `} ${className}`}
       aria-label="input"
       role="textbox"
     >
-      <BaseInput
-        id={id}
-        {...props}
-        onKeyPress={(e) => {
-          if (e.key === 'Enter') {
-            props.onEnter && props.onEnter(e);
-          }
-        }}
-      />
-      {props.rightIcon && (
-        <div
-          aria-label="warning icon"
-          className={`${css`
-            position: absolute;
-            top: 0.938rem;
-            right: 0.938rem;
-            opacity: ${props.isIconVisible ? 1 : 0};
-            transition: opacity 0.1s linear;
-          `}`}
-        >
-          {props.rightIcon}
-        </div>
-      )}
+      <div
+        className={`${css`
+          position: relative;
+          display: flex;
+          width: 100%;
+        `}`}
+      >
+        <BaseInput
+          id={id}
+          {...props}
+          onKeyPress={(e) => {
+            if (e.key === 'Enter') {
+              props.onEnter && props.onEnter(e);
+            }
+          }}
+        />
+        {props.rightIcon && (
+          <div
+            aria-label="warning icon"
+            className={`${css`
+              position: absolute;
+              top: 50%;
+              right: 0.938rem;
+              display: flex;
+              align-items: center;
+              transform: translateY(-50%);
+              opacity: ${props.isIconVisible ? 1 : 0};
+              transition: opacity 0.1s linear;
+            `}`}
+          >
+            {props.rightIcon}
+          </div>
+        )}
+      </div>
+
       {props.error && props.errorMessage && <InlineError>{props.errorMessage}</InlineError>}
     </div>
   );
