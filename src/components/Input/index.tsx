@@ -29,6 +29,8 @@ export interface InputProps {
   ref?: React.RefObject<HTMLInputElement>;
   type?: 'email' | 'password' | 'text';
   autoComplete?: 'username' | 'current-password' | 'new-password';
+  rightIcon?: React.ReactElement;
+  isIconVisible?: boolean;
 }
 
 const BaseInput = styled.input<InputProps>`
@@ -64,7 +66,8 @@ const BaseInput = styled.input<InputProps>`
 
 const InlineError = React.memo(({ children }): React.ReactElement => {
   return (
-    <div
+    <p
+      role="alert"
       className={css`
         color: ${danger300};
         margin-top: 3px;
@@ -73,7 +76,7 @@ const InlineError = React.memo(({ children }): React.ReactElement => {
       `}
     >
       {children}
-    </div>
+    </p>
   );
 });
 
@@ -84,8 +87,10 @@ export const Input = React.memo<InputProps>(({ className = '', ...props }): Reac
       className={`${css`
         display: flex;
         flex-flow: column;
+        position: relative;
       `} ${className}`}
       aria-label="input"
+      role="textbox"
     >
       <BaseInput
         id={id}
@@ -96,6 +101,20 @@ export const Input = React.memo<InputProps>(({ className = '', ...props }): Reac
           }
         }}
       />
+      {props.rightIcon && (
+        <div
+          aria-label="warning icon"
+          className={`${css`
+            position: absolute;
+            top: 0.938rem;
+            right: 0.938rem;
+            opacity: ${props.isIconVisible ? 1 : 0};
+            transition: opacity 0.1s linear;
+          `}`}
+        >
+          {props.rightIcon}
+        </div>
+      )}
       {props.error && props.errorMessage && <InlineError>{props.errorMessage}</InlineError>}
     </div>
   );

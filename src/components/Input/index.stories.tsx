@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-
+import { WarningCircleOutlineIcon } from '../../assets/Icon/index';
 import { Input, InputProps } from './index';
+import { danger300 } from '../../core/Palette';
 
 export default {
   title: 'Components/Input',
@@ -34,4 +35,15 @@ Disabled.args = {
   placeholder: '10글자를 넘기면 에러가 발생할 수도 있어요!',
   errorMessage: '10글자를 넘으면 안됩니다!',
   disabled: true,
+};
+
+export const RightIcon = Template.bind({});
+RightIcon.args = {
+  fullWidth: false,
+  disabled: false,
+  placeholder: '아이콘은 변경 가능합니다.',
+  isIconVisible: true,
+  rightIcon: <WarningCircleOutlineIcon fillColor={danger300} size={20} />,
+  error: true,
+  errorMessage: '에러!',
 };
