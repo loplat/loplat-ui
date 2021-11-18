@@ -5,7 +5,7 @@ import { blue100, blueScale500 } from '../../core/Palette';
 export interface HelpProps {
   title?: string;
   text: string;
-  maxWidth: number | '100%';
+  maxWidth?: number | '100%';
 }
 export const Help = ({ title, text, maxWidth = 400 }: HelpProps): React.ReactElement => {
   return (
