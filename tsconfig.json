@@ -23,10 +23,11 @@
     "noEmit": true
   },
   "include": [
-    "src",
-    "./jest-setup.ts"
+    "src"
   ],
   "exclude": [
-    "**/*.stories.tsx"
+    "**/*.stories.tsx",
+    "**/*.test.tsx",
+    "**/tools"
   ]
 }
