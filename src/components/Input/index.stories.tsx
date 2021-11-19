@@ -23,7 +23,6 @@ const Template: ComponentStory<typeof Input> = (args: InputProps) => {
 };
 export const Default = Template.bind({});
 Default.args = {
-  fullWidth: false,
   placeholder: '10글자를 넘기면 에러가 발생할 수도 있어요!',
   errorMessage: '10글자를 넘으면 안됩니다!',
   disabled: false,
@@ -31,7 +30,6 @@ Default.args = {
 
 export const Disabled = Template.bind({});
 Disabled.args = {
-  fullWidth: false,
   placeholder: '10글자를 넘기면 에러가 발생할 수도 있어요!',
   errorMessage: '10글자를 넘으면 안됩니다!',
   disabled: true,
@@ -39,11 +37,10 @@ Disabled.args = {
 
 export const RightIcon = Template.bind({});
 RightIcon.args = {
-  fullWidth: false,
   disabled: false,
   placeholder: '아이콘은 변경 가능합니다.',
   isIconVisible: true,
-  rightIcon: <WarningCircleOutlineIcon fillColor={danger300} size={20} />,
+  rightIcon: <WarningCircleOutlineIcon fillColor={danger300} size={30} />,
   error: true,
   errorMessage: '에러!',
 };
