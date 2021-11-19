@@ -1,3 +1,18 @@
+## 1.2.1 (2021-11-19)
+
+### Breaking changes
+
+- tree shaking을 통해 bundle 용량을 최적화했습니다.
+  - 기존 ```import { Button } from 'loplat-ui';```으로 import 했을 때, tree shaking이 되지 않아 import cost 가 너무 큰 문제를 해결했습니다.
+  - 이제 ```import { Button } from 'loplat-ui';```으로 똑같이 import 했을 때, Button 에 해당하는 코드만 import 가능합니다.
+  - tree shaking을 위해 esModule을 사용합니다. esModule을 인식하지 못하는 프레임워크(ex> Next.js)는 추가적인 Babel 설정이 필요합니다.(ex> next-transpile-modules)
+
+### Fixed
+
+- Help의 maxWidth prop을 optional하게 변경했습니다.
+- Input의 rightIcon position 관련 css를 수정했습니다.
+ 
+
 ## 1.2.0 (2021-11-17)
 
 ### Breaking changes
