@@ -39,7 +39,7 @@
     "test": "react-scripts test --env=jsdom",
     "generated-icon-export": "node src/assets/Icon/tools/generate-export.js",
     "generated-svgr": "cd src/assets/Icon/svgs && npx @svgr/cli --template ../tools/svgr-cli.template.js --config-file ../tools/.svgrrc *.svg --out-dir ../generated --ext tsx",
-    "svgr": "yarn generated-svgr && yarn generated-icon-export"
+    "svgr": "yarn generated-svgr && yarn generated-icon-export && cd src/assets/Icon/tools && sh assign-id-to-svg.sh"
   },
   "browserslist": {
     "production": [
