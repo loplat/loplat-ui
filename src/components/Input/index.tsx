@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import {
-  background,
+  background100,
   black500,
   blue500,
   blueScale500,
@@ -50,7 +50,7 @@ const BaseInput = styled.input<InputProps>`
     cursor: not-allowed;
     color: ${grayScale500};
     border-color: ${grayScale200};
-    background-color: ${background};
+    background-color: ${background100};
   }
   &:hover:not(:disabled) {
     color: ${({ error }) => !error && black500};

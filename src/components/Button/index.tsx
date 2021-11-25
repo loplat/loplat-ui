@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import {
-  background,
+  background100,
   black300,
   blue100,
   blue200,
@@ -70,7 +70,7 @@ export const ColorSet = {
       default: white,
       hover: blue100,
       act: blue500,
-      disabled: background,
+      disabled: background100,
     },
     border: {
       default: grayScale200,
@@ -110,7 +110,7 @@ export const ColorSet = {
       default: white,
       hover: blue100,
       act: blue500,
-      disabled: background,
+      disabled: background100,
     },
     border: {
       default: blue500,
@@ -150,7 +150,7 @@ export const ColorSet = {
       default: white,
       hover: danger100,
       act: danger300,
-      disabled: background,
+      disabled: background100,
     },
     border: {
       default: danger300,
@@ -170,13 +170,13 @@ export const ColorSet = {
       default: blueScale200,
       hover: blueScale400,
       act: blueScale100,
-      disabled: background,
+      disabled: background100,
     },
     border: {
       default: blueScale200,
       hover: blueScale400,
       act: blueScale100,
-      disabled: background,
+      disabled: background100,
     },
     text: {
       default: black300,
@@ -190,13 +190,13 @@ export const ColorSet = {
       default: white,
       hover: blue100,
       act: blue300,
-      disabled: background,
+      disabled: background100,
     },
     border: {
       default: white,
       hover: blue100,
       act: blue300,
-      disabled: background,
+      disabled: background100,
     },
     text: {
       default: blue500,
