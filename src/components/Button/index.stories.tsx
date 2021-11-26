@@ -8,9 +8,34 @@ import { css } from '@emotion/css';
 export default {
   title: 'Components/Button',
   component: Button,
+  argTypes: {
+    color: {
+      options: ['default', 'primary1', 'primary2', 'danger1', 'danger2', 'solid', 'white'],
+      control: {
+        type: 'radio',
+      },
+    },
+  },
 } as ComponentMeta<typeof Button>;
 
-const Template: ComponentStory<typeof Button> = (args: ButtonProps) => <Button {...args}>테스트</Button>;
+const Template: ComponentStory<typeof Button> = (args: ButtonProps) => {
+  return (
+    <div
+      className={css`
+        button:not(:first-of-type) {
+          margin-top: 1rem;
+        }
+      `}
+    >
+      <Button {...args}>테</Button>
+      <Button {...args}>테스트</Button>
+      <Button {...args}>테스트로 아주 많은 글자</Button>
+      <Button {...args}>
+        테스트로 아주 많은 글자 테스트로 아주 많은 글자 테스트로 아주 많은 글자 테스트로 아주 많은 글자
+      </Button>
+    </div>
+  );
+};
 
 export const Default = Template.bind({});
 Default.args = {};
