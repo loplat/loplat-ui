@@ -1,6 +1,6 @@
 import { ColorSet, ToastType } from './types';
 import {
-  background,
+  background100,
   black500,
   blue100,
   blue300,
@@ -75,7 +75,7 @@ export const generateColorSet = (type: ToastType): ColorSet => {
     };
   return {
     borderColor: grayScale200,
-    backgroundColor: background,
+    backgroundColor: background100,
     textColor: black500,
     iconColor: grayScale500,
   };
