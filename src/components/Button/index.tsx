@@ -22,45 +22,42 @@ import { Desktop } from '../../core/MediaQuery';
 
 export type Size = 'sm' | 'md' | 'lg';
 export type Color = 'default' | 'primary1' | 'primary2' | 'danger1' | 'danger2' | 'solid' | 'white';
-export interface ButtonProps {
-  size?: Size;
-  fullWidth?: boolean;
+export type DefaultButtonProps = {
   color?: Color;
-  leftIcon?: React.ReactElement;
-  rightIcon?: React.ReactElement;
   disabled?: boolean;
   className?: string;
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
+};
+export type ButtonProps = DefaultButtonProps & {
+  size?: Size;
+  fullWidth?: boolean;
+  leftIcon?: React.ReactElement;
+  rightIcon?: React.ReactElement;
   children?: React.ReactNode;
-}
+};
 
 type BaseButtonProps = typeof SizeSet[keyof typeof SizeSet] & typeof ColorSet[keyof typeof ColorSet];
 
-const SizeSet = {
+export const SizeSet = {
   onlyIcon: {
     minWidth: 'auto',
-    height: 'auto',
-    padding: '0 0.5rem',
+    padding: '0.5rem',
   },
   fullWidth: {
     minWidth: '100%',
-    height: 'auto',
-    padding: '0 1rem',
+    padding: '0.5rem 1rem',
   },
   sm: {
     minWidth: '5rem',
-    height: '2.38rem',
-    padding: '0 0.5rem',
+    padding: '0.5rem 1rem',
   },
   md: {
     minWidth: '9rem',
-    height: '3.38rem',
-    padding: '0 2.13rem',
+    padding: '1rem 3rem',
   },
   lg: {
     minWidth: '12rem',
-    height: '4.38rem',
-    padding: '0 3.63rem',
+    padding: '1.5rem 4.5rem',
   },
 } as const;
 
@@ -207,8 +204,11 @@ export const ColorSet = {
   },
 } as const;
 
-const BaseButton = styled.button<BaseButtonProps>`
+export const BaseButton = styled.button<BaseButtonProps>`
   width: auto;
+  min-width: ${({ minWidth }) => minWidth};
+  max-width: 25rem;
+  height: auto;
   display: flex;
   flex-flow: row;
   justify-content: center;
@@ -216,26 +216,33 @@ const BaseButton = styled.button<BaseButtonProps>`
   outline: none;
   border-radius: 4px;
   line-height: 1.5;
+  font-size: 1.125rem;
+  color: ${({ text }) => text.default};
+  background-color: ${({ background }) => background.default};
+  border: 1px solid ${({ border }) => border.default};
+  padding: ${({ padding }) => padding};
+  transition: all ease 0.2s;
+
+  svg path {
+    fill: ${({ text }) => text.default};
+  }
+
+  span {
+    margin-top: 3px;
+    text-align: center;
+  }
 
   div {
     display: flex;
     align-items: center;
     justify-content: center;
-    &:first-of-type {
+    &.leftIcon {
       margin-right: 0.25rem;
     }
-    &:last-of-type {
+    &.rightIcon {
       margin-left: 0.25rem;
     }
   }
-
-  min-width: ${({ minWidth }) => minWidth};
-  height: ${({ height }) => height};
-  font-size: 1.13rem;
-  color: ${({ text }) => text.default};
-  padding: ${({ padding }) => padding};
-  background-color: ${({ background }) => background.default};
-  border: 1px solid ${({ border }) => border.default};
 
   &:disabled {
     color: ${({ text }) => text.disabled};
@@ -267,7 +274,7 @@ const BaseButton = styled.button<BaseButtonProps>`
   }
 `;
 
-export const Button = ({ disabled = false, ...props }: ButtonProps): React.ReactElement => {
+export const Button = ({ disabled = false, ...props }: ButtonProps): JSX.Element => {
   return (
     <BaseButton
       disabled={disabled}
@@ -276,35 +283,9 @@ export const Button = ({ disabled = false, ...props }: ButtonProps): React.React
       className={props.className ?? ''}
       onClick={props.onClick}
     >
-      <div>{props.leftIcon}</div>
-      <div>{props.children}</div>
-      <div>{props.rightIcon}</div>
-    </BaseButton>
-  );
-};
-
-export interface IconButtonProps {
-  icon: React.ReactElement;
-  disabled?: boolean;
-  onClick?: (event: React.MouseEvent<HTMLElement>) => void;
-  className?: string;
-}
-
-export const IconButton = ({
-  icon,
-  disabled = false,
-  onClick,
-  className = '',
-}: IconButtonProps): React.ReactElement => {
-  return (
-    <BaseButton
-      disabled={disabled}
-      {...ColorSet['default']}
-      {...SizeSet['onlyIcon']}
-      className={className}
-      onClick={onClick}
-    >
-      {icon}
+      {props.leftIcon && <div className="leftIcon">{props.leftIcon}</div>}
+      <span>{props.children}</span>
+      {props.rightIcon && <div className="rightIcon">{props.rightIcon}</div>}
     </BaseButton>
   );
 };
