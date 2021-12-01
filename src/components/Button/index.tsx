@@ -223,7 +223,7 @@ export const BaseButton = styled.button<BaseButtonProps>`
   padding: ${({ padding }) => padding};
   transition: all ease 0.2s;
 
-  svg path {
+  svg g > path {
     fill: ${({ text }) => text.default};
   }
 
@@ -246,7 +246,7 @@ export const BaseButton = styled.button<BaseButtonProps>`
 
   &:disabled {
     color: ${({ text }) => text.disabled};
-    svg path {
+    svg g > path {
       fill: ${({ text }) => text.disabled};
     }
     background-color: ${({ background }) => background.disabled};
@@ -257,7 +257,7 @@ export const BaseButton = styled.button<BaseButtonProps>`
     cursor: pointer;
     &:hover:not(:disabled) {
       color: ${({ text }) => text.hover};
-      svg path {
+      svg g > path {
         fill: ${({ text }) => text.hover};
       }
       background-color: ${({ background }) => background.hover};
@@ -266,7 +266,7 @@ export const BaseButton = styled.button<BaseButtonProps>`
   }
   &:active:not(:disabled) {
     color: ${({ text }) => text.act};
-    svg path {
+    svg g > path {
       fill: ${({ text }) => text.act};
     }
     background-color: ${({ background }) => background.act};
