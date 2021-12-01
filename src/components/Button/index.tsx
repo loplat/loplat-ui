@@ -219,9 +219,13 @@ export const BaseButton = styled.button<BaseButtonProps>`
   font-size: 1.125rem;
   color: ${({ text }) => text.default};
   background-color: ${({ background }) => background.default};
-  border: 1px solid ${({ border }) => border.default};
+  border-width: 1px;
+  border-style: solid;
+  border-color: ${({ border }) => border.default};
   padding: ${({ padding }) => padding};
-  transition: all ease 0.2s;
+  transition-property: fill, color, background-color, border-color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
 
   svg g > path {
     fill: ${({ text }) => text.default};
