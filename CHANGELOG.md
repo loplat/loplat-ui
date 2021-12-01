@@ -1,3 +1,13 @@
+## 1.2.2 (2021-12-01)
+
+### Fixed
+- 동일한 Icon을 두 번 이상 사용할 시 id collision이 일어나는 현상을 수정했습니다. 
+- palette 색상을 대폭 수정했습니다.
+- Button과 IconButton의 style을 수정했습니다.
+  - height를 강제하지 않고 padding과 내용으로 높이를 결정합니다.
+  - Icon svg의 색깔이 연하게 나타나는 버그를 수정했습니다.
+
+
 ## 1.2.1 (2021-11-19)
 
 ### Breaking changes
