@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextElementStyle, TypographyProps } from '../BaseTypography';
 
-export const Headline1 = (props: TypographyProps): React.ReactElement => {
+export const Headline1 = React.memo((props: TypographyProps): React.ReactElement => {
   return (
     <h1
       className={`${TextElementStyle({
@@ -12,9 +12,9 @@ export const Headline1 = (props: TypographyProps): React.ReactElement => {
       {props.children}
     </h1>
   );
-};
+});
 
-export const Headline2 = (props: TypographyProps): React.ReactElement => {
+export const Headline2 = React.memo((props: TypographyProps): React.ReactElement => {
   return (
     <h2
       className={`${TextElementStyle({
@@ -25,9 +25,9 @@ export const Headline2 = (props: TypographyProps): React.ReactElement => {
       {props.children}
     </h2>
   );
-};
+});
 
-export const Headline3 = (props: TypographyProps): React.ReactElement => {
+export const Headline3 = React.memo((props: TypographyProps): React.ReactElement => {
   return (
     <h3
       className={`${TextElementStyle({
@@ -38,9 +38,9 @@ export const Headline3 = (props: TypographyProps): React.ReactElement => {
       {props.children}
     </h3>
   );
-};
+});
 
-export const Headline4 = (props: TypographyProps): React.ReactElement => {
+export const Headline4 = React.memo((props: TypographyProps): React.ReactElement => {
   return (
     <h4
       className={`${TextElementStyle({
@@ -51,9 +51,9 @@ export const Headline4 = (props: TypographyProps): React.ReactElement => {
       {props.children}
     </h4>
   );
-};
+});
 
-export const Headline5 = (props: TypographyProps): React.ReactElement => {
+export const Headline5 = React.memo((props: TypographyProps): React.ReactElement => {
   return (
     <h5
       className={`${TextElementStyle({
@@ -64,9 +64,9 @@ export const Headline5 = (props: TypographyProps): React.ReactElement => {
       {props.children}
     </h5>
   );
-};
+});
 
-export const Headline6 = (props: TypographyProps): React.ReactElement => {
+export const Headline6 = React.memo((props: TypographyProps): React.ReactElement => {
   return (
     <h6
       className={`${TextElementStyle({
@@ -77,4 +77,4 @@ export const Headline6 = (props: TypographyProps): React.ReactElement => {
       {props.children}
     </h6>
   );
-};
+});

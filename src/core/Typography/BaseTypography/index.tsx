@@ -1,17 +1,19 @@
 import React from 'react';
 import { css } from '@emotion/css';
+// TODO: path alias 설정
+import { BoxSpacing, BoxSpacingStyle } from '../../Spacing';
 
-// TODO: color set 완성되면, color type의 유니온 타입으로 변경
-export type ColorSet = '#000000' | string;
-export type FontWeightSet = 'extraBold' | 'bold' | 'regular';
 export const FontWeight = {
   extraBold: 800,
   bold: 700,
   regular: 400,
-};
-
+} as const;
+export type FontWeightSet = keyof typeof FontWeight;
 export type TextAlign = 'center' | 'inherit' | 'justify' | 'left' | 'right';
-export interface TypographyStyle {
+// TODO: color set 완성되면, color type의 유니온 타입으로 변경
+export type ColorSet = '#000000' | string;
+
+export interface TypographyStyle extends BoxSpacing {
   size?: number;
   color?: ColorSet;
   textAlign?: TextAlign;
@@ -31,4 +33,5 @@ export const TextElementStyle = (props: TypographyStyle): string => css`
   line-height: 1.5;
   letter-spacing: normal;
   text-align: ${props.textAlign || ''};
+  ${BoxSpacingStyle(props)};
 `;
