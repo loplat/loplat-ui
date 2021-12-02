@@ -15,19 +15,21 @@ describe('<RadioButton />', () => {
     const { getByLabelText } = render(
       <RadioButton
         selected={result.current.selected}
-        value={'test'}
+        value="test"
         onChange={(current) => {
           act(() => {
             result.current.setSelected(current);
           });
         }}
-        name={'test'}
+        name="test"
       >
         테스트
       </RadioButton>,
     );
     const radio = getByLabelText('테스트');
     expect(radio).not.toBeChecked();
+    fireEvent.click(radio);
+    expect(result.current.selected).toBeTruthy();
   });
 
   test('disabled 된 <RadioButton />를 누르면 체크표시가 활성화되지 않는다.', () => {
@@ -35,14 +37,14 @@ describe('<RadioButton />', () => {
     const { getByLabelText } = render(
       <RadioButton
         selected={result.current.selected}
-        value={'test'}
+        value="test"
         disabled
         onChange={(current) => {
           act(() => {
             result.current.setSelected(current);
           });
         }}
-        name={'test'}
+        name="test"
       >
         테스트
       </RadioButton>,
