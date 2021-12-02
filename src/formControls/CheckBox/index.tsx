@@ -25,7 +25,15 @@ export const CheckBox = ({ label, name, checked, onChange, disabled, ...props }:
   return (
     <StyledWrapper checked={checked} disabled={disabled} {...props} data-testid="wrapper">
       <label htmlFor={name}>
-        <input type="checkbox" id={name} name={name} checked={isChecked} onChange={onChange} disabled={disabled} />
+        <input
+          data-testid="checkbox"
+          type="checkbox"
+          id={name}
+          name={name}
+          checked={isChecked}
+          onChange={onChange}
+          disabled={disabled}
+        />
         <span />
         {label}
       </label>
