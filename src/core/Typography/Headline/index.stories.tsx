@@ -1,3 +1,4 @@
+import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { Headline1, Headline2, Headline3, Headline4, Headline5, Headline6 } from './index';
