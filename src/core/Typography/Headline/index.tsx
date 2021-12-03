@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextElementStyle, TypographyProps } from '../BaseTypography';
 
-export const Headline = (props: TypographyProps): React.ReactElement => {
+export const Headline = React.memo((props: TypographyProps): React.ReactElement => {
   return (
     <h1
       className={`${TextElementStyle({
@@ -11,4 +11,4 @@ export const Headline = (props: TypographyProps): React.ReactElement => {
       {props.children}
     </h1>
   );
-};
+});
