@@ -11,13 +11,13 @@ export default {
 
 const Template: ComponentStory<typeof Headline> = (args: TypographyProps) => (
   <>
-    <Headline {...args} size="xl" my={2}>
+    <Headline {...args} tag="h3" size="xl" my={2}>
       Headline 자율과 책임을 추구하는 location 전문 기업 로플랫
     </Headline>
-    <Headline {...args} size="3xl" my={2}>
+    <Headline {...args} tag="h2" size="3xl" my={2}>
       Headline 자율과 책임을 추구하는 location 전문 기업 로플랫
     </Headline>
-    <Headline {...args} size="5xl" my={2}>
+    <Headline {...args} tag="h1" size="5xl" my={2}>
       Headline 자율과 책임을 추구하는 location 전문 기업 로플랫
     </Headline>
   </>
