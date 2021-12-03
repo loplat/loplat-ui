@@ -2,6 +2,13 @@ import { css } from '@emotion/react';
 import { SerializedStyles } from '@emotion/serialize';
 
 const STANDARD = 4;
+/**
+ * input/output 예시
+ * 1. spacing(1) === 4px
+ * 2. spacing(2.5) === 10px
+ * 3. spacing(1.75) === 8px (4 * 1.75 = 7이지만 홀수 픽셀을 허용하지 않고 가장 가까운 짝수로 반올림)
+ * 4. spacing(1.45) === 6px (4 * 1.45 = 5.8이지만 홀수 픽셀을 허용하지 않고 가장 가까운 짝수로 반올림)
+ */
 export const spacing = (operand: number): number => {
   if (Number.isInteger(operand * 2)) {
     // 0.5의 배수일 때
