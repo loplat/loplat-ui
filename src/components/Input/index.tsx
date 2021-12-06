@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import styled from '@emotion/styled';
 import {
   background100,
@@ -81,7 +81,8 @@ const InlineError = React.memo(({ children }): React.ReactElement => {
 });
 
 export const Input = React.memo<InputProps>(({ className = '', ...props }): React.ReactElement => {
-  const id = props.id && props.value && `input-${props.value}`;
+  const uniqueId = useMemo(() => String(Math.random().toString(36).slice(2, 11)), []);
+  const id = useMemo(() => props.id || uniqueId, [props.id, uniqueId]);
   return (
     <div
       className={`${css`
@@ -100,8 +101,8 @@ export const Input = React.memo<InputProps>(({ className = '', ...props }): Reac
         `}`}
       >
         <BaseInput
-          id={id}
           {...props}
+          id={id}
           onKeyPress={(e) => {
             if (e.key === 'Enter') {
               props.onEnter && props.onEnter(e);
