@@ -19,7 +19,6 @@ import {
   white,
 } from '../../core/Palette';
 import { Desktop } from '../../core/MediaQuery';
-import { MarginSpacing, MarginSpacingProps, MarginSpacingStyle } from '../../core/Spacing';
 
 export type Size = 'sm' | 'md' | 'lg';
 export type Color = 'default' | 'primary1' | 'primary2' | 'danger1' | 'danger2' | 'solid' | 'white';
@@ -29,16 +28,15 @@ export type DefaultButtonProps = {
   className?: string;
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
 };
-export type ButtonProps = DefaultButtonProps &
-  MarginSpacing & {
-    size?: Size;
-    fullWidth?: boolean;
-    leftIcon?: React.ReactElement;
-    rightIcon?: React.ReactElement;
-    children?: React.ReactNode;
-  };
+export type ButtonProps = DefaultButtonProps & {
+  size?: Size;
+  fullWidth?: boolean;
+  leftIcon?: React.ReactElement;
+  rightIcon?: React.ReactElement;
+  children?: React.ReactNode;
+};
 
-type BaseButtonProps = typeof SizeSet[keyof typeof SizeSet] & typeof ColorSet[keyof typeof ColorSet] & MarginSpacing;
+type BaseButtonProps = typeof SizeSet[keyof typeof SizeSet] & typeof ColorSet[keyof typeof ColorSet];
 
 export const SizeSet = {
   onlyIcon: {
@@ -209,22 +207,22 @@ export const ColorSet = {
 export const BaseButton = styled.button<BaseButtonProps>`
   width: auto;
   min-width: ${({ minWidth }) => minWidth};
+  max-width: 25rem;
   height: auto;
   display: flex;
+  flex-flow: row;
   justify-content: center;
   align-items: center;
-  padding: ${({ padding }) => padding};
-  ${MarginSpacingStyle};
-
   outline: none;
-  border-width: 1px;
-  border-style: solid;
-  border-color: ${({ border }) => border.default};
   border-radius: 4px;
-
+  line-height: 1.5;
   font-size: 1.125rem;
   color: ${({ text }) => text.default};
   background-color: ${({ background }) => background.default};
+  border-width: 1px;
+  border-style: solid;
+  border-color: ${({ border }) => border.default};
+  padding: ${({ padding }) => padding};
   transition-property: fill, color, background-color, border-color;
   transition-duration: 0.2s;
   transition-timing-function: ease;
@@ -234,6 +232,7 @@ export const BaseButton = styled.button<BaseButtonProps>`
   }
 
   span {
+    margin-top: 2px;
     text-align: center;
   }
 
@@ -285,7 +284,6 @@ export const Button = ({ disabled = false, ...props }: ButtonProps): JSX.Element
       disabled={disabled}
       {...ColorSet[props.color ?? 'default']}
       {...SizeSet[props.fullWidth ? 'fullWidth' : props.size ?? 'sm']}
-      {...MarginSpacingProps(props)}
       className={props.className ?? ''}
       onClick={props.onClick}
     >
