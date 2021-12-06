@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import styled from '@emotion/styled';
-import { background100, black300, blue500, grayScale500 } from '../../core/Palette';
+import { background100, black300, blue500, grayScale200, grayScale500 } from '../../core/Palette';
 
 interface RadioStyleProps {
   isDisabled: boolean;
@@ -10,6 +10,7 @@ interface RadioStyleProps {
 const RadioButtonContainer = styled.label<RadioStyleProps>`
   display: block;
   position: relative;
+  width: fit-content;
   padding-left: 1.75rem;
   margin-bottom: 0.75rem;
   cursor: pointer;
@@ -35,6 +36,8 @@ const Checkmark = styled.span<RadioStyleProps>`
   width: 20px;
   border-radius: 50%;
   box-sizing: border-box;
+  border: 1px solid ${({ isDisabled, isSelected }) => (!isDisabled && isSelected ? blue500 : grayScale200)};
+  background-color: ${({ isSelected }) => (isSelected ? background100 : 'white')};
 
   :after {
     content: '';
@@ -44,10 +47,6 @@ const Checkmark = styled.span<RadioStyleProps>`
     width: 10px;
     height: 10px;
     border-radius: 50%;
-  }
-  border: 1px solid ${({ isDisabled, isSelected }) => (!isDisabled && isSelected ? blue500 : grayScale500)};
-  background-color: ${({ isSelected }) => (isSelected ? background100 : 'white')};
-  :after {
     background: ${({ isDisabled }) => (isDisabled ? grayScale500 : blue500)};
     display: ${({ isSelected }) => (isSelected ? 'block' : 'none')};
   }

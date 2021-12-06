@@ -40,7 +40,6 @@ export const Badge = ({
       className={`${css`
         width: fit-content;
         height: auto;
-        max-height: 1.5rem;
         padding: ${padding};
         font-size: ${fontSize};
         box-sizing: border-box;
