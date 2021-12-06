@@ -23,5 +23,4 @@ export const Default = Template.bind({});
 Default.args = {
   label: '체크박스',
   name: 'testBox',
-  defaultCheck: true,
 };
