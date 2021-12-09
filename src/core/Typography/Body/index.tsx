@@ -1,19 +1,41 @@
 import React from 'react';
 import { TextElementStyle, TypographyProps } from '../BaseTypography';
 
-type BodyProps = TypographyProps & {
-  tag?: 'p' | 'span';
-};
-
-export const Body = React.memo(({ tag = 'p', ...props }: BodyProps): React.ReactElement => {
-  const HTMLBodyElement = tag;
+export const Body1 = (props: TypographyProps): React.ReactElement => {
   return (
-    <HTMLBodyElement
+    <div
       className={`${TextElementStyle({
         ...props,
+        size: 1,
       })} ${props.className ?? ''}`}
     >
       {props.children}
-    </HTMLBodyElement>
+    </div>
   );
-});
+};
+
+export const Body2 = (props: TypographyProps): React.ReactElement => {
+  return (
+    <div
+      className={`${TextElementStyle({
+        ...props,
+        size: 0.88,
+      })} ${props.className ?? ''}`}
+    >
+      {props.children}
+    </div>
+  );
+};
+
+export const Body3 = (props: TypographyProps): React.ReactElement => {
+  return (
+    <div
+      className={`${TextElementStyle({
+        ...props,
+        size: 0.75,
+      })} ${props.className ?? ''}`}
+    >
+      {props.children}
+    </div>
+  );
+};
