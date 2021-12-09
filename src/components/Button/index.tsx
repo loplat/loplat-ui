@@ -234,6 +234,7 @@ export const BaseButton = styled.button<BaseButtonProps>`
   }
 
   span {
+    margin-top: 2px;
     text-align: center;
   }
 
