@@ -5,8 +5,9 @@ type BodyProps = TypographyProps & {
   tag?: 'p' | 'span';
 };
 
-export const Body = React.memo(({ tag = 'p', ...props }: BodyProps): React.ReactElement => {
+export const Body = ({ tag = 'p', ...props }: BodyProps): React.ReactElement => {
   const HTMLBodyElement = tag;
+
   return (
     <HTMLBodyElement
       className={`${TextElementStyle({
@@ -16,4 +17,4 @@ export const Body = React.memo(({ tag = 'p', ...props }: BodyProps): React.React
       {props.children}
     </HTMLBodyElement>
   );
-});
+};

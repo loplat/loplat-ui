@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextElementStyle, TypographyProps } from '../BaseTypography';
 
-export const Caption = React.memo(({ size = '2xs', ...props }: TypographyProps): React.ReactElement => {
+export const Caption = ({ size = '2xs', ...props }: TypographyProps): React.ReactElement => {
   return (
     <small
       className={`${TextElementStyle({
@@ -12,4 +12,4 @@ export const Caption = React.memo(({ size = '2xs', ...props }: TypographyProps):
       {props.children}
     </small>
   );
-});
+};
