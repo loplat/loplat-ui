@@ -209,7 +209,6 @@ export const ColorSet = {
 export const BaseButton = styled.button<BaseButtonProps>`
   width: auto;
   min-width: ${({ minWidth }) => minWidth};
-  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
