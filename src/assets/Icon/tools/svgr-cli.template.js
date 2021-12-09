@@ -7,7 +7,7 @@ function defaultTemplate({ template }, _, { componentName, jsx }) {
     import type { IconProps } from '../index';
     
     export const ${IconComponentName} = React.memo<IconProps>(({size = 18, fillColor = '#9DAAB7', className, style}) => {
-      const uniqueId = useMemo(() => String(Math.random().toString(36).substr(2, 9)), []);
+      const uniqueId = useMemo(() => String(Math.random().toString(36).slice(2, 11)), []);
       return ${jsx}
     })
   `;
