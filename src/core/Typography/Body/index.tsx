@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextElementStyle, TypographyProps } from '../BaseTypography';
 
-export const Body = React.memo((props: TypographyProps): React.ReactElement => {
+export const Body = (props: TypographyProps): React.ReactElement => {
   return (
     <div
       className={`${TextElementStyle({
@@ -11,4 +11,4 @@ export const Body = React.memo((props: TypographyProps): React.ReactElement => {
       {props.children}
     </div>
   );
-});
+};
