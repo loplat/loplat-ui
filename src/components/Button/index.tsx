@@ -224,12 +224,13 @@ export const BaseButton = styled.button<BaseButtonProps>`
   font-size: 1.125rem;
   color: ${({ text }) => text.default};
   background-color: ${({ background }) => background.default};
-  transition-property: fill, color, background-color, border-color;
+  transition-property: color, background-color, border-color;
   transition-duration: 0.2s;
   transition-timing-function: ease;
 
   svg g > path {
     fill: ${({ text }) => text.default};
+    transition: fill 0.2s ease;
   }
 
   span {
