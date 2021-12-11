@@ -1,3 +1,20 @@
+## 1.2.3 (2021-12-11)
+
+### Added
+
+- Spacing system prop을 추가했습니다.
+  - mx, my, pl, pr 등의 spacing prop으로 margin과 padding값을 정할 수 있습니다.
+  - Typography(margin, padding)와 Button(margin)에서 spacing prop을 사용할 수 있습니다.
+
+### Fixed
+
+- Typography 사용법을 대폭 수정했습니다.
+  - Body1, Body2, Headline1, Headline2, Caption1 등의 컴포넌트를 Body, Headline, Caption으로 통일했습니다.
+  - tag prop으로 Typography의 HTML Tag를 지정할 수 있습니다.
+- Input의 id가 동적으로 변하는 버그를 수정했습니다.
+- Badge, Button, RadioButton의 style 관련 버그를 수정했습니다.
+
+
 ## 1.2.2 (2021-12-01)
 
 ### Fixed
