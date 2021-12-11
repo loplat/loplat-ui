@@ -1,3 +1,4 @@
+import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { Button, ButtonProps } from './index';
@@ -20,17 +21,17 @@ export default {
 
 const Template: ComponentStory<typeof Button> = (args: ButtonProps) => {
   return (
-    <div
-      className={css`
-        button:not(:first-of-type) {
-          margin-top: 1rem;
-        }
-      `}
-    >
-      <Button {...args}>테</Button>
-      <Button {...args}>테스트</Button>
-      <Button {...args}>테스트로 아주 많은 글자</Button>
-      <Button {...args}>
+    <div>
+      <Button {...args} my={4}>
+        테
+      </Button>
+      <Button {...args} my={4}>
+        테스트
+      </Button>
+      <Button {...args} my={4}>
+        테스트로 아주 많은 글자
+      </Button>
+      <Button {...args} my={4}>
         테스트로 아주 많은 글자 테스트로 아주 많은 글자 테스트로 아주 많은 글자 테스트로 아주 많은 글자
       </Button>
     </div>
