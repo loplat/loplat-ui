@@ -15,7 +15,7 @@ const Template: ComponentStory<typeof Body> = (args: TypographyProps) => (
       Body 자율과 책임을 추구하는 location 전문 기업 로플랫
     </Body>
     <Body {...args}>Body 자율과 책임을 추구하는 location 전문 기업 로플랫</Body>
-    <Body {...args} size="2xl">
+    <Body {...args} tag="span" size="2xl">
       Body 자율과 책임을 추구하는 location 전문 기업 로플랫
     </Body>
   </>
