@@ -1,22 +1,25 @@
+import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { Headline1, Headline2, Headline3, Headline4, Headline5, Headline6 } from './index';
+import { Headline } from './index';
 import { TypographyProps } from '../BaseTypography';
 
 export default {
   title: 'Typography/Headline',
-  component: Headline1,
-  subcomponents: { Headline2, Headline3, Headline4, Headline5, Headline6 },
-} as ComponentMeta<typeof Headline1>;
+  component: Headline,
+} as ComponentMeta<typeof Headline>;
 
-const Template: ComponentStory<typeof Headline1> = (args: TypographyProps) => (
+const Template: ComponentStory<typeof Headline> = (args: TypographyProps) => (
   <>
-    <Headline1 {...args}>Headline1 자율과 책임을 추구하는 location 전문 기업 로플랫</Headline1>
-    <Headline2 {...args}>Headline2 자율과 책임을 추구하는 location 전문 기업 로플랫</Headline2>
-    <Headline3 {...args}>Headline3 자율과 책임을 추구하는 location 전문 기업 로플랫</Headline3>
-    <Headline4 {...args}>Headline4 자율과 책임을 추구하는 location 전문 기업 로플랫</Headline4>
-    <Headline5 {...args}>Headline5 자율과 책임을 추구하는 location 전문 기업 로플랫</Headline5>
-    <Headline6 {...args}>Headline6 자율과 책임을 추구하는 location 전문 기업 로플랫</Headline6>
+    <Headline {...args} tag="h3" size="xl" my={2}>
+      Headline 자율과 책임을 추구하는 location 전문 기업 로플랫
+    </Headline>
+    <Headline {...args} tag="h2" size="3xl" my={2}>
+      Headline 자율과 책임을 추구하는 location 전문 기업 로플랫
+    </Headline>
+    <Headline {...args} tag="h1" size="5xl" my={2}>
+      Headline 자율과 책임을 추구하는 location 전문 기업 로플랫
+    </Headline>
   </>
 );
 

@@ -1,9 +1,11 @@
 import React from 'react';
 import { DefaultButtonProps, ColorSet, SizeSet, BaseButton } from '../Button';
+import { MarginSpacing, MarginSpacingProps } from '../../core/Spacing';
 
-export type IconButtonProps = DefaultButtonProps & {
-  icon: React.ReactElement;
-};
+export type IconButtonProps = DefaultButtonProps &
+  MarginSpacing & {
+    icon: React.ReactElement;
+  };
 
 export const IconButton = ({
   icon,
@@ -11,12 +13,14 @@ export const IconButton = ({
   disabled = false,
   onClick,
   className = '',
+  ...props
 }: IconButtonProps): React.ReactElement => {
   return (
     <BaseButton
       disabled={disabled}
       {...ColorSet[color ?? 'default']}
       {...SizeSet['onlyIcon']}
+      {...MarginSpacingProps(props)}
       className={className}
       onClick={onClick}
     >
