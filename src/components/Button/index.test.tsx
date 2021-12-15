@@ -17,25 +17,19 @@ describe('<Button />', () => {
   });
 
   test('Primary2 <Button />에 텍스트가 나온다.', () => {
-    const { getByText } = render(<Button color={'primary2'}>테스트</Button>);
+    const { getByText } = render(<Button color="primary2">테스트</Button>);
     const label = getByText('테스트');
     expect(label).toBeInTheDocument();
   });
 
   test('Danger1 <Button />에 텍스트가 나온다.', () => {
-    const { getByText } = render(<Button color={'danger1'}>테스트</Button>);
+    const { getByText } = render(<Button color="danger1">테스트</Button>);
     const label = getByText('테스트');
     expect(label).toBeInTheDocument();
   });
 
   test('Danger2 <Button />에 텍스트가 나온다.', () => {
-    const { getByText } = render(<Button color={'danger2'}>테스트</Button>);
-    const label = getByText('테스트');
-    expect(label).toBeInTheDocument();
-  });
-
-  test('Solid <Button />에 텍스트가 나온다', () => {
-    const { getByText } = render(<Button color={'danger2'}>테스트</Button>);
+    const { getByText } = render(<Button color="danger2">테스트</Button>);
     const label = getByText('테스트');
     expect(label).toBeInTheDocument();
   });
