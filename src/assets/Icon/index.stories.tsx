@@ -3,12 +3,12 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { IconProps } from './index';
-import { AddIcon, AlertIcon, AppIcon, ArrowDownIcon, ArrowLeftIcon, ArrowRightIcon, ArrowUpIcon, ArticleIcon, BeatIcon, BedtimeIcon, BlockIcon, BookIcon, BookmarkIcon, BoxAddIcon, CachedIcon, CalendarIcon, CallIcon, CallDisabledIcon, CameraIcon, CampaignIcon, CancelcircleFillIcon, CancelcircleOutlineIcon, CardIcon, ChartIcon, ChartPieIcon, CheckIcon, CheckcircleFillIcon, CheckcircleOutlineIcon, ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon, ChevronUpIcon, ClipIcon, ClockIcon, CloseIcon, CloudIcon, CloudDownloadIcon, CloudUploadIcon, CommandIcon, CompassIcon, CropIcon, CrownIcon, DeleteIcon, DescriptionIcon, DesktopIcon, DiamondIcon, DoneAllIcon, DownloadIcon, EditIcon, EmojiEventIcon, FeedIcon, FileIcon, FileAddIcon, FilterIcon, FireIcon, FlagIcon, GppIcon, GppGoodIcon, GpsIcon, GridLineIcon, GridViewIcon, HeartIcon, HeightIcon, HomeIcon, ImageIcon, InboxIcon, InfocircleFillIcon, InfocircleOutlineIcon, KeyIcon, LanguageIcon, LaptopIcon, LaunchIcon, LightningIcon, LinkIcon, ListIcon, LockIcon, LockOpenIcon, MailIcon, MapIcon, MenuIcon, MessageIcon, MicOffIcon, MicOnIcon, MobileIcon, MoneyIcon, MoreHorizIcon, MoreVertIcon, MusicIcon, NearMeIcon, NotificationNewIcon, NotificationNoneIcon, PasteIcon, PeopleAltIcon, PersonAddIcon, PlaceIcon, PluscircleFillIcon, PluscircleOutlineIcon, PowerSettingIcon, PresentIcon, PrintIcon, PushPinIcon, RecOffIcon, RecOnIcon, RedoIcon, RemoveFillIcon, RemoveOutlineIcon, ResetIcon, RocketIcon, SearchIcon, SettingIcon, ShareIcon, ShieldIcon, ShoppingBagIcon, ShoppingCartIcon, SignInIcon, SignOutIcon, StackIcon, StarIcon, StoreIcon, StreetViewIcon, SunIcon, SyncIcon, SyncAltIcon, TagIcon, TargetIcon, TextIcon, ThumbUpIcon, TicketIcon, TimerIcon, TrashIcon, TuneIcon, UndoIcon, UnfoldLessIcon, UnfoldMoreIcon, UploadIcon, UserIcon, UserCircleIcon, VerifiedIcon, VisibilityIcon, VisibilityOffIcon, VolumeOffIcon, VolumeOffsetIcon, VolumeOnIcon, WalletIcon, WarningCircleFillIcon, WarningCircleOutlineIcon, WatchIcon, WaterIcon, WaveIcon, WidthIcon, WifiIcon, WriteIcon, ZoomInIcon, ZoomOutIcon } from './index';
+import { AddIcon, AlertIcon, AndroidIcon, AppIcon, AppleIcon, ArrowDownIcon, ArrowDropDownIcon, ArrowDropLeftIcon, ArrowDropRightIcon, ArrowDropUpIcon, ArrowLeftIcon, ArrowRightIcon, ArrowUpIcon, ArticleIcon, BeatIcon, BedtimeIcon, BlockIcon, BookIcon, BookmarkIcon, BookmarkFillIcon, BoxAddIcon, CachedIcon, CalendarIcon, CallIcon, CallDisabledIcon, CameraIcon, CampaignIcon, CancelcircleFillIcon, CancelcircleOutlineIcon, CardIcon, ChartIcon, ChartPieIcon, CheckIcon, CheckcircleFillIcon, CheckcircleOutlineIcon, ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon, ChevronUpIcon, CircleIcon, ClipIcon, ClockIcon, CloseIcon, CloudIcon, CloudDownloadIcon, CloudUploadIcon, CommandIcon, CompassIcon, CropIcon, CrownIcon, DeleteIcon, DescriptionIcon, DesktopIcon, DiamondIcon, DoneAllIcon, DoubleCheveronDownIcon, DoubleCheveronLeftIcon, DoubleCheveronRightIcon, DoubleCheveronUpIcon, DownloadIcon, Download2Icon, EditIcon, EmojiEventIcon, FeedIcon, FileIcon, FileAddIcon, FilterIcon, FireIcon, FlagIcon, FolderIcon, FolderFillIcon, FullscreenIcon, GeoGroupIcon, GppIcon, GppGoodIcon, GpsIcon, GraphIcon, GridLineIcon, GridViewIcon, HeartIcon, HeartFillIcon, HeightIcon, HomeIcon, ImageIcon, InboxIcon, InfocircleFillIcon, InfocircleOutlineIcon, KeyIcon, LanguageIcon, LaptopIcon, LaunchIcon, LightningIcon, LinkIcon, ListIcon, LockIcon, LockOpenIcon, MailIcon, MapIcon, MenuIcon, MessageIcon, MicOffIcon, MicOnIcon, MobileIcon, MoneyIcon, MoreHorizIcon, MoreVertIcon, MusicIcon, NearMeIcon, NotificationNewIcon, NotificationNoneIcon, PasteIcon, PeopleAltIcon, PersonAddIcon, PlaceIcon, PluscircleFillIcon, PluscircleOutlineIcon, PolygonIcon, PowerSettingIcon, PresentIcon, PrintIcon, PushPinIcon, QuestioncircleFillIcon, QuestioncircleOutlineIcon, RecOffIcon, RecOnIcon, RedoIcon, RemoveFillIcon, RemoveOutlineIcon, ResetIcon, RocketIcon, SearchIcon, SettingIcon, ShareIcon, ShieldIcon, ShoppingBagIcon, ShoppingCartIcon, SignInIcon, SignOutIcon, StackIcon, StarIcon, StarFillIcon, StoreIcon, StreetViewIcon, SunIcon, SyncIcon, SyncAltIcon, TagIcon, TargetIcon, TextIcon, ThumbUpIcon, TicketIcon, TimerIcon, TrashIcon, TuneIcon, UndoIcon, UnfoldLessIcon, UnfoldMoreIcon, UploadIcon, UserIcon, UserCircleIcon, UserFillIcon, VerifiedIcon, VerifiedFillIcon, VisibilityIcon, VisibilityOffIcon, VolumeOffIcon, VolumeOffsetIcon, VolumeOnIcon, WalletIcon, WarningCircleFillIcon, WarningCircleOutlineIcon, WatchIcon, WaterIcon, WaveIcon, WidthIcon, WifiIcon, WriteIcon, ZoomInIcon, ZoomOutIcon } from './index';
 
 const IconDocument = (props: IconProps) => {
   return (
     <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap'}}>
-      
+
         <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',border: '1px solid gray', margin: '1rem', minWidth:'4rem', minHeight:'3rem', padding: '0.5rem 1rem'}}>
           <AddIcon {...props} />
           <span style={{marginTop: '0.5rem'}}>Add</span>
@@ -20,13 +20,43 @@ const IconDocument = (props: IconProps) => {
         </div>
 
         <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',border: '1px solid gray', margin: '1rem', minWidth:'4rem', minHeight:'3rem', padding: '0.5rem 1rem'}}>
+          <AndroidIcon {...props} />
+          <span style={{marginTop: '0.5rem'}}>Android</span>
+        </div>
+
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',border: '1px solid gray', margin: '1rem', minWidth:'4rem', minHeight:'3rem', padding: '0.5rem 1rem'}}>
           <AppIcon {...props} />
           <span style={{marginTop: '0.5rem'}}>App</span>
         </div>
 
         <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',border: '1px solid gray', margin: '1rem', minWidth:'4rem', minHeight:'3rem', padding: '0.5rem 1rem'}}>
+          <AppleIcon {...props} />
+          <span style={{marginTop: '0.5rem'}}>Apple</span>
+        </div>
+
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',border: '1px solid gray', margin: '1rem', minWidth:'4rem', minHeight:'3rem', padding: '0.5rem 1rem'}}>
           <ArrowDownIcon {...props} />
           <span style={{marginTop: '0.5rem'}}>ArrowDown</span>
+        </div>
+
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',border: '1px solid gray', margin: '1rem', minWidth:'4rem', minHeight:'3rem', padding: '0.5rem 1rem'}}>
+          <ArrowDropDownIcon {...props} />
+          <span style={{marginTop: '0.5rem'}}>ArrowDropDown</span>
+        </div>
+
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',border: '1px solid gray', margin: '1rem', minWidth:'4rem', minHeight:'3rem', padding: '0.5rem 1rem'}}>
+          <ArrowDropLeftIcon {...props} />
+          <span style={{marginTop: '0.5rem'}}>ArrowDropLeft</span>
+        </div>
+
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',border: '1px solid gray', margin: '1rem', minWidth:'4rem', minHeight:'3rem', padding: '0.5rem 1rem'}}>
+          <ArrowDropRightIcon {...props} />
+          <span style={{marginTop: '0.5rem'}}>ArrowDropRight</span>
+        </div>
+
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',border: '1px solid gray', margin: '1rem', minWidth:'4rem', minHeight:'3rem', padding: '0.5rem 1rem'}}>
+          <ArrowDropUpIcon {...props} />
+          <span style={{marginTop: '0.5rem'}}>ArrowDropUp</span>
         </div>
 
         <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',border: '1px solid gray', margin: '1rem', minWidth:'4rem', minHeight:'3rem', padding: '0.5rem 1rem'}}>
@@ -72,6 +102,11 @@ const IconDocument = (props: IconProps) => {
         <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',border: '1px solid gray', margin: '1rem', minWidth:'4rem', minHeight:'3rem', padding: '0.5rem 1rem'}}>
           <BookmarkIcon {...props} />
           <span style={{marginTop: '0.5rem'}}>Bookmark</span>
+        </div>
+
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',border: '1px solid gray', margin: '1rem', minWidth:'4rem', minHeight:'3rem', padding: '0.5rem 1rem'}}>
+          <BookmarkFillIcon {...props} />
+          <span style={{marginTop: '0.5rem'}}>BookmarkFill</span>
         </div>
 
         <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',border: '1px solid gray', margin: '1rem', minWidth:'4rem', minHeight:'3rem', padding: '0.5rem 1rem'}}>
@@ -170,6 +205,11 @@ const IconDocument = (props: IconProps) => {
         </div>
 
         <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',border: '1px solid gray', margin: '1rem', minWidth:'4rem', minHeight:'3rem', padding: '0.5rem 1rem'}}>
+          <CircleIcon {...props} />
+          <span style={{marginTop: '0.5rem'}}>Circle</span>
+        </div>
+
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',border: '1px solid gray', margin: '1rem', minWidth:'4rem', minHeight:'3rem', padding: '0.5rem 1rem'}}>
           <ClipIcon {...props} />
           <span style={{marginTop: '0.5rem'}}>Clip</span>
         </div>
@@ -245,8 +285,33 @@ const IconDocument = (props: IconProps) => {
         </div>
 
         <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',border: '1px solid gray', margin: '1rem', minWidth:'4rem', minHeight:'3rem', padding: '0.5rem 1rem'}}>
+          <DoubleCheveronDownIcon {...props} />
+          <span style={{marginTop: '0.5rem'}}>DoubleCheveronDown</span>
+        </div>
+
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',border: '1px solid gray', margin: '1rem', minWidth:'4rem', minHeight:'3rem', padding: '0.5rem 1rem'}}>
+          <DoubleCheveronLeftIcon {...props} />
+          <span style={{marginTop: '0.5rem'}}>DoubleCheveronLeft</span>
+        </div>
+
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',border: '1px solid gray', margin: '1rem', minWidth:'4rem', minHeight:'3rem', padding: '0.5rem 1rem'}}>
+          <DoubleCheveronRightIcon {...props} />
+          <span style={{marginTop: '0.5rem'}}>DoubleCheveronRight</span>
+        </div>
+
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',border: '1px solid gray', margin: '1rem', minWidth:'4rem', minHeight:'3rem', padding: '0.5rem 1rem'}}>
+          <DoubleCheveronUpIcon {...props} />
+          <span style={{marginTop: '0.5rem'}}>DoubleCheveronUp</span>
+        </div>
+
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',border: '1px solid gray', margin: '1rem', minWidth:'4rem', minHeight:'3rem', padding: '0.5rem 1rem'}}>
           <DownloadIcon {...props} />
           <span style={{marginTop: '0.5rem'}}>Download</span>
+        </div>
+
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',border: '1px solid gray', margin: '1rem', minWidth:'4rem', minHeight:'3rem', padding: '0.5rem 1rem'}}>
+          <Download2Icon {...props} />
+          <span style={{marginTop: '0.5rem'}}>Download2</span>
         </div>
 
         <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',border: '1px solid gray', margin: '1rem', minWidth:'4rem', minHeight:'3rem', padding: '0.5rem 1rem'}}>
@@ -290,6 +355,26 @@ const IconDocument = (props: IconProps) => {
         </div>
 
         <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',border: '1px solid gray', margin: '1rem', minWidth:'4rem', minHeight:'3rem', padding: '0.5rem 1rem'}}>
+          <FolderIcon {...props} />
+          <span style={{marginTop: '0.5rem'}}>Folder</span>
+        </div>
+
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',border: '1px solid gray', margin: '1rem', minWidth:'4rem', minHeight:'3rem', padding: '0.5rem 1rem'}}>
+          <FolderFillIcon {...props} />
+          <span style={{marginTop: '0.5rem'}}>FolderFill</span>
+        </div>
+
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',border: '1px solid gray', margin: '1rem', minWidth:'4rem', minHeight:'3rem', padding: '0.5rem 1rem'}}>
+          <FullscreenIcon {...props} />
+          <span style={{marginTop: '0.5rem'}}>Fullscreen</span>
+        </div>
+
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',border: '1px solid gray', margin: '1rem', minWidth:'4rem', minHeight:'3rem', padding: '0.5rem 1rem'}}>
+          <GeoGroupIcon {...props} />
+          <span style={{marginTop: '0.5rem'}}>GeoGroup</span>
+        </div>
+
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',border: '1px solid gray', margin: '1rem', minWidth:'4rem', minHeight:'3rem', padding: '0.5rem 1rem'}}>
           <GppIcon {...props} />
           <span style={{marginTop: '0.5rem'}}>Gpp</span>
         </div>
@@ -305,6 +390,11 @@ const IconDocument = (props: IconProps) => {
         </div>
 
         <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',border: '1px solid gray', margin: '1rem', minWidth:'4rem', minHeight:'3rem', padding: '0.5rem 1rem'}}>
+          <GraphIcon {...props} />
+          <span style={{marginTop: '0.5rem'}}>Graph</span>
+        </div>
+
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',border: '1px solid gray', margin: '1rem', minWidth:'4rem', minHeight:'3rem', padding: '0.5rem 1rem'}}>
           <GridLineIcon {...props} />
           <span style={{marginTop: '0.5rem'}}>GridLine</span>
         </div>
@@ -317,6 +407,11 @@ const IconDocument = (props: IconProps) => {
         <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',border: '1px solid gray', margin: '1rem', minWidth:'4rem', minHeight:'3rem', padding: '0.5rem 1rem'}}>
           <HeartIcon {...props} />
           <span style={{marginTop: '0.5rem'}}>Heart</span>
+        </div>
+
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',border: '1px solid gray', margin: '1rem', minWidth:'4rem', minHeight:'3rem', padding: '0.5rem 1rem'}}>
+          <HeartFillIcon {...props} />
+          <span style={{marginTop: '0.5rem'}}>HeartFill</span>
         </div>
 
         <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',border: '1px solid gray', margin: '1rem', minWidth:'4rem', minHeight:'3rem', padding: '0.5rem 1rem'}}>
@@ -495,6 +590,11 @@ const IconDocument = (props: IconProps) => {
         </div>
 
         <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',border: '1px solid gray', margin: '1rem', minWidth:'4rem', minHeight:'3rem', padding: '0.5rem 1rem'}}>
+          <PolygonIcon {...props} />
+          <span style={{marginTop: '0.5rem'}}>Polygon</span>
+        </div>
+
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',border: '1px solid gray', margin: '1rem', minWidth:'4rem', minHeight:'3rem', padding: '0.5rem 1rem'}}>
           <PowerSettingIcon {...props} />
           <span style={{marginTop: '0.5rem'}}>PowerSetting</span>
         </div>
@@ -512,6 +612,16 @@ const IconDocument = (props: IconProps) => {
         <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',border: '1px solid gray', margin: '1rem', minWidth:'4rem', minHeight:'3rem', padding: '0.5rem 1rem'}}>
           <PushPinIcon {...props} />
           <span style={{marginTop: '0.5rem'}}>PushPin</span>
+        </div>
+
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',border: '1px solid gray', margin: '1rem', minWidth:'4rem', minHeight:'3rem', padding: '0.5rem 1rem'}}>
+          <QuestioncircleFillIcon {...props} />
+          <span style={{marginTop: '0.5rem'}}>QuestioncircleFill</span>
+        </div>
+
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',border: '1px solid gray', margin: '1rem', minWidth:'4rem', minHeight:'3rem', padding: '0.5rem 1rem'}}>
+          <QuestioncircleOutlineIcon {...props} />
+          <span style={{marginTop: '0.5rem'}}>QuestioncircleOutline</span>
         </div>
 
         <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',border: '1px solid gray', margin: '1rem', minWidth:'4rem', minHeight:'3rem', padding: '0.5rem 1rem'}}>
@@ -597,6 +707,11 @@ const IconDocument = (props: IconProps) => {
         <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',border: '1px solid gray', margin: '1rem', minWidth:'4rem', minHeight:'3rem', padding: '0.5rem 1rem'}}>
           <StarIcon {...props} />
           <span style={{marginTop: '0.5rem'}}>Star</span>
+        </div>
+
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',border: '1px solid gray', margin: '1rem', minWidth:'4rem', minHeight:'3rem', padding: '0.5rem 1rem'}}>
+          <StarFillIcon {...props} />
+          <span style={{marginTop: '0.5rem'}}>StarFill</span>
         </div>
 
         <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',border: '1px solid gray', margin: '1rem', minWidth:'4rem', minHeight:'3rem', padding: '0.5rem 1rem'}}>
@@ -695,8 +810,18 @@ const IconDocument = (props: IconProps) => {
         </div>
 
         <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',border: '1px solid gray', margin: '1rem', minWidth:'4rem', minHeight:'3rem', padding: '0.5rem 1rem'}}>
+          <UserFillIcon {...props} />
+          <span style={{marginTop: '0.5rem'}}>UserFill</span>
+        </div>
+
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',border: '1px solid gray', margin: '1rem', minWidth:'4rem', minHeight:'3rem', padding: '0.5rem 1rem'}}>
           <VerifiedIcon {...props} />
           <span style={{marginTop: '0.5rem'}}>Verified</span>
+        </div>
+
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',border: '1px solid gray', margin: '1rem', minWidth:'4rem', minHeight:'3rem', padding: '0.5rem 1rem'}}>
+          <VerifiedFillIcon {...props} />
+          <span style={{marginTop: '0.5rem'}}>VerifiedFill</span>
         </div>
 
         <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',border: '1px solid gray', margin: '1rem', minWidth:'4rem', minHeight:'3rem', padding: '0.5rem 1rem'}}>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon/arrowDrop_down</title>
+    <defs>
+        <path d="M27.4885285,12.19025 L15.6785285,0.65325 C14.7865285,-0.21775 13.3895285,-0.21775 12.4975285,0.65325 L0.686528537,12.19125 C0.0215285366,12.84125 -0.181471463,13.81825 0.170528537,14.67925 C0.520528537,15.54025 1.34852854,16.09625 2.27852854,16.09625 L25.8975285,16.09625 C26.8275285,16.09625 27.6555285,15.54025 28.0065285,14.67925 C28.3575285,13.81825 28.1545285,12.84125 27.4885285,12.19025" id="path-1"></path>
+    </defs>
+    <g id="icon/arrowDrop_down" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="color/primary/500" transform="translate(16.088165, 16.048125) scale(1, -1) translate(-16.088165, -16.048125) translate(2.000000, 8.000000)">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Mask" fill="#000000" xlink:href="#path-1"></use>
+            <g id="Group" mask="url(#mask-2)">
+                <g transform="translate(-2.000000, -8.000000)" id="color/primary/500">
+                    <rect id="Rectangle-Copy-4" fill="#9DAAB7" x="0" y="2.27373675e-15" width="32" height="32"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

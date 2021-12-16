@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon/fullscreen</title>
+    <defs>
+        <path d="M1.25,15 C1.94,15 2.5,15.56 2.5,16.25 L2.5,23 L9.25,23 C9.94,23 10.5,23.56 10.5,24.25 C10.5,24.94 9.94,25.5 9.25,25.5 L1.25,25.5 C0.56,25.5 0,24.94 0,24.25 L0,16.25 C0,15.56 0.56,15 1.25,15 Z M24.25,15 C24.94,15 25.5,15.56 25.5,16.25 L25.5,24.25 C25.5,24.94 24.94,25.5 24.25,25.5 L16.25,25.5 C15.56,25.5 15,24.94 15,24.25 C15,23.56 15.56,23 16.25,23 L23,23 L23,16.25 C23,15.56 23.56,15 24.25,15 Z M9.25,0 C9.94,0 10.5,0.56 10.5,1.25 C10.5,1.94 9.94,2.5 9.25,2.5 L2.5,2.5 L2.5,9.25 C2.5,9.94 1.94,10.5 1.25,10.5 C0.56,10.5 0,9.94 0,9.25 L0,1.25 C0,0.56 0.56,0 1.25,0 L9.25,0 Z M24.25,0 C24.94,0 25.5,0.56 25.5,1.25 L25.5,9.25 C25.5,9.94 24.94,10.5 24.25,10.5 C23.56,10.5 23,9.94 23,9.25 L23,2.5 L16.25,2.5 C15.56,2.5 15,1.94 15,1.25 C15,0.56 15.56,0 16.25,0 L24.25,0 Z" id="path-1"></path>
+    </defs>
+    <g id="icon/fullscreen" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="color/primary/500" transform="translate(3.000000, 3.000000)">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Mask" fill="#000000" xlink:href="#path-1"></use>
+            <g id="Group" mask="url(#mask-2)">
+                <g transform="translate(-3.000000, -3.000000)" id="color/primary/500">
+                    <rect id="Rectangle-Copy-4" fill="#9DAAB7" x="0" y="2.27373675e-15" width="32" height="32"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
