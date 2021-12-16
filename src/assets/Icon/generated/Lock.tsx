@@ -3,8 +3,8 @@ import type { IconProps } from '../index';
 export const Lock =
   React.memo <
   IconProps >
-  (({ size = 18, fillColor = '#9DAAB7', className, style }) => {
-    const uniqueId = useMemo(() => String(Math.random().toString(36).substr(2, 9)), []);
+  (({ size = 18, fillColor = '#9DAAB7', suffixForId, className, style }) => {
+    const uniqueId = useMemo(() => suffixForId ?? String(Math.random().toString(36).slice(2, 11)), [suffixForId]);
     return (
       <svg
         width={size}
