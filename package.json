@@ -39,7 +39,8 @@
     "test": "react-scripts test --env=jsdom",
     "generated-icon-export": "node src/assets/Icon/tools/generate-export.js",
     "generated-svgr": "cd src/assets/Icon/svgs && npx @svgr/cli@5.5.0 --template ../tools/svgr-cli.template.js --config-file ../tools/.svgrrc *.svg --out-dir ../generated --ext tsx",
-    "svgr": "yarn generated-svgr && yarn generated-icon-export && cd src/assets/Icon/tools && sh assign-id-to-svg.sh"
+    "svgr": "yarn generated-svgr && yarn generated-icon-export && cd src/assets/Icon/tools && sh assign-id-to-svg.sh",
+    "prepare": "husky install"
   },
   "browserslist": {
     "production": [
@@ -88,6 +89,8 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-import-resolver-typescript": "^2.4.0",
     "eslint-plugin-prettier": "^3.4.0",
+    "husky": ">=6",
+    "lint-staged": ">=10",
     "postcss": "^8.3.6",
     "prettier": "^2.3.2",
     "react-scripts": "^4.0.3",
@@ -110,5 +113,11 @@
   },
   "author": "sanghoyoon",
   "license": "ISC",
-  "homepage": "https://bitbucket.org/loplat_developers/loplat-ui#readme"
+  "homepage": "https://bitbucket.org/loplat_developers/loplat-ui#readme",
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --cache --fix",
+      "prettier --write"
+    ]
+  }
 }
