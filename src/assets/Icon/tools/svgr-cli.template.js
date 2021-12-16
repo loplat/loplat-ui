@@ -6,8 +6,8 @@ function defaultTemplate({ template }, _, { componentName, jsx }) {
     import React, { useMemo } from 'react';
     import type { IconProps } from '../index';
     
-    export const ${IconComponentName} = React.memo<IconProps>(({size = 18, fillColor = '#9DAAB7', className, style}) => {
-      const uniqueId = useMemo(() => String(Math.random().toString(36).slice(2, 11)), []);
+    export const ${IconComponentName} = React.memo<IconProps>(({size = 18, fillColor = '#9DAAB7', suffixForId, className, style}) => {
+      const uniqueId = useMemo(() => suffixForId ?? String(Math.random().toString(36).slice(2, 11)), [suffixForId]);
       return ${jsx}
     })
   `;
