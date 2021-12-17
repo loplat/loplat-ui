@@ -1,3 +1,16 @@
+## 1.2.4 (2021-12-17)
+
+### Added
+
+- 25종류의 Icon이 추가되었습니다.
+ 
+### Fixed
+
+- Storybook에 font-family를 적용했습니다.
+- Icon의 id를 고정시킬 수 있도록 suffixForId prop을 추가했습니다.
+- @emotion/react package가 충돌하여 console warning이 일어나는 현상을 수정했습니다.
+
+
 ## 1.2.3 (2021-12-11)
 
 ### Added
