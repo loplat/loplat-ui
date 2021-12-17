@@ -6,6 +6,7 @@ import multiInput from 'rollup-plugin-multi-input';
 import postcss from 'rollup-plugin-postcss';
 import image from '@rollup/plugin-image';
 import copy from 'rollup-plugin-copy';
+import { visualizer } from 'rollup-plugin-visualizer';
 
 export default {
   // NOTE: tree shaking 을 위해 esm 파일들을 code splitting 하여 빌드한다.
@@ -27,6 +28,7 @@ export default {
       extensions: ['.css'],
     }),
     image(),
+    visualizer(),
     copy({
       targets: [{ src: 'src/core/Palette/index.scss', dest: 'core/Palette' }],
     }),
