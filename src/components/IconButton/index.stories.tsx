@@ -12,6 +12,11 @@ export default {
         type: 'radio',
       },
     },
+    icon: {
+      control: {
+        type: 'null',
+      },
+    },
   },
 } as ComponentMeta<typeof IconButton>;
 
