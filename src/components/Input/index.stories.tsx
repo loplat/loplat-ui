@@ -43,4 +43,5 @@ RightIcon.args = {
   rightIcon: <WarningCircleOutlineIcon fillColor={danger300} size={30} />,
   error: true,
   errorMessage: '에러!',
+  title: '비밀번호',
 };
