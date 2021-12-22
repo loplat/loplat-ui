@@ -16,6 +16,16 @@ export default {
         type: 'radio',
       },
     },
+    rightIcon: {
+      control: {
+        type: 'null',
+      },
+    },
+    leftIcon: {
+      control: {
+        type: 'null',
+      },
+    },
   },
 } as ComponentMeta<typeof Button>;
 
