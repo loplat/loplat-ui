@@ -3,10 +3,14 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { Caption } from './index';
 import { TypographyProps } from '../BaseTypography';
+import { sizeProps } from '../BaseTypography/storyArgTypes';
 
 export default {
   title: 'Typography/Caption',
   component: Caption,
+  argTypes: {
+    ...sizeProps,
+  },
 } as ComponentMeta<typeof Caption>;
 
 const Template: ComponentStory<typeof Caption> = (args: TypographyProps) => (
