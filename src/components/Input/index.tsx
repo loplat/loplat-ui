@@ -11,6 +11,7 @@ import {
   white,
 } from '../../core/Palette';
 import { css } from '@emotion/css';
+import { spacing } from '../../core/Spacing';
 
 export interface InputProps {
   id?: string;
@@ -30,7 +31,9 @@ export interface InputProps {
   autoComplete?: 'username' | 'current-password' | 'new-password';
   rightIcon?: React.ReactElement;
   isIconVisible?: boolean;
+  title?: string;
 }
+type RightIconProps = Pick<InputProps, 'isIconVisible' | 'disabled'>;
 
 const BaseInput = styled.input<InputProps>`
   width: 100%;
@@ -40,9 +43,14 @@ const BaseInput = styled.input<InputProps>`
   border: 1px solid ${grayScale200};
   border-color: ${({ error }) => error && danger300};
   border-radius: 4px;
-  padding: 1rem 1.5rem;
   outline: none;
   font-size: 1rem;
+  padding: ${({ isIconVisible }) =>
+    isIconVisible
+      ? `${spacing(4)}px ${spacing(12)}px ${spacing(4)}px ${spacing(6)}px`
+      : `${spacing(4)}px ${spacing(6)}px`};
+  transition: border-color ease 0.3s;
+
   ::placeholder {
     color: ${blueScale500};
   }
@@ -61,7 +69,26 @@ const BaseInput = styled.input<InputProps>`
     color: ${black500};
     border-color: ${({ error }) => !error && blue500};
   }
-  transition: border-color ease 0.3s;
+
+  g > path {
+    fill: ${({ disabled }) => disabled && grayScale500};
+  }
+`;
+
+const RightIconContainer = styled.div<RightIconProps>`
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  opacity: ${({ isIconVisible }) => (isIconVisible ? 1 : 0)};
+  transition: opacity 0.2s linear;
+  width: 20px;
+  height: 20px;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
 `;
 
 const InlineError = React.memo(({ children }): React.ReactElement => {
@@ -110,21 +137,9 @@ export const Input = React.memo<InputProps>(({ className = '', ...props }): Reac
           }}
         />
         {props.rightIcon && (
-          <div
-            aria-label="warning icon"
-            className={`${css`
-              position: absolute;
-              top: 50%;
-              right: 0.938rem;
-              display: flex;
-              align-items: center;
-              transform: translateY(-50%);
-              opacity: ${props.isIconVisible ? 1 : 0};
-              transition: opacity 0.1s linear;
-            `}`}
-          >
+          <RightIconContainer disabled={props.disabled} isIconVisible={props.isIconVisible} aria-label="warning icon">
             {props.rightIcon}
-          </div>
+          </RightIconContainer>
         )}
       </div>
 
