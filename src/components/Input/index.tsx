@@ -69,12 +69,16 @@ const BaseInput = styled.input<InputProps>`
     color: ${black500};
     border-color: ${({ error }) => !error && blue500};
   }
+
+  g > path {
+    fill: ${({ disabled }) => disabled && grayScale500};
+  }
 `;
 
 const RightIconContainer = styled.div<RightIconProps>`
   position: absolute;
   top: 50%;
-  right: 0.938rem;
+  right: 15px;
   transform: translateY(-50%);
   opacity: ${({ isIconVisible }) => (isIconVisible ? 1 : 0)};
   transition: opacity 0.2s linear;
@@ -84,8 +88,6 @@ const RightIconContainer = styled.div<RightIconProps>`
   svg {
     width: 20px;
     height: 20px;
-
-    transition: border-color ease 0.3s;
   }
 `;
 
