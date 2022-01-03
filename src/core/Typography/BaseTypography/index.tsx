@@ -42,7 +42,6 @@ export interface TypographyProps extends TypographyStyle {
 }
 
 export const TextElementStyle = (props: TypographyStyle): string => css`
-  width: fit-content;
   font-size: ${`${typeof props.size === 'string' ? FONT_SIZE[props.size] : props.size ?? 1}rem`};
   font-weight: ${FONT_WEIGHT[props.weight ?? 'regular']};
   color: ${props.color ?? '#000000'};
