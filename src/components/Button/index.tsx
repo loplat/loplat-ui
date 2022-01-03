@@ -19,10 +19,11 @@ import {
   white,
 } from '../../core/Palette';
 import { Desktop } from '../../core/MediaQuery';
-import { MarginSpacing, MarginSpacingProps, MarginSpacingStyle } from '../../core/Spacing';
+import { MarginSpacing, MarginSpacingProps, MarginSpacingStyle, spacing } from '../../core/Spacing';
 
-export type Size = 'sm' | 'md' | 'lg';
-export type Color = 'default' | 'primary1' | 'primary2' | 'danger1' | 'danger2' | 'solid' | 'white';
+type Size = 'xs' | 'sm' | 'lg';
+type Color = 'default' | 'primary1' | 'primary2' | 'danger1' | 'danger2' | 'solid' | 'white';
+type FullWidth = { fullWidth?: boolean };
 export type DefaultButtonProps = {
   color?: Color;
   disabled?: boolean;
@@ -30,36 +31,31 @@ export type DefaultButtonProps = {
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
 };
 export type ButtonProps = DefaultButtonProps &
-  MarginSpacing & {
+  MarginSpacing &
+  FullWidth & {
     size?: Size;
-    fullWidth?: boolean;
     leftIcon?: React.ReactElement;
     rightIcon?: React.ReactElement;
     children?: React.ReactNode;
   };
 
-type BaseButtonProps = typeof SizeSet[keyof typeof SizeSet] & typeof ColorSet[keyof typeof ColorSet] & MarginSpacing;
+type BaseButtonProps = MarginSpacing &
+  FullWidth &
+  typeof SizeSet[keyof typeof SizeSet] &
+  typeof ColorSet[keyof typeof ColorSet];
 
 export const SizeSet = {
   onlyIcon: {
-    minWidth: 'auto',
-    padding: '0.5rem',
+    padding: `${spacing(2)}px`,
   },
-  fullWidth: {
-    minWidth: '100%',
-    padding: '0.5rem 1rem',
+  xs: {
+    padding: `${spacing(1.5)}px ${spacing(4)}px`,
   },
   sm: {
-    minWidth: '5rem',
-    padding: '0.5rem 1rem',
-  },
-  md: {
-    minWidth: '9rem',
-    padding: '1rem 3rem',
+    padding: `${spacing(3.5)}px ${spacing(4)}px`,
   },
   lg: {
-    minWidth: '12rem',
-    padding: '1.5rem 4.5rem',
+    padding: `${spacing(5.5)}px ${spacing(18)}px`,
   },
 } as const;
 
@@ -207,8 +203,7 @@ export const ColorSet = {
 } as const;
 
 export const BaseButton = styled.button<BaseButtonProps>`
-  width: auto;
-  min-width: ${({ minWidth }) => minWidth};
+  width: ${({ fullWidth }) => fullWidth && '100%'};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -221,7 +216,6 @@ export const BaseButton = styled.button<BaseButtonProps>`
   border-color: ${({ border }) => border.default};
   border-radius: 4px;
 
-  font-size: 1.125rem;
   color: ${({ text }) => text.default};
   background-color: ${({ background }) => background.default};
   transition-property: color, background-color, border-color;
@@ -234,8 +228,8 @@ export const BaseButton = styled.button<BaseButtonProps>`
   }
 
   span {
-    margin-top: 2px;
-    text-align: center;
+    font-size: 1.125rem;
+    margin-top: 3px;
   }
 
   div {
@@ -243,10 +237,10 @@ export const BaseButton = styled.button<BaseButtonProps>`
     align-items: center;
     justify-content: center;
     &.leftIcon {
-      margin-right: 0.25rem;
+      margin-right: ${spacing(1)}px;
     }
     &.rightIcon {
-      margin-left: 0.25rem;
+      margin-left: ${spacing(1)}px;
     }
   }
 
@@ -284,8 +278,9 @@ export const Button = ({ disabled = false, ...props }: ButtonProps): JSX.Element
   return (
     <BaseButton
       disabled={disabled}
+      fullWidth={props.fullWidth}
       {...ColorSet[props.color ?? 'default']}
-      {...SizeSet[props.fullWidth ? 'fullWidth' : props.size ?? 'sm']}
+      {...SizeSet[props.size ?? 'sm']}
       {...MarginSpacingProps(props)}
       className={props.className ?? ''}
       onClick={props.onClick}
