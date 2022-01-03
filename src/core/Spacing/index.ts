@@ -28,7 +28,7 @@ const marginSpacingOptions = ['mt', 'mb', 'ml', 'mr', 'my', 'mx'] as const;
 export type MarginSpacing = {
   [key in typeof marginSpacingOptions[number]]?: number;
 };
-export const MarginSpacingProps = (props: MarginSpacing): MarginSpacing =>
+export const marginSpacingProps = (props: MarginSpacing): MarginSpacing =>
   marginSpacingOptions.reduce(
     (prev, curr) => ({
       ...prev,
@@ -36,19 +36,26 @@ export const MarginSpacingProps = (props: MarginSpacing): MarginSpacing =>
     }),
     {},
   );
-export const MarginSpacingStyle = (props: MarginSpacing): SerializedStyles => css`
-  margin-top: ${spacing((props.mt || props.my) ?? 0)}px;
-  margin-bottom: ${spacing((props.mb || props.my) ?? 0)}px;
-  margin-left: ${spacing((props.ml || props.mx) ?? 0)}px;
-  margin-right: ${spacing((props.mr || props.mx) ?? 0)}px;
-`;
+export const marginSpacingStyle = (props: MarginSpacing): SerializedStyles => {
+  const marginStyleObject = {
+    'margin-top': props.mt ?? props.my,
+    'margin-bottom': props.mb ?? props.my,
+    'margin-left': props.ml ?? props.mx,
+    'margin-right': props.mr ?? props.mx,
+  };
+  return css`
+    ${Object.entries(marginStyleObject).reduce((prev, [key, value]) => {
+      return prev + (value !== undefined ? `${key}: ${spacing(value)}px;` : '');
+    }, '')}
+  `;
+};
 
 // Padding
 const paddingSpacingOptions = ['pt', 'pb', 'pl', 'pr', 'py', 'px'] as const;
 export type PaddingSpacing = {
   [key in typeof paddingSpacingOptions[number]]?: number;
 };
-export const PaddingSpacingProps = (props: PaddingSpacing): PaddingSpacing =>
+export const paddingSpacingProps = (props: PaddingSpacing): PaddingSpacing =>
   paddingSpacingOptions.reduce(
     (prev, curr) => ({
       ...prev,
@@ -56,20 +63,27 @@ export const PaddingSpacingProps = (props: PaddingSpacing): PaddingSpacing =>
     }),
     {},
   );
-export const PaddingSpacingStyle = (props: PaddingSpacing): SerializedStyles => css`
-  padding-top: ${spacing((props.pt || props.py) ?? 0)}px;
-  padding-bottom: ${spacing((props.pb || props.py) ?? 0)}px;
-  padding-left: ${spacing((props.pl || props.px) ?? 0)}px;
-  padding-right: ${spacing((props.pr || props.px) ?? 0)}px;
-`;
+export const paddingSpacingStyle = (props: PaddingSpacing): SerializedStyles => {
+  const paddingStyleObject = {
+    'padding-top': props.pt ?? props.py,
+    'padding-bottom': props.pb ?? props.py,
+    'padding-left': props.pl ?? props.px,
+    'padding-right': props.pr ?? props.px,
+  };
+  return css`
+    ${Object.entries(paddingStyleObject).reduce((prev, [key, value]) => {
+      return prev + (value !== undefined ? `${key}: ${spacing(value)}px;` : '');
+    }, '')}
+  `;
+};
 
 // Box(Margin + Padding)
 export type BoxSpacing = MarginSpacing & PaddingSpacing;
-export const BoxSpacingProps = (props: BoxSpacing): BoxSpacing => ({
-  ...MarginSpacingProps(props),
-  ...PaddingSpacingProps(props),
+export const boxSpacingProps = (props: BoxSpacing): BoxSpacing => ({
+  ...marginSpacingProps(props),
+  ...paddingSpacingProps(props),
 });
-export const BoxSpacingStyle = (props: BoxSpacing): SerializedStyles => css`
-  ${MarginSpacingStyle(props)};
-  ${PaddingSpacingStyle(props)};
+export const boxSpacingStyle = (props: BoxSpacing): SerializedStyles => css`
+  ${marginSpacingStyle(props)};
+  ${paddingSpacingStyle(props)};
 `;
