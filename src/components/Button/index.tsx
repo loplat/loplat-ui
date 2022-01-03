@@ -19,7 +19,7 @@ import {
   white,
 } from '../../core/Palette';
 import { Desktop } from '../../core/MediaQuery';
-import { MarginSpacing, MarginSpacingProps, MarginSpacingStyle } from '../../core/Spacing';
+import { MarginSpacing, marginSpacingProps, marginSpacingStyle } from '../../core/Spacing';
 
 export type Size = 'sm' | 'md' | 'lg';
 export type Color = 'default' | 'primary1' | 'primary2' | 'danger1' | 'danger2' | 'solid' | 'white';
@@ -213,7 +213,7 @@ export const BaseButton = styled.button<BaseButtonProps>`
   justify-content: center;
   align-items: center;
   padding: ${({ padding }) => padding};
-  ${MarginSpacingStyle};
+  ${marginSpacingStyle};
 
   outline: none;
   border-width: 1px;
@@ -285,7 +285,7 @@ export const Button = ({ disabled = false, ...props }: ButtonProps): JSX.Element
       disabled={disabled}
       {...ColorSet[props.color ?? 'default']}
       {...SizeSet[props.fullWidth ? 'fullWidth' : props.size ?? 'sm']}
-      {...MarginSpacingProps(props)}
+      {...marginSpacingProps(props)}
       className={props.className ?? ''}
       onClick={props.onClick}
     >
