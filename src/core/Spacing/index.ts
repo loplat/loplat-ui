@@ -37,16 +37,16 @@ export const marginSpacingProps = (props: MarginSpacing): MarginSpacing =>
     {},
   );
 export const marginSpacingStyle = (props: MarginSpacing): SerializedStyles => {
-  const marginStyleObject = {
-    'margin-top': props.mt ?? props.my,
-    'margin-bottom': props.mb ?? props.my,
-    'margin-left': props.ml ?? props.mx,
-    'margin-right': props.mr ?? props.mx,
-  };
+  const marginTop = props.mt ?? props.my;
+  const marginBottom = props.mb ?? props.my;
+  const marginLeft = props.ml ?? props.mx;
+  const marginRight = props.mr ?? props.mx;
+
   return css`
-    ${Object.entries(marginStyleObject).reduce((prev, [key, value]) => {
-      return prev + (value !== undefined ? `${key}: ${spacing(value)}px;` : '');
-    }, '')}
+    margin-top: ${marginTop && `${spacing(marginTop)}px`};
+    margin-bottom: ${marginBottom && `${spacing(marginBottom)}px`};
+    margin-left: ${marginLeft && `${spacing(marginLeft)}px`};
+    margin-right: ${marginRight && `${spacing(marginRight)}px`};
   `;
 };
 
@@ -64,16 +64,16 @@ export const paddingSpacingProps = (props: PaddingSpacing): PaddingSpacing =>
     {},
   );
 export const paddingSpacingStyle = (props: PaddingSpacing): SerializedStyles => {
-  const paddingStyleObject = {
-    'padding-top': props.pt ?? props.py,
-    'padding-bottom': props.pb ?? props.py,
-    'padding-left': props.pl ?? props.px,
-    'padding-right': props.pr ?? props.px,
-  };
+  const paddingTop = props.pt ?? props.py;
+  const paddingBottom = props.pb ?? props.py;
+  const paddingLeft = props.pl ?? props.px;
+  const paddingRight = props.pr ?? props.px;
+
   return css`
-    ${Object.entries(paddingStyleObject).reduce((prev, [key, value]) => {
-      return prev + (value !== undefined ? `${key}: ${spacing(value)}px;` : '');
-    }, '')}
+    padding-top: ${paddingTop && `${spacing(paddingTop)}px`};
+    padding-bottom: ${paddingBottom && `${spacing(paddingBottom)}px`};
+    padding-left: ${paddingLeft && `${spacing(paddingLeft)}px`};
+    padding-right: ${paddingRight && `${spacing(paddingRight)}px`};
   `;
 };
 
