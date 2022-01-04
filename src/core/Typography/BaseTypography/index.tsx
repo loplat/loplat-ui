@@ -43,11 +43,12 @@ export interface TypographyProps extends TypographyStyle {
 
 export const textElementStyle = (props: TypographyStyle): string => css`
   width: fit-content;
-  font-size: ${`${typeof props.size === 'string' ? FONT_SIZE[props.size] : props.size ?? 1}rem`};
-  font-weight: ${FONT_WEIGHT[props.weight ?? 'regular']};
-  color: ${props.color ?? '#000000'};
-  text-align: ${props.textAlign ?? ''};
+  font-size: ${props.size !== undefined
+    ? `${typeof props.size === 'string' ? FONT_SIZE[props.size] : props.size}rem`
+    : ''};
+  font-weight: ${props.weight && FONT_WEIGHT[props.weight]};
+  color: ${props.color};
+  text-align: ${props.textAlign};
   line-height: 1.5;
-  letter-spacing: normal;
   ${boxSpacingStyle(props)};
 `;
