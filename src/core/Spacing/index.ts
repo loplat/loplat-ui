@@ -1,6 +1,7 @@
 import { css } from '@emotion/react';
 import { SerializedStyles } from '@emotion/serialize';
 
+// utils
 const STANDARD = 4;
 /**
  * input/output 예시
@@ -23,12 +24,16 @@ export const spacing = (operand: number): number => {
   }
 };
 
+const isNumberValue = (entry: [string, unknown]): entry is [string, number] => {
+  return typeof entry[1] === 'number';
+};
+
 // Margin
 const marginSpacingOptions = ['mt', 'mb', 'ml', 'mr', 'my', 'mx'] as const;
 export type MarginSpacing = {
   [key in typeof marginSpacingOptions[number]]?: number;
 };
-export const MarginSpacingProps = (props: MarginSpacing): MarginSpacing =>
+export const marginSpacingProps = (props: MarginSpacing): MarginSpacing =>
   marginSpacingOptions.reduce(
     (prev, curr) => ({
       ...prev,
@@ -36,19 +41,26 @@ export const MarginSpacingProps = (props: MarginSpacing): MarginSpacing =>
     }),
     {},
   );
-export const MarginSpacingStyle = (props: MarginSpacing): SerializedStyles => css`
-  margin-top: ${spacing((props.mt || props.my) ?? 0)}px;
-  margin-bottom: ${spacing((props.mb || props.my) ?? 0)}px;
-  margin-left: ${spacing((props.ml || props.mx) ?? 0)}px;
-  margin-right: ${spacing((props.mr || props.mx) ?? 0)}px;
-`;
+
+export const marginSpacingStyle = (props: MarginSpacing): SerializedStyles => {
+  const { mx, my } = props;
+  const { mt = my, mb = my, ml = mx, mr = mx } = props;
+  const margins = Object.entries({ top: mt, bottom: mb, left: ml, right: mr });
+
+  return css`
+    ${margins
+      .filter(isNumberValue)
+      .map(([position, value]) => `margin-${position}: ${spacing(value)}px;`)
+      .join('')}
+  `;
+};
 
 // Padding
 const paddingSpacingOptions = ['pt', 'pb', 'pl', 'pr', 'py', 'px'] as const;
 export type PaddingSpacing = {
   [key in typeof paddingSpacingOptions[number]]?: number;
 };
-export const PaddingSpacingProps = (props: PaddingSpacing): PaddingSpacing =>
+export const paddingSpacingProps = (props: PaddingSpacing): PaddingSpacing =>
   paddingSpacingOptions.reduce(
     (prev, curr) => ({
       ...prev,
@@ -56,20 +68,26 @@ export const PaddingSpacingProps = (props: PaddingSpacing): PaddingSpacing =>
     }),
     {},
   );
-export const PaddingSpacingStyle = (props: PaddingSpacing): SerializedStyles => css`
-  padding-top: ${spacing((props.pt || props.py) ?? 0)}px;
-  padding-bottom: ${spacing((props.pb || props.py) ?? 0)}px;
-  padding-left: ${spacing((props.pl || props.px) ?? 0)}px;
-  padding-right: ${spacing((props.pr || props.px) ?? 0)}px;
-`;
+export const paddingSpacingStyle = (props: PaddingSpacing): SerializedStyles => {
+  const { px, py } = props;
+  const { pt = py, pb = py, pl = px, pr = px } = props;
+  const paddings = Object.entries({ top: pt, bottom: pb, left: pl, right: pr });
+
+  return css`
+    ${paddings
+      .filter(isNumberValue)
+      .map(([position, value]) => `padding-${position}: ${spacing(value)}px;`)
+      .join('')}
+  `;
+};
 
 // Box(Margin + Padding)
 export type BoxSpacing = MarginSpacing & PaddingSpacing;
-export const BoxSpacingProps = (props: BoxSpacing): BoxSpacing => ({
-  ...MarginSpacingProps(props),
-  ...PaddingSpacingProps(props),
+export const boxSpacingProps = (props: BoxSpacing): BoxSpacing => ({
+  ...marginSpacingProps(props),
+  ...paddingSpacingProps(props),
 });
-export const BoxSpacingStyle = (props: BoxSpacing): SerializedStyles => css`
-  ${MarginSpacingStyle(props)};
-  ${PaddingSpacingStyle(props)};
+export const boxSpacingStyle = (props: BoxSpacing): SerializedStyles => css`
+  ${marginSpacingStyle(props)};
+  ${paddingSpacingStyle(props)};
 `;

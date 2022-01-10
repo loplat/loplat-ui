@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextElementStyle, TypographyProps } from '../BaseTypography';
+import { textElementStyle, TypographyProps } from '../BaseTypography';
 
 type BodyProps = TypographyProps & {
   tag?: 'p' | 'span';
@@ -10,7 +10,7 @@ export const Body = ({ tag = 'p', ...props }: BodyProps): React.ReactElement => 
 
   return (
     <HTMLBodyElement
-      className={`${TextElementStyle({
+      className={`${textElementStyle({
         ...props,
       })} ${props.className ?? ''}`}
     >

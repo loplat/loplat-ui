@@ -1,6 +1,6 @@
 import React from 'react';
 import { DefaultButtonProps, ColorSet, SizeSet, BaseButton } from '../Button';
-import { MarginSpacing, MarginSpacingProps } from '../../core/Spacing';
+import { MarginSpacing, marginSpacingProps } from '../../core/Spacing';
 
 export type IconButtonProps = DefaultButtonProps &
   MarginSpacing & {
@@ -20,7 +20,7 @@ export const IconButton = ({
       disabled={disabled}
       {...ColorSet[color ?? 'default']}
       {...SizeSet['onlyIcon']}
-      {...MarginSpacingProps(props)}
+      {...marginSpacingProps(props)}
       className={className}
       onClick={onClick}
     >

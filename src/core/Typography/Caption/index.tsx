@@ -1,10 +1,10 @@
 import React from 'react';
-import { TextElementStyle, TypographyProps } from '../BaseTypography';
+import { textElementStyle, TypographyProps } from '../BaseTypography';
 
 export const Caption = ({ size = '2xs', ...props }: TypographyProps): React.ReactElement => {
   return (
     <small
-      className={`${TextElementStyle({
+      className={`${textElementStyle({
         ...props,
         size,
       })} ${props.className ?? ''}`}
