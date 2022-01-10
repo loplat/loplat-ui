@@ -1,6 +1,7 @@
 import { css } from '@emotion/react';
 import { SerializedStyles } from '@emotion/serialize';
 
+// utils
 const STANDARD = 4;
 /**
  * input/output 예시
@@ -23,6 +24,10 @@ export const spacing = (operand: number): number => {
   }
 };
 
+const isNumberValue = (entry: [string, unknown]): entry is [string, number] => {
+  return typeof entry[1] === 'number';
+};
+
 // Margin
 const marginSpacingOptions = ['mt', 'mb', 'ml', 'mr', 'my', 'mx'] as const;
 export type MarginSpacing = {
@@ -36,17 +41,17 @@ export const marginSpacingProps = (props: MarginSpacing): MarginSpacing =>
     }),
     {},
   );
+
 export const marginSpacingStyle = (props: MarginSpacing): SerializedStyles => {
-  const marginTop = props.mt ?? props.my;
-  const marginBottom = props.mb ?? props.my;
-  const marginLeft = props.ml ?? props.mx;
-  const marginRight = props.mr ?? props.mx;
+  const { mx, my } = props;
+  const { mt = my, mb = my, ml = mx, mr = mx } = props;
+  const margins = Object.entries({ top: mt, bottom: mb, left: ml, right: mr });
 
   return css`
-    margin-top: ${marginTop && `${spacing(marginTop)}px`};
-    margin-bottom: ${marginBottom && `${spacing(marginBottom)}px`};
-    margin-left: ${marginLeft && `${spacing(marginLeft)}px`};
-    margin-right: ${marginRight && `${spacing(marginRight)}px`};
+    ${margins
+      .filter(isNumberValue)
+      .map(([position, value]) => `margin-${position}: ${spacing(value)}px;`)
+      .join('')}
   `;
 };
 
@@ -64,16 +69,15 @@ export const paddingSpacingProps = (props: PaddingSpacing): PaddingSpacing =>
     {},
   );
 export const paddingSpacingStyle = (props: PaddingSpacing): SerializedStyles => {
-  const paddingTop = props.pt ?? props.py;
-  const paddingBottom = props.pb ?? props.py;
-  const paddingLeft = props.pl ?? props.px;
-  const paddingRight = props.pr ?? props.px;
+  const { px, py } = props;
+  const { pt = py, pb = py, pl = px, pr = px } = props;
+  const paddings = Object.entries({ top: pt, bottom: pb, left: pl, right: pr });
 
   return css`
-    padding-top: ${paddingTop && `${spacing(paddingTop)}px`};
-    padding-bottom: ${paddingBottom && `${spacing(paddingBottom)}px`};
-    padding-left: ${paddingLeft && `${spacing(paddingLeft)}px`};
-    padding-right: ${paddingRight && `${spacing(paddingRight)}px`};
+    ${paddings
+      .filter(isNumberValue)
+      .map(([position, value]) => `padding-${position}: ${spacing(value)}px;`)
+      .join('')}
   `;
 };
 
