@@ -43,12 +43,14 @@ export const CheckBox = ({ label, name, checked, onChange, disabled, ...props }:
 
 const StyledWrapper = styled.div<BaseWrapper>`
   label {
+    width: fit-content;
     display: flex;
     flex-direction: row;
     align-items: center;
     font-size: 1rem;
-    color: ${({ disabled }) => (disabled ? grayScale500 : black300)};
     font-weight: ${({ boldLabel }) => (boldLabel ? 600 : 400)};
+    color: ${({ disabled }) => (disabled ? grayScale500 : black300)};
+    cursor: pointer;
   }
 
   input[type='checkbox'] {
