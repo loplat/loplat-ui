@@ -42,7 +42,6 @@ export interface TypographyProps extends TypographyStyle {
 }
 
 export const textElementStyle = (props: TypographyStyle): string => css`
-  width: fit-content;
   font-size: ${props.size !== undefined
     ? `${typeof props.size === 'string' ? FONT_SIZE[props.size] : props.size}rem`
     : ''};
