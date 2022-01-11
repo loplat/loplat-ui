@@ -1,24 +1,42 @@
+import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-
-import { toast } from './index';
-import { Toaster } from './index';
+import { Toast, toast } from './index';
 import { Button } from '../Button';
 
 export default {
   title: 'Components/Toast',
-  component: Toaster,
-} as ComponentMeta<typeof Toaster>;
+  component: Toast,
+} as ComponentMeta<typeof Toast>;
 
-const Template: ComponentStory<typeof Toaster> = (args) => (
-  <div>
-    <Toaster {...args} />
-    <Button onClick={() => toast.success('message')}>success</Button>
-    <Button onClick={() => toast.info('message')}>info</Button>
-    <Button onClick={() => toast.danger('message')}>danger</Button>
-    <Button onClick={() => toast.white('message')}>white</Button>
-    <Button onClick={() => toast.warning('message')}>warning</Button>
-  </div>
-);
+const Template: ComponentStory<typeof Toast> = () => {
+  return (
+    <div>
+      <Toast />
+      <Button
+        color="primary2"
+        onClick={() =>
+          toast.success(
+            '긴 텍스트 긴 텍스트 긴 텍스트 긴 텍스트 긴 텍스트 긴 텍스트 긴 텍스트 긴 텍스트 긴 텍스트 긴 텍스트',
+          )
+        }
+        my={4}
+      >
+        Success
+      </Button>
+      <Button color="primary1" onClick={() => toast.info('짧은 텍스트')} my={4}>
+        Info
+      </Button>
+      <Button color="danger2" onClick={() => toast.danger('짧은 텍스트')} my={4}>
+        Danger
+      </Button>
+      <Button color="danger1" onClick={() => toast.warning('짧은 텍스트')} my={4}>
+        Warning
+      </Button>
+      <Button color="default" onClick={() => toast.white('짧은 텍스트')} my={4}>
+        White
+      </Button>
+    </div>
+  );
+};
 
 export const Default = Template.bind({});
-Default.args = {};

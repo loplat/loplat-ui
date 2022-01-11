@@ -1,6 +1,5 @@
 import ReactDOM from 'react-dom';
-import { toast } from './index';
-import { Toaster } from './index';
+import { Toast, toast } from './index';
 
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
@@ -19,8 +18,8 @@ Object.defineProperty(window, 'matchMedia', {
 describe('it', () => {
   test('renders without crashing', () => {
     const div = document.createElement('div');
-    toast('Hello World');
-    ReactDOM.render(<Toaster />, div);
+    toast.success('Hello World');
+    ReactDOM.render(<Toast />, div);
     ReactDOM.unmountComponentAtNode(div);
   });
 });
