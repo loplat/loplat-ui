@@ -14,13 +14,26 @@ const Template: ComponentStory<typeof Toast> = () => {
       <Toast />
       <Button
         color="primary2"
-        onClick={() => toast.success('successsafasdfasdfasdfsadfdsdafasdfasdfsdfdasfsdfasfasdfasdf')}
+        onClick={() =>
+          toast.success(
+            '긴 텍스트 긴 텍스트 긴 텍스트 긴 텍스트 긴 텍스트 긴 텍스트 긴 텍스트 긴 텍스트 긴 텍스트 긴 텍스트',
+          )
+        }
         my={4}
       >
         Success
       </Button>
-      <Button color="primary2" onClick={() => toast.danger('danger')} my={4}>
+      <Button color="primary1" onClick={() => toast.info('짧은 텍스트')} my={4}>
+        Info
+      </Button>
+      <Button color="danger2" onClick={() => toast.danger('짧은 텍스트')} my={4}>
         Danger
+      </Button>
+      <Button color="danger1" onClick={() => toast.warning('짧은 텍스트')} my={4}>
+        Warning
+      </Button>
+      <Button color="default" onClick={() => toast.white('짧은 텍스트')} my={4}>
+        White
       </Button>
     </div>
   );

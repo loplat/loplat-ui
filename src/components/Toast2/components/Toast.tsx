@@ -1,7 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import Toaster, { ToastItem } from '../core/toaster';
+import { ToastItem } from '../core/types';
+import Toaster from '../core/toaster';
 import { ToastBar } from './ToastBar';
-import { css } from '@emotion/css';
+import styled from '@emotion/styled';
 
 export interface Props {
   zIndex?: number;
@@ -42,11 +43,7 @@ export const Toast = ({ zIndex = 9999 }: Props): React.ReactElement => {
   };
 
   return (
-    <div
-      className={css`
-        z-index: ${zIndex};
-      `}
-    >
+    <ToastWrapper zIndex={zIndex}>
       {toastItems.map((toastItem, index) => (
         <ToastBar
           toastItem={toastItem}
@@ -56,6 +53,16 @@ export const Toast = ({ zIndex = 9999 }: Props): React.ReactElement => {
           key={toastItem.id}
         />
       ))}
-    </div>
+    </ToastWrapper>
   );
 };
+
+const ToastWrapper = styled.div<Props>`
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: ${({ zIndex }) => zIndex};
+  pointer-events: none;
+`;
