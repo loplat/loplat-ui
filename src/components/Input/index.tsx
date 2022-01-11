@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import styled from '@emotion/styled';
+import { css } from '@emotion/css';
 import {
   background100,
   black500,
@@ -10,8 +11,8 @@ import {
   grayScale500,
   white,
 } from '../../core/Palette';
-import { css } from '@emotion/css';
 import { spacing } from '../../core/Spacing';
+import { generateUniqueId } from '../../utils/functions';
 
 export interface InputProps {
   id?: string;
@@ -108,7 +109,7 @@ const InlineError = React.memo(({ children }): React.ReactElement => {
 });
 
 export const Input = React.memo<InputProps>(({ className = '', ...props }): React.ReactElement => {
-  const uniqueId = useMemo(() => String(Math.random().toString(36).slice(2, 11)), []);
+  const uniqueId = useMemo(() => generateUniqueId(), []);
   const id = useMemo(() => props.id || uniqueId, [props.id, uniqueId]);
   return (
     <div

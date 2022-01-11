@@ -51,7 +51,3 @@ export function generateColorSet(type: ToastType): ColorSet {
     iconColor: grayScale500,
   };
 }
-
-export function generateUniqueId(): string {
-  return '_' + String(Math.random().toString(36).slice(2, 11));
-}
