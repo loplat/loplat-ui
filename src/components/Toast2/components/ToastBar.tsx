@@ -8,12 +8,14 @@ import { Close } from '../../../assets/Icon/generated/Close';
 interface Props {
   toastItem: ToastItem;
   onRemoveToastItem: (toastId: string) => void;
+  onEmitElementHeight: (toastId: string, height: number) => void;
+  offsetY: number;
 }
 
-const opacityAnimationDuration = 300;
-const toastDuration = 3000 + opacityAnimationDuration;
+const animationDuration = 350;
+const toastDuration = 3000 + animationDuration;
 
-export const ToastBar = ({ toastItem, onRemoveToastItem }: Props): React.ReactElement => {
+export const ToastBar = ({ toastItem, onRemoveToastItem, onEmitElementHeight, offsetY }: Props): React.ReactElement => {
   const toastBarElement = useRef<HTMLDivElement>(null);
 
   const setOpacity = (opacity: number) => {
@@ -22,6 +24,7 @@ export const ToastBar = ({ toastItem, onRemoveToastItem }: Props): React.ReactEl
     }
   };
 
+  // lifecycle 관련
   useEffect(() => {
     setOpacity(1);
 
@@ -31,13 +34,20 @@ export const ToastBar = ({ toastItem, onRemoveToastItem }: Props): React.ReactEl
 
     const timeoutForOpacity = setTimeout(() => {
       setOpacity(0);
-    }, toastDuration - opacityAnimationDuration);
+    }, toastDuration - animationDuration);
 
     return () => {
       clearTimeout(timeoutForRemove);
       clearTimeout(timeoutForOpacity);
     };
   }, [toastItem, onRemoveToastItem]);
+
+  // offsetY 관련
+  useEffect(() => {
+    if (toastBarElement.current) {
+      onEmitElementHeight(toastItem.id, toastBarElement.current.clientHeight);
+    }
+  }, [toastItem, onEmitElementHeight]);
 
   return (
     <ToastBarBox
@@ -46,8 +56,8 @@ export const ToastBar = ({ toastItem, onRemoveToastItem }: Props): React.ReactEl
         position: absolute;
         top: 0;
         left: 50%;
-        transform: translate(-50%, 0);
-        transition: transform 300ms, opacity ${opacityAnimationDuration}ms;
+        transform: translate(-50%, ${offsetY}px);
+        transition: transform ${animationDuration}ms, opacity ${animationDuration}ms;
       `}
     >
       <p>{toastItem.message}</p>

@@ -21,7 +21,7 @@ class Toaster {
     this.setToastItems((state: ToastItem[]) => [{ id: generateUniqueId(), type, message }, ...state]);
   }
 
-  removeToastItem(toastId: string): void {
+  removeToastItem(toastId: ToastItem['id']): void {
     this.setToastItems((state: ToastItem[]) => {
       const indexToRemove = state.findIndex((toastItem) => toastItem.id === toastId);
       if (indexToRemove > -1) {
