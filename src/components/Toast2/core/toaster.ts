@@ -1,10 +1,6 @@
 import React, { SetStateAction } from 'react';
-
-export interface ToastItem {
-  id: string;
-  type: 'success' | 'info' | 'danger' | 'warning' | 'default';
-  message: string;
-}
+import { ToastItem } from './types';
+import { generateUniqueId } from './utils';
 
 type SetToastItems = React.Dispatch<SetStateAction<ToastItem[]>>;
 
@@ -35,12 +31,20 @@ class Toaster {
     this.addToastItem({ type: 'success', message });
   }
 
+  info(message: ToastItem['message']): void {
+    this.addToastItem({ type: 'info', message });
+  }
+
   danger(message: ToastItem['message']): void {
     this.addToastItem({ type: 'danger', message });
   }
+
+  warning(message: ToastItem['message']): void {
+    this.addToastItem({ type: 'warning', message });
+  }
+
+  white(message: ToastItem['message']): void {
+    this.addToastItem({ type: 'white', message });
+  }
 }
 export default Toaster;
-
-function generateUniqueId() {
-  return '_' + String(Math.random().toString(36).slice(2, 11));
-}

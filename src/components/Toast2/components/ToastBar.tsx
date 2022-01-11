@@ -1,9 +1,12 @@
-import React, { useEffect, useRef } from 'react';
-import { ToastItem } from '../core/toaster';
+import React, { useEffect, useMemo, useRef } from 'react';
+import { Body } from '../../../core/Typography/Body';
+import { Close as CloseIcon } from '../../../assets/Icon/generated/Close';
+import { CheckcircleFillIcon } from '../../../assets/Icon';
+import { spacing } from '../../../core/Spacing';
+import { ToastItem } from '../core/types';
+import { generateColorSet } from '../core/utils';
 import styled from '@emotion/styled';
 import { css } from '@emotion/css';
-import { IconButton } from '../../IconButton';
-import { Close } from '../../../assets/Icon/generated/Close';
 
 interface Props {
   toastItem: ToastItem;
@@ -12,11 +15,13 @@ interface Props {
   offsetY: number;
 }
 
+const MINIMUM_CONTENT_HEIGHT = 28;
 const animationDuration = 350;
 const toastDuration = 3000 + animationDuration;
 
 export const ToastBar = ({ toastItem, onRemoveToastItem, onEmitElementHeight, offsetY }: Props): React.ReactElement => {
   const toastBarElement = useRef<HTMLDivElement>(null);
+  const colorSet = useMemo(() => generateColorSet(toastItem.type), [toastItem]);
 
   const setOpacity = (opacity: number) => {
     if (toastBarElement.current) {
@@ -54,38 +59,60 @@ export const ToastBar = ({ toastItem, onRemoveToastItem, onEmitElementHeight, of
       ref={toastBarElement}
       className={css`
         position: absolute;
-        top: 0;
+        top: ${spacing(4)}px;
         left: 50%;
         transform: translate(-50%, ${offsetY}px);
+        opacity: 0;
         transition: transform ${animationDuration}ms, opacity ${animationDuration}ms;
+        border-color: ${colorSet.borderColor};
+        background-color: ${colorSet.backgroundColor};
       `}
     >
-      <p>{toastItem.message}</p>
-      <IconButton icon={<Close />} onClick={() => onRemoveToastItem(toastItem.id)} />
+      <CheckcircleFillIcon size={MINIMUM_CONTENT_HEIGHT} fillColor={colorSet.iconColor} />
+      <Message color={colorSet.textColor}>{toastItem.message}</Message>
+      <CloseButton onClick={() => onRemoveToastItem(toastItem.id)}>
+        <CloseIcon size={18} fillColor={colorSet.iconColor} />
+      </CloseButton>
     </ToastBarBox>
   );
 };
 
 const ToastBarBox = styled.div`
-  opacity: 0;
-
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  width: 20.5rem;
-  p {
-    word-break: break-all;
-  }
-  min-height: 3.375rem;
-  box-sizing: border-box;
-  will-change: transform;
-  pointer-events: auto;
-  padding: 0.938rem;
-  border-radius: 4px;
-  font-size: 1rem;
-  line-height: 28px;
 
-  background-color: white;
-  border: 1px solid gray;
-  margin-bottom: 16px;
+  width: 37.5rem;
+  max-width: 100%;
+  padding: ${spacing(4)}px;
+  box-sizing: border-box;
+
+  border-radius: 4px;
+  border-width: 1px;
+  border-style: solid;
+
+  pointer-events: auto;
+  box-shadow: 0 2px 6px 0 rgba(209, 209, 209, 0.3);
+`;
+
+const Message = styled(Body)`
+  width: 100%;
+  min-height: ${MINIMUM_CONTENT_HEIGHT}px;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0 ${spacing(2)}px;
+`;
+
+const CloseButton = styled.button`
+  border: none;
+  background: none;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  height: ${MINIMUM_CONTENT_HEIGHT}px;
+  padding: 0;
 `;
