@@ -1,7 +1,6 @@
-import { ColorSet, ToastType } from './types';
 import {
   background100,
-  black500,
+  black400,
   blue100,
   blue300,
   blue500,
@@ -14,37 +13,9 @@ import {
   warning100,
   warning300,
 } from '../../../core/Palette';
+import { ToastType, ColorSet } from './types';
 
-export const generateId = (() => {
-  let count = 0;
-  return () => {
-    return (++count).toString();
-  };
-})();
-
-export const createRectRef = (onRect: (rect: DOMRect) => void) => (el: HTMLElement | null) => {
-  if (el) {
-    setTimeout(() => {
-      const boundingRect = el.getBoundingClientRect();
-      onRect(boundingRect);
-    });
-  }
-};
-
-export const prefersReducedMotion = (() => {
-  // Cache result
-  let shouldReduceMotion: boolean | undefined = undefined;
-
-  return () => {
-    if (shouldReduceMotion === undefined && typeof window !== 'undefined') {
-      const mediaQuery = matchMedia('(prefers-reduced-motion: reduce)');
-      shouldReduceMotion = !mediaQuery || mediaQuery.matches;
-    }
-    return shouldReduceMotion;
-  };
-})();
-
-export const generateColorSet = (type: ToastType): ColorSet => {
+export function generateColorSet(type: ToastType): ColorSet {
   if (type === 'success')
     return {
       borderColor: success300,
@@ -76,7 +47,11 @@ export const generateColorSet = (type: ToastType): ColorSet => {
   return {
     borderColor: grayScale200,
     backgroundColor: background100,
-    textColor: black500,
+    textColor: black400,
     iconColor: grayScale500,
   };
-};
+}
+
+export function generateUniqueId(): string {
+  return '_' + String(Math.random().toString(36).slice(2, 11));
+}
