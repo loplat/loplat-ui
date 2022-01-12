@@ -15,6 +15,7 @@ export const Toast = ({ zIndex = 9999 }: Props): React.ReactElement => {
   const [heightOfToastBars, setHeightOfToastBars] = useState<{ id: ToastItem['id']; height: number }[]>([]);
 
   useEffect(() => {
+    /** Initialize */
     toast = new Toaster(setToastItems);
   }, []);
 
@@ -39,6 +40,7 @@ export const Toast = ({ zIndex = 9999 }: Props): React.ReactElement => {
 
   const calculateOffsetYByIndex = (index: number): number => {
     const gap = 8;
+    /** index보다 앞에 있는 ToastBar의 height를 모두 더하여 offsetY를 구한다. */
     return heightOfToastBars.slice(0, index).reduce((acc, curr) => acc + curr.height + gap, 0);
   };
 

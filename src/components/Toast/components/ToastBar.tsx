@@ -20,8 +20,9 @@ const animationDuration = 350;
 const toastDuration = 3000 + animationDuration;
 
 export const ToastBar = ({ toastItem, onRemoveToastItem, onEmitElementHeight, offsetY }: Props): React.ReactElement => {
-  const toastBarElement = useRef<HTMLDivElement>(null);
   const colorSet = useMemo(() => generateColorSet(toastItem.type), [toastItem]);
+
+  const toastBarElement = useRef<HTMLDivElement>(null);
 
   const setOpacity = (opacity: number) => {
     if (toastBarElement.current) {
@@ -29,7 +30,7 @@ export const ToastBar = ({ toastItem, onRemoveToastItem, onEmitElementHeight, of
     }
   };
 
-  // lifecycle 관련
+  // lifecycle(add/remove) 관련 로직
   useEffect(() => {
     setOpacity(1);
 
@@ -47,7 +48,7 @@ export const ToastBar = ({ toastItem, onRemoveToastItem, onEmitElementHeight, of
     };
   }, [toastItem, onRemoveToastItem]);
 
-  // offsetY 관련
+  // offsetY 관련 로직
   useEffect(() => {
     if (toastBarElement.current) {
       onEmitElementHeight(toastItem.id, toastBarElement.current.clientHeight);
