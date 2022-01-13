@@ -1,6 +1,6 @@
-export const green100 = '#82c5fd';
-export const green200 = '#5cb3fc';
-export const green300 = '#40a6fd';
+export const green100 = '#eff8eb';
+export const green200 = '#94d573';
+export const green300 = '#67c23a';
 export const green400 = '#529a2e';
 
 export const green = {

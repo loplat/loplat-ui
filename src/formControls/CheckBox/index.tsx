@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { blue500, black300, grayScale200, grayScale500, grayScale100 } from '../../core/Palette';
+import { blue500, grayscale800, grayscale200, grayscale500, grayscale100 } from '../../core/colors';
 import CheckedIcon from './image/icon-check.svg';
 import DisabledCheckedIcon from './image/icon-check-disabled.svg';
 import CheckMinusIcon from './image/icon-minus.svg';
@@ -49,7 +49,7 @@ const StyledWrapper = styled.div<BaseWrapper>`
     align-items: center;
     font-size: 1rem;
     font-weight: ${({ boldLabel }) => (boldLabel ? 600 : 400)};
-    color: ${({ disabled }) => (disabled ? grayScale500 : black300)};
+    color: ${({ disabled }) => (disabled ? grayscale500 : grayscale800)};
     cursor: pointer;
   }
 
@@ -59,7 +59,7 @@ const StyledWrapper = styled.div<BaseWrapper>`
       display: inline-block;
       width: 1.25rem;
       height: 1.25rem;
-      border: 1px solid ${grayScale200};
+      border: 1px solid ${grayscale200};
       border-radius: 4px;
       background-color: white;
       margin-right: 0.5rem;
@@ -69,14 +69,14 @@ const StyledWrapper = styled.div<BaseWrapper>`
       background: url(${({ checked }) => (checked === 'intermediate' ? CheckMinusIcon : CheckedIcon)}) center no-repeat;
     }
     &:disabled + span {
-      border-color: ${grayScale200};
+      border-color: ${grayscale200};
       ${({ checked }) =>
         checked === 'checked' || checked === true
           ? `background: url(${DisabledCheckedIcon}) center no-repeat;`
           : checked === 'intermediate'
           ? `background: url(${DisabledMinusIcon}) center no-repeat`
           : ``};
-      background-color: ${grayScale100};
+      background-color: ${grayscale100};
     }
   }
 `;

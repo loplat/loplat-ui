@@ -1,5 +1,6 @@
 import React from 'react';
-import { blue500, blueScale300, danger300, success300, warning300, white } from '../../core/Palette';
+import { white } from '../../core/colors';
+import { primary, danger, warning, success, primaryLight } from '../../core/styles/palette';
 import { css } from '@emotion/css';
 
 type BadgeType = 'pill' | 'round';
@@ -17,12 +18,12 @@ export interface BadgeProps {
 }
 
 const ColorSet = {
-  primary: blue500,
-  danger: danger300,
-  success: success300,
-  new: danger300,
-  light: blueScale300,
-  warning: warning300,
+  primary,
+  light: primaryLight,
+  danger,
+  success,
+  new: danger,
+  warning,
 } as const;
 
 export const Badge = ({
