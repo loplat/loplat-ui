@@ -14,23 +14,6 @@ import { white } from './white';
 import { yellow } from './yellow';
 import { yellowGreen } from './yellowGreen';
 
-export * from './black';
-export * from './white';
-export * from './blue';
-export * from './bluescale';
-export * from './grayscale';
-export * from './green';
-export * from './olive';
-export * from './orange';
-export * from './pink';
-export * from './purple';
-export * from './red';
-export * from './teal';
-export * from './turquoise';
-export * from './white';
-export * from './yellow';
-export * from './yellowGreen';
-
 export const colors = {
   black,
   blue,
@@ -48,3 +31,20 @@ export const colors = {
   yellow,
   yellowGreen,
 };
+
+export * from './black';
+export * from './white';
+export * from './blue';
+export * from './bluescale';
+export * from './grayscale';
+export * from './green';
+export * from './olive';
+export * from './orange';
+export * from './pink';
+export * from './purple';
+export * from './red';
+export * from './teal';
+export * from './turquoise';
+export * from './white';
+export * from './yellow';
+export * from './yellowGreen';
