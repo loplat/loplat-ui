@@ -1,5 +1,6 @@
 export * from './layout';
-export * from './Palette';
+export * from './pallette';
 export * from './Typography';
 export * from './MediaQuery';
 export * from './Spacing';
+export * from './colors';
