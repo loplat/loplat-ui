@@ -32,17 +32,17 @@ export default {
 const Template: ComponentStory<typeof Button> = (args: ButtonProps) => {
   return (
     <div>
-      <Button {...args} my={4}>
-        테
+      <Button {...args} my={4} size="xs">
+        파란
       </Button>
-      <Button {...args} my={4}>
-        테스트
+      <Button {...args} my={4} size="sm">
+        파란 묻힌
       </Button>
-      <Button {...args} my={4}>
-        테스트로 아주 많은 글자
+      <Button {...args} my={4} size="md">
+        파란 묻힌 계절이
       </Button>
-      <Button {...args} my={4}>
-        테스트로 아주 많은 글자 테스트로 아주 많은 글자 테스트로 아주 많은 글자 테스트로 아주 많은 글자
+      <Button {...args} my={4} size="lg">
+        파란 묻힌 계절이 동경과 언덕 덮어 된 이름자 있습니다.
       </Button>
     </div>
   );

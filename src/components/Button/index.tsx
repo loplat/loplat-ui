@@ -21,7 +21,7 @@ import {
 import { Desktop } from '../../core/MediaQuery';
 import { MarginSpacing, marginSpacingProps, marginSpacingStyle, spacing } from '../../core/Spacing';
 
-type Size = 'xs' | 'sm' | 'lg';
+type Size = 'xs' | 'sm' | 'md' | 'lg';
 type Color = 'default' | 'primary1' | 'primary2' | 'danger1' | 'danger2' | 'solid' | 'white';
 type FullWidth = { fullWidth?: boolean };
 export type DefaultButtonProps = {
@@ -53,6 +53,9 @@ export const SizeSet = {
   },
   sm: {
     padding: `${spacing(3.5)}px ${spacing(4)}px`,
+  },
+  md: {
+    padding: `${spacing(3.5)}px ${spacing(12)}px`,
   },
   lg: {
     padding: `${spacing(5.5)}px ${spacing(18)}px`,
@@ -280,7 +283,7 @@ export const Button = ({ disabled = false, ...props }: ButtonProps): JSX.Element
       disabled={disabled}
       fullWidth={props.fullWidth}
       {...ColorSet[props.color ?? 'default']}
-      {...SizeSet[props.size ?? 'sm']}
+      {...SizeSet[props.size ?? 'md']}
       {...marginSpacingProps(props)}
       className={props.className ?? ''}
       onClick={props.onClick}
