@@ -12,7 +12,7 @@ export default {
   component: Button,
   argTypes: {
     color: {
-      options: ['default', 'primary1', 'primary2', 'danger1', 'danger2', 'solid', 'white'],
+      options: ['default', 'primary1', 'primary2', 'danger1', 'danger2', 'solid', 'ghost'],
       control: {
         type: 'radio',
       },
@@ -89,9 +89,9 @@ Solid.args = {
   onClick: () => alert('click!'),
 };
 
-export const White = Template.bind({});
-White.args = {
-  color: 'white',
+export const Ghost = Template.bind({});
+Ghost.args = {
+  color: 'ghost',
   onClick: () => alert('click!'),
 };
 
@@ -269,31 +269,31 @@ DisabledSolidWithIcons.args = {
   rightIcon: <Alert fillColor={grayscale800} />,
 };
 
-export const WhiteWithLeftIcon = Template.bind({});
-WhiteWithLeftIcon.args = {
-  color: 'white',
+export const GhostWithLeftIcon = Template.bind({});
+GhostWithLeftIcon.args = {
+  color: 'ghost',
   onClick: () => alert('click!'),
   leftIcon: <Alert fillColor={blue500} />,
 };
 
-export const WhiteWithRightIcon = Template.bind({});
-WhiteWithRightIcon.args = {
-  color: 'white',
+export const GhostWithRightIcon = Template.bind({});
+GhostWithRightIcon.args = {
+  color: 'ghost',
   onClick: () => alert('click!'),
   rightIcon: <Alert fillColor={blue500} />,
 };
 
-export const WhiteWithIcons = Template.bind({});
-WhiteWithIcons.args = {
-  color: 'white',
+export const GhostWithIcons = Template.bind({});
+GhostWithIcons.args = {
+  color: 'ghost',
   onClick: () => alert('click!'),
   leftIcon: <Alert fillColor={blue500} />,
   rightIcon: <Alert fillColor={blue500} />,
 };
 
-export const DisabledWhiteWithIcons = Template.bind({});
-DisabledWhiteWithIcons.args = {
-  color: 'white',
+export const DisabledGhostWithIcons = Template.bind({});
+DisabledGhostWithIcons.args = {
+  color: 'ghost',
   onClick: () => alert('click!'),
   disabled: true,
   leftIcon: <Alert fillColor={blue500} />,

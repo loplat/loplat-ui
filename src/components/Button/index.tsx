@@ -21,7 +21,7 @@ import { Desktop } from '../../core/MediaQuery';
 import { MarginSpacing, marginSpacingProps, marginSpacingStyle, spacing } from '../../core/Spacing';
 
 type Size = 'xs' | 'sm' | 'md' | 'lg';
-type Color = 'default' | 'primary1' | 'primary2' | 'danger1' | 'danger2' | 'solid' | 'white';
+type Color = 'default' | 'primary1' | 'primary2' | 'danger1' | 'danger2' | 'solid' | 'ghost';
 type FullWidth = { fullWidth?: boolean };
 export type DefaultButtonProps = {
   color?: Color;
@@ -182,7 +182,7 @@ export const ColorSet = {
       disabled: grayscale500,
     },
   },
-  white: {
+  ghost: {
     background: {
       default: white,
       hover: blue100,
