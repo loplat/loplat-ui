@@ -13,36 +13,7 @@ import {
   red100,
 } from '../../../core/colors';
 
-export const generateId = (() => {
-  let count = 0;
-  return () => {
-    return (++count).toString();
-  };
-})();
-
-export const createRectRef = (onRect: (rect: DOMRect) => void) => (el: HTMLElement | null) => {
-  if (el) {
-    setTimeout(() => {
-      const boundingRect = el.getBoundingClientRect();
-      onRect(boundingRect);
-    });
-  }
-};
-
-export const prefersReducedMotion = (() => {
-  // Cache result
-  let shouldReduceMotion: boolean | undefined = undefined;
-
-  return () => {
-    if (shouldReduceMotion === undefined && typeof window !== 'undefined') {
-      const mediaQuery = matchMedia('(prefers-reduced-motion: reduce)');
-      shouldReduceMotion = !mediaQuery || mediaQuery.matches;
-    }
-    return shouldReduceMotion;
-  };
-})();
-
-export const generateColorSet = (type: ToastType): ColorSet => {
+export function generateColorSet(type: ToastType): ColorSet {
   if (type === 'success')
     return {
       borderColor: success,
@@ -77,4 +48,4 @@ export const generateColorSet = (type: ToastType): ColorSet => {
     textColor: black,
     iconColor: grayscale500,
   };
-};
+}
