@@ -28,11 +28,13 @@ assets/*
 components/*
 core/*
 formControls/*
+utils/*
 !rollup.config.js
 *.js
 *.js.map
 index.d.ts
 setupTests.d.ts
+stats.html
 
 # eslint
 

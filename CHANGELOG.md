@@ -1,3 +1,20 @@
+## 1.3.0 (2022-01-14)
+
+### Renewal
+- color와 palette의 색상과 이름을 대폭 수정했습니다.
+- Toast를 react-hot-toast 라이브러리에서 자체 제작 컴포넌트로 대체했습니다.
+
+### Fixed
+- Button의 prop, style을 수정했습니다.
+  - fullWidth 로직을 size 로직과 분리했습니다.
+  - Size에 'md' option을 추가했습니다.
+  - color option 중 'white'를 'ghost'로 변경했습니다. 
+- Typography의 fit-width 속성을 제거히고, Checkbox에 fit-width 속성을 추가했습니다.
+- Typography의 불필요한 default css 속성들을 제거했습니다.
+- Input의 layout 관련 css를 수정했습니다.
+- Logo 이미지의 비율과 실제 svg 파일의 비율이 일치하지 않는 현상을 수정했습니다.
+
+
 ## 1.2.4 (2021-12-17)
 
 ### Added
