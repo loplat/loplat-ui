@@ -30,7 +30,7 @@ export default {
     image(),
     visualizer(),
     copy({
-      targets: [{ src: 'src/core/Palette/index.scss', dest: 'core/Palette' }],
+      targets: [{ src: 'src/core/styles/index.scss', dest: 'core/styles' }],
     }),
   ],
 };
