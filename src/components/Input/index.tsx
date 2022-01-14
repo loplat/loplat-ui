@@ -1,16 +1,8 @@
 import React, { useMemo } from 'react';
 import styled from '@emotion/styled';
+import { primary, danger } from '../../core/styles/palette';
+import { white, bluescale500, grayscale500, grayscale200, bluescale50, grayscale900 } from '../../core/colors';
 import { css } from '@emotion/css';
-import {
-  background100,
-  black500,
-  blue500,
-  blueScale500,
-  danger300,
-  grayScale200,
-  grayScale500,
-  white,
-} from '../../core/Palette';
 import { spacing } from '../../core/Spacing';
 import { generateUniqueId } from '../../utils/functions';
 
@@ -39,10 +31,10 @@ type RightIconProps = Pick<InputProps, 'isIconVisible' | 'disabled'>;
 const BaseInput = styled.input<InputProps>`
   width: 100%;
   height: auto;
-  color: ${black500};
+  color: ${grayscale900};
   background-color: white;
-  border: 1px solid ${grayScale200};
-  border-color: ${({ error }) => error && danger300};
+  border: 1px solid ${grayscale200};
+  border-color: ${({ error }) => error && danger};
   border-radius: 4px;
   outline: none;
   font-size: 1rem;
@@ -53,26 +45,26 @@ const BaseInput = styled.input<InputProps>`
   transition: border-color ease 0.3s;
 
   ::placeholder {
-    color: ${blueScale500};
+    color: ${bluescale500};
   }
   &:disabled {
     cursor: not-allowed;
-    color: ${grayScale500};
-    border-color: ${grayScale200};
-    background-color: ${background100};
+    color: ${grayscale500};
+    border-color: ${grayscale200};
+    background-color: ${bluescale50};
   }
   &:hover:not(:disabled) {
-    color: ${({ error }) => !error && black500};
-    border-color: ${({ error }) => !error && grayScale500};
+    color: ${({ error }) => !error && grayscale900};
+    border-color: ${({ error }) => !error && grayscale500};
     background-color: ${white};
   }
   &:focus:not(:disabled) {
-    color: ${black500};
-    border-color: ${({ error }) => !error && blue500};
+    color: ${grayscale900};
+    border-color: ${({ error }) => !error && primary};
   }
 
   g > path {
-    fill: ${({ disabled }) => disabled && grayScale500};
+    fill: ${({ disabled }) => disabled && grayscale500};
   }
 `;
 
@@ -97,7 +89,7 @@ const InlineError = React.memo(({ children }): React.ReactElement => {
     <p
       role="alert"
       className={css`
-        color: ${danger300};
+        color: ${danger};
         margin: 3px 0 0 0;
         font-size: 1rem;
         width: 100%;

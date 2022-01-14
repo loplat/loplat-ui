@@ -3,7 +3,8 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { Button, ButtonProps } from './index';
 import { Alert } from '../../assets/Icon/generated/Alert';
-import { black300, blue500, danger300, white } from '../../core/Palette';
+import { danger } from '../../core/styles/palette';
+import { white, grayscale800, blue500 } from '../../core/colors';
 import { css } from '@emotion/css';
 
 export default {
@@ -32,17 +33,17 @@ export default {
 const Template: ComponentStory<typeof Button> = (args: ButtonProps) => {
   return (
     <div>
-      <Button {...args} my={4}>
-        테
+      <Button {...args} my={4} size="xs">
+        파란
       </Button>
-      <Button {...args} my={4}>
-        테스트
+      <Button {...args} my={4} size="sm">
+        파란 묻힌
       </Button>
-      <Button {...args} my={4}>
-        테스트로 아주 많은 글자
+      <Button {...args} my={4} size="md">
+        파란 묻힌 계절이
       </Button>
-      <Button {...args} my={4}>
-        테스트로 아주 많은 글자 테스트로 아주 많은 글자 테스트로 아주 많은 글자 테스트로 아주 많은 글자
+      <Button {...args} my={4} size="lg">
+        파란 묻힌 계절이 동경과 언덕 덮어 된 이름자 있습니다.
       </Button>
     </div>
   );
@@ -210,22 +211,22 @@ export const Danger2WithLeftIcon = Template.bind({});
 Danger2WithLeftIcon.args = {
   color: 'danger2',
   onClick: () => alert('click!'),
-  leftIcon: <Alert fillColor={danger300} />,
+  leftIcon: <Alert fillColor={danger} />,
 };
 
 export const Danger2WithRightIcon = Template.bind({});
 Danger2WithRightIcon.args = {
   color: 'danger2',
   onClick: () => alert('click!'),
-  rightIcon: <Alert fillColor={danger300} />,
+  rightIcon: <Alert fillColor={danger} />,
 };
 
 export const Danger2WithIcons = Template.bind({});
 Danger2WithIcons.args = {
   color: 'danger2',
   onClick: () => alert('click!'),
-  leftIcon: <Alert fillColor={danger300} />,
-  rightIcon: <Alert fillColor={danger300} />,
+  leftIcon: <Alert fillColor={danger} />,
+  rightIcon: <Alert fillColor={danger} />,
 };
 
 export const DisabledDanger2WithIcons = Template.bind({});
@@ -233,30 +234,30 @@ DisabledDanger2WithIcons.args = {
   color: 'danger2',
   onClick: () => alert('click!'),
   disabled: true,
-  leftIcon: <Alert fillColor={danger300} />,
-  rightIcon: <Alert fillColor={danger300} />,
+  leftIcon: <Alert fillColor={danger} />,
+  rightIcon: <Alert fillColor={danger} />,
 };
 
 export const SolidWithLeftIcon = Template.bind({});
 SolidWithLeftIcon.args = {
   color: 'solid',
   onClick: () => alert('click!'),
-  leftIcon: <Alert fillColor={black300} />,
+  leftIcon: <Alert fillColor={grayscale800} />,
 };
 
 export const SolidWithRightIcon = Template.bind({});
 SolidWithRightIcon.args = {
   color: 'solid',
   onClick: () => alert('click!'),
-  rightIcon: <Alert fillColor={black300} />,
+  rightIcon: <Alert fillColor={grayscale800} />,
 };
 
 export const SolidWithIcons = Template.bind({});
 SolidWithIcons.args = {
   color: 'solid',
   onClick: () => alert('click!'),
-  leftIcon: <Alert fillColor={black300} />,
-  rightIcon: <Alert fillColor={black300} />,
+  leftIcon: <Alert fillColor={grayscale800} />,
+  rightIcon: <Alert fillColor={grayscale800} />,
 };
 
 export const DisabledSolidWithIcons = Template.bind({});
@@ -264,8 +265,8 @@ DisabledSolidWithIcons.args = {
   color: 'solid',
   onClick: () => alert('click!'),
   disabled: true,
-  leftIcon: <Alert fillColor={black300} />,
-  rightIcon: <Alert fillColor={black300} />,
+  leftIcon: <Alert fillColor={grayscale800} />,
+  rightIcon: <Alert fillColor={grayscale800} />,
 };
 
 export const WhiteWithLeftIcon = Template.bind({});

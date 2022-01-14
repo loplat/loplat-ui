@@ -1,27 +1,26 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import {
-  background100,
-  black300,
+  grayscale50,
+  grayscale800,
   blue100,
   blue200,
   blue300,
-  blue500,
   blue600,
-  blueScale100,
-  blueScale200,
-  blueScale400,
-  danger100,
-  danger300,
-  danger400,
-  grayScale200,
-  grayScale500,
+  bluescale100,
+  bluescale200,
+  bluescale400,
+  red100,
+  red400,
+  grayscale200,
+  grayscale500,
   white,
-} from '../../core/Palette';
+} from '../../core/colors';
+import { primary, danger } from '../../core/styles/palette';
 import { Desktop } from '../../core/MediaQuery';
 import { MarginSpacing, marginSpacingProps, marginSpacingStyle, spacing } from '../../core/Spacing';
 
-type Size = 'xs' | 'sm' | 'lg';
+type Size = 'xs' | 'sm' | 'md' | 'lg';
 type Color = 'default' | 'primary1' | 'primary2' | 'danger1' | 'danger2' | 'solid' | 'white';
 type FullWidth = { fullWidth?: boolean };
 export type DefaultButtonProps = {
@@ -54,6 +53,9 @@ export const SizeSet = {
   sm: {
     padding: `${spacing(3.5)}px ${spacing(4)}px`,
   },
+  md: {
+    padding: `${spacing(3.5)}px ${spacing(12)}px`,
+  },
   lg: {
     padding: `${spacing(5.5)}px ${spacing(18)}px`,
   },
@@ -64,33 +66,33 @@ export const ColorSet = {
     background: {
       default: white,
       hover: blue100,
-      act: blue500,
-      disabled: background100,
+      act: primary,
+      disabled: grayscale50,
     },
     border: {
-      default: grayScale200,
-      hover: blue500,
-      act: blue500,
-      disabled: grayScale200,
+      default: grayscale200,
+      hover: primary,
+      act: primary,
+      disabled: grayscale200,
     },
     text: {
-      default: black300,
-      hover: black300,
+      default: grayscale800,
+      hover: grayscale800,
       act: white,
-      disabled: grayScale500,
+      disabled: grayscale500,
     },
   },
   primary1: {
     background: {
-      default: blue500,
+      default: primary,
       hover: blue600,
-      act: blue500,
+      act: primary,
       disabled: blue100,
     },
     border: {
-      default: blue500,
+      default: primary,
       hover: blue600,
-      act: blue500,
+      act: primary,
       disabled: blue100,
     },
     text: {
@@ -104,34 +106,34 @@ export const ColorSet = {
     background: {
       default: white,
       hover: blue100,
-      act: blue500,
-      disabled: background100,
+      act: primary,
+      disabled: grayscale50,
     },
     border: {
-      default: blue500,
-      hover: blue500,
-      act: blue500,
-      disabled: grayScale200,
+      default: primary,
+      hover: primary,
+      act: primary,
+      disabled: grayscale200,
     },
     text: {
-      default: blue500,
-      hover: blue500,
+      default: primary,
+      hover: primary,
       act: white,
-      disabled: grayScale500,
+      disabled: grayscale500,
     },
   },
   danger1: {
     background: {
-      default: danger300,
-      hover: danger400,
-      act: danger300,
-      disabled: danger100,
+      default: danger,
+      hover: red400,
+      act: danger,
+      disabled: red100,
     },
     border: {
-      default: danger300,
-      hover: danger400,
-      act: danger300,
-      disabled: danger100,
+      default: danger,
+      hover: red400,
+      act: danger,
+      disabled: red100,
     },
     text: {
       default: white,
@@ -143,41 +145,41 @@ export const ColorSet = {
   danger2: {
     background: {
       default: white,
-      hover: danger100,
-      act: danger300,
-      disabled: background100,
+      hover: red100,
+      act: danger,
+      disabled: grayscale50,
     },
     border: {
-      default: danger300,
-      hover: danger300,
-      act: danger300,
-      disabled: grayScale200,
+      default: danger,
+      hover: danger,
+      act: danger,
+      disabled: grayscale200,
     },
     text: {
-      default: danger300,
-      hover: danger300,
+      default: danger,
+      hover: danger,
       act: white,
-      disabled: grayScale500,
+      disabled: grayscale500,
     },
   },
   solid: {
     background: {
-      default: blueScale200,
-      hover: blueScale400,
-      act: blueScale100,
-      disabled: background100,
+      default: bluescale200,
+      hover: bluescale400,
+      act: bluescale100,
+      disabled: grayscale50,
     },
     border: {
-      default: blueScale200,
-      hover: blueScale400,
-      act: blueScale100,
-      disabled: background100,
+      default: bluescale200,
+      hover: bluescale400,
+      act: bluescale100,
+      disabled: grayscale50,
     },
     text: {
-      default: black300,
-      hover: black300,
-      act: black300,
-      disabled: grayScale500,
+      default: grayscale800,
+      hover: grayscale800,
+      act: grayscale800,
+      disabled: grayscale500,
     },
   },
   white: {
@@ -185,19 +187,19 @@ export const ColorSet = {
       default: white,
       hover: blue100,
       act: blue300,
-      disabled: background100,
+      disabled: grayscale50,
     },
     border: {
       default: white,
       hover: blue100,
       act: blue300,
-      disabled: background100,
+      disabled: grayscale50,
     },
     text: {
-      default: blue500,
-      hover: blue500,
+      default: grayscale800,
+      hover: grayscale800,
       act: white,
-      disabled: grayScale500,
+      disabled: grayscale500,
     },
   },
 } as const;
@@ -280,7 +282,7 @@ export const Button = ({ disabled = false, ...props }: ButtonProps): JSX.Element
       disabled={disabled}
       fullWidth={props.fullWidth}
       {...ColorSet[props.color ?? 'default']}
-      {...SizeSet[props.size ?? 'sm']}
+      {...SizeSet[props.size ?? 'md']}
       {...marginSpacingProps(props)}
       className={props.className ?? ''}
       onClick={props.onClick}

@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import { renderHook } from '@testing-library/react-hooks';
 import { Input } from './index';
 import { WarningCircleOutlineIcon } from '../../assets/Icon/index';
-import { danger300 } from '../../core/Palette';
+import { danger } from '../../core/styles/palette';
 
 const useMockInput = () => {
   const [value, setValue] = useState<string>();
@@ -42,7 +42,7 @@ describe('<Input />', () => {
         placeholder="placeholder"
         value={result.current.value}
         onChange={(e) => result.current.setValue(e?.target.value)}
-        rightIcon={<WarningCircleOutlineIcon fillColor={danger300} size={20} />}
+        rightIcon={<WarningCircleOutlineIcon fillColor={danger} size={20} />}
         isIconVisible={true}
         error={true}
         errorMessage="에러메세지입니다."
@@ -61,7 +61,7 @@ describe('<Input />', () => {
         placeholder="placeholder"
         value={result.current.value}
         onChange={(e) => result.current.setValue(e?.target.value)}
-        rightIcon={<WarningCircleOutlineIcon fillColor={danger300} size={20} />}
+        rightIcon={<WarningCircleOutlineIcon fillColor={danger} size={20} />}
         error={false}
         errorMessage="에러메세지입니다."
       />,
@@ -78,7 +78,7 @@ describe('<Input />', () => {
         placeholder="검색어를 입력해주세요."
         value={result.current.value}
         onChange={(e) => result.current.setValue(e?.target.value)}
-        rightIcon={<WarningCircleOutlineIcon fillColor={danger300} size={20} />}
+        rightIcon={<WarningCircleOutlineIcon fillColor={danger} size={20} />}
         isIconVisible={result.current.value === '에러 생성'}
         error={result.current.value === '에러 생성'}
         errorMessage="에러메세지"
