@@ -1,3 +1,9 @@
+## 1.3.1 (2022-01-14)
+
+### Fixed
+- palette scss 파일의 경로가 변경되었습니다.
+  - ```'loplat-ui/core/styles/index.scss'``` 으로 import 가능합니다.
+
 ## 1.3.0 (2022-01-14)
 
 ### Renewal
