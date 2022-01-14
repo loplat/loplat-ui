@@ -1,13 +1,8 @@
-## 1.3.1 (2022-01-14)
-
-### Fixed
-- palette scss 파일의 경로가 변경되었습니다.
-  - ```'loplat-ui/core/styles/index.scss'``` 으로 import 가능합니다.
-
-## 1.3.0 (2022-01-14)
+## 1.3.3 (2022-01-14)
 
 ### Renewal
 - color와 palette의 색상과 이름을 대폭 수정했습니다.
+  - palette scss 파일은 ```'loplat-ui/core/styles/index.scss'``` 로 import 가능합니다.
 - Toast를 react-hot-toast 라이브러리에서 자체 제작 컴포넌트로 대체했습니다.
 
 ### Fixed
