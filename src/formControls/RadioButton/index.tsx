@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import styled from '@emotion/styled';
-import { background100, black300, blue500, grayScale200, grayScale500 } from '../../core/Palette';
-
+import { grayscale50, grayscale800, grayscale200, grayscale500 } from '../../core/colors';
+import { primary } from '../../core/styles/palette';
 interface RadioStyleProps {
   isDisabled: boolean;
   isSelected: boolean;
@@ -24,7 +24,7 @@ const RadioButtonContainer = styled.label<RadioStyleProps>`
     cursor: pointer;
   }
   font-weight: ${({ isSelected }) => (isSelected ? 'bold' : 'normal')};
-  color: ${({ isDisabled }) => (isDisabled ? grayScale500 : black300)};
+  color: ${({ isDisabled }) => (isDisabled ? grayscale500 : grayscale800)};
   pointer-events: ${({ isDisabled }) => (isDisabled ? 'none' : 'auto')};
 `;
 
@@ -36,8 +36,8 @@ const Checkmark = styled.span<RadioStyleProps>`
   width: 20px;
   border-radius: 50%;
   box-sizing: border-box;
-  border: 1px solid ${({ isDisabled, isSelected }) => (!isDisabled && isSelected ? blue500 : grayScale200)};
-  background-color: ${({ isSelected }) => (isSelected ? background100 : 'white')};
+  border: 1px solid ${({ isDisabled, isSelected }) => (!isDisabled && isSelected ? primary : grayscale200)};
+  background-color: ${({ isSelected }) => (isSelected ? grayscale50 : 'white')};
 
   :after {
     content: '';
@@ -47,7 +47,7 @@ const Checkmark = styled.span<RadioStyleProps>`
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background: ${({ isDisabled }) => (isDisabled ? grayScale500 : blue500)};
+    background: ${({ isDisabled }) => (isDisabled ? grayscale500 : primary)};
     display: ${({ isSelected }) => (isSelected ? 'block' : 'none')};
   }
 `;

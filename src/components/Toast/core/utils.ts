@@ -1,19 +1,17 @@
 import { ColorSet, ToastType } from './types';
+import { danger, success, warning } from '../../../core/styles/palette';
 import {
-  background100,
-  black500,
+  black,
+  yellow100,
+  grayscale200,
+  grayscale500,
+  green100,
+  grayscale50,
   blue100,
   blue300,
   blue500,
-  danger100,
-  danger300,
-  grayScale200,
-  grayScale500,
-  success100,
-  success300,
-  warning100,
-  warning300,
-} from '../../../core/Palette';
+  red100,
+} from '../../../core/colors';
 
 export const generateId = (() => {
   let count = 0;
@@ -47,10 +45,10 @@ export const prefersReducedMotion = (() => {
 export const generateColorSet = (type: ToastType): ColorSet => {
   if (type === 'success')
     return {
-      borderColor: success300,
-      backgroundColor: success100,
-      textColor: success300,
-      iconColor: success300,
+      borderColor: success,
+      backgroundColor: green100,
+      textColor: success,
+      iconColor: success,
     };
   if (type === 'info')
     return {
@@ -61,22 +59,22 @@ export const generateColorSet = (type: ToastType): ColorSet => {
     };
   if (type === 'danger')
     return {
-      borderColor: danger300,
-      backgroundColor: danger100,
-      textColor: danger300,
-      iconColor: danger300,
+      borderColor: danger,
+      backgroundColor: red100,
+      textColor: danger,
+      iconColor: danger,
     };
   if (type === 'warning')
     return {
-      borderColor: warning300,
-      backgroundColor: warning100,
-      textColor: warning300,
-      iconColor: warning300,
+      borderColor: warning,
+      backgroundColor: yellow100,
+      textColor: warning,
+      iconColor: warning,
     };
   return {
-    borderColor: grayScale200,
-    backgroundColor: background100,
-    textColor: black500,
-    iconColor: grayScale500,
+    borderColor: grayscale200,
+    backgroundColor: grayscale50,
+    textColor: black,
+    iconColor: grayscale500,
   };
 };

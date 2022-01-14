@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { WarningCircleOutlineIcon } from '../../assets/Icon/index';
 import { Input, InputProps } from './index';
-import { danger300 } from '../../core/Palette';
+import { danger } from '../../core/styles/palette';
 
 export default {
   title: 'Components/Input',
@@ -40,7 +40,7 @@ RightIcon.args = {
   disabled: false,
   placeholder: '아이콘은 변경 가능합니다.',
   isIconVisible: true,
-  rightIcon: <WarningCircleOutlineIcon fillColor={danger300} size={30} />,
+  rightIcon: <WarningCircleOutlineIcon fillColor={danger} size={30} />,
   error: true,
   errorMessage: '에러!',
   title: '비밀번호',
