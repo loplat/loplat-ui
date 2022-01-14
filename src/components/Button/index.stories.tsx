@@ -3,9 +3,8 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { Button, ButtonProps } from './index';
 import { Alert } from '../../assets/Icon/generated/Alert';
-import { white } from '../../core/colors';
 import { danger } from '../../core/styles/palette';
-import { grayscale800, blue500 } from '../../core/colors';
+import { white, grayscale800, blue500 } from '../../core/colors';
 import { css } from '@emotion/css';
 
 export default {
