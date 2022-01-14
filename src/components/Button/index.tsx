@@ -196,8 +196,8 @@ export const ColorSet = {
       disabled: grayscale50,
     },
     text: {
-      default: primary,
-      hover: primary,
+      default: grayscale800,
+      hover: grayscale800,
       act: white,
       disabled: grayscale500,
     },
