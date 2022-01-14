@@ -19,7 +19,7 @@ export const Toast = ({ zIndex = 9999 }: Props): React.ReactElement => {
     toast = new Toaster(setToastItems);
   }, []);
 
-  const removeToastItem = useCallback((toastId) => {
+  const removeToastItem = useCallback((toastId: ToastItem['id']) => {
     toast.removeToastItem(toastId);
     removeHeightItem(toastId);
   }, []);
@@ -34,7 +34,7 @@ export const Toast = ({ zIndex = 9999 }: Props): React.ReactElement => {
     });
   };
 
-  const addHeightOfToastBars = useCallback((toastId, height) => {
+  const addHeightOfToastBars = useCallback((toastId: ToastItem['id'], height: number) => {
     setHeightOfToastBars((state) => [{ id: toastId, height }, ...state]);
   }, []);
 

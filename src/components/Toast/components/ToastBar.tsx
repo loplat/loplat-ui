@@ -16,8 +16,8 @@ interface Props {
 }
 
 const MINIMUM_CONTENT_HEIGHT = 28;
-const animationDuration = 350;
-const toastDuration = 3000 + animationDuration;
+const ANIMATION_DURATION = 350;
+const TOAST_DURATION = 3000 + ANIMATION_DURATION;
 
 export const ToastBar = ({ toastItem, onRemoveToastItem, onEmitElementHeight, offsetY }: Props): React.ReactElement => {
   const colorSet = useMemo(() => generateColorSet(toastItem.type), [toastItem]);
@@ -36,11 +36,11 @@ export const ToastBar = ({ toastItem, onRemoveToastItem, onEmitElementHeight, of
 
     const timeoutForRemove = setTimeout(() => {
       onRemoveToastItem(toastItem.id);
-    }, toastDuration);
+    }, TOAST_DURATION);
 
     const timeoutForOpacity = setTimeout(() => {
       setOpacity(0);
-    }, toastDuration - animationDuration);
+    }, TOAST_DURATION - ANIMATION_DURATION);
 
     return () => {
       clearTimeout(timeoutForRemove);
@@ -64,7 +64,7 @@ export const ToastBar = ({ toastItem, onRemoveToastItem, onEmitElementHeight, of
         left: 50%;
         transform: translate(-50%, ${offsetY}px);
         opacity: 0;
-        transition: transform ${animationDuration}ms, opacity ${animationDuration}ms;
+        transition: transform ${ANIMATION_DURATION}ms, opacity ${ANIMATION_DURATION}ms;
         border-color: ${colorSet.borderColor};
         background-color: ${colorSet.backgroundColor};
       `}
