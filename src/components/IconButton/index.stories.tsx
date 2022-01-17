@@ -1,3 +1,4 @@
+import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { IconButton, IconButtonProps } from './index';
 import { CampaignIcon } from '../../assets/Icon';
@@ -20,25 +21,26 @@ export default {
   },
 } as ComponentMeta<typeof IconButton>;
 
-const Template: ComponentStory<typeof IconButton> = (args: IconButtonProps) => <IconButton {...args} />;
+const Template: ComponentStory<typeof IconButton> = (args: IconButtonProps) => (
+  <IconButton {...args}>
+    <CampaignIcon />
+  </IconButton>
+);
 
 export const Default = Template.bind({});
 Default.args = {
-  icon: <CampaignIcon />,
+  color: 'default',
 };
 
 export const Primary = Template.bind({});
 Primary.args = {
-  icon: <CampaignIcon />,
   color: 'primary1',
 };
 export const Primary2 = Template.bind({});
 Primary2.args = {
-  icon: <CampaignIcon />,
   color: 'primary2',
 };
-export const White = Template.bind({});
-White.args = {
-  icon: <CampaignIcon />,
-  color: 'white',
+export const Ghost = Template.bind({});
+Ghost.args = {
+  color: 'ghost',
 };
