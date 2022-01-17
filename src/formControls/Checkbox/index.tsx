@@ -12,14 +12,14 @@ type BaseWrapper = {
   checked: boolean | 'checked' | 'unchecked' | 'intermediate';
 };
 
-export type CheckBoxProps = {
+export type CheckboxProps = {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   name: string;
   label: string;
   className?: string;
 } & BaseWrapper;
 
-export const CheckBox = ({ label, name, checked, onChange, disabled, ...props }: CheckBoxProps): JSX.Element => {
+export const Checkbox = ({ label, name, checked, onChange, disabled, ...props }: CheckboxProps): JSX.Element => {
   const isChecked: boolean = typeof checked === 'string' ? checked !== 'unchecked' : checked;
 
   return (
