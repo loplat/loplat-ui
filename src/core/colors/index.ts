@@ -9,6 +9,7 @@ import { pink } from './pink';
 import { purple } from './purple';
 import { red } from './red';
 import { teal } from './teal';
+import { transparent } from './transparent';
 import { turquoise } from './turquoise';
 import { white } from './white';
 import { yellow } from './yellow';
@@ -26,6 +27,7 @@ export const colors = {
   purple,
   red,
   teal,
+  transparent,
   turquoise,
   white,
   yellow,
@@ -44,6 +46,7 @@ export * from './pink';
 export * from './purple';
 export * from './red';
 export * from './teal';
+export * from './transparent';
 export * from './turquoise';
 export * from './white';
 export * from './yellow';

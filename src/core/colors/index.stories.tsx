@@ -5,12 +5,12 @@ import { colors } from '.';
 export const Colors = () => (
   <div>
     {Object.entries(colors).map(([color, value]) => (
-      <StyledColor>
+      <StyledColor key={color}>
         <h4>{color}</h4>
         {typeof value === 'object' ? (
           <StyledBoxList>
             {Object.entries(value).map(([density, value]) => (
-              <li>
+              <li key={value}>
                 <span>{density}</span>
                 <StyledBox color={value} />
               </li>
