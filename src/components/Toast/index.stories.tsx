@@ -1,5 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Props as ToastProps } from './components/Toast';
 import { Toast, toast } from './index';
 import { Button } from '../Button';
 
@@ -8,10 +9,10 @@ export default {
   component: Toast,
 } as ComponentMeta<typeof Toast>;
 
-const Template: ComponentStory<typeof Toast> = () => {
+const Template: ComponentStory<typeof Toast> = (args: ToastProps) => {
   return (
     <div>
-      <Toast />
+      <Toast {...args} />
       <Button
         color="primary2"
         onClick={() =>

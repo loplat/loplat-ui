@@ -1,8 +1,8 @@
+import React, { ReactElement } from 'react';
 import styled from '@emotion/styled';
-
 import { colors } from '.';
 
-export const Colors = () => (
+export const Colors = (): ReactElement => (
   <div>
     {Object.entries(colors).map(([color, value]) => (
       <StyledColor key={color}>
