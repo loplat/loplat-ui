@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 import {
   grayscale50,
   grayscale800,
   blue100,
   blue200,
-  blue300,
+  blue500,
   blue600,
   bluescale100,
   bluescale200,
@@ -14,15 +15,19 @@ import {
   red400,
   grayscale200,
   grayscale500,
+  transparent,
   white,
 } from '../../core/colors';
 import { primary, danger } from '../../core/styles/palette';
-import { Desktop } from '../../core/MediaQuery';
+import { Large } from '../../core/MediaQuery';
 import { MarginSpacing, marginSpacingProps, marginSpacingStyle, spacing } from '../../core/Spacing';
 
 type Size = 'xs' | 'sm' | 'md' | 'lg';
 type Color = 'default' | 'primary1' | 'primary2' | 'danger1' | 'danger2' | 'solid' | 'ghost';
-type FullWidth = { fullWidth?: boolean };
+type FullWidth = { fullWidth: boolean };
+type Borderless = { borderless: boolean };
+
+export type CommonButtonProps = Partial<FullWidth & Borderless & MarginSpacing>;
 export type DefaultButtonProps = {
   color?: Color;
   disabled?: boolean;
@@ -30,16 +35,13 @@ export type DefaultButtonProps = {
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
 };
 export type ButtonProps = DefaultButtonProps &
-  MarginSpacing &
-  FullWidth & {
+  CommonButtonProps & {
     size?: Size;
     leftIcon?: React.ReactElement;
     rightIcon?: React.ReactElement;
     children?: React.ReactNode;
   };
-
-type BaseButtonProps = MarginSpacing &
-  FullWidth &
+type BaseButtonProps = CommonButtonProps &
   typeof SizeSet[keyof typeof SizeSet] &
   typeof ColorSet[keyof typeof ColorSet];
 
@@ -184,20 +186,20 @@ export const ColorSet = {
   },
   ghost: {
     background: {
-      default: white,
+      default: transparent,
       hover: blue100,
-      act: blue300,
-      disabled: grayscale50,
+      act: blue500,
+      disabled: transparent,
     },
     border: {
-      default: white,
+      default: transparent,
       hover: blue100,
-      act: blue300,
-      disabled: grayscale50,
+      act: blue500,
+      disabled: transparent,
     },
     text: {
       default: grayscale800,
-      hover: grayscale800,
+      hover: blue500,
       act: white,
       disabled: grayscale500,
     },
@@ -252,10 +254,9 @@ export const BaseButton = styled.button<BaseButtonProps>`
       fill: ${({ text }) => text.disabled};
     }
     background-color: ${({ background }) => background.disabled};
-    border-color: ${({ border }) => border.disabled};
     cursor: not-allowed;
   }
-  ${Desktop} {
+  ${Large} {
     cursor: pointer;
     &:hover:not(:disabled) {
       color: ${({ text }) => text.hover};
@@ -263,7 +264,6 @@ export const BaseButton = styled.button<BaseButtonProps>`
         fill: ${({ text }) => text.hover};
       }
       background-color: ${({ background }) => background.hover};
-      border-color: ${({ border }) => border.hover};
     }
   }
   &:active:not(:disabled) {
@@ -272,8 +272,26 @@ export const BaseButton = styled.button<BaseButtonProps>`
       fill: ${({ text }) => text.act};
     }
     background-color: ${({ background }) => background.act};
-    border-color: ${({ border }) => border.act};
   }
+
+  ${({ borderless, border }) =>
+    borderless
+      ? css`
+          border-color: transparent;
+        `
+      : css`
+          &:disabled {
+            border-color: ${border.disabled};
+          }
+          ${Large} {
+            &:hover:not(:disabled) {
+              border-color: ${border.hover};
+            }
+          }
+          &:active:not(:disabled) {
+            border-color: ${border.act};
+          }
+        `}
 `;
 
 export const Button = ({ disabled = false, ...props }: ButtonProps): JSX.Element => {
@@ -281,6 +299,7 @@ export const Button = ({ disabled = false, ...props }: ButtonProps): JSX.Element
     <BaseButton
       disabled={disabled}
       fullWidth={props.fullWidth}
+      borderless={props.borderless}
       {...ColorSet[props.color ?? 'default']}
       {...SizeSet[props.size ?? 'md']}
       {...marginSpacingProps(props)}
