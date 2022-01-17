@@ -11,7 +11,7 @@ export default {
 const Template: ComponentStory<typeof Toast> = () => {
   return (
     <div>
-      <Toast />
+      <Toast mt={4} mx={4} />
       <Button
         color="primary2"
         onClick={() =>
