@@ -13,13 +13,20 @@ interface Props {
   onRemoveToastItem: (toastId: string) => void;
   onEmitElementHeight: (toastId: string, height: number) => void;
   offsetY: number;
+  duration: number;
 }
 
 const MINIMUM_CONTENT_HEIGHT = 28;
 const ANIMATION_DURATION = 350;
-const TOAST_DURATION = 3000 + ANIMATION_DURATION;
 
-export const ToastBar = ({ toastItem, onRemoveToastItem, onEmitElementHeight, offsetY }: Props): React.ReactElement => {
+export const ToastBar = ({
+  toastItem,
+  onRemoveToastItem,
+  onEmitElementHeight,
+  offsetY,
+  duration,
+}: Props): React.ReactElement => {
+  const toastDuration = useMemo(() => duration + ANIMATION_DURATION, [duration]);
   const colorSet = useMemo(() => generateColorSet(toastItem.type), [toastItem]);
 
   const toastBarElement = useRef<HTMLDivElement>(null);
@@ -36,17 +43,17 @@ export const ToastBar = ({ toastItem, onRemoveToastItem, onEmitElementHeight, of
 
     const timeoutForRemove = setTimeout(() => {
       onRemoveToastItem(toastItem.id);
-    }, TOAST_DURATION);
+    }, toastDuration);
 
     const timeoutForOpacity = setTimeout(() => {
       setOpacity(0);
-    }, TOAST_DURATION - ANIMATION_DURATION);
+    }, toastDuration - ANIMATION_DURATION);
 
     return () => {
       clearTimeout(timeoutForRemove);
       clearTimeout(timeoutForOpacity);
     };
-  }, [toastItem, onRemoveToastItem]);
+  }, [toastItem, onRemoveToastItem, toastDuration]);
 
   // offsetY 관련 로직
   useEffect(() => {
@@ -60,7 +67,7 @@ export const ToastBar = ({ toastItem, onRemoveToastItem, onEmitElementHeight, of
       ref={toastBarElement}
       className={css`
         position: absolute;
-        top: ${spacing(4)}px;
+        top: 0;
         left: 50%;
         transform: translate(-50%, ${offsetY}px);
         opacity: 0;

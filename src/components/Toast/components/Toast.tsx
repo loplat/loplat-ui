@@ -1,16 +1,19 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import styled from '@emotion/styled';
+import { MarginSpacing, marginSpacingProps, marginSpacingStyle } from '../../../core/Spacing';
 import { ToastItem } from '../core/types';
 import Toaster from '../core/toaster';
 import { ToastBar } from './ToastBar';
-import styled from '@emotion/styled';
 
-export interface Props {
+export interface Props extends MarginSpacing {
+  duration?: number;
   zIndex?: number;
+  gap?: number;
 }
 
 export let toast: Toaster = new Toaster(null);
 
-export const Toast = ({ zIndex = 9999 }: Props): React.ReactElement => {
+export const Toast = ({ duration = 3000, zIndex = 9999, gap = 8, ...props }: Props): React.ReactElement => {
   const [toastItems, setToastItems] = useState<ToastItem[]>([]);
   const [heightOfToastBars, setHeightOfToastBars] = useState<{ id: ToastItem['id']; height: number }[]>([]);
 
@@ -39,19 +42,19 @@ export const Toast = ({ zIndex = 9999 }: Props): React.ReactElement => {
   }, []);
 
   const calculateOffsetYByIndex = (index: number): number => {
-    const gap = 8;
     /** index보다 앞에 있는 ToastBar의 height를 모두 더하여 offsetY를 구한다. */
     return heightOfToastBars.slice(0, index).reduce((acc, curr) => acc + curr.height + gap, 0);
   };
 
   return (
-    <ToastWrapper zIndex={zIndex}>
+    <ToastWrapper zIndex={zIndex} {...marginSpacingProps(props)}>
       {toastItems.map((toastItem, index) => (
         <ToastBar
           toastItem={toastItem}
           onRemoveToastItem={removeToastItem}
           onEmitElementHeight={addHeightOfToastBars}
           offsetY={calculateOffsetYByIndex(index)}
+          duration={duration}
           key={toastItem.id}
         />
       ))}
@@ -59,12 +62,13 @@ export const Toast = ({ zIndex = 9999 }: Props): React.ReactElement => {
   );
 };
 
-const ToastWrapper = styled.div<Props>`
+const ToastWrapper = styled.div<Omit<Props, 'gap'>>`
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
+  ${marginSpacingStyle};
   z-index: ${({ zIndex }) => zIndex};
   pointer-events: none;
 `;
