@@ -1,1 +1,1 @@
-export const Desktop = '@media screen and (min-width: 1024px) and (orientation: landscape)';
+export const Large = '@media screen and (min-width: 1024px) and (orientation: landscape)';
