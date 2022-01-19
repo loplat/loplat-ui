@@ -1,10 +1,10 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { CheckBox, CheckBoxProps } from './index';
+import { Checkbox, CheckboxProps } from './index';
 
 export default {
-  title: 'formControls/CheckBox',
-  component: CheckBox,
+  title: 'formControls/Checkbox',
+  component: Checkbox,
   argTypes: {
     checked: {
       options: [true, false, 'checked', 'unchecked', 'intermediate'],
@@ -13,10 +13,10 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof CheckBox>;
+} as ComponentMeta<typeof Checkbox>;
 
-const Template: ComponentStory<typeof CheckBox> = (args: CheckBoxProps) => {
-  return <CheckBox {...args} />;
+const Template: ComponentStory<typeof Checkbox> = (args: CheckboxProps) => {
+  return <Checkbox {...args} />;
 };
 
 export const Default = Template.bind({});
