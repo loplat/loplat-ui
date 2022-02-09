@@ -1,10 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 import { blue500, grayscale800, grayscale200, grayscale500, grayscale100 } from '../../core/colors';
-import CheckedIcon from './image/icon-check.svg';
-import DisabledCheckedIcon from './image/icon-check-disabled.svg';
-import CheckMinusIcon from './image/icon-minus.svg';
-import DisabledMinusIcon from './image/icon-minus-disabled.svg';
 
 type BaseWrapper = {
   boldLabel?: boolean;
@@ -56,6 +53,7 @@ const StyledWrapper = styled.div<BaseWrapper>`
   input[type='checkbox'] {
     display: none;
     & + span {
+      position: relative;
       display: inline-block;
       width: 1.25rem;
       height: 1.25rem;
@@ -66,17 +64,40 @@ const StyledWrapper = styled.div<BaseWrapper>`
     }
     &:checked + span {
       border-color: ${blue500};
-      background: url(${({ checked }) => (checked === 'intermediate' ? CheckMinusIcon : CheckedIcon)}) center no-repeat;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+
+        ${(props) =>
+          props.checked === 'intermediate'
+            ? css`
+                width: 0.7rem;
+                height: 0;
+                transform: translate(-50%, -50%);
+                border-bottom: 2px solid ${blue500};
+                box-sizing: border-box;
+              `
+            : css`
+                width: 0.7rem;
+                height: 0.35rem;
+                transform: translate(-50%, -80%) rotate(-45deg);
+                border: 2px solid ${blue500};
+                border-top: 0;
+                border-right: 0;
+                box-sizing: border-box;
+              `};
+      }
     }
     &:disabled + span {
       border-color: ${grayscale200};
-      ${({ checked }) =>
-        checked === 'checked' || checked === true
-          ? `background: url(${DisabledCheckedIcon}) center no-repeat;`
-          : checked === 'intermediate'
-          ? `background: url(${DisabledMinusIcon}) center no-repeat`
-          : ``};
       background-color: ${grayscale100};
+
+      &::after {
+        border-color: ${grayscale500};
+      }
     }
   }
 `;
