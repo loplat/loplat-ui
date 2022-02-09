@@ -214,7 +214,6 @@ export const BaseButton = styled.button<BaseButtonProps>`
   padding: ${({ padding }) => padding};
   ${marginSpacingStyle};
 
-  outline: none;
   border-width: 1px;
   border-style: solid;
   border-color: ${({ border }) => border.default};
