@@ -19,6 +19,7 @@ import {
   white,
 } from '../../core/colors';
 import { primary, danger } from '../../core/styles/palette';
+import { AriaProps } from '../../core/a11y';
 import { Large } from '../../core/MediaQuery';
 import { MarginSpacing, marginSpacingProps, marginSpacingStyle, spacing } from '../../core/Spacing';
 
@@ -27,7 +28,7 @@ type Color = 'default' | 'primary1' | 'primary2' | 'danger1' | 'danger2' | 'soli
 type FullWidth = { fullWidth: boolean };
 type Borderless = { borderless: boolean };
 
-export type CommonButtonProps = Partial<FullWidth & Borderless & MarginSpacing>;
+export type CommonButtonProps = Partial<FullWidth & Borderless & MarginSpacing & AriaProps>;
 export type DefaultButtonProps = {
   color?: Color;
   disabled?: boolean;
