@@ -10,9 +10,9 @@ export type IconButtonProps = DefaultButtonProps &
 export const IconButton = ({
   color,
   borderless,
-  disabled = false,
+  disabled,
   onClick,
-  className = '',
+  className,
   children,
   ...props
 }: IconButtonProps): React.ReactElement => {
@@ -25,6 +25,7 @@ export const IconButton = ({
       {...marginSpacingProps(props)}
       className={className}
       onClick={onClick}
+      {...props}
     >
       {children}
     </BaseButton>

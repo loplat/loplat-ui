@@ -13,16 +13,11 @@ export default {
         type: 'radio',
       },
     },
-    icon: {
-      control: {
-        type: 'null',
-      },
-    },
   },
 } as ComponentMeta<typeof IconButton>;
 
 const Template: ComponentStory<typeof IconButton> = (args: IconButtonProps) => (
-  <IconButton {...args}>
+  <IconButton {...args} aria-label="캠페인">
     <CampaignIcon />
   </IconButton>
 );
