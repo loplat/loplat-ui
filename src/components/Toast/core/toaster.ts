@@ -1,5 +1,5 @@
 import React, { SetStateAction } from 'react';
-import { ToastItem } from './types';
+import { ToastItem, ToastRole } from './types';
 import { generateUniqueId } from '../../../utils/functions';
 
 type SetToastItems = React.Dispatch<SetStateAction<ToastItem[]>>;
@@ -13,8 +13,8 @@ class Toaster {
     if (setState) this.setToastItems = setState;
   }
 
-  addToastItem({ type, message }: Omit<ToastItem, 'id'>): void {
-    this.setToastItems((state: ToastItem[]) => [{ id: generateUniqueId(), type, message }, ...state]);
+  addToastItem({ type, message, role }: Omit<ToastItem, 'id'>): void {
+    this.setToastItems((state: ToastItem[]) => [{ id: generateUniqueId(), type, message, role }, ...state]);
   }
 
   removeToastItem(toastId: ToastItem['id']): void {
@@ -27,24 +27,24 @@ class Toaster {
     });
   }
 
-  success(message: ToastItem['message']): void {
-    this.addToastItem({ type: 'success', message });
+  success(message: ToastItem['message'], role: ToastRole = 'status'): void {
+    this.addToastItem({ type: 'success', message, role });
   }
 
-  info(message: ToastItem['message']): void {
-    this.addToastItem({ type: 'info', message });
+  info(message: ToastItem['message'], role: ToastRole = 'status'): void {
+    this.addToastItem({ type: 'info', message, role });
   }
 
-  danger(message: ToastItem['message']): void {
-    this.addToastItem({ type: 'danger', message });
+  danger(message: ToastItem['message'], role: ToastRole = 'alert'): void {
+    this.addToastItem({ type: 'danger', message, role });
   }
 
-  warning(message: ToastItem['message']): void {
-    this.addToastItem({ type: 'warning', message });
+  warning(message: ToastItem['message'], role: ToastRole = 'alert'): void {
+    this.addToastItem({ type: 'warning', message, role });
   }
 
-  white(message: ToastItem['message']): void {
-    this.addToastItem({ type: 'white', message });
+  white(message: ToastItem['message'], role: ToastRole = 'status'): void {
+    this.addToastItem({ type: 'white', message, role });
   }
 }
 export default Toaster;

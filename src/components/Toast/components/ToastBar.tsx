@@ -65,6 +65,7 @@ export const ToastBar = ({
   return (
     <ToastBarBox
       ref={toastBarElement}
+      role={toastItem.role}
       className={css`
         position: absolute;
         top: 0;
