@@ -8,7 +8,7 @@ import { white, grayscale800, blue500 } from '../../core/colors';
 import { css } from '@emotion/css';
 
 export default {
-  title: 'Components/Button',
+  title: 'Components/Button/Button',
   component: Button,
   argTypes: {
     color: {
