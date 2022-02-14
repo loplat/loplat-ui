@@ -1,6 +1,6 @@
 import React from 'react';
 import { css } from '@emotion/css';
-import { primaryLighter, primary } from '../../core/styles/palette';
+import { bluescale500, bluescale300, blue100 } from '../..';
 
 export interface HelpProps {
   title?: string;
@@ -13,11 +13,11 @@ export const Help = ({ title, text, maxWidth = 400 }: HelpProps): React.ReactEle
       className={css`
         max-width: ${typeof maxWidth === 'number' ? `${maxWidth}px` : '100%'};
         padding: 1rem;
-        box-shadow: 2px 2px 4px 0 rgba(200, 212, 224, 0.3);
-        border: solid 1px ${primary};
+        box-shadow: 2px 2px 4px 0 ${bluescale300}4C;
+        border: solid 1px ${bluescale500};
         border-radius: 8px;
-        background-color: ${primary};
-        color: ${primaryLighter};
+        background-color: ${bluescale500};
+        color: ${blue100};
         font-size: 0.88rem;
         box-sizing: border-box;
       `}
