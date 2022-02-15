@@ -58,10 +58,6 @@ const ModalWrapper = styled.div<Pick<ModalProps, 'zIndex'>>`
   right: 0;
   z-index: ${({ zIndex }) => zIndex};
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
   & > .background {
     width: 100%;
     height: 100%;
