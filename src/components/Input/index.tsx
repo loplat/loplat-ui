@@ -4,7 +4,7 @@ import { primary, danger } from '../../core/styles/palette';
 import { white, bluescale500, grayscale500, grayscale200, bluescale50, grayscale900 } from '../../core/colors';
 import { css } from '@emotion/css';
 import { spacing } from '../../core/Spacing';
-import { generateUniqueId } from '../../utils/functions';
+import { generateUniqueId } from '../../functions/generator';
 
 export interface InputProps {
   id?: string;
