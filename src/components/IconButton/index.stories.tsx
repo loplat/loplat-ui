@@ -4,7 +4,7 @@ import { IconButton, IconButtonProps } from './index';
 import { CampaignIcon } from '../../assets/Icon';
 
 export default {
-  title: 'Components/IconButton',
+  title: 'Components/Button/IconButton',
   component: IconButton,
   argTypes: {
     color: {
