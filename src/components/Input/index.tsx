@@ -4,6 +4,7 @@ import { primary, danger } from '../../core/styles/palette';
 import { white, bluescale500, grayscale500, grayscale200, bluescale50, grayscale900 } from '../../core/colors';
 import { css } from '@emotion/css';
 import { spacing } from '../../core/Spacing';
+import { generateUniqueId } from '../../functions/generator';
 
 export interface InputProps {
   id?: string;
@@ -100,7 +101,7 @@ const InlineError = React.memo(({ children }): React.ReactElement => {
 });
 
 export const Input = React.memo<InputProps>(({ className = '', ...props }): React.ReactElement => {
-  const uniqueId = useMemo(() => String(Math.random().toString(36).slice(2, 11)), []);
+  const uniqueId = useMemo(() => generateUniqueId(), []);
   const id = useMemo(() => props.id || uniqueId, [props.id, uniqueId]);
   return (
     <div
