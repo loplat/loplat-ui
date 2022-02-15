@@ -51,16 +51,16 @@ export const SizeSet = {
     padding: `${spacing(2)}px`,
   },
   xs: {
-    padding: `${spacing(1.5)}px ${spacing(4)}px`,
+    padding: `${spacing(2)}px ${spacing(4)}px`,
   },
   sm: {
-    padding: `${spacing(3.5)}px ${spacing(4)}px`,
+    padding: `${spacing(4)}px ${spacing(4)}px`,
   },
   md: {
-    padding: `${spacing(3.5)}px ${spacing(12)}px`,
+    padding: `${spacing(4)}px ${spacing(12)}px`,
   },
   lg: {
-    padding: `${spacing(5.5)}px ${spacing(18)}px`,
+    padding: `${spacing(6)}px ${spacing(18)}px`,
   },
 } as const;
 
@@ -233,7 +233,6 @@ export const BaseButton = styled.button<BaseButtonProps>`
 
   span {
     font-size: 1.125rem;
-    margin-top: 3px;
   }
 
   div {
