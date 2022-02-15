@@ -3,14 +3,14 @@ import styled from '@emotion/styled';
 import { Portal } from '../Portal';
 import { generateUniqueId } from '../../functions/generator';
 
-export interface Props {
+export interface ModalProps {
   open: boolean;
   onClose: () => void;
   zIndex?: number;
   children: React.ReactElement;
 }
 
-export function Modal({ open, onClose, zIndex = 9999, children }: Props): React.ReactElement | null {
+export function Modal({ open, onClose, zIndex = 9999, children }: ModalProps): React.ReactElement | null {
   const portalId = useMemo(() => `loplat-ui-modal__${generateUniqueId()}`, []);
   const [container, setContainer] = useState<Element | null>(null);
 
@@ -50,7 +50,7 @@ export function Modal({ open, onClose, zIndex = 9999, children }: Props): React.
   );
 }
 
-const ModalWrapper = styled.div<Pick<Props, 'zIndex'>>`
+const ModalWrapper = styled.div<Pick<ModalProps, 'zIndex'>>`
   position: fixed;
   top: 0;
   bottom: 0;
