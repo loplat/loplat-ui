@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
@@ -17,7 +16,7 @@ const LogoDocument = (props: LogoProps) => {
 };
 
 export default {
-  title: 'Logo',
+  title: 'Assets/Logo',
   component: LogoDocument,
 } as ComponentMeta<typeof LogoDocument>;
 
@@ -27,4 +26,3 @@ export const Default = Template.bind({});
 Default.args = {
   width: 32,
 };
-
