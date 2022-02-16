@@ -1,8 +1,45 @@
+## 1.4.0 (2022-02-16)
+
+### Added
+- utils
+  - Portal 컴포넌트를 추가했습니다.
+  - Modal 컴포넌트를 추가했습니다.
+- styles
+  - styled API를 추가했습니다. ```import { styled } from 'loplat-ui';```를 통해 import 가능합니다.
+  - transparent color를 추가했습니다.
+- a11y
+  - Aria system prop을 추가했습니다.
+  - Button 컴포넌트에 aria-*, role prop을 추가했습니다.
+  - toast 함수에 role parameter를 추가했습니다. ```toast.success('message', 'alert')```와 같이 사용가능합니다.
+
+### Removed
+- layout 관련 컴포넌트(Grid, Row, Col)를 삭제했습니다.
+
+### Fixed
+- Spinner
+  - 브라우저에 따라 webp 형식의 이미지를 지원하도록 개선했습니다.
+- Toast
+  - duration, gap, marginSpacing prop을 추가했습니다.
+- Button
+  - borderless prop을 추가했습니다.
+  - ghost의 theme의 배경색을 transparent로 수정했습니다.
+  - outline css 속성을 삭제했습니다.
+  - text가 중앙 정렬되도록 수정했습니다.
+- Checkbox
+  - 체크 표시를 이미지 파일이 아닌 css를 이용하여 그리도록 변경했습니다.
+  - 키보드 조작이 가능하도록 input css의 display 속성을 제거했습니다.
+  - 컴포넌트명을 CheckBox에서 Checkbox로 변경했습니다.
+- RadioButton
+  - 체크 표시가 중앙 정렬되도록 수정했습니다.
+- Help
+  - background, border color를 수정했습니다.
+
+
 ## 1.3.3 (2022-01-14)
 
 ### Renewal
 - color와 palette의 색상과 이름을 대폭 수정했습니다.
-  - palette scss 파일은 ```'loplat-ui/core/styles/index.scss'``` 로 import 가능합니다.
+  - palette scss 파일은 ```@import '~loplat-ui/core/styles/index.scss';``` 를 통해 import 가능합니다.
 - Toast를 react-hot-toast 라이브러리에서 자체 제작 컴포넌트로 대체했습니다.
 
 ### Fixed
