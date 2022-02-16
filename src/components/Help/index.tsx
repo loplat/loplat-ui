@@ -12,14 +12,15 @@ export const Help = ({ title, text, maxWidth = 400 }: HelpProps): React.ReactEle
     <div
       className={css`
         max-width: ${typeof maxWidth === 'number' ? `${maxWidth}px` : '100%'};
-        padding: 1rem;
-        box-shadow: 2px 2px 4px 0 ${bluescale300}4C;
+        padding: 12px;
         border: solid 1px ${bluescale500};
         border-radius: 8px;
+        box-sizing: border-box;
         background-color: ${bluescale500};
         color: ${blue100};
-        font-size: 0.88rem;
-        box-sizing: border-box;
+        box-shadow: 2px 2px 4px 0 ${bluescale300}4C;
+        font-size: 0.875rem;
+        line-height: 1.5;
       `}
     >
       {title && (
