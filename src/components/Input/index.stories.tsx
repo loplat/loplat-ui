@@ -11,14 +11,9 @@ export default {
 
 const Template: ComponentStory<typeof Input> = (args: InputProps) => {
   const [value, setValue] = useState<string>('');
+
   return (
-    <Input
-      {...args}
-      value={value}
-      error={value.length > 10}
-      onChange={(e) => setValue(e ? e.target.value : '')}
-      onEnter={(e) => console.log('enter', e)}
-    />
+    <Input {...args} value={value} error={value.length > 10} onChange={(e) => setValue(e ? e.target.value : '')} />
   );
 };
 export const Default = Template.bind({});

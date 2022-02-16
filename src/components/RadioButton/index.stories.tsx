@@ -10,7 +10,7 @@ export default {
 
 const RadioButtonGroup = (props: { name: string }): JSX.Element => {
   const [selected, setSelected] = useState('test5');
-  console.log('selected', selected);
+
   return (
     <form>
       <RadioButton selected={selected} value="test1" onChange={setSelected} name={props.name}>
