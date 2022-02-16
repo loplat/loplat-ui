@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from '@emotion/styled';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { IconProps } from './index';
@@ -184,3052 +185,926 @@ import {
   ZoomOutIcon,
 } from './index';
 
+const Icons = styled.div`
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  & > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid gray;
+    margin: 16px;
+    min-width: 4rem;
+    min-height: 3rem;
+    padding: 8px 16px;
+
+    & > span {
+      margin-top: 8px;
+    }
+  }
+`;
+
 const IconDocument = (props: IconProps) => {
   return (
-    <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap' }}>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+    <Icons>
+      <div>
         <AddIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Add</span>
+        <span>Add</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <AlertIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Alert</span>
+        <span>Alert</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <AndroidIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Android</span>
+        <span>Android</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <AppIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>App</span>
+        <span>App</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <AppleIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Apple</span>
+        <span>Apple</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <ArrowDownIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>ArrowDown</span>
+        <span>ArrowDown</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <ArrowDropDownIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>ArrowDropDown</span>
+        <span>ArrowDropDown</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <ArrowDropLeftIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>ArrowDropLeft</span>
+        <span>ArrowDropLeft</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <ArrowDropRightIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>ArrowDropRight</span>
+        <span>ArrowDropRight</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <ArrowDropUpIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>ArrowDropUp</span>
+        <span>ArrowDropUp</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <ArrowLeftIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>ArrowLeft</span>
+        <span>ArrowLeft</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <ArrowRightIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>ArrowRight</span>
+        <span>ArrowRight</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <ArrowUpIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>ArrowUp</span>
+        <span>ArrowUp</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <ArticleIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Article</span>
+        <span>Article</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <BeatIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Beat</span>
+        <span>Beat</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <BedtimeIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Bedtime</span>
+        <span>Bedtime</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <BlockIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Block</span>
+        <span>Block</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <BookIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Book</span>
+        <span>Book</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <BookmarkIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Bookmark</span>
+        <span>Bookmark</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <BookmarkFillIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>BookmarkFill</span>
+        <span>BookmarkFill</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <BoxAddIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>BoxAdd</span>
+        <span>BoxAdd</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <CachedIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Cached</span>
+        <span>Cached</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <CalendarIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Calendar</span>
+        <span>Calendar</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <CallIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Call</span>
+        <span>Call</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <CallDisabledIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>CallDisabled</span>
+        <span>CallDisabled</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <CameraIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Camera</span>
+        <span>Camera</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <CampaignIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Campaign</span>
+        <span>Campaign</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <CancelcircleFillIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>CancelcircleFill</span>
+        <span>CancelcircleFill</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <CancelcircleOutlineIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>CancelcircleOutline</span>
+        <span>CancelcircleOutline</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <CardIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Card</span>
+        <span>Card</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <ChartIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Chart</span>
+        <span>Chart</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <ChartPieIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>ChartPie</span>
+        <span>ChartPie</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <CheckIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Check</span>
+        <span>Check</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <CheckcircleFillIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>CheckcircleFill</span>
+        <span>CheckcircleFill</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <CheckcircleOutlineIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>CheckcircleOutline</span>
+        <span>CheckcircleOutline</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <ChevronDownIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>ChevronDown</span>
+        <span>ChevronDown</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <ChevronLeftIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>ChevronLeft</span>
+        <span>ChevronLeft</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <ChevronRightIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>ChevronRight</span>
+        <span>ChevronRight</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <ChevronUpIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>ChevronUp</span>
+        <span>ChevronUp</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <CircleIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Circle</span>
+        <span>Circle</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <ClipIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Clip</span>
+        <span>Clip</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <ClockIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Clock</span>
+        <span>Clock</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <CloseIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Close</span>
+        <span>Close</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <CloudIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Cloud</span>
+        <span>Cloud</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <CloudDownloadIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>CloudDownload</span>
+        <span>CloudDownload</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <CloudUploadIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>CloudUpload</span>
+        <span>CloudUpload</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <CommandIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Command</span>
+        <span>Command</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <CompassIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Compass</span>
+        <span>Compass</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <CropIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Crop</span>
+        <span>Crop</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <CrownIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Crown</span>
+        <span>Crown</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <DeleteIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Delete</span>
+        <span>Delete</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <DescriptionIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Description</span>
+        <span>Description</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <DesktopIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Desktop</span>
+        <span>Desktop</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <DiamondIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Diamond</span>
+        <span>Diamond</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <DoneAllIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>DoneAll</span>
+        <span>DoneAll</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <DoubleCheveronDownIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>DoubleCheveronDown</span>
+        <span>DoubleCheveronDown</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <DoubleCheveronLeftIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>DoubleCheveronLeft</span>
+        <span>DoubleCheveronLeft</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <DoubleCheveronRightIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>DoubleCheveronRight</span>
+        <span>DoubleCheveronRight</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <DoubleCheveronUpIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>DoubleCheveronUp</span>
+        <span>DoubleCheveronUp</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <DownloadIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Download</span>
+        <span>Download</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <Download2Icon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Download2</span>
+        <span>Download2</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <EditIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Edit</span>
+        <span>Edit</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <EmojiEventIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>EmojiEvent</span>
+        <span>EmojiEvent</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <FeedIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Feed</span>
+        <span>Feed</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <FileIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>File</span>
+        <span>File</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <FileAddIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>FileAdd</span>
+        <span>FileAdd</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <FilterIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Filter</span>
+        <span>Filter</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <FireIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Fire</span>
+        <span>Fire</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <FlagIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Flag</span>
+        <span>Flag</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <FolderIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Folder</span>
+        <span>Folder</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <FolderFillIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>FolderFill</span>
+        <span>FolderFill</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <FullscreenIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Fullscreen</span>
+        <span>Fullscreen</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <GeoGroupIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>GeoGroup</span>
+        <span>GeoGroup</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <GppIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Gpp</span>
+        <span>Gpp</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <GppGoodIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>GppGood</span>
+        <span>GppGood</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <GpsIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Gps</span>
+        <span>Gps</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <GraphIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Graph</span>
+        <span>Graph</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <GridLineIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>GridLine</span>
+        <span>GridLine</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <GridViewIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>GridView</span>
+        <span>GridView</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <HeartIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Heart</span>
+        <span>Heart</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <HeartFillIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>HeartFill</span>
+        <span>HeartFill</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <HeightIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Height</span>
+        <span>Height</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <HomeIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Home</span>
+        <span>Home</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <ImageIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Image</span>
+        <span>Image</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <InboxIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Inbox</span>
+        <span>Inbox</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <InfocircleFillIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>InfocircleFill</span>
+        <span>InfocircleFill</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <InfocircleOutlineIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>InfocircleOutline</span>
+        <span>InfocircleOutline</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <KeyIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Key</span>
+        <span>Key</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <LanguageIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Language</span>
+        <span>Language</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <LaptopIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Laptop</span>
+        <span>Laptop</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <LaunchIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Launch</span>
+        <span>Launch</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <LightningIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Lightning</span>
+        <span>Lightning</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <LinkIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Link</span>
+        <span>Link</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <ListIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>List</span>
+        <span>List</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <LockIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Lock</span>
+        <span>Lock</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <LockOpenIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>LockOpen</span>
+        <span>LockOpen</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <MailIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Mail</span>
+        <span>Mail</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <MapIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Map</span>
+        <span>Map</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <MenuIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Menu</span>
+        <span>Menu</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <MessageIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Message</span>
+        <span>Message</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <MicOffIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>MicOff</span>
+        <span>MicOff</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <MicOnIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>MicOn</span>
+        <span>MicOn</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <MobileIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Mobile</span>
+        <span>Mobile</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <MoneyIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Money</span>
+        <span>Money</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <MoreHorizIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>MoreHoriz</span>
+        <span>MoreHoriz</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <MoreVertIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>MoreVert</span>
+        <span>MoreVert</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <MusicIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Music</span>
+        <span>Music</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <NearMeIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>NearMe</span>
+        <span>NearMe</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <NotificationNewIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>NotificationNew</span>
+        <span>NotificationNew</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <NotificationNoneIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>NotificationNone</span>
+        <span>NotificationNone</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <PasteIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Paste</span>
+        <span>Paste</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <PeopleAltIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>PeopleAlt</span>
+        <span>PeopleAlt</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <PersonAddIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>PersonAdd</span>
+        <span>PersonAdd</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <PlaceIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Place</span>
+        <span>Place</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <PluscircleFillIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>PluscircleFill</span>
+        <span>PluscircleFill</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <PluscircleOutlineIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>PluscircleOutline</span>
+        <span>PluscircleOutline</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <PolygonIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Polygon</span>
+        <span>Polygon</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <PowerSettingIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>PowerSetting</span>
+        <span>PowerSetting</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <PresentIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Present</span>
+        <span>Present</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <PrintIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Print</span>
+        <span>Print</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <PushPinIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>PushPin</span>
+        <span>PushPin</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <QuestioncircleFillIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>QuestioncircleFill</span>
+        <span>QuestioncircleFill</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <QuestioncircleOutlineIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>QuestioncircleOutline</span>
+        <span>QuestioncircleOutline</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <RecOffIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>RecOff</span>
+        <span>RecOff</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <RecOnIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>RecOn</span>
+        <span>RecOn</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <RedoIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Redo</span>
+        <span>Redo</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <RemoveFillIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>RemoveFill</span>
+        <span>RemoveFill</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <RemoveOutlineIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>RemoveOutline</span>
+        <span>RemoveOutline</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <ResetIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Reset</span>
+        <span>Reset</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <RocketIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Rocket</span>
+        <span>Rocket</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <SearchIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Search</span>
+        <span>Search</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <SettingIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Setting</span>
+        <span>Setting</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <ShareIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Share</span>
+        <span>Share</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <ShieldIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Shield</span>
+        <span>Shield</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <ShoppingBagIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>ShoppingBag</span>
+        <span>ShoppingBag</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <ShoppingCartIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>ShoppingCart</span>
+        <span>ShoppingCart</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <SignInIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>SignIn</span>
+        <span>SignIn</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <SignOutIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>SignOut</span>
+        <span>SignOut</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <StackIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Stack</span>
+        <span>Stack</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <StarIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Star</span>
+        <span>Star</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <StarFillIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>StarFill</span>
+        <span>StarFill</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <StoreIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Store</span>
+        <span>Store</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <StreetViewIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>StreetView</span>
+        <span>StreetView</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <SunIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Sun</span>
+        <span>Sun</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <SyncIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Sync</span>
+        <span>Sync</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <SyncAltIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>SyncAlt</span>
+        <span>SyncAlt</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <TagIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Tag</span>
+        <span>Tag</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <TargetIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Target</span>
+        <span>Target</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <TextIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Text</span>
+        <span>Text</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <ThumbUpIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>ThumbUp</span>
+        <span>ThumbUp</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <TicketIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Ticket</span>
+        <span>Ticket</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <TimerIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Timer</span>
+        <span>Timer</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <TrashIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Trash</span>
+        <span>Trash</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <TuneIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Tune</span>
+        <span>Tune</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <UndoIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Undo</span>
+        <span>Undo</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <UnfoldLessIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>UnfoldLess</span>
+        <span>UnfoldLess</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <UnfoldMoreIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>UnfoldMore</span>
+        <span>UnfoldMore</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <UploadIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Upload</span>
+        <span>Upload</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <UserIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>User</span>
+        <span>User</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <UserCircleIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>UserCircle</span>
+        <span>UserCircle</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <UserFillIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>UserFill</span>
+        <span>UserFill</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <VerifiedIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Verified</span>
+        <span>Verified</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <VerifiedFillIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>VerifiedFill</span>
+        <span>VerifiedFill</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <VisibilityIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Visibility</span>
+        <span>Visibility</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <VisibilityOffIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>VisibilityOff</span>
+        <span>VisibilityOff</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <VolumeOffIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>VolumeOff</span>
+        <span>VolumeOff</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <VolumeOffsetIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>VolumeOffset</span>
+        <span>VolumeOffset</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <VolumeOnIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>VolumeOn</span>
+        <span>VolumeOn</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <WalletIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Wallet</span>
+        <span>Wallet</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <WarningCircleFillIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>WarningCircleFill</span>
+        <span>WarningCircleFill</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <WarningCircleOutlineIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>WarningCircleOutline</span>
+        <span>WarningCircleOutline</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <WatchIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Watch</span>
+        <span>Watch</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <WaterIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Water</span>
+        <span>Water</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <WaveIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Wave</span>
+        <span>Wave</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <WidthIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Width</span>
+        <span>Width</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <WifiIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Wifi</span>
+        <span>Wifi</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <WriteIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>Write</span>
+        <span>Write</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <ZoomInIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>ZoomIn</span>
+        <span>ZoomIn</span>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid gray',
-          margin: '1rem',
-          minWidth: '4rem',
-          minHeight: '3rem',
-          padding: '0.5rem 1rem',
-        }}
-      >
+      <div>
         <ZoomOutIcon {...props} />
-        <span style={{ marginTop: '0.5rem' }}>ZoomOut</span>
+        <span>ZoomOut</span>
       </div>
-    </div>
+    </Icons>
   );
 };
 

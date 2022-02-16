@@ -1,4 +1,4 @@
-/* eslint-disable no-console */
+/* eslint-disable */
 
 const fs = require('fs');
 const path = require('path');
@@ -29,9 +29,9 @@ const generateStorybook = [
     .map((iconFile) => {
       const fileName = iconFile.split('.')[0];
       return `
-        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',border: '1px solid gray', margin: '1rem', minWidth:'4rem', minHeight:'3rem', padding: '0.5rem 1rem'}}>
+        <div>
           <${fileName}Icon {...props} />
-          <span style={{marginTop: '0.5rem'}}>${fileName}</span>
+          <span>${fileName}</span>
         </div>`;
     })
     .join('\n'),
@@ -47,23 +47,45 @@ fs.writeFile(path.join(defaultPath, 'export.generated.ts'), generatedCodes.join(
 
 fs.writeFile(
   path.join(defaultPath, 'index.stories.tsx'),
-  `
-import React from 'react';
+  `import React from 'react';
+import styled from '@emotion/styled';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { IconProps } from './index';
 import { ${generateIconFilesName} } from './index';
 
+const Icons = styled.div\`
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  & > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid gray;
+    margin: 16px;
+    min-width: 4rem;
+    min-height: 3rem;
+    padding: 8px 16px;
+    
+    & > span {
+      margin-top: 8px;
+    }
+  }     
+\`
+
 const IconDocument = (props: IconProps) => {
   return (
-    <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap'}}>
+    <Icons>
       ${generateStorybook}
-    </div>
+    </Icons>
   );
 };
 
 export default {
-  title: 'Icon',
+  title: 'Assets/Icon',
   component: IconDocument,
 } as ComponentMeta<typeof IconDocument>;
 
