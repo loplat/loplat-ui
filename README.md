@@ -63,7 +63,7 @@ npm publish
 ---
 
 ## Structure
-- **assets**; 정적 요소를 리액트로 wrapping만 한 컴포넌트.
-- **core**: 직접 시각화 되는 ui는 아니지만, 필수적으로 있어야 하는 컴포넌트.
-- **formControl**: form 태그 관련한 컴포넌트.
-- **components**: 그 외 컴포넌트.
+- **assets**; 정적 요소를 리액트로 wrapping한 컴포넌트.
+- **components**: 메인 컴포넌트.
+- **core**: 직접 시각화 되는 ui는 아니지만, 필수로 있어야 하는 컴포넌트.
+- **utils**: 메인 컴포넌트와 함께 사용할 수 있도록 환경을 제공하는 컴포넌트. 
