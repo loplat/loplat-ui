@@ -10,18 +10,18 @@ export default {
 } as ComponentMeta<typeof Modal>;
 
 const Template: ComponentStory<typeof Modal> = (args: ModalProps) => {
-  const [open, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const toggle = () => {
-    setOpen(!open);
+    setIsOpen(!isOpen);
   };
   const close = () => {
-    setOpen(false);
+    setIsOpen(false);
   };
 
   return (
     <>
       <Button onClick={toggle}>Open Modal</Button>
-      <Modal open={open} onClose={close}>
+      <Modal isOpen={isOpen} onClose={close}>
         <Help
           title="샘플 텍스트입니다."
           text="풀밭에 싸인 청춘을 끝에 듣기만 하여도 만물은 그들은 것이다. 이상은 소금이라 든 풀밭에 있는가?"

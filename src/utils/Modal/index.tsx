@@ -4,13 +4,13 @@ import { Portal } from '../Portal';
 import { generateUniqueId } from '../../functions/generator';
 
 export interface ModalProps {
-  open: boolean;
+  isOpen: boolean;
   onClose: () => void;
   zIndex?: number;
   children: React.ReactElement;
 }
 
-export function Modal({ open, onClose, zIndex = 9999, children }: ModalProps): React.ReactElement | null {
+export function Modal({ isOpen, onClose, zIndex = 9999, children }: ModalProps): React.ReactElement | null {
   const portalId = useMemo(() => `loplat-ui-modal__${generateUniqueId()}`, []);
   const [container, setContainer] = useState<Element | null>(null);
 
@@ -33,13 +33,23 @@ export function Modal({ open, onClose, zIndex = 9999, children }: ModalProps): R
 
     // remove container & eventListeners
     return () => {
-      document?.removeEventListener('keydown', onKeyDownESC);
-      const containerDOM = document.getElementById(portalId);
-      containerDOM?.remove();
+      document.removeEventListener('keydown', onKeyDownESC);
+      const containerDOM = document.getElementById(portalId) as HTMLDivElement;
+      containerDOM.remove();
     };
   }, [portalId]);
 
-  if (!open) return null;
+  useEffect(() => {
+    if (isOpen) {
+      // prevent scroll
+      document.body.style.overflow = 'hidden';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
+  if (!isOpen) return null;
   return (
     <Portal container={container}>
       <ModalWrapper zIndex={zIndex}>
