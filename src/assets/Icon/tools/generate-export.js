@@ -15,28 +15,6 @@ const generatedCodes = [
     .join('\n'),
 ];
 
-const generateIconFilesName = [
-  iconFiles
-    .map((iconFile) => {
-      const fileName = iconFile.split('.')[0];
-      return `${fileName}Icon`;
-    })
-    .join(', '),
-];
-
-const generateStorybook = [
-  iconFiles
-    .map((iconFile) => {
-      const fileName = iconFile.split('.')[0];
-      return `
-        <div>
-          <${fileName}Icon {...props} />
-          <span>${fileName}</span>
-        </div>`;
-    })
-    .join('\n'),
-];
-
 fs.writeFile(path.join(defaultPath, 'export.generated.ts'), generatedCodes.join('\n'), (error) => {
   if (error) {
     throw error;
@@ -52,7 +30,7 @@ import styled from '@emotion/styled';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { IconProps } from './index';
-import { ${generateIconFilesName} } from './index';
+import * as IconComponents from './export.generated';
 
 const Icons = styled.div\`
   display: flex;
@@ -79,7 +57,12 @@ const Icons = styled.div\`
 const IconDocument = (props: IconProps) => {
   return (
     <Icons>
-      ${generateStorybook}
+      {Object.entries(IconComponents).map(([componentName, Component]) => (
+        <div>
+          <Component {...props} />
+          <span>{componentName.split('Icon')[0]}</span>
+        </div>
+      ))}
     </Icons>
   );
 };
