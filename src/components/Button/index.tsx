@@ -304,6 +304,7 @@ export const Button = ({ disabled = false, ...props }: ButtonProps): JSX.Element
       {...marginSpacingProps(props)}
       className={props.className ?? ''}
       onClick={props.onClick}
+      {...props}
     >
       {props.leftIcon && <div className="leftIcon">{props.leftIcon}</div>}
       <span>{props.children}</span>
