@@ -52,6 +52,7 @@ const StyledWrapper = styled.div<BaseWrapper>`
 
   input[type='checkbox'] {
     position: absolute;
+    opacity: 0;
 
     & + span {
       position: relative;

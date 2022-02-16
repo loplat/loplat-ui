@@ -58,6 +58,7 @@ const RadioButtonContainer = styled.label<RadioStyleProps>`
 
   input {
     position: absolute;
+    opacity: 0;
   }
 `;
 
