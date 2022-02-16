@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import Circle from './images/circle.png';
 import Cube from './images/cube.png';
+import CubeWebp from './images/cube.webp';
+import Circle from './images/circle.png';
+import CircleWebp from './images/circle.webp';
 
 export interface SpinnerProps {
   duration?: number;
@@ -13,7 +15,10 @@ export const CubeSpinner = ({ duration = 1000, scale = 1, zIndex = 0 }: SpinnerP
   const steps = 28;
   return (
     <Wrapper width={3248} height={132} steps={steps} scale={scale} zIndex={zIndex}>
-      <SpriteImage src={Cube} alt="" duration={duration} steps={steps} />
+      <picture>
+        <source srcSet={CubeWebp} type="image/webp" />
+        <SpriteImage src={Cube} alt="" duration={duration} steps={steps} />
+      </picture>
     </Wrapper>
   );
 };
@@ -22,7 +27,10 @@ export const CircleSpinner = ({ duration = 1000, scale = 1, zIndex = 0 }: Spinne
   const steps = 30;
   return (
     <Wrapper width={3480} height={132} steps={steps} scale={scale} zIndex={zIndex}>
-      <SpriteImage src={Circle} alt="" duration={duration} steps={steps} />
+      <picture>
+        <source srcSet={CircleWebp} type="image/webp" />
+        <SpriteImage src={Circle} alt="" duration={duration} steps={steps} />
+      </picture>
     </Wrapper>
   );
 };
