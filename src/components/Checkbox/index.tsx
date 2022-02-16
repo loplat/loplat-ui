@@ -51,7 +51,8 @@ const StyledWrapper = styled.div<BaseWrapper>`
   }
 
   input[type='checkbox'] {
-    display: none;
+    position: absolute;
+
     & + span {
       position: relative;
       display: inline-block;
