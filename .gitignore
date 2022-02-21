@@ -28,6 +28,7 @@ assets/*
 components/*
 core/*
 formControls/*
+functions/*
 utils/*
 !rollup.config.js
 *.js
@@ -37,5 +38,4 @@ setupTests.d.ts
 stats.html
 
 # eslint
-
 .eslintcache
