@@ -113,7 +113,7 @@
     "url": "git+ssh://git@bitbucket.org/loplat_developers/loplat-ui.git"
   },
   "author": "loplat",
-  "license": "ISC",
+  "license": "MIT",
   "homepage": "https://bitbucket.org/loplat_developers/loplat-ui#readme",
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
