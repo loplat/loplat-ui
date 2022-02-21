@@ -9,28 +9,29 @@ export default {
 } as ComponentMeta<typeof RadioButton>;
 
 const RadioButtonGroup = (props: { name: string }): JSX.Element => {
-  const [selected, setSelected] = useState('test5');
+  const values = [
+    '테스트1',
+    '테스트2',
+    '테스트3',
+    '테스트4',
+    '테스트5 - disabled & checked',
+    '테스트6 - disabled & non-checked',
+  ];
+  const [selected, setSelected] = useState(values[4]);
 
   return (
     <form>
-      <RadioButton selected={selected} value="test1" onChange={setSelected} name={props.name}>
-        테스트1
-      </RadioButton>
-      <RadioButton selected={selected} value="test2" onChange={setSelected} name={props.name}>
-        테스트2
-      </RadioButton>
-      <RadioButton selected={selected} value="test3" onChange={setSelected} name={props.name}>
-        테스트3
-      </RadioButton>
-      <RadioButton selected={selected} value="test4" onChange={setSelected} name={props.name}>
-        테스트4
-      </RadioButton>
-      <RadioButton selected={selected} value="test5" onChange={setSelected} name={props.name} disabled>
-        테스트5 - disabled & checked
-      </RadioButton>
-      <RadioButton selected={selected} value="test6" onChange={setSelected} name={props.name} disabled>
-        테스트6 - disabled & non-checked
-      </RadioButton>
+      {values.map((value) => (
+        <RadioButton
+          isChecked={selected === value}
+          value={value}
+          onChange={setSelected}
+          name={props.name}
+          disabled={value === values[4] || value === values[5]}
+        >
+          {value}
+        </RadioButton>
+      ))}
     </form>
   );
 };

@@ -1,37 +1,36 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import styled from '@emotion/styled';
 import { grayscale50, grayscale800, grayscale200, grayscale500 } from '../../core/colors';
 import { primary } from '../../core/styles/palette';
 
 export interface RadioButtonProps {
-  selected: string;
+  isChecked: boolean;
+  name: string;
   value: string;
   onChange: (value: string) => void;
-  children: string | React.ReactElement;
-  name: string;
   disabled?: boolean;
+  children: string | React.ReactElement;
 }
 
 export const RadioButton = ({
-  selected,
-  children,
+  isChecked,
   name,
   value,
   onChange,
   disabled = false,
+  children,
 }: RadioButtonProps): React.ReactElement => {
-  const isSelected = useMemo(() => value === selected, [value, selected]);
   return (
-    <RadioButtonContainer isSelected={isSelected} isDisabled={disabled}>
+    <RadioButtonContainer isChecked={isChecked} isDisabled={disabled}>
       <input
         type="radio"
         name={name}
         value={value}
         disabled={disabled}
         onChange={() => onChange(value)}
-        checked={isSelected}
+        checked={isChecked}
       />
-      <Checkmark isSelected={isSelected} isDisabled={disabled} />
+      <Checkmark isChecked={isChecked} isDisabled={disabled} />
       {children}
     </RadioButtonContainer>
   );
@@ -39,19 +38,20 @@ export const RadioButton = ({
 
 interface RadioStyleProps {
   isDisabled: boolean;
-  isSelected: boolean;
+  isChecked: boolean;
 }
 
 const RadioButtonContainer = styled.label<RadioStyleProps>`
   position: relative;
   display: flex;
+  align-items: center;
 
   width: fit-content;
   line-height: 1.5;
   margin-bottom: 12px;
 
   font-size: 1rem;
-  font-weight: ${({ isSelected }) => (isSelected ? 'bold' : 'normal')};
+  font-weight: ${({ isChecked }) => (isChecked ? 'bold' : 'normal')};
   color: ${({ isDisabled }) => (isDisabled ? grayscale500 : grayscale800)};
   pointer-events: ${({ isDisabled }) => (isDisabled ? 'none' : 'auto')};
   cursor: pointer;
@@ -68,8 +68,8 @@ const Checkmark = styled.span<RadioStyleProps>`
   width: 20px;
   border-radius: 50%;
   box-sizing: border-box;
-  border: 1px solid ${({ isDisabled, isSelected }) => (!isDisabled && isSelected ? primary : grayscale200)};
-  background-color: ${({ isSelected }) => (isSelected ? grayscale50 : 'white')};
+  border: 1px solid ${({ isDisabled, isChecked }) => (!isDisabled && isChecked ? primary : grayscale200)};
+  background-color: ${({ isChecked }) => (isChecked ? grayscale50 : 'white')};
   margin-right: 8px;
 
   :after {
@@ -82,6 +82,6 @@ const Checkmark = styled.span<RadioStyleProps>`
     height: 10px;
     border-radius: 50%;
     background: ${({ isDisabled }) => (isDisabled ? grayscale500 : primary)};
-    display: ${({ isSelected }) => (isSelected ? 'block' : 'none')};
+    display: ${({ isChecked }) => (isChecked ? 'block' : 'none')};
   }
 `;

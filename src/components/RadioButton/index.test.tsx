@@ -14,7 +14,7 @@ describe('<RadioButton />', () => {
     const { result } = renderHook(() => useSelect(''));
     const { getByLabelText } = render(
       <RadioButton
-        selected={result.current.selected}
+        isChecked={result.current.selected === 'test'}
         value="test"
         onChange={(current) => {
           act(() => {
@@ -36,7 +36,7 @@ describe('<RadioButton />', () => {
     const { result } = renderHook(() => useSelect(''));
     const { getByLabelText } = render(
       <RadioButton
-        selected={result.current.selected}
+        isChecked={result.current.selected === 'test'}
         value="test"
         disabled
         onChange={(current) => {

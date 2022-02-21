@@ -104,15 +104,7 @@ export const Input = React.memo<InputProps>(({ className = '', ...props }): Reac
   const uniqueId = useMemo(() => generateUniqueId(), []);
   const id = useMemo(() => props.id || uniqueId, [props.id, uniqueId]);
   return (
-    <div
-      className={`${css`
-        display: flex;
-        flex-flow: column;
-        width: 100%;
-      `} ${className}`}
-      aria-label="input"
-      role="textbox"
-    >
+    <>
       <div
         className={`${css`
           position: relative;
@@ -137,6 +129,6 @@ export const Input = React.memo<InputProps>(({ className = '', ...props }): Reac
       </div>
 
       {props.error && props.errorMessage && <InlineError>{props.errorMessage}</InlineError>}
-    </div>
+    </>
   );
 });
