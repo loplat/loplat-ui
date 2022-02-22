@@ -1,0 +1,48 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { CubeSpinner } from './index';
+
+<Meta
+  title="Components/Spinner/Cube"
+  component={CubeSpinner}
+  argTypes={{
+    duration: {
+      description: '`spinner`가 돌아가는 속도를 조절합니다.',
+    },
+    scale: {
+      description: '`spinner`의 크기를 조절합니다.',
+    },
+    zIndex: {
+      description: 'css의 z-index를 결정합니다.',
+    },
+  }}
+/>
+
+export const Template = (args) => <CubeSpinner {...args} />;
+
+# CubeSpinner
+
+<Canvas>
+  <Story name="cube">{Template.bind({})}</Story>
+</Canvas>
+
+## Props
+
+<ArgsTable story="cube" />
+
+## 예시
+
+### 작은 크기
+
+<Canvas>
+  <Story name="cube small" args={{ duration: 1000, scale: 0.5, zIndex: 9999 }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### 빠른 속도
+
+<Canvas>
+  <Story name="cube duration" args={{ duration: 300, scale: 0.5, zIndex: 9999 }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>

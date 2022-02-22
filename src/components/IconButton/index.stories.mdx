@@ -1,0 +1,101 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { IconButton } from './index.tsx';
+import { Campaign as CampaignIcon } from '../../assets/Icon/generated/Campaign.tsx';
+
+<Meta
+  title="Components/Button/IconButton"
+  component={IconButton}
+  argTypes={{
+    borderless: { description: '`border` 속성이 제거할 수 있습니다.' },
+    mt: {
+      description: 'margin 위쪽을 조절합니다.',
+      table: {
+        category: 'margin',
+      },
+    },
+    mr: {
+      description: 'margin 오른쪽을 조절합니다.',
+      table: {
+        category: 'margin',
+      },
+    },
+    ml: {
+      description: 'margin 왼쪽을 조절합니다.',
+      table: {
+        category: 'margin',
+      },
+    },
+    mb: {
+      description: 'margin 아래쪽을 조절합니다.',
+      table: {
+        category: 'margin',
+      },
+    },
+    mx: {
+      description: 'margin 양옆을 조절합니다.',
+      table: {
+        category: 'margin',
+      },
+    },
+    my: {
+      description: 'margin 위아래를 조절합니다.',
+      table: {
+        category: 'margin',
+      },
+    },
+  }}
+/>
+
+export const Template = (args) => <IconButton {...args} children={<CampaignIcon />} aria-label="캠페인" />;
+
+# IconButton
+
+아이콘만 있는 버튼컴포넌트입니다.
+
+*loplat UI 에서 제공하는 아이콘을 사용*하는 것을 권장합니다.
+
+<Canvas>
+  <Story name="default">{Template.bind({})}</Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+## 예시
+
+### various colors
+
+`Button` 컴포넌트의 `color` 프로퍼티를 모두 가집니다.
+
+<Canvas>
+  <Story name="primary1" args={{ color: 'primary1' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="primary2" args={{ color: 'primary2' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="danger1" args={{ color: 'danger1' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="danger2" args={{ color: 'danger2' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="solid" args={{ color: 'solid' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="ghost" args={{ color: 'ghost' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### borderless
+
+`Button` 컴포넌트의 `borderless` 프로퍼티와 동일한 효과를 가집니다.
+
+<Canvas>
+  <Story name="primary2 borderless" args={{ color: 'primary2', borderless: true }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="danger2 borderless" args={{ color: 'danger2', borderless: true }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>

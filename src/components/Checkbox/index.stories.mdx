@@ -1,0 +1,49 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { Checkbox } from './index';
+
+<Meta
+  title="Components/Checkbox"
+  component={Checkbox}
+  argTypes={{
+    checked: {
+      description: '중간값을 할당할 수 있습니다.',
+      options: [true, false, 'checked', 'unchecked', 'intermediate'],
+      controls: {
+        type: 'select',
+      },
+    },
+    boldLabel: {
+      description: '폰트굵기를 굵게 만듭니다.',
+    },
+  }}
+/>
+
+export const Template = (args) => <Checkbox name="test" {...args} />;
+
+# Checkbox
+
+<Canvas>
+  <Story name="default" args={{ label: '체크박스' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+## Stories
+
+### Intermediate
+
+<Canvas>
+  <Story name="중간값" args={{ label: '중간값', checked: 'intermediate' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### Disabled
+
+<Canvas>
+  <Story name="중간값 disabled" args={{ label: '중간값', checked: 'intermediate', disabled: true }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>

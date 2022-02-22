@@ -1,0 +1,44 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { LoplatLogo, LoplatILogo, LoplatXLogo, LoplatXFullLogo } from './index';
+
+<Meta title="Assets/Logo" component={LoplatLogo} argTypes={{ width: { description: '`px`단위 입니다.' } }} />
+
+# Logo
+
+**loplat 공식 로고**
+
+## loplat
+
+<Canvas>
+  <Story name="loplat">
+    <LoplatLogo width="200" />
+  </Story>
+</Canvas>
+
+<ArgsTable story="loplat" />
+
+## loplat X
+
+#### full
+
+<Canvas>
+  <Story name="loplat X full">
+    <LoplatXFullLogo width="200" />
+  </Story>
+</Canvas>
+
+#### short
+
+<Canvas>
+  <Story name="loplat X">
+    <LoplatXLogo width="50" />
+  </Story>
+</Canvas>
+
+## loplat I
+
+<Canvas>
+  <Story name="loplat I">
+    <LoplatILogo width="50" />
+  </Story>
+</Canvas>

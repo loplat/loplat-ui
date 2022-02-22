@@ -1,0 +1,129 @@
+import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs';
+import { Badge } from './index.tsx';
+import { css } from '@emotion/css';
+
+<Meta title="Components/Badge" component={Badge} />
+
+export const Template = (args) => <Badge {...args} />;
+
+# Badge
+
+`Badge`컴포넌트를 이용해서 간단하게 작성해보세요.
+
+## Quick Start
+
+```js
+import { Badge } from '@loplat-ui';
+```
+
+## 예시
+
+### default
+
+<Canvas>
+  <Story name="default" args={{ text: 'default' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### type: pill
+
+`type`프로퍼티의 default value가 `pill`이므로 따로 선언할 필요가 없다.
+
+<Canvas>
+  <Story name="pill primary" args={{ text: 'primary', color: 'primary' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="pill light" args={{ text: 'light', color: 'light' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="pill danger" args={{ text: 'danger', color: 'danger' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="pill success" args={{ text: 'success', color: 'success' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### type: pill, variant: outlined
+
+<Canvas>
+  <Story name="pill primary outlined" args={{ text: 'primary', color: 'primary', variant: 'outlined' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="pill light outlined" args={{ text: 'light', color: 'light', variant: 'outlined' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="pill danger outlined" args={{ text: 'danger', color: 'danger', variant: 'outlined' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="pill success outlined" args={{ text: 'success', color: 'success', variant: 'outlined' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### type: round
+
+<Canvas>
+  <Story name="round primary" args={{ type: 'round', text: 'primary', color: 'primary' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="round light" args={{ type: 'round', text: 'light', color: 'light' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="round danger" args={{ type: 'round', text: 'danger', color: 'danger' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="round success" args={{ type: 'round', text: 'success', color: 'success' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### type: round, variant:outlined
+
+<Canvas>
+  <Story name="round primary outlined" args={{ type: 'round', text: 'primary', color: 'primary', variant: 'outlined' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="round light outlined" args={{ type: 'round', text: 'light', color: 'light', variant: 'outlined' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="round danger outlined" args={{ type: 'round', text: 'danger', color: 'danger', variant: 'outlined' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="round success outlined" args={{ type: 'round', text: 'success', color: 'success', variant: 'outlined' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### new
+
+제시된 속성을 그대로 사용해야 *디자이너의 의도*대로 사용할 수 있습니다.
+
+#### new 사용예제
+
+<Story name="new example">
+  <div
+    className={`${css`
+      display: flex;
+      span {
+        margin-right: 0.4rem;
+      }
+    `}`}
+  >
+    <span>새로운게 나왔어요!</span>
+    <Badge type="pill" color="new" text="N" size="small" variant="filled" />
+  </div>
+</Story>
+
+<Canvas>
+  <Story name="new" args={{ type: 'pill', color: 'new', text: 'N', size: 'small', variant: 'filled' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+---
+
+## Props
+
+<ArgsTable of={Badge} />

@@ -1,0 +1,48 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { CircleSpinner } from './index';
+
+<Meta
+  title="Components/Spinner/Circle"
+  component={CircleSpinner}
+  argTypes={{
+    duration: {
+      description: '`spinner`가 돌아가는 속도를 조절합니다.',
+    },
+    scale: {
+      description: '`spinner`의 크기를 조절합니다.',
+    },
+    zIndex: {
+      description: 'css의 z-index를 결정합니다.',
+    },
+  }}
+/>
+
+export const Template = (args) => <CircleSpinner zIndex="9999" {...args} />;
+
+# CircleSpinner
+
+<Canvas>
+  <Story name="default">{Template.bind({})}</Story>
+</Canvas>
+
+## Props
+
+<ArgsTable story="default" />
+
+## 예시
+
+### 작은 크기
+
+<Canvas>
+  <Story name="circle small" args={{ duration: 1000, scale: 0.5 }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### 느린 속도
+
+<Canvas>
+  <Story name="circle duration" args={{ duration: 1600, scale: 0.5 }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>

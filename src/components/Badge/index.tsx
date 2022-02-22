@@ -39,6 +39,8 @@ export const Badge = ({
   return (
     <div
       className={`${css`
+        display: flex;
+        align-items: center;
         width: fit-content;
         padding: ${padding};
         font-size: ${fontSize};
