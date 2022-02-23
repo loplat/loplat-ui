@@ -24,7 +24,6 @@ export interface InputProps {
   autoComplete?: 'username' | 'current-password' | 'new-password';
   rightIcon?: React.ReactElement;
   isIconVisible?: boolean;
-  title?: string;
 }
 type RightIconProps = Pick<InputProps, 'isIconVisible' | 'disabled'>;
 
@@ -100,7 +99,7 @@ const InlineError = React.memo(({ children }): React.ReactElement => {
   );
 });
 
-export const Input = React.memo<InputProps>(({ className = '', ...props }): React.ReactElement => {
+export const Input = React.memo<InputProps>(({ className = '', onEnter, ...props }): React.ReactElement => {
   const uniqueId = useMemo(() => generateUniqueId(), []);
   const id = useMemo(() => props.id || uniqueId, [props.id, uniqueId]);
   return (
@@ -117,7 +116,7 @@ export const Input = React.memo<InputProps>(({ className = '', ...props }): Reac
           id={id}
           onKeyPress={(e) => {
             if (e.key === 'Enter') {
-              props.onEnter && props.onEnter(e);
+              onEnter && onEnter(e);
             }
           }}
         />
