@@ -1,7 +1,17 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import { LoplatLogo, LoplatILogo, LoplatXLogo, LoplatXFullLogo } from './index';
+import { hideCanvas } from '../../storybook-props';
 
-<Meta title="Assets/Logo" component={LoplatLogo} argTypes={{ width: { description: '`px`단위 입니다.' } }} />
+<Meta
+  title="Assets/Logo"
+  component={LoplatLogo}
+  argTypes={{ width: { description: '`px`단위 입니다.' } }}
+  parameters={{
+    ...hideCanvas,
+  }}
+/>
+
+export const Template = (args) => <LoplatLogo {...args} />;
 
 # Logo
 
@@ -10,8 +20,8 @@ import { LoplatLogo, LoplatILogo, LoplatXLogo, LoplatXFullLogo } from './index';
 ## loplat
 
 <Canvas>
-  <Story name="loplat">
-    <LoplatLogo width="200" />
+  <Story name="loplat" args={{ width: 200 }}>
+    {Template.bind({})}
   </Story>
 </Canvas>
 

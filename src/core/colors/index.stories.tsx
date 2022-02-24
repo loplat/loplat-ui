@@ -6,7 +6,7 @@ export const Colors = (): ReactElement => (
   <div>
     {Object.entries(colors).map(([color, value]) => (
       <StyledColor key={color}>
-        <h4>{color}</h4>
+        <h3>{color}</h3>
         {typeof value === 'object' ? (
           <StyledBoxList>
             {Object.entries(value).map(([density, value]) => (
@@ -23,11 +23,6 @@ export const Colors = (): ReactElement => (
     ))}
   </div>
 );
-
-export default {
-  title: 'core/colors',
-  default: Colors,
-};
 
 const StyledColor = styled.div`
   margin-bottom: 30px;

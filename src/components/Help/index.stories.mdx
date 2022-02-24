@@ -5,8 +5,13 @@ import { Help } from './index.tsx';
   title="Components/Help"
   component={Help}
   argTypes={{
-    title: { description: '`Help`컴포넌트의 상단의 제목입니다. `p`태그로 렌더링됩니다.' },
-    text: { description: '`Help`컴포넌트의 본문내용입니다. `p`태그로 렌더링됩니다.' },
+    title: { description: '`Help`컴포넌트의 상단 제목입니다. `p`태그를 사용합니다.' },
+    text: { description: '`Help`컴포넌트의 본문내용입니다. `p`태그를 사용합니다.' },
+    maxWidth: {
+      description: '`px`단위로 숫자를 입력하거나, `100%`를 입력하면 됩니다.',
+      options: [200, 400, 600, 800, 1000, '100%'],
+      control: { type: 'select' },
+    },
   }}
 />
 
@@ -28,7 +33,7 @@ export const Template = (args) => (
 
 <ArgsTable story="default" />
 
-## 예시
+## 예제
 
 ### fullWidth
 

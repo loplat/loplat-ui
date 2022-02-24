@@ -4,6 +4,7 @@ import { Modal } from './index';
 import { Help } from '../../components/Help';
 import { Button } from '../../components/Button';
 import { css } from '@emotion/css';
+import { hideCanvas } from '../../storybook-props';
 
 <Meta
   title="Utils/Modal"
@@ -21,6 +22,9 @@ import { css } from '@emotion/css';
         },
       },
     },
+  }}
+  parameters={{
+    ...hideCanvas,
   }}
 />
 
@@ -57,7 +61,7 @@ export const Template = (args) => {
 
 `ReactDOM.createPortal`를 활용하여 모달을 생성합니다.
 
-portal을 통해 열기 때문에 `<Modal/>`컴포넌트가 어느 위치에 작성되어있어도 항상 최상단에서 렌더링됩니다.
+portal을 통해 열기 때문에 `<Modal/>`컴포넌트가 어느 위치에 작성되어있어도 항상 최상단에서 구현됩니다.
 
 키보드의 `esc`키를 누르거나 배경을 누를경우, 모달이 닫힙니다.
 

@@ -5,6 +5,7 @@ import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import { Headline } from '../../core/Typography/Headline';
 import { css } from '@emotion/css';
 import { green200 } from '../../core/colors/green.ts';
+import { hideCanvas } from '../../storybook-props';
 
 <Meta
   title="Utils/Portal"
@@ -19,6 +20,9 @@ import { green200 } from '../../core/colors/green.ts';
       control: { type: null },
       table: { type: { summary: 'Element | null' } },
     },
+  }}
+  parameters={{
+    ...hideCanvas,
   }}
 />
 
@@ -38,7 +42,7 @@ export const Template = (args) => {
           margin-bottom: 1rem;
         `}`}
       >
-        여기 안에서 포탈 내용이 렌더됩니다.
+        이곳에서 포탈 내용이 보여집니다.
       </div>
       <Button onClick={toggle}>Toggle Portal</Button>
       {isVisible && (
@@ -71,7 +75,7 @@ import { useRef, useState } from 'React';
 import { Portal } from 'loplat-ui';
 ```
 
-`Portal`컴포넌트 안에 작성된 내용은 `container ref`를 가진 node 안에서 렌더됩니다.
+`Portal`컴포넌트 안에 작성된 내용은 `container ref`를 가진 node 안에서 구현됩니다.
 
 `Portal`에 props으로 주는 `container`는 포탈로 사용할 node여야 합니다. useRef를 사용했습니다.
 
@@ -85,7 +89,7 @@ const PortalComponent = (args) => {
 
   return (
     <div>
-      <div ref={container}>여기 안에서 포탈 내용이 렌더됩니다.</div>
+      <div ref={container}>여기 안에서 포탈 내용이 보여집니다.</div>
       <Button onClick={toggle}>Toggle Portal</Button>
       {isVisible && (
         <Portal container={container.current}>

@@ -8,19 +8,23 @@ import { pickPropsInObj, eventHandler } from '../../storybook-props';
   argTypes={{
     ...pickPropsInObj(eventHandler, 'onChange'),
     checked: {
-      description: '중간값을 할당할 수 있습니다.',
+      description: '체크 여부와 중간값을 할당할 수 있습니다.',
       options: [true, false, 'checked', 'unchecked', 'intermediate'],
       controls: {
         type: 'select',
       },
     },
     boldLabel: {
-      description: '폰트굵기를 굵게 만듭니다.',
+      description: '라벨의 폰트굵기를 굵게 만듭니다.',
     },
+    label: {
+      description: '체크박스와 연동된 `label`태그입니다.',
+    },
+    name: { description: '`label`과 `input`을 연동하는 프로퍼티입니다. form을 이용해 submit될 때, key값입니다.' },
   }}
 />
 
-export const Template = (args) => <Checkbox name="test" {...args} />;
+export const Template = (args) => <Checkbox name="checkbox test" {...args} />;
 
 # Checkbox
 
@@ -32,9 +36,11 @@ export const Template = (args) => <Checkbox name="test" {...args} />;
 
 <ArgsTable story="default" />
 
-## 예시
+## 예제
 
 ### Intermediate
+
+체크여부가 `boolean`으로 측정할 수 없을 때 사용합니다.
 
 <Canvas>
   <Story name="중간값" args={{ label: '중간값', checked: 'intermediate' }}>
@@ -42,10 +48,10 @@ export const Template = (args) => <Checkbox name="test" {...args} />;
   </Story>
 </Canvas>
 
-### Disabled
+### Checked Disabled
 
 <Canvas>
-  <Story name="중간값 disabled" args={{ label: '중간값', checked: 'intermediate', disabled: true }}>
+  <Story name="중간값 disabled" args={{ label: '사용 불가능', checked: true, disabled: true }}>
     {Template.bind({})}
   </Story>
 </Canvas>

@@ -1,0 +1,26 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { colors } from '.';
+import { Colors } from './index.stories.tsx';
+import { hideCanvas } from '../../storybook-props';
+
+<Meta
+  title="core/colors"
+  component={Colors}
+  parameters={{
+    ...hideCanvas,
+  }}
+/>
+
+# Colors
+
+**loplat**에서 사용하는 색상들입니다.
+
+## 사용 방법
+
+```js
+import { grayscale300, teal } from 'loplat-ui';
+```
+
+## 색상 목록
+
+<Colors />
