@@ -25,11 +25,11 @@ export const Template = (args) => <Badge {...args} />;
 
 <ArgsTable story="default" />
 
-## 예시
+## 예제
 
 ### type: pill
 
-`type`프로퍼티의 default value가 `pill`이므로 따로 선언할 필요가 없다.
+`type`프로퍼티의 default value가 `pill`이므로 따로 선언할 필요가 없습니다.
 
 <Canvas>
   <Story name="pill primary" args={{ text: 'primary', color: 'primary' }}>
@@ -97,32 +97,35 @@ export const Template = (args) => <Badge {...args} />;
   </Story>
 </Canvas>
 
-### new
+### type: new
+
+`text`속성에 전달된 첫번째 글자만 렌더됩니다.
+
+#### loplat 디자이너의 권장
 
 제시된 속성을 그대로 사용해야 *디자이너의 의도*대로 사용할 수 있습니다.
 
-#### new 사용예제
-
-<Story name="new example">
-  <div
-    className={`${css`
-      display: flex;
-      span {
-        margin-right: 0.4rem;
-      }
-    `}`}
-  >
-    <span>새로운게 나왔어요!</span>
-    <Badge type="pill" color="new" text="N" size="small" variant="filled" />
-  </div>
-</Story>
-
 <Canvas>
-  <Story name="new" args={{ type: 'pill', color: 'new', text: 'N', size: 'small', variant: 'filled' }}>
+  <Story name="new" args={{ type: 'new', variant: 'filled', color: 'danger', text: 'N' }}>
     {Template.bind({})}
   </Story>
 </Canvas>
 
----
+#### 다른 예제
 
-## Props
+`color`, `variant`속성을 수정하여 다양하게 사용할 수 있습니다.
+
+<Canvas>
+  <Story name="new primary outlined" args={{ type: 'new', variant: 'outlined', color: 'primary', text: 'primary' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="new light filled" args={{ type: 'new', variant: 'filled', color: 'light', text: 'light' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="new danger outlined" args={{ type: 'new', variant: 'outlined', color: 'danger', text: 'danger' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="new green filled" args={{ type: 'new', variant: 'filled', color: 'success', text: 'green' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
