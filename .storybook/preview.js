@@ -1,4 +1,5 @@
 export const parameters = {
+  viewMode: 'docs',
   options: {
     storySort: {
       order: [
@@ -19,6 +20,7 @@ export const parameters = {
       date: /Date$/,
     },
     exclude: ['role'],
+    sort: 'requiredFirst',
   },
   a11y: {
     config: {
