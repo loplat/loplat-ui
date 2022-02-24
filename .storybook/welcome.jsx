@@ -38,6 +38,7 @@ export const Welcome = () => {
 };
 
 export default {
+  title: 'Intro/Welcome',
   component: Welcome,
   parameters: {
     previewTabs: {
