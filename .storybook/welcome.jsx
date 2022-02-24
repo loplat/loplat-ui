@@ -44,6 +44,18 @@ export default {
     previewTabs: {
       'storybook/docs/panel': { hidden: true },
     },
+    controls: {
+      disabled: true,
+    },
+    actions: {
+      disabled: true,
+    },
+    a11y: {
+      disabled: true,
+    },
+    options: {
+      showPanel: false,
+    },
   },
 };
 
