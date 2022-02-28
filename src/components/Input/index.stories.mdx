@@ -9,10 +9,17 @@ import { icon, pickPropsInObj, eventHandler } from '../../storybook-props';
   title="Components/Input"
   component={Input}
   argTypes={{
+    value: { description: '`input` 상태를 연결해주세요.', type: 'string', table: { category: 'input' } },
+    id: { description: '`label`태그와 연동하기 위한 `input` 태그의 `id` 속성입니다.', type: 'string', table: { category: 'input' } },
+    type: { description: '`input` 태그의 type 속성입니다.', type: 'string', table: { category: 'input' } },
+    autoComplete: { description: '`input` 태그의 `autocomplete` 속성입니다.', type: 'string', table: { category: 'input' } },
+    disabled: { description: '`input` 태그의 `disabled` 속성입니다.', type: 'boolean', table: { category: 'input' } },
+    placeholder: { description: '`input` 태그의 `placeholder` 속성입니다.', type: 'string', table: { category: 'input' } },
+    className: { description: '`input` 태그의 `class` 속성입니다.', type: 'string', table: { category: 'input' } },
     error: { description: '`true`일 때, `errorMessage`가 하단에 표시됩니다.', table: { category: 'error' } },
     errorMessage: { table: { category: 'error' } },
     ...pickPropsInObj(icon, 'isIconVisible', 'rightIcon'),
-    ...pickPropsInObj(eventHandler, 'onEnter', 'onBlur', 'onFocus', 'onChange'),
+    ...pickPropsInObj(eventHandler, 'onKeyPress', 'onBlur', 'onFocus', 'onChange'),
   }}
 />
 

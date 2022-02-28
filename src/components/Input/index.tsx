@@ -1,11 +1,10 @@
-import React, { ForwardedRef, useMemo } from 'react';
+import React, { ForwardedRef } from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/css';
 import { primary, danger } from '../../core/styles/palette';
 import { white, bluescale500, grayscale500, grayscale200, bluescale50, grayscale900 } from '../../core/colors';
 import { spacing } from '../../core/Spacing';
 import { AriaProps } from '../../core/a11y';
-import { generateUniqueId } from '../../functions/generator';
 
 type HTMLInputProps = Partial<
   Pick<HTMLInputElement, 'autocomplete' | 'className' | 'disabled' | 'id' | 'placeholder' | 'type' | 'value'>
@@ -13,12 +12,12 @@ type HTMLInputProps = Partial<
 export interface InputProps extends HTMLInputProps, AriaProps {
   error?: boolean;
   errorMessage?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onEnter?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
-  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
-  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
   rightIcon?: React.ReactElement;
   isIconVisible?: boolean;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onKeyPress?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
 }
 
 const BaseInput = styled.input<Pick<InputProps, 'isIconVisible' | 'error'>>`
@@ -93,38 +92,25 @@ const InlineError = React.memo(({ children }): React.ReactElement => {
   );
 });
 
-export const Input = React.forwardRef(
-  ({ onEnter, ...props }: InputProps, ref: ForwardedRef<HTMLInputElement>): React.ReactElement => {
-    const uniqueId = useMemo(() => generateUniqueId(), []);
-    const id = useMemo(() => props.id || uniqueId, [props.id, uniqueId]);
-    return (
-      <>
-        <div
-          className={`${css`
-            position: relative;
-            display: flex;
-            width: 100%;
-          `}`}
-        >
-          <BaseInput
-            {...props}
-            ref={ref}
-            id={id}
-            onKeyPress={(e) => {
-              if (e.key === 'Enter') {
-                onEnter && onEnter(e);
-              }
-            }}
-          />
-          {props.rightIcon && (
-            <RightIconContainer disabled={props.disabled} isIconVisible={props.isIconVisible}>
-              {props.rightIcon}
-            </RightIconContainer>
-          )}
-        </div>
+export const Input = React.forwardRef((props: InputProps, ref: ForwardedRef<HTMLInputElement>): React.ReactElement => {
+  return (
+    <>
+      <div
+        className={`${css`
+          position: relative;
+          display: flex;
+          width: 100%;
+        `}`}
+      >
+        <BaseInput {...props} ref={ref} />
+        {props.rightIcon && (
+          <RightIconContainer disabled={props.disabled} isIconVisible={props.isIconVisible}>
+            {props.rightIcon}
+          </RightIconContainer>
+        )}
+      </div>
 
-        {props.error && props.errorMessage && <InlineError>{props.errorMessage}</InlineError>}
-      </>
-    );
-  },
-);
+      {props.error && props.errorMessage && <InlineError>{props.errorMessage}</InlineError>}
+    </>
+  );
+});
