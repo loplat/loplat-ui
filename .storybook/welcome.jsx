@@ -41,6 +41,7 @@ export default {
   title: 'Intro/Welcome',
   component: Welcome,
   parameters: {
+    viewMode: 'canvas',
     previewTabs: {
       'storybook/docs/panel': { hidden: true },
     },
