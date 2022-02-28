@@ -1,3 +1,3 @@
 import { AriaAttributes, AriaRole } from 'react';
 
-export type AriaProps = AriaAttributes & { role: AriaRole };
+export type AriaProps = AriaAttributes & { role?: AriaRole };

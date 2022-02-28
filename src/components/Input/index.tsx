@@ -1,33 +1,27 @@
-import React, { useMemo } from 'react';
+import React, { ForwardedRef, useMemo } from 'react';
 import styled from '@emotion/styled';
+import { css } from '@emotion/css';
 import { primary, danger } from '../../core/styles/palette';
 import { white, bluescale500, grayscale500, grayscale200, bluescale50, grayscale900 } from '../../core/colors';
-import { css } from '@emotion/css';
 import { spacing } from '../../core/Spacing';
+import { AriaProps } from '../../core/a11y';
 import { generateUniqueId } from '../../functions/generator';
 
-export interface InputProps {
-  id?: string;
-  placeholder?: string;
+type HTMLInputProps = Partial<
+  Pick<HTMLInputElement, 'autocomplete' | 'className' | 'disabled' | 'id' | 'placeholder' | 'type' | 'value'>
+>;
+export interface InputProps extends HTMLInputProps, AriaProps {
   error?: boolean;
   errorMessage?: string;
-  disabled?: boolean;
-  value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onEnter?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
   onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
-  inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
-  className?: string | undefined;
-  ref?: React.RefObject<HTMLInputElement>;
-  type?: 'email' | 'password' | 'text';
-  autoComplete?: 'username' | 'current-password' | 'new-password';
   rightIcon?: React.ReactElement;
   isIconVisible?: boolean;
 }
-type RightIconProps = Pick<InputProps, 'isIconVisible' | 'disabled'>;
 
-const BaseInput = styled.input<InputProps>`
+const BaseInput = styled.input<Pick<InputProps, 'isIconVisible' | 'error'>>`
   width: 100%;
   height: auto;
   color: ${grayscale900};
@@ -61,13 +55,9 @@ const BaseInput = styled.input<InputProps>`
     color: ${grayscale900};
     border-color: ${({ error }) => !error && primary};
   }
-
-  g > path {
-    fill: ${({ disabled }) => disabled && grayscale500};
-  }
 `;
 
-const RightIconContainer = styled.div<RightIconProps>`
+const RightIconContainer = styled.div<Pick<InputProps, 'isIconVisible' | 'disabled'>>`
   position: absolute;
   top: 50%;
   right: 15px;
@@ -80,6 +70,10 @@ const RightIconContainer = styled.div<RightIconProps>`
   svg {
     width: 20px;
     height: 20px;
+
+    g > path {
+      fill: ${({ disabled }) => disabled && grayscale500};
+    }
   }
 `;
 
@@ -99,35 +93,38 @@ const InlineError = React.memo(({ children }): React.ReactElement => {
   );
 });
 
-export const Input = React.memo<InputProps>(({ className = '', onEnter, ...props }): React.ReactElement => {
-  const uniqueId = useMemo(() => generateUniqueId(), []);
-  const id = useMemo(() => props.id || uniqueId, [props.id, uniqueId]);
-  return (
-    <>
-      <div
-        className={`${css`
-          position: relative;
-          display: flex;
-          width: 100%;
-        `}`}
-      >
-        <BaseInput
-          {...props}
-          id={id}
-          onKeyPress={(e) => {
-            if (e.key === 'Enter') {
-              onEnter && onEnter(e);
-            }
-          }}
-        />
-        {props.rightIcon && (
-          <RightIconContainer disabled={props.disabled} isIconVisible={props.isIconVisible} aria-label="warning icon">
-            {props.rightIcon}
-          </RightIconContainer>
-        )}
-      </div>
+export const Input = React.forwardRef(
+  ({ onEnter, ...props }: InputProps, ref: ForwardedRef<HTMLInputElement>): React.ReactElement => {
+    const uniqueId = useMemo(() => generateUniqueId(), []);
+    const id = useMemo(() => props.id || uniqueId, [props.id, uniqueId]);
+    return (
+      <>
+        <div
+          className={`${css`
+            position: relative;
+            display: flex;
+            width: 100%;
+          `}`}
+        >
+          <BaseInput
+            {...props}
+            ref={ref}
+            id={id}
+            onKeyPress={(e) => {
+              if (e.key === 'Enter') {
+                onEnter && onEnter(e);
+              }
+            }}
+          />
+          {props.rightIcon && (
+            <RightIconContainer disabled={props.disabled} isIconVisible={props.isIconVisible}>
+              {props.rightIcon}
+            </RightIconContainer>
+          )}
+        </div>
 
-      {props.error && props.errorMessage && <InlineError>{props.errorMessage}</InlineError>}
-    </>
-  );
-});
+        {props.error && props.errorMessage && <InlineError>{props.errorMessage}</InlineError>}
+      </>
+    );
+  },
+);
