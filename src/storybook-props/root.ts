@@ -7,7 +7,7 @@ import spinner from './spinner';
 import hideCanvas from './hideCanvas';
 
 export const pickPropsInObj = (obj: { [k: string]: unknown }, ...props: string[]): unknown => {
-  const result: any = {};
+  const result: Record<string, unknown> = {};
 
   for (const key in obj) {
     for (const prop of props) {
