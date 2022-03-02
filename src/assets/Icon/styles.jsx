@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-const Icon = styled.div`
+export const Icons = styled.div`
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -21,5 +21,3 @@ const Icon = styled.div`
     }
   }
 `;
-
-export default Icon;

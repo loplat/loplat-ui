@@ -3,7 +3,7 @@ import Logo from './logo.svg';
 
 export default create({
   base: 'light',
-  brandTitle: 'Loplat UI Storybook',
+  brandTitle: 'loplat UI Storybook',
   brandUrl: 'https://www.loplat.com',
   brandImage: Logo,
 });
