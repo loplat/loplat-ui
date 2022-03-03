@@ -104,7 +104,7 @@ export const Input = React.forwardRef((props: InputProps, ref: ForwardedRef<HTML
       >
         <BaseInput {...props} ref={ref} />
         {props.rightIcon && (
-          <RightIconContainer disabled={props.disabled} isIconVisible={props.isIconVisible}>
+          <RightIconContainer disabled={props.disabled} isIconVisible={props.isIconVisible} data-testid="rightIcon">
             {props.rightIcon}
           </RightIconContainer>
         )}

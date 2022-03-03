@@ -36,7 +36,7 @@ describe('<Input />', () => {
 
   test('<Input />에 에러가 있을 경우, rightIcon과 에러메시지가 보여야한다.', () => {
     const { result } = renderHook(() => useMockInput());
-    const { getByRole, getByLabelText } = render(
+    const { getByRole, getByTestId } = render(
       <Input
         id="input-for-testing"
         placeholder="placeholder"
@@ -48,14 +48,14 @@ describe('<Input />', () => {
         errorMessage="에러메세지입니다."
       />,
     );
-    expect(getByLabelText('warning icon')).toBeVisible();
+    expect(getByTestId('rightIcon')).toBeVisible();
     expect(getByRole('alert')).toBeVisible();
     expect(getByRole('alert')).toHaveTextContent('에러메세지입니다.');
   });
 
   test('<Input />의 rightIcon은 default로 보이지 않아야한다', () => {
     const { result } = renderHook(() => useMockInput());
-    const { getByLabelText } = render(
+    const { getByTestId } = render(
       <Input
         id="input-for-testing"
         placeholder="placeholder"
@@ -67,12 +67,12 @@ describe('<Input />', () => {
       />,
     );
 
-    expect(getByLabelText('warning icon')).not.toBeVisible();
+    expect(getByTestId('rightIcon')).not.toBeVisible();
   });
 
   test('<Input />의 rightIcon은 상태에 따라 보여야한다', async () => {
     const { result } = renderHook(() => useMockInput());
-    const { getByPlaceholderText, getByDisplayValue, getByLabelText } = render(
+    const { getByPlaceholderText, getByDisplayValue, getByTestId } = render(
       <Input
         id="input-for-testing"
         placeholder="검색어를 입력해주세요."
@@ -84,17 +84,18 @@ describe('<Input />', () => {
         errorMessage="에러메세지"
       />,
     );
-    const warningIcon = getByLabelText('warning icon');
+    const rightIcon = getByTestId('rightIcon');
 
-    expect(warningIcon).not.toBeVisible();
+    expect(rightIcon).not.toBeVisible();
     userEvent.click(getByPlaceholderText('검색어를 입력해주세요.'));
     userEvent.keyboard('에러 생성');
     expect(getByDisplayValue('에러 생성')).toBeVisible();
     // NOTE: toBeVisible()일 경우 에러가 발생하여 (아마 opacity로 줘서때문인듯) 이걸로 대체함
-    expect(warningIcon).toBeInTheDocument();
+    expect(rightIcon).toBeInTheDocument();
 
     // TODO: 확인되지않고있음
+    // expect(getByRole('alert')).toBeInTheDocument();
     // expect(getByRole('alert')).toBeVisible();
-    // expect(getByRole('alert')).toHaveTextContent('에러메세지입니다.');
+    // expect(getByRole('alert')).toHaveTextContent('에러메세지');
   });
 });
