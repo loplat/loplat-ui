@@ -1,6 +1,22 @@
 {
   "name": "loplat-ui",
   "version": "1.4.0",
+  "description": "A React-based UI Component Library, powered by loplat Frontend Team.",
+  "author": "loplat",
+  "license": "MIT",
+  "homepage": "https://loplat-ui.web.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/loplat/loplat-ui"
+  },
+  "keywords": [
+    "react",
+    "react-component",
+    "design-system",
+    "ui-library",
+    "ui",
+    "loplat"
+  ],
   "main": "index.js",
   "module": "index.js",
   "types": "index.d.ts",
@@ -17,7 +33,6 @@
     "CHANGELOG.md"
   ],
   "scripts": {
-    "clean": "rimraf dist",
     "build": "rollup -c",
     "postpublish": "sh clean-build-files.sh",
     "storybook": "start-storybook -p 6006",
@@ -106,14 +121,6 @@
     "ts-jest": "^27.1.3",
     "typescript": "^4.1.2"
   },
-  "description": "A React-based UI Component Library, powered by loplat Frontend Team.",
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@bitbucket.org/loplat_developers/loplat-ui.git"
-  },
-  "author": "loplat",
-  "license": "MIT",
-  "homepage": "https://bitbucket.org/loplat_developers/loplat-ui#readme",
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "eslint --cache --fix",
