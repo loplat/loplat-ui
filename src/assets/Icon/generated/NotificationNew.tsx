@@ -1,9 +1,7 @@
 import React from 'react';
 import type { IconProps } from '../index';
-export const NotificationNew =
-  React.memo <
-  IconProps >
-  (({ size = 18, fillColor = '#9DAAB7', suffixForId, className, style }) => {
+export const NotificationNew = React.memo<IconProps>(
+  ({ size = 18, fillColor = '#9DAAB7', suffixForId, className, style }) => {
     const uniqueId = suffixForId ?? String(Math.random().toString(36).slice(2, 11));
     return (
       <svg
@@ -34,4 +32,5 @@ export const NotificationNew =
         </g>
       </svg>
     );
-  });
+  },
+);
