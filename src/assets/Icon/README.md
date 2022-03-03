@@ -15,7 +15,7 @@ yarn generated-svgr && yarn generated-icon-export && cd src/assets/Icon/tools &&
 svg 파일을 기반으로 tsx 파일을 생성합니다.
 
 ### ```yarn generated-icon-export```
-생성된 tsx 파일을 기반으로 'export.generated.ts' 파일과 'index.stories.tsx' 파일을 생성합니다.
+생성된 tsx 파일을 기반으로 'export.generated.ts' 파일을 생성합니다.
 
 ### ```cd src/assets/Icon/tools && sh assign-id-to-svg.sh```
 svg path id collision 문제를 해결하기 위해 svg 마다 uniqueId를 부여합니다.
