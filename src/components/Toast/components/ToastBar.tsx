@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef } from 'react';
 import { Body } from '../../../core/Typography/Body';
 import { Close as CloseIcon } from '../../../assets/Icon/generated/Close';
-import { CheckcircleFillIcon } from '../../../assets/Icon';
+import { CheckCircleFill as CheckCircleFillIcon } from '../../../assets/Icon/generated/CheckCircleFill';
 import { spacing } from '../../../core/Spacing';
 import { ToastItem } from '../core/types';
 import { generateColorSet } from '../core/utils';
@@ -77,7 +77,7 @@ export const ToastBar = ({
         background-color: ${colorSet.backgroundColor};
       `}
     >
-      <CheckcircleFillIcon size={MINIMUM_CONTENT_HEIGHT} fillColor={colorSet.iconColor} />
+      <CheckCircleFillIcon size={MINIMUM_CONTENT_HEIGHT} fillColor={colorSet.iconColor} />
       <Message color={colorSet.textColor}>{toastItem.message}</Message>
       <CloseButton onClick={() => onRemoveToastItem(toastItem.id)}>
         <CloseIcon size={18} fillColor={colorSet.iconColor} />
