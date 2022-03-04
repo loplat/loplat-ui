@@ -1,0 +1,29 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { Caption } from './index.tsx';
+import { spacing, typography } from '../../../storybook-props';
+
+<Meta
+  title="Typography/Caption"
+  component={Caption}
+  argTypes={{
+    ...spacing('margin'),
+    ...spacing('padding'),
+    ...typography,
+  }}
+/>
+
+export const Template = (args) => <Caption {...args} />;
+
+# Caption
+
+주석을 작성합니다. 덧붙이는 글이나, 저작권과 법률 표기 등의 작은 텍스트를 나타냅니다.
+
+`small tag`로 렌더됩니다.
+
+<Canvas>
+  <Story name="default" args={{ children: '자율과 책임을 추구하는 location 전문 기업 로플랫' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />

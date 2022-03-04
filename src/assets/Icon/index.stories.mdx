@@ -1,0 +1,92 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import * as IconComponents from './export.generated';
+import Icons from './iconWrapper.jsx';
+
+<Meta
+  title="Assets/Icon"
+  component={IconComponents.CloudIcon}
+  argTypes={{
+    size: { description: 'px단위입니다.' },
+    suffixForId: {
+      description:
+        '한 페이지에 동일한 icon을 여러번 쓸 경우에는, __svg path id collision__ 문제가 발생합니다. 이문제를 해결하기 위해서는 각각의 icon에 suffix id를 제공해야합니다.',
+    },
+  }}
+/>
+
+export const Template = (args) => <IconComponents.CloudIcon {...args} />;
+
+# Icon
+
+<Canvas>
+  <Story name="cloud" args={{ size: 32, fillColor: '#000000' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="cloud" />
+
+# 리스트
+
+## 화살표
+
+<Story name="arrow">
+  <Icons>
+    {Object.entries(IconComponents)
+      .filter(([name]) => name.includes('Arrow'))
+      .map(([name, Component]) => (
+        <div key={name}>
+          <Component size={32} fillColor={'#000000'} />
+          <span>{name.split('Icon')[0]}</span>
+        </div>
+      ))}
+  </Icons>
+</Story>
+
+## 꺽쇠
+
+<Story name="chevron">
+  <Icons>
+    {Object.entries(IconComponents)
+      .filter(([name]) => name.includes('Chevron'))
+      .map(([name, Component]) => (
+        <div key={name}>
+          <Component size={32} fillColor={'#000000'} />
+          <span>{name.split('Icon')[0]}</span>
+        </div>
+      ))}
+  </Icons>
+</Story>
+
+## 원형
+
+<Story name="circle">
+  <Icons>
+    {Object.entries(IconComponents)
+      .filter(([name]) => name.includes('Circle') || name.includes('circle'))
+      .map(([name, Component]) => (
+        <div key={name}>
+          <Component size={32} fillColor={'#000000'} />
+          <span>{name.split('Icon')[0]}</span>
+        </div>
+      ))}
+  </Icons>
+</Story>
+
+## others
+
+<Story name="others">
+  <Icons>
+    {Object.entries(IconComponents)
+      .filter(
+        ([name]) =>
+          !(name.includes('circle') || name.includes('Circle') || name.includes('Arrow') || name.includes('Chevron')),
+      )
+      .map(([name, Component]) => (
+        <div key={name}>
+          <Component size={32} fillColor={'#000000'} />
+          <span>{name.split('Icon')[0]}</span>
+        </div>
+      ))}
+  </Icons>
+</Story>

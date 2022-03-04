@@ -1,0 +1,31 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { Body } from './index.tsx';
+import { spacing, typography } from '../../../storybook-props';
+
+<Meta
+  title="Typography/Body"
+  component={Body}
+  argTypes={{
+    ...spacing('margin'),
+    ...spacing('padding'),
+    ...typography,
+    tag: {
+      description: '`p`, `span`태그로 렌더됩니다.',
+    },
+  }}
+/>
+
+export const Template = (args) => <Body {...args} />;
+
+# Body
+
+본문을 작성할 수 있습니다.
+구문 혹은 문단을 작성합니다.
+
+<Canvas>
+  <Story name="default" args={{ tag: 'span', children: '자율과 책임을 추구하는 location 전문 기업 로플랫' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />

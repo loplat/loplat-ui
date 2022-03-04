@@ -1,62 +1,23 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import { Button } from './index.tsx';
 import { Alert } from '../../assets/Icon/generated/Alert';
+import { spacing, icon, pickPropsInObj } from '../../storybook-props';
 
 <Meta
   title="Components/Button/Button"
   component={Button}
   argTypes={{
-    children: { description: '`React.ReactNode`' },
+    ...spacing('margin'),
+    ...pickPropsInObj(icon, 'leftIcon', 'rightIcon'),
+    children: {
+      description: '버튼의 내용',
+      table: {
+        type: {
+          summary: 'React.ReactElement',
+        },
+      },
+    },
     fullWidth: { description: '`width: 100%`를 적용합니다.' },
-    borderless: { description: '`border` 속성이 제거할 수 있습니다.' },
-    mt: {
-      description: 'margin 위쪽을 조절합니다.',
-      table: {
-        category: 'margin',
-      },
-    },
-    mr: {
-      description: 'margin 오른쪽을 조절합니다.',
-      table: {
-        category: 'margin',
-      },
-    },
-    ml: {
-      description: 'margin 왼쪽을 조절합니다.',
-      table: {
-        category: 'margin',
-      },
-    },
-    mb: {
-      description: 'margin 아래쪽을 조절합니다.',
-      table: {
-        category: 'margin',
-      },
-    },
-    mx: {
-      description: 'margin 양옆을 조절합니다.',
-      table: {
-        category: 'margin',
-      },
-    },
-    my: {
-      description: 'margin 위아래를 조절합니다.',
-      table: {
-        category: 'margin',
-      },
-    },
-    leftIcon: {
-      description: '아이콘 svg 컴포넌트를 할당합니다.',
-      control: {
-        type: null,
-      },
-    },
-    rightIcon: {
-      description: '아이콘 svg 컴포넌트를 할당합니다.',
-      control: {
-        type: null,
-      },
-    },
   }}
 />
 
@@ -64,9 +25,7 @@ export const Template = (args) => <Button {...args} />;
 
 # Button
 
-버튼은 `min-width`만 정해져 있습니다.
-
-`width`는 `children`의 길이와`size`프로퍼티에 따라 `padding`이 증감하며 조절됩니다.
+`Button`컴포넌트의 크기는 `children`의 내용과 `size`프로퍼티에 따른 `padding`깂에 의해 결정됩니다.
 
 <Canvas>
   <Story name="default" args={{ children: 'default' }}>
@@ -78,9 +37,9 @@ export const Template = (args) => <Button {...args} />;
 
 ## 예시
 
-### various colors
+### color
 
-`IconButton`컴포넌트와 같은 `color`프로퍼티를 공유합니다.
+`IconButton`컴포넌트와 동일한 팔레트를 가집니다.
 
 <Canvas>
   <Story name="primary1" args={{ children: 'primary1', color: 'primary1' }}>

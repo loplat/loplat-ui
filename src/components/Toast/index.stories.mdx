@@ -1,0 +1,148 @@
+import { Toast, toast } from './index';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { spacing } from '../../storybook-props';
+import { Button } from '../Button';
+
+<Meta
+  title="Components/Toast"
+  component={Toast}
+  argTypes={{
+    ...spacing('margin'),
+    duration: {
+      description: '토스트가 화면에 띄어지는 시간입니다. `ms`단위입니다.',
+    },
+    zIndex: {
+      description: '토스트의 z-index값을 설정합니다.',
+    },
+    gap: {
+      description: '여러개의 토스트가 화면에 나타날 때, 토스트 사이의 간격을 설정합니다.',
+    },
+  }}
+/>
+
+export const Template = (args) => (
+  <div>
+    <Toast {...args} />
+    <Button
+      color="primary2"
+      onClick={() =>
+        toast.success(
+          '잔디가 별 흙으로 무엇인지 차 별 언덕 까닭입니다. 말 나는 한 밤이 어머니 헤는 까닭입니다. 하늘에는 내일 벌써 피어나듯이 사랑과 듯합니다. 청춘이 차 추억과 헤는 이름을 않은 봅니다. 내린 이름자 부끄러운 내 위에 때 했던 라이너 흙으로 계십니다.',
+        )
+      }
+    >
+      Success
+    </Button>
+  </div>
+);
+
+# Toast
+
+화면 상단 중앙에 알림을 띄웁니다.
+
+<Canvas>
+  <Story name="success" args={{ mt: 4, mx: 2 }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="success" />
+
+## 사용방법
+
+1. `app.js`에 `<Toast />`을 작성해주세요.
+
+```js
+import { Toast } from 'loplat-ui';
+
+function App() {
+  return (
+    <div>
+      // ...
+      <Toast />
+    </div>
+  );
+}
+```
+
+2. `toast`컴포넌트를 사용해야하는 파일에서 아래처럼 작성해주세요.
+
+- `toast.success`, `toast.danger`, `toast.warning`, `toast.info` ,`toast.white`로 토스트색상을 변경할 수 있습니다.
+
+```jsx
+import { toast } from 'loplat-ui';
+
+const SomeComponent = () => {
+  return (
+    // code ...
+    <Button color="primary2" onClick={() => toast.success('토스트 내용을 작성해주세요')}>
+      성공!
+    </Button>
+  );
+};
+```
+
+## 예제
+
+### default
+
+<Canvas>
+  <Story name="default">
+    <Button
+      color="default"
+      onClick={() =>
+        toast.white(
+          '잔디가 별 흙으로 무엇인지 차 별 언덕 까닭입니다. 말 나는 한 밤이 어머니 헤는 까닭입니다. 하늘에는 내일 벌써 피어나듯이 사랑과 듯합니다. 청춘이 차 추억과 헤는 이름을 않은 봅니다. 내린 이름자 부끄러운 내 위에 때 했던 라이너 흙으로 계십니다.',
+        )
+      }
+      my={4}
+    >
+      default
+    </Button>
+  </Story>
+</Canvas>
+
+### success
+
+<Canvas>
+  <Button
+    color="primary2"
+    onClick={() =>
+      toast.success(
+        '잔디가 별 흙으로 무엇인지 차 별 언덕 까닭입니다. 말 나는 한 밤이 어머니 헤는 까닭입니다. 하늘에는 내일 벌써 피어나듯이 사랑과 듯합니다. 청춘이 차 추억과 헤는 이름을 않은 봅니다. 내린 이름자 부끄러운 내 위에 때 했던 라이너 흙으로 계십니다.',
+      )
+    }
+  >
+    Success
+  </Button>
+</Canvas>
+
+### info
+
+<Canvas>
+  <Story name="info">
+    <Button color="primary1" onClick={() => toast.info('파란 묻힌 계절이 동경과 언덕 덮어 된 이름자 있습니다.')}>
+      Info
+    </Button>
+  </Story>
+</Canvas>
+
+### danger
+
+<Canvas>
+  <Story name="danger">
+    <Button color="danger1" onClick={() => toast.danger('파란 묻힌 계절이 동경과 언덕 덮어 된 이름자 있습니다.')}>
+      Danger
+    </Button>
+  </Story>
+</Canvas>
+
+### warning
+
+<Canvas>
+  <Story name="warning">
+    <Button color="danger2" onClick={() => toast.warning('파란 묻힌 계절이 동경과 언덕 덮어 된 이름자 있습니다.')}>
+      Warning
+    </Button>
+  </Story>
+</Canvas>

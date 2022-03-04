@@ -2,29 +2,30 @@ import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs';
 import { Badge } from './index.tsx';
 import { css } from '@emotion/css';
 
-<Meta title="Components/Badge" component={Badge} />
+<Meta
+  title="Components/Badge"
+  component={Badge}
+  argTypes={{
+    text: { description: '콘텐츠내용을 작성해주세요.' },
+    type: {
+      description: '외형을 결정합니다.',
+    },
+  }}
+/>
 
 export const Template = (args) => <Badge {...args} />;
 
 # Badge
-
-`Badge`컴포넌트를 이용해서 간단하게 작성해보세요.
-
-## Quick Start
-
-```js
-import { Badge } from '@loplat-ui';
-```
-
-## 예시
-
-### default
 
 <Canvas>
   <Story name="default" args={{ text: 'default' }}>
     {Template.bind({})}
   </Story>
 </Canvas>
+
+<ArgsTable story="default" />
+
+## 예시
 
 ### type: pill
 
@@ -125,5 +126,3 @@ import { Badge } from '@loplat-ui';
 ---
 
 ## Props
-
-<ArgsTable of={Badge} />

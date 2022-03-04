@@ -1,19 +1,12 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import { CircleSpinner } from './index';
+import { spinner } from '../../storybook-props';
 
 <Meta
   title="Components/Spinner/Circle"
   component={CircleSpinner}
   argTypes={{
-    duration: {
-      description: '`spinner`가 돌아가는 속도를 조절합니다.',
-    },
-    scale: {
-      description: '`spinner`의 크기를 조절합니다.',
-    },
-    zIndex: {
-      description: 'css의 z-index를 결정합니다.',
-    },
+    ...spinner('circle'),
   }}
 />
 

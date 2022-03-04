@@ -1,0 +1,104 @@
+import { useState, useRef } from 'react';
+import { Portal, PortalProps } from './index';
+import { Button } from '../../components/Button';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { Headline } from '../../core/Typography/Headline';
+import { css } from '@emotion/css';
+import { green200 } from '../../core/colors/green.ts';
+
+<Meta
+  title="Utils/Portal"
+  component={Portal}
+  argTypes={{
+    children: {
+      description: '포탈에 들어갈 컨텐츠 내용을 작성합니다.',
+      table: { type: { summary: 'React.ReactElement' } },
+    },
+    container: {
+      description: '포탈로 사용할 node의 ref.current를 작성합니다.',
+      control: { type: null },
+      table: { type: { summary: 'Element | null' } },
+    },
+  }}
+/>
+
+export const Template = (args) => {
+  const container = useRef();
+  const [isVisible, setIsVisible] = useState(false);
+  const toggle = () => {
+    setIsVisible(!isVisible);
+  };
+  return (
+    <div>
+      <div
+        ref={container}
+        className={`${css`
+          padding: 1rem;
+          border: 1px solid ${green200};
+          margin-bottom: 1rem;
+        `}`}
+      >
+        여기 안에서 포탈 내용이 렌더됩니다.
+      </div>
+      <Button onClick={toggle}>Toggle Portal</Button>
+      {isVisible && (
+        <Portal container={container.current}>
+          <Headline weight="bold">Portal</Headline>
+        </Portal>
+      )}
+    </div>
+  );
+};
+
+# Portal
+
+`ReactDOM.createPortal`개념을 활용한 api입니다.
+
+잘 활용하시기 위해서는 `ReactDOM.createPortal`에 대한 이해가 필요합니다.
+
+<Canvas>
+  <Story name="default">{Template.bind({})}</Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+## 사용 방법
+
+필요한 항목을 가져옵니다.
+
+```jsx
+import { useRef, useState } from 'React';
+import { Portal } from 'loplat-ui';
+```
+
+`Portal`컴포넌트 안에 작성된 내용은 `container ref`를 가진 node 안에서 렌더됩니다.
+
+`Portal`에 props으로 주는 `container`는 포탈로 사용할 node여야 합니다. useRef를 사용했습니다.
+
+```jsx
+const PortalComponent = (args) => {
+  const container = useRef();
+  const [isVisible, setIsVisible] = useState(false);
+  const toggle = () => {
+    setIsVisible(!isVisible);
+  };
+
+  return (
+    <div>
+      <div ref={container}>여기 안에서 포탈 내용이 렌더됩니다.</div>
+      <Button onClick={toggle}>Toggle Portal</Button>
+      {isVisible && (
+        <Portal container={container.current}>
+          <span>Portal</span>
+        </Portal>
+      )}
+    </div>
+  );
+};
+```
+
+### 활용 예제
+
+`Modal`컴포넌트는 `Portal`을 활용하여 `document.body`에 새로운 node를 생성하여 만들었습니다.
+
+<Story id="utils-modal--default-story" />

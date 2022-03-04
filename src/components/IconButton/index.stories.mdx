@@ -1,47 +1,18 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import { IconButton } from './index.tsx';
 import { Campaign as CampaignIcon } from '../../assets/Icon/generated/Campaign.tsx';
+import { spacing, borderless, pickPropsInObj, eventHandler } from '../../storybook-props';
 
 <Meta
   title="Components/Button/IconButton"
   component={IconButton}
   argTypes={{
-    borderless: { description: '`border` 속성이 제거할 수 있습니다.' },
-    mt: {
-      description: 'margin 위쪽을 조절합니다.',
-      table: {
-        category: 'margin',
-      },
-    },
-    mr: {
-      description: 'margin 오른쪽을 조절합니다.',
-      table: {
-        category: 'margin',
-      },
-    },
-    ml: {
-      description: 'margin 왼쪽을 조절합니다.',
-      table: {
-        category: 'margin',
-      },
-    },
-    mb: {
-      description: 'margin 아래쪽을 조절합니다.',
-      table: {
-        category: 'margin',
-      },
-    },
-    mx: {
-      description: 'margin 양옆을 조절합니다.',
-      table: {
-        category: 'margin',
-      },
-    },
-    my: {
-      description: 'margin 위아래를 조절합니다.',
-      table: {
-        category: 'margin',
-      },
+    ...borderless,
+    ...spacing('margin'),
+    ...pickPropsInObj(eventHandler, 'onClick'),
+    children: {
+      description: '아이콘 컴포넌트를 작성해주세요.',
+      table: { type: { summary: 'React.ReactElement' } },
     },
   }}
 />
@@ -62,9 +33,9 @@ export const Template = (args) => <IconButton {...args} children={<CampaignIcon 
 
 ## 예시
 
-### various colors
+### color
 
-`Button` 컴포넌트의 `color` 프로퍼티를 모두 가집니다.
+`Button`과 동일한 팔레트를 가집니다.
 
 <Canvas>
   <Story name="primary1" args={{ color: 'primary1' }}>

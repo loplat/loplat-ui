@@ -3,41 +3,35 @@ import { Input } from './index';
 import { Campaign } from '../../assets/Icon/generated/Campaign.tsx';
 import { red300 } from '../../core/colors/red';
 import { bluescale500 } from '../../core/colors/bluescale.ts';
+import { icon, pickPropsInObj, eventHandler } from '../../storybook-props';
 
 <Meta
   title="Components/Input"
   component={Input}
   argTypes={{
     value: { description: 'input value' },
-    title: { description: '_사용하지 않음_' },
-    error: { description: '`true`일 때, `errorMessage`가 하단에 표시된다.', table: { category: 'error' } },
+    error: { description: '`true`일 때, `errorMessage`가 하단에 표시됩니다.', table: { category: 'error' } },
     errorMessage: { table: { category: 'error' } },
     type: { description: '브라우저에서 지원하는 `input` 태그의 type 기능' },
     autoComplete: { description: '브라우저에서 지원하는 `input` 태그의 autoComplete 기능' },
-    onChange: { table: { category: 'event handler' } },
-    onBlur: { table: { category: 'event handler' } },
-    onEnter: { table: { category: 'event handler' } },
-    onFocus: { table: { category: 'event handler' } },
-    rightIcon: { table: { category: 'icon' }, control: { type: null } },
     inputProps: { control: { type: null } },
     ref: { control: { type: null } },
-    isIconVisible: { table: { category: 'icon' } },
     id: {
       description: '`label`태그와 연동하기 위한 `id`프로퍼티',
     },
+    ...pickPropsInObj(icon, 'isIconVisible', 'rightIcon'),
+    ...pickPropsInObj(eventHandler, 'onFocus', 'onEnter', 'onBlur', onChange'),
   }}
 />
 
 export const Template = (args) => (
-  <Input name="test" placeholder="10글자 이상 시 에러 발생 가능" errorMessage="에러 발생!!" {...args} />
+  <Input name="test" placeholder="10글자 이상 시 에러 발생 가능" errorMessage="에러가 발생했습니다!" {...args} />
 );
 
 # Input
 
 <Canvas>
-  <Story name="default" args={{ title: 'hi' }}>
-    {Template.bind({})}
-  </Story>
+  <Story name="default">{Template.bind({})}</Story>
 </Canvas>
 
 <ArgsTable story="default" />
@@ -54,16 +48,14 @@ export const Template = (args) => (
 
 ### Right Icon
 
-아이콘이 있는 인풋 컴포넌트
+아이콘이 있는 `Input` 컴포넌트입니다.
 
 <Canvas>
   <Story
     name="right icon"
     args={{
-      value: '문구',
       rightIcon: <Campaign fillColor={bluescale500} size={30} />,
       isIconVisible: true,
-      errorMessage: 'something went wrong',
     }}
   >
     {Template.bind({})}
@@ -72,13 +64,13 @@ export const Template = (args) => (
 
 ### error + right icon
 
-에러가 발생한 아이콘이 있는 인풋 컴포넌트
+에러가 발생한 아이콘이 있는 `Input` 컴포넌트입니다.
 
 <Canvas>
   <Story
     name="right icon error"
     args={{
-      value: 'error 문구',
+      value: 'error가 발생하는 값',
       rightIcon: <Campaign fillColor={red300} size={30} />,
       isIconVisible: true,
       error: true,

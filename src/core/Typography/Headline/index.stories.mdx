@@ -1,0 +1,42 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { Headline } from './index.tsx';
+import { spacing, typography } from '../../../storybook-props';
+
+<Meta
+  title="Typography/Headline"
+  component={Headline}
+  argTypes={{
+    ...spacing('margin'),
+    ...spacing('padding'),
+    ...typography,
+    tag: {
+      description: '6단계의 구획 제목 태그로 렌더됩니다. h1이 제일 높고 h6가 가장 낮습니다.',
+    },
+  }}
+/>
+
+export const Template = (args) => <Headline {...args} />;
+
+# Headline
+
+6단계의 구획 제목을 작성할 수 있습니다.
+폰트크기 및 스타일은 기본설정이 없습니다. 사용자가 커스텀해주셔야 합니다.
+
+<Canvas>
+  <Story name="default" args={{ children: '자율과 책임을 추구하는 location 전문 기업 로플랫' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+## 예시
+
+<Canvas>
+  <Story
+    name="bold h3"
+    args={{ children: '자율과 책임을 추구하는 location 전문 기업 로플랫', tag: 'h3', weight: 'bold', size: '3xl' }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
