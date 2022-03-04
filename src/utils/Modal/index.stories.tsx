@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Modal, Props } from './index';
+import { Modal, ModalProps } from './index';
 import { Help } from '../../components/Help';
 import { Button } from '../../components/Button';
 
@@ -9,7 +9,7 @@ export default {
   component: Modal,
 } as ComponentMeta<typeof Modal>;
 
-const Template: ComponentStory<typeof Modal> = (args: Props) => {
+const Template: ComponentStory<typeof Modal> = (args: ModalProps) => {
   const [open, setOpen] = useState(false);
   const toggle = () => {
     setOpen(!open);

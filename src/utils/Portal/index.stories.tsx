@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Portal, Props } from './index';
+import { Portal, PortalProps } from './index';
 import { Button } from '../../components/Button';
 import { Headline } from '../../core/Typography/Headline';
 
@@ -9,7 +9,7 @@ export default {
   component: Portal,
 } as ComponentMeta<typeof Portal>;
 
-const Template: ComponentStory<typeof Portal> = (args: Props) => {
+const Template: ComponentStory<typeof Portal> = (args: PortalProps) => {
   const container = useRef<HTMLDivElement>(null);
   const [show, setShow] = useState(false);
   const toggle = () => {
