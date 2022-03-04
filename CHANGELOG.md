@@ -1,3 +1,23 @@
+# 1.5.0 (2022-03-04)
+
+### Breaking changes
+- [github](https://github.com/loplat/loplat-ui/) 으로 loplat UI 프로젝트를 public하게 공개했습니다.
+- [storybook](https://loplat-ui.web.app/) 으로 각 컴포넌트에 대한 설명과 사용법을 문서화했습니다.
+
+### Removed
+- Help 컴포넌트를 삭제했습니다.
+
+### Fixed
+- Input의 사용성을 개선했습니다.
+  - HTML input tag의 기본 속성 일부와 aria-* 속성을 추가했습니다.
+  - ref 속성을 사용할 수 있도록 forwardRef를 적용했습니다.
+  - 불필요한 div tag를 제거했습니다.
+  - onEnter prop을 onKeyPress로 교체했습니다.
+- RadioButton에 isChecked prop을 추가했습니다.
+- Circle Icon의 이름을 camelCase로 수정했습니다.
+
+---
+
 ## 1.4.0 (2022-02-16)
 
 ### Added
