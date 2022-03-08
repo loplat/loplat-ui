@@ -1,10 +1,10 @@
-<div style="text-align: center;">
+<div align="center">
 
 <a href="https://loplat.com/" rel="noopener" target="_blank">
   <img width="150" src="https://loplat.com/images/loplat-logo.png" alt="loplat logo">
 </a>
 
-<h1 style="text-align: center; margin-top: 0">loplat UI</h1>
+<h1>loplat UI</h1>
 
 A React UI Component Library, powered by loplat Frontend Team.
 
