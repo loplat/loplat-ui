@@ -1,3 +1,15 @@
+# 1.5.1 (2022-03-08)
+
+## Breaking changes
+- cjs와 esm 형식이 동시에 지원됩니다.
+  - Jest에서 ESM을 지원하기 위한 추가 설정이 필요 없어졌습니다.
+  - Next.js에서 ESM을 지원하기 위한 추가 설정이 필요 없어졌습니다.
+
+## Docs
+- README 상단에 loplat Logo와 package 정보가 담긴 Badge를 추가했습니다.
+- README에 Styling Components 가이드를 추가했습니다.
+
+
 # 1.5.0 (2022-03-04)
 
 ## Breaking changes
