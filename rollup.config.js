@@ -15,6 +15,11 @@ export default {
   output: [
     {
       dir: '.',
+      format: 'cjs',
+      sourcemap: true,
+    },
+    {
+      dir: './esm',
       format: 'esm',
       sourcemap: true,
     },

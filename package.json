@@ -1,7 +1,7 @@
 {
   "name": "loplat-ui",
   "version": "1.5.0",
-  "description": "A React-based UI Component Library, powered by loplat Frontend Team.",
+  "description": "A React UI Component Library, powered by loplat Frontend Team.",
   "author": "loplat",
   "license": "MIT",
   "homepage": "https://loplat-ui.web.app",
@@ -18,10 +18,11 @@
     "loplat"
   ],
   "main": "index.js",
-  "module": "index.js",
+  "module": "esm/index.js",
   "types": "index.d.ts",
   "sideEffects": false,
   "files": [
+    "esm",
     "assets",
     "components",
     "core",

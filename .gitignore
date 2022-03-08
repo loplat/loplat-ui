@@ -23,7 +23,7 @@ yarn-error.log*
 service_account.json
 
 # build
-dist/*
+esm/*
 assets/*
 components/*
 core/*
@@ -40,5 +40,5 @@ stats.html
 # eslint
 .eslintcache
 
-# storybook 
+# storybook
 storybook-static/*

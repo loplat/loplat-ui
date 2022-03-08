@@ -1,3 +1,4 @@
+rm -rf esm
 rm -rf assets
 rm -rf components
 rm -rf core
