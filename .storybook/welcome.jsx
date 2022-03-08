@@ -56,6 +56,7 @@ export default {
     },
     options: {
       showPanel: false,
+      isToolshown: false,
     },
   },
 };
