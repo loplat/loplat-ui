@@ -18,6 +18,7 @@ A React UI Component Library, powered by loplat Frontend Team.
 </div>
 
 ## Installation
+
 ```sh
 // with yarn
 yarn add loplat-ui
@@ -27,27 +28,52 @@ npm install loplat-ui
 ```
 
 ## Usage
+
+### Getting Started
+
 ```jsx
 import React from 'react';
 import { Button } from 'loplat-ui';
 
 function Example() {
-  return (
-    <Button>Hello world!</Button>
-  )
+  return <Button>Hello world!</Button>;
+}
+```
+
+### Styling Components
+
+All the loplat UI components are styled with `styled` API provided by `@emotion/styled`.
+
+If you want to change styles of loplat UI components, you must use `styled` API provided by `loplat-ui` or `@emotion/styled`.
+
+`styled` will not work as expected if you are using other CSS-in-JS libraries except `@emotion` or `loplat-ui`.
+
+```jsx
+import { Button, styled } from 'loplat-ui';
+
+const StyledButton = styled(Button)`
+  color: red;
+`;
+
+function Example() {
+  return <StyledButton>Hello world!</StyledButton>;
 }
 ```
 
 ## Documentation & Demo
+
 Check out our [storybook website](https://loplat-ui.web.app/).
 
 ## Changelog
+
 If you have recently updated, please read the [changelog](https://github.com/loplat/loplat-ui/blob/main/CHANGELOG.md) for details of what has changed.
 
 ## Roadmap
+
 - apply [Storybook Addon Interactions](https://storybook.js.org/addons/@storybook/addon-interactions)
 - D3.js Charts
 - Popup
 
 ## License
+
 This project is licensed under the terms of the [MIT license](https://github.com/loplat/loplat-ui/blob/main/LICENSE).
