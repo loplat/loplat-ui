@@ -1,6 +1,8 @@
 export const parameters = {
   viewMode: 'docs',
   options: {
+    showPanel: true,
+    isToolshown: true,
     storySort: {
       order: [
         'Intro',
