@@ -53,8 +53,7 @@ const RadioButtonContainer = styled.label<RadioStyleProps>`
   font-size: 1rem;
   font-weight: ${({ isChecked }) => (isChecked ? 'bold' : 'normal')};
   color: ${({ isDisabled }) => (isDisabled ? grayscale500 : grayscale800)};
-  pointer-events: ${({ isDisabled }) => (isDisabled ? 'none' : 'auto')};
-  cursor: pointer;
+  cursor: ${({ isDisabled }) => (isDisabled ? 'not-allowed' : 'pointer')};
 
   input {
     position: absolute;
