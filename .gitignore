@@ -42,3 +42,4 @@ stats.html
 
 # storybook
 storybook-static/*
+!storybook-static/.gitkeep

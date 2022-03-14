@@ -14,16 +14,8 @@
     "jsx": "react-jsx",
     "declaration": true,
     "declarationDir": ".",
-    "allowJs": true,
-    "noFallthroughCasesInSwitch": true,
-    "isolatedModules": true,
-    "noEmit": true
+    "noFallthroughCasesInSwitch": true
   },
   "include": ["src"],
-  "exclude": [
-    "**/*.stories.tsx",
-    "**/*.test.tsx",
-    "**/tools",
-    "src/storybook-props/*.ts"
-  ]
+  "exclude": ["**/*.stories.tsx", "**/*.test.tsx", "**/tools", "*/storybook-props", "node_modules"]
 }
