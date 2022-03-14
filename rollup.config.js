@@ -11,7 +11,7 @@ import { visualizer } from 'rollup-plugin-visualizer';
 
 export default {
   // NOTE: tree shaking 을 위해 esm 파일들을 code splitting 하여 빌드한다.
-  input: ['src/**/index.ts', 'src/**/index.tsx', 'src/**/generated/*.tsx'],
+  input: ['src/**/index.ts', 'src/**/index.tsx', 'src/**/generated/*.tsx', '!src/storybook-props/index.ts'],
   output: [
     {
       dir: '.',

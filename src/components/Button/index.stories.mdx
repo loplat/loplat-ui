@@ -2,7 +2,7 @@ import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import { runTest } from './storybookTest.ts'
 import { Button } from './index.tsx';
 import { Alert } from '../../assets/Icon/generated/Alert';
-import { spacing, icon, pickPropsInObj, eventHandler, borderless } from '../../storybook-props/root';
+import { spacing, icon, pickPropsInObj, eventHandler, borderless } from '../../storybook-props/';
 
 <Meta
   title="Components/Button/Button"
@@ -28,7 +28,7 @@ export const Template = (args) => <Button {...args} />;
 
 # Button
 
-`Button`컴포넌트의 크기는 `children`의 내용과 `size`프로퍼티에 따른 `padding`깂에 의해 결정됩니다.
+`Button`컴포넌트의 크기는 `children`의 내용과 `size`프로퍼티에 따른 `padding`값에 의해 결정됩니다.
 
 <Canvas>
   <Story name="default" args={{ children: 'default', role: 'button' }}>
