@@ -36,14 +36,13 @@
   "scripts": {
     "build": "rollup -c",
     "postpublish": "sh clean-build-files.sh",
+    "icon": "cd src/assets/Icon && sh generate-icon.sh",
+    "logo": "cd src/assets/Logo && sh generate-logo.sh",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "publish-storybook": "firebase deploy",
     "test-storybook": "test-storybook --stories-json",
     "test": "jest --watch --env=jsdom",
-    "generated-icon-export": "node src/assets/Icon/tools/generate-export.js",
-    "generated-svgr": "cd src/assets/Icon/svgs && npx @svgr/cli@5.5.0 --template ../tools/svgr-cli.template.js --config-file ../tools/.svgrrc *.svg --out-dir ../generated --ext tsx",
-    "svgr": "yarn generated-svgr && yarn generated-icon-export && cd src/assets/Icon/tools && sh assign-id-to-svg.sh",
     "prepare": "husky install"
   },
   "browserslist": {

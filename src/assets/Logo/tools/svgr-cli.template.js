@@ -5,12 +5,11 @@ function defaultTemplate({ template }, _, { componentName, jsx }) {
 
   return typeScriptTpl.ast`
     import React from 'react';
-    import type { IconProps } from '../index';
+    import type { LogoProps } from '../index';
     
-    export const ${IconComponentName} = React.memo<IconProps>(({size = 18, fillColor = '#9DAAB7', suffixForId, className, style}) => {
-      const uniqueId = suffixForId ?? String(Math.random().toString(36).slice(2, 11));
-      return ${jsx}
-    })
+    export const ${IconComponentName} = React.memo<LogoProps>(({width = 18, className, style}) => (
+      ${jsx}
+    ));
   `;
 }
 

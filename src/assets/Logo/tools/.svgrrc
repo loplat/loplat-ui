@@ -6,8 +6,8 @@
     "#9DAAB7": "{fillColor}"
   },
   "svgProps": {
-    "width": "{size}",
-    "height": "{size}",
+    "width": "{width}",
+    "height": "{width}",
     "style": "{style}",
     "className": "{className}",
     "viewBox": "0 0 32 32"
