@@ -1,23 +1,14 @@
 {
-  "parser": "@typescript-eslint/parser",
-  "plugins": [
-    "import",
-    "@typescript-eslint"
-  ],
+  "plugins": ["import", "@typescript-eslint"],
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "prettier"],
   "rules": {
     "react/no-unescaped-entities": "off",
     "import/no-unresolved": "error",
-    "@typescript-eslint/no-empty-interface": "off",
-    "react/jsx-curly-brace-presence": [
-      "error", { "props": "never", "children": "ignore" }
-    ]
+    "@typescript-eslint/no-empty-interface": "off"
   },
   "settings": {
     "import/parsers": {
-      "@typescript-eslint/parser": [
-        ".ts",
-        ".tsx"
-      ]
+      "@typescript-eslint/parser": [".ts", ".tsx"]
     },
     "import/resolver": {
       "node": {
@@ -25,6 +16,7 @@
       }
     }
   },
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 2021,
     "compilerOptions": {
@@ -60,19 +52,9 @@
   "env": {
     "es6": true
   },
-  "extends": [
-    "react-app",
-    "react-app/jest",
-    "eslint:recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended",
-    "prettier"
-  ],
   "overrides": [
     {
-      "files": [
-        "**/*.stories.*"
-      ],
+      "files": ["**/*.stories.*"],
       "rules": {
         "import/no-anonymous-default-export": "off"
       }
