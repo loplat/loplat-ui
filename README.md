@@ -42,11 +42,11 @@ function Example() {
 
 ### Styling Components
 
-All the loplat UI components are styled with `styled` API provided by `@emotion/styled`.
+All the loplat UI components are styled with `@emotion`.
 
-If you want to change styles of loplat UI components, you must use `styled` API provided by `loplat-ui` or `@emotion/styled`.
+If you'd like to change the styles of loplat UI components, you must use `styled` API provided by either `loplat-ui` or `@emotion/styled`.
 
-`styled` will not work as expected if you are using other CSS-in-JS libraries except `@emotion` or `loplat-ui`.
+`styled` API provided by other CSS-in-JS libraries will not work as expected.
 
 ```jsx
 import { Button, styled } from 'loplat-ui';
