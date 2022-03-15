@@ -11,7 +11,6 @@ module.exports = {
   features: {
     buildStoriesJson: true,
     interactionsDebugger: true,
-    storyStoreV7: true,
   },
   webpackFinal: async (config) => {
     config.optimization.splitChunks = {
