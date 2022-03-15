@@ -1,3 +1,16 @@
+# 1.5.2 (2022-03-15)
+
+## Test
+- [Storybook Addon Interactions](https://storybook.js.org/addons/@storybook/addon-interactions) 를 이용한 테스트 코드를 추가했습니다.
+  - [Button](https://loplat-ui.web.app/?path=/story/components-button-button--default-story), [RadioButton](https://loplat-ui.web.app/?path=/story/components-radiobutton--default) 컴포넌트의 interactions addon을 통해 테스트를 실행하고 디버깅할 수 있습니다.
+
+## Docs
+- README의 내용을 개선하고 영문 설명을 추가했습니다.
+  - README.md
+  - Icon/README.md
+  - Logo/README.md
+
+
 # 1.5.1 (2022-03-08)
 
 ## Breaking changes
