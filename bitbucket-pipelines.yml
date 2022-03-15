@@ -2,20 +2,19 @@ image: node:14.17.0
 
 pipelines:
   default:
-    - parallel:
-        - step:
-            name: Build and Test
-            caches:
-              - node
-            script:
-              - yarn install
-              - yarn test --watchAll==false
     - step:
-        name: Build Storybook
-        script:
-          - yarn build-storybook
+        name: Install and Test
         caches:
           - node
+        script:
+          - yarn install
+          - yarn test --watchAll==false
+    - step:
+        name: Build Storybook
+        caches:
+          - node
+        script:
+          - yarn build-storybook
         artifacts: # defining the artifacts to be passed to each future step.
           - storybook-static/**
     - step:
@@ -36,3 +35,10 @@ pipelines:
           - curl -X POST -H "Content-type:application/json" --data "{
             \"text\":\"스토리북이 업데이트 되었습니다. https://loplat-ui.web.app/  \n\n*개발자 커밋메시지* $COMMIT_MESSAGE\"
             }" $WEBHOOK_URL
+    - step:
+        name: Test Storybook
+        image: mcr.microsoft.com/playwright:focal
+        caches:
+          - node
+        script:
+          - yarn test-storybook --url https://loplat-ui.web.app
