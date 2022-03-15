@@ -2,7 +2,6 @@ export const parameters = {
   viewMode: 'docs',
   options: {
     showPanel: true,
-    isToolshown: true,
     storySort: {
       order: [
         'Intro',
@@ -17,6 +16,7 @@ export const parameters = {
   },
   actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
+    expanded: true,
     matchers: {
       color: /(background|color)$/i,
       date: /Date$/,
