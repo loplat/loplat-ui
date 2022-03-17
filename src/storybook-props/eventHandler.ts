@@ -1,9 +1,8 @@
-const eventHandler = {
-  onClick: { table: { category: 'event handler' } },
-  onChange: { table: { category: 'event handler' } },
-  onBlur: { table: { category: 'event handler' } },
-  onKeyPress: { table: { category: 'event handler' } },
-  onFocus: { table: { category: 'event handler' } },
-};
+const events = ['onClick', 'onChange', 'onBlur', 'onKeyPress', 'onFocus'] as const;
+
+const eventHandler = events.reduce(
+  (acc, curr) => Object.assign(acc, { [curr]: { table: { category: 'event handler' } } }),
+  {},
+);
 
 export default eventHandler;
