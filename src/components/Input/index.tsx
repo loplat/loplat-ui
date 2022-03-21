@@ -4,20 +4,12 @@ import { css } from '@emotion/css';
 import { primary, danger } from '../../core/styles/palette';
 import { white, bluescale500, grayscale500, grayscale200, bluescale50, grayscale900 } from '../../core/colors';
 import { spacing } from '../../core/Spacing';
-import { AriaProps } from '../../core/a11y';
 
-type HTMLInputProps = Partial<
-  Pick<HTMLInputElement, 'autocomplete' | 'className' | 'disabled' | 'id' | 'placeholder' | 'type' | 'value'>
->;
-export interface InputProps extends HTMLInputProps, AriaProps {
+export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: boolean;
   errorMessage?: string;
   rightIcon?: React.ReactElement;
   isIconVisible?: boolean;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onKeyPress?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
-  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
-  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
 }
 
 const BaseInput = styled.input<Pick<InputProps, 'isIconVisible' | 'error'>>`

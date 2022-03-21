@@ -19,30 +19,30 @@ import {
   white,
 } from '../../core/colors';
 import { primary, danger } from '../../core/styles/palette';
-import { AriaProps } from '../../core/a11y';
 import { Large } from '../../core/MediaQuery';
 import { MarginSpacing, marginSpacingProps, marginSpacingStyle, spacing } from '../../core/Spacing';
 
 type Size = 'xs' | 'sm' | 'md' | 'lg';
 type Color = 'default' | 'primary1' | 'primary2' | 'danger1' | 'danger2' | 'solid' | 'ghost';
-type FullWidth = { fullWidth: boolean };
-type Borderless = { borderless: boolean };
+type FullWidth = { fullWidth?: boolean };
+type Borderless = { borderless?: boolean };
 
-export type CommonButtonProps = Partial<FullWidth & Borderless & MarginSpacing & AriaProps>;
-export type DefaultButtonProps = {
-  color?: Color;
-  disabled?: boolean;
-  className?: string;
-  onClick?: (event: React.MouseEvent<HTMLElement>) => void;
-};
-export type ButtonProps = DefaultButtonProps &
-  CommonButtonProps & {
+export type CommonButtonProps = Partial<
+  React.ButtonHTMLAttributes<HTMLButtonElement> &
+    Borderless &
+    MarginSpacing & {
+      color: Color;
+    }
+>;
+export type ButtonProps = CommonButtonProps &
+  FullWidth & {
     size?: Size;
     leftIcon?: React.ReactElement;
     rightIcon?: React.ReactElement;
     children?: React.ReactNode;
   };
 type BaseButtonProps = CommonButtonProps &
+  FullWidth &
   typeof SizeSet[keyof typeof SizeSet] &
   typeof ColorSet[keyof typeof ColorSet];
 
@@ -298,13 +298,9 @@ export const Button = ({ disabled = false, ...props }: ButtonProps): JSX.Element
   return (
     <BaseButton
       disabled={disabled}
-      fullWidth={props.fullWidth}
-      borderless={props.borderless}
       {...ColorSet[props.color ?? 'default']}
       {...SizeSet[props.size ?? 'md']}
       {...marginSpacingProps(props)}
-      className={props.className ?? ''}
-      onClick={props.onClick}
       {...props}
     >
       {props.leftIcon && <div className="leftIcon">{props.leftIcon}</div>}

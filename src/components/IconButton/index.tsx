@@ -1,30 +1,18 @@
 import React from 'react';
-import { DefaultButtonProps, ColorSet, SizeSet, BaseButton, CommonButtonProps } from '../Button';
+import { ColorSet, SizeSet, BaseButton, CommonButtonProps } from '../Button';
 import { marginSpacingProps } from '../../core/Spacing';
 
-export type IconButtonProps = DefaultButtonProps &
-  Omit<CommonButtonProps, 'fullWidth'> & {
-    children: React.ReactElement;
-  };
+export type IconButtonProps = CommonButtonProps & {
+  children: React.ReactElement;
+};
 
-export const IconButton = ({
-  color,
-  borderless,
-  disabled,
-  onClick,
-  className,
-  children,
-  ...props
-}: IconButtonProps): React.ReactElement => {
+export const IconButton = ({ color, borderless, children, ...props }: IconButtonProps): React.ReactElement => {
   return (
     <BaseButton
-      disabled={disabled}
       borderless={borderless}
       {...ColorSet[color ?? 'default']}
       {...SizeSet['onlyIcon']}
       {...marginSpacingProps(props)}
-      className={className}
-      onClick={onClick}
       {...props}
     >
       {children}
