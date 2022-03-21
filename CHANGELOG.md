@@ -2,7 +2,7 @@
 
 ## Test
 - [Storybook Addon Interactions](https://storybook.js.org/addons/@storybook/addon-interactions) 를 이용한 테스트 코드를 추가했습니다.
-  - [Button](https://loplat-ui.web.app/?path=/story/components-button-button--default-story), [RadioButton](https://loplat-ui.web.app/?path=/story/components-radiobutton--default) 컴포넌트의 interactions addon을 통해 테스트를 실행하고 디버깅할 수 있습니다.
+  - [Button](https://ui.loplat.com/?path=/story/components-button-button--default-story), [RadioButton](https://ui.loplat.com/?path=/story/components-radiobutton--default) 컴포넌트의 interactions addon을 통해 테스트를 실행하고 디버깅할 수 있습니다.
 
 ## Docs
 - README의 내용을 개선하고 영문 설명을 추가했습니다.
@@ -27,7 +27,7 @@
 
 ## Breaking changes
 - [github](https://github.com/loplat/loplat-ui/) 으로 loplat UI 프로젝트를 public하게 공개했습니다.
-- [storybook](https://loplat-ui.web.app/) 으로 각 컴포넌트에 대한 설명과 사용법을 문서화했습니다.
+- [storybook](https://ui.loplat.com/) 으로 각 컴포넌트에 대한 설명과 사용법을 문서화했습니다.
 
 ## Removed
 - Help 컴포넌트를 삭제했습니다.

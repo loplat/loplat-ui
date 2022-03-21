@@ -62,7 +62,7 @@ function Example() {
 
 ## Documentation & Demo
 
-Check out our [storybook website](https://loplat-ui.web.app/).
+Check out our [storybook website](https://ui.loplat.com/).
 
 ## Changelog
 
