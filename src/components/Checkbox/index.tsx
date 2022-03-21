@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 import { blue500, grayscale800, grayscale200, grayscale500, grayscale100 } from '../../core/colors';
 
-type BaseWrapper = {
+type BaseLabel = {
   boldLabel?: boolean;
   disabled?: boolean;
   checked: boolean | 'checked' | 'unchecked' | 'intermediate';
@@ -14,41 +14,37 @@ export type CheckboxProps = {
   name: string;
   label: string;
   className?: string;
-} & BaseWrapper;
+} & BaseLabel;
 
 export const Checkbox = ({ label, name, checked, onChange, disabled, ...props }: CheckboxProps): JSX.Element => {
   const isChecked: boolean = typeof checked === 'string' ? checked !== 'unchecked' : checked;
 
   return (
-    <StyledWrapper checked={checked} disabled={disabled} {...props} data-testid="wrapper">
-      <label htmlFor={name}>
-        <input
-          data-testid="checkbox"
-          type="checkbox"
-          id={name}
-          name={name}
-          checked={isChecked}
-          onChange={onChange}
-          disabled={disabled}
-        />
-        <span />
-        {label}
-      </label>
-    </StyledWrapper>
+    <Label htmlFor={name} checked={checked} disabled={disabled} {...props} data-testid="wrapper">
+      <input
+        data-testid="checkbox"
+        type="checkbox"
+        id={name}
+        name={name}
+        checked={isChecked}
+        onChange={onChange}
+        disabled={disabled}
+      />
+      <span />
+      {label}
+    </Label>
   );
 };
 
-const StyledWrapper = styled.div<BaseWrapper>`
-  label {
-    width: fit-content;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    font-size: 1rem;
-    font-weight: ${({ boldLabel }) => (boldLabel ? 600 : 400)};
-    color: ${({ disabled }) => (disabled ? grayscale500 : grayscale800)};
-    cursor: pointer;
-  }
+const Label = styled.label<BaseLabel>`
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: ${({ boldLabel }) => (boldLabel ? 600 : 400)};
+  color: ${({ disabled }) => (disabled ? grayscale500 : grayscale800)};
+  cursor: pointer;
 
   input[type='checkbox'] {
     position: absolute;
