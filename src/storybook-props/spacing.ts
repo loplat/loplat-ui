@@ -9,7 +9,7 @@ const buildObject = (label: Label, position: Position) => {
 
   return {
     [LabelFirstLetter + PositionFirstLetter]: {
-      description: `\`${label} ${targetPosition}\` 을 조절합니다.`,
+      description: `\`${label} ${targetPosition}\` 을 조절합니다. \`n * 4px\` 으로 적용됩니다.`,
       table: { category: label },
     },
   };
