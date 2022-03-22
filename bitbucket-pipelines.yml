@@ -36,9 +36,9 @@ pipelines:
             \"text\":\"스토리북이 업데이트 되었습니다. https://ui.loplat.com/  \n\n*개발자 커밋메시지* $COMMIT_MESSAGE\"
             }" $WEBHOOK_URL
     - step:
-        name: Test Storybook on browser using Docker
-        image: mcr.microsoft.com/playwright:v1.19.2-focal
+        name: Storybook Tests on browser using Docker
+        image: mcr.microsoft.com/playwright:focal
         caches:
           - node
         script:
-          - yarn test-storybook --url https://ui.loplat.com
+          - yarn test-storybook --browsers firefox --url https://ui.loplat.com
