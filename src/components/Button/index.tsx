@@ -19,7 +19,7 @@ import {
   white,
 } from '../../core/colors';
 import { primary, danger } from '../../core/styles/palette';
-import { Large } from '../../core/MediaQuery';
+import { Large } from '../../core/styles/mediaQuery';
 import { MarginSpacing, marginSpacingProps, marginSpacingStyle, spacing } from '../../core/Spacing';
 
 type Size = 'xs' | 'sm' | 'md' | 'lg';

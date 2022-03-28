@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import Logo from './welcome-logo.svg';
 import { black, blue100 } from '../src/core/colors';
 import { spacing } from '../src/core/Spacing';
-import { Large, Small } from '../src/core/MediaQuery';
+import { Large, Small } from '../src/core/styles/mediaQuery';
 import { Button } from '../src/components/Button';
 
 export const Welcome = () => {
