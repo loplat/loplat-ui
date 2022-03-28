@@ -1,5 +1,6 @@
 import spacing from './spacing';
 import borderless from './borderless';
+import disabled from './disabled';
 import icon from './icon';
 import eventHandler from './eventHandler';
 import typography from './typography';
@@ -19,4 +20,4 @@ export const pickPropsInObj = (obj: { [k: string]: unknown }, ...props: string[]
   return result;
 };
 
-export { spacing, borderless, icon, eventHandler, typography, spinner, hideCanvas };
+export { spacing, borderless, disabled, icon, eventHandler, typography, spinner, hideCanvas };
