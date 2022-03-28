@@ -26,6 +26,7 @@ const BaseInput = styled.input<Pick<InputProps, 'isIconVisible' | 'error'>>`
     isIconVisible
       ? `${spacing(4)}px ${spacing(12)}px ${spacing(4)}px ${spacing(6)}px`
       : `${spacing(4)}px ${spacing(6)}px`};
+  box-sizing: border-box;
   transition: border-color ease 0.3s;
 
   ::placeholder {
@@ -87,20 +88,26 @@ const InlineError = React.memo(({ children }): React.ReactElement => {
 export const Input = React.forwardRef((props: InputProps, ref: ForwardedRef<HTMLInputElement>): React.ReactElement => {
   return (
     <>
-      <div
-        className={`${css`
-          position: relative;
-          display: flex;
-          width: 100%;
-        `}`}
-      >
-        <BaseInput {...props} ref={ref} />
-        {props.rightIcon && (
-          <RightIconContainer disabled={props.disabled} isIconVisible={props.isIconVisible} data-testid="rightIcon">
+      {props.rightIcon ? (
+        <div
+          className={`${css`
+            position: relative;
+            display: flex;
+            width: 100%;
+          `}`}
+        >
+          <BaseInput {...props} ref={ref} />
+          <RightIconContainer
+            disabled={props.disabled}
+            isIconVisible={props.isIconVisible}
+            data-testid="loplat-ui__rightIcon"
+          >
             {props.rightIcon}
           </RightIconContainer>
-        )}
-      </div>
+        </div>
+      ) : (
+        <BaseInput {...props} ref={ref} />
+      )}
 
       {props.error && props.errorMessage && <InlineError>{props.errorMessage}</InlineError>}
     </>

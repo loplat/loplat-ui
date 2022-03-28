@@ -48,7 +48,7 @@ describe('<Input />', () => {
         errorMessage="에러메세지입니다."
       />,
     );
-    expect(getByTestId('rightIcon')).toBeVisible();
+    expect(getByTestId('loplat-ui__rightIcon')).toBeVisible();
     expect(getByRole('alert')).toBeVisible();
     expect(getByRole('alert')).toHaveTextContent('에러메세지입니다.');
   });
@@ -67,7 +67,7 @@ describe('<Input />', () => {
       />,
     );
 
-    expect(getByTestId('rightIcon')).not.toBeVisible();
+    expect(getByTestId('loplat-ui__rightIcon')).not.toBeVisible();
   });
 
   test('<Input />의 rightIcon은 상태에 따라 보여야한다', async () => {
@@ -84,7 +84,7 @@ describe('<Input />', () => {
         errorMessage="에러메세지"
       />,
     );
-    const rightIcon = getByTestId('rightIcon');
+    const rightIcon = getByTestId('loplat-ui__rightIcon');
 
     expect(rightIcon).not.toBeVisible();
     userEvent.click(getByPlaceholderText('검색어를 입력해주세요.'));
