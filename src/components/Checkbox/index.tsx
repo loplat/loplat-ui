@@ -20,11 +20,10 @@ export const Checkbox = ({ label, name, checked, onChange, disabled, ...props }:
   const isChecked: boolean = typeof checked === 'string' ? checked !== 'unchecked' : checked;
 
   return (
-    <Label htmlFor={name} checked={checked} disabled={disabled} {...props} data-testid="wrapper">
+    <Label checked={checked} disabled={disabled} {...props} data-testid="loplat-ui__label">
       <input
-        data-testid="checkbox"
+        data-testid="loplat-ui__checkbox"
         type="checkbox"
-        id={name}
         name={name}
         checked={isChecked}
         onChange={onChange}

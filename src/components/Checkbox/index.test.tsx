@@ -20,7 +20,7 @@ describe('<Checkbox />', () => {
     const { getByText, getByTestId } = render(
       <Checkbox onChange={result.current.onchange} name="test" label={label} checked={result.current.isCheck} />,
     );
-    const wrapper = getByTestId('wrapper');
+    const wrapper = getByTestId('loplat-ui__label');
     const labelComponent = getByText(label);
 
     expect(wrapper).toBeVisible();
@@ -44,7 +44,7 @@ describe('<Checkbox />', () => {
         disabled={true}
       />,
     );
-    const checkbox = getByTestId('checkbox');
+    const checkbox = getByTestId('loplat-ui__checkbox');
     expect(checkbox).toBeChecked();
     expect(checkbox).toBeDisabled();
   });
@@ -60,7 +60,7 @@ describe('<Checkbox />', () => {
         disabled={false}
       />,
     );
-    const checkbox = getByTestId('checkbox');
+    const checkbox = getByTestId('loplat-ui__checkbox');
     expect(checkbox).toBeEnabled();
   });
 
@@ -69,7 +69,7 @@ describe('<Checkbox />', () => {
     const { getByTestId } = render(
       <Checkbox onChange={result.current.onchange} name="test" label={label} checked={result.current.isCheck} />,
     );
-    const checkbox = getByTestId('checkbox');
+    const checkbox = getByTestId('loplat-ui__checkbox');
     expect(checkbox).toBeChecked();
   });
 
@@ -78,7 +78,7 @@ describe('<Checkbox />', () => {
     const { getByTestId } = render(
       <Checkbox onChange={result.current.onchange} name="test" label={label} checked={result.current.isCheck} />,
     );
-    const checkbox = getByTestId('checkbox');
+    const checkbox = getByTestId('loplat-ui__checkbox');
     expect(checkbox).toBeChecked();
   });
 
@@ -87,7 +87,7 @@ describe('<Checkbox />', () => {
     const { getByTestId } = render(
       <Checkbox onChange={result.current.onchange} name="test" label={label} checked={result.current.isCheck} />,
     );
-    const checkbox = getByTestId('checkbox');
+    const checkbox = getByTestId('loplat-ui__checkbox');
     expect(checkbox).not.toBeChecked();
   });
 
@@ -96,7 +96,7 @@ describe('<Checkbox />', () => {
     const { getByTestId } = render(
       <Checkbox onChange={result.current.onchange} name="test" label={label} checked={result.current.isCheck} />,
     );
-    const checkbox = getByTestId('checkbox');
+    const checkbox = getByTestId('loplat-ui__checkbox');
     expect(checkbox).not.toBeChecked();
   });
 
@@ -106,7 +106,7 @@ describe('<Checkbox />', () => {
     const { getByTestId } = render(
       <Checkbox onChange={result.current.onchange} name="test" label={label} checked={result.current.isCheck} />,
     );
-    const checkbox = getByTestId('checkbox');
+    const checkbox = getByTestId('loplat-ui__checkbox');
     expect(checkbox).toBeChecked();
     fireEvent.click(checkbox);
     expect(result.current.isCheck).toBeFalsy();
@@ -116,7 +116,7 @@ describe('<Checkbox />', () => {
     const { getByTestId } = render(
       <Checkbox onChange={result.current.onchange} name="test" label={label} checked={result.current.isCheck} />,
     );
-    const checkbox = getByTestId('checkbox');
+    const checkbox = getByTestId('loplat-ui__checkbox');
 
     expect(checkbox).not.toBeChecked();
     fireEvent.click(checkbox);
@@ -149,7 +149,7 @@ describe('<Checkbox />', () => {
     const { getByTestId } = render(
       <Checkbox onChange={result.current.onchange} name="test" label={label} checked={result.current.isCheck} />,
     );
-    const checkbox = getByTestId('checkbox');
+    const checkbox = getByTestId('loplat-ui__checkbox');
     expect(checkbox).not.toBeChecked();
     fireEvent.click(checkbox);
     expect(result.current.isCheck).toBeTruthy();

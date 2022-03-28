@@ -97,7 +97,11 @@ export const Input = React.forwardRef((props: InputProps, ref: ForwardedRef<HTML
           `}`}
         >
           <BaseInput {...props} ref={ref} />
-          <RightIconContainer disabled={props.disabled} isIconVisible={props.isIconVisible} data-testid="rightIcon">
+          <RightIconContainer
+            disabled={props.disabled}
+            isIconVisible={props.isIconVisible}
+            data-testid="loplat-ui__rightIcon"
+          >
             {props.rightIcon}
           </RightIconContainer>
         </div>
