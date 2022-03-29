@@ -3,7 +3,7 @@ import { Body } from '../../../core/Typography/Body';
 import { Close as CloseIcon } from '../../../assets/Icon/generated/Close';
 import { CheckCircleFill as CheckCircleFillIcon } from '../../../assets/Icon/generated/CheckCircleFill';
 import { spacing } from '../../../core/Spacing';
-import { ToastItem } from '../core/types';
+import { ToastItem, ToastPosition } from '../core/types';
 import { generateColorSet } from '../core/utils';
 import styled from '@emotion/styled';
 import { css } from '@emotion/css';
@@ -14,6 +14,7 @@ interface Props {
   onEmitElementHeight: (toastId: string, height: number) => void;
   offsetY: number;
   duration: number;
+  position: ToastPosition;
 }
 
 const MINIMUM_CONTENT_HEIGHT = 28;
@@ -25,6 +26,7 @@ export const ToastBar = ({
   onEmitElementHeight,
   offsetY,
   duration,
+  position,
 }: Props): React.ReactElement => {
   const toastDuration = useMemo(() => duration + ANIMATION_DURATION, [duration]);
   const colorSet = useMemo(() => generateColorSet(toastItem.type), [toastItem]);
@@ -68,9 +70,10 @@ export const ToastBar = ({
       role={toastItem.role}
       className={css`
         position: absolute;
-        top: 0;
+        top: ${position === 'top' && 0};
+        bottom: ${position === 'bottom' && 0};
         left: 50%;
-        transform: translate(-50%, ${offsetY}px);
+        transform: translate(-50%, ${position === 'top' ? offsetY : -offsetY}px);
         opacity: 0;
         transition: transform ${ANIMATION_DURATION}ms, opacity ${ANIMATION_DURATION}ms;
         border-color: ${colorSet.borderColor};
