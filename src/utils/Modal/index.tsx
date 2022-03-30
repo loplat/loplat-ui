@@ -10,18 +10,23 @@ export interface ModalProps {
   children: React.ReactElement;
 }
 
-const TABBABLE_TAGS = ['a', 'input', 'select', 'button', 'textarea'];
-const changeAccessibility = (root: HTMLElement, isAccessible: boolean) => {
-  const tabIndex = isAccessible ? '0' : '-1';
-  const ariaHidden = (!isAccessible).toString();
+const TABBABLE_TAGS = ['a', 'input', 'select', 'button', 'textarea', 'details'];
+const changeAccessibility = (root: HTMLElement, modalStatus: 'open' | 'close') => {
+  if (modalStatus === 'open') {
+    root.setAttribute('aria-hidden', 'true');
+    root.setAttribute('aria-disabled', 'true');
+  } else {
+    root.removeAttribute('aria-hidden');
+    root.removeAttribute('aria-disabled');
+  }
 
-  root.setAttribute('aria-hidden', ariaHidden);
-  root.setAttribute('aria-disabled', ariaHidden);
-  for (const tabbableTag in TABBABLE_TAGS) {
-    const elements = root.getElementsByTagName(tabbableTag);
-    for (let i = 0; i < elements.length; i++) {
-      elements[i].setAttribute('tabindex', tabIndex);
-    }
+  for (const tabbableTag of TABBABLE_TAGS) {
+    const nodeList = root.querySelectorAll(tabbableTag);
+
+    nodeList.forEach((node) => {
+      if (modalStatus === 'open') node.setAttribute('tabindex', '-1');
+      else node.removeAttribute('tabindex');
+    });
   }
 };
 
@@ -50,16 +55,19 @@ export function Modal({ isOpen, onClose, zIndex = 9999, children }: ModalProps):
   }, [portalId]);
 
   useEffect(() => {
-    // root div가 항상 body의 첫번째에 온다는 것을 전제로 상정함.
-    const root = document.body.querySelector('div') as HTMLElement;
+    const divList = document.body.querySelectorAll('div');
+    const portal = document.body.querySelector(`div#${portalId}`) as HTMLDivElement;
+
+    const notPortalDivList = [] as HTMLElement[];
+    divList.forEach((div) => !portal.contains(div) && notPortalDivList.push(div));
 
     if (isOpen) {
       document.body.style.overflow = 'hidden';
-      changeAccessibility(root, false);
+      notPortalDivList.forEach((root) => changeAccessibility(root, 'open'));
     }
     return () => {
-      document.body.style.overflow = 'auto';
-      changeAccessibility(root, true);
+      document.body.style.overflow = 'initial';
+      notPortalDivList.forEach((root) => changeAccessibility(root, 'close'));
     };
   }, [isOpen]);
 
