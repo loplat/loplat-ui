@@ -8,9 +8,10 @@ import { CloseIcon } from '../../../assets/Icon/export.generated';
 import { TwoButtons, BasePopupProps, DivProps } from '../';
 import { ButtonWrapper as ButtonWrapperRef } from '../Popup2';
 
-export type Popup3Props = Omit<Required<BasePopupProps>, 'icon' | 'color'> & {
+export type Popup3Props = Omit<Required<BasePopupProps>, 'icon' | 'color' | 'className'> & {
   description?: string;
   showCloseButton?: boolean;
+  className?: string;
 } & TwoButtons &
   DivProps;
 
@@ -30,7 +31,14 @@ export const Popup3 = ({
   ...props
 }: Popup3Props): JSX.Element => {
   return (
-    <Dialog role="dialog" aria-live="assertive" title={label} {...props}>
+    <Dialog
+      role="dialog"
+      aria-live="assertive"
+      title={label}
+      aria-labelledby="dialogTitle"
+      aria-describedby="dialogDesc"
+      {...props}
+    >
       {showCloseButton && (
         <IconButton color="ghost" onClick={onClose} aria-label="닫기" className="close_dialog" tabIndex={0}>
           <CloseIcon size={16} />
@@ -38,8 +46,8 @@ export const Popup3 = ({
       )}
       <Wrapper>
         <Title>
-          <h1>{title}</h1>
-          {description && <small>{description}</small>}
+          <h1 id="dialogTitle">{title}</h1>
+          {description && <small id="dialogDesc">{description}</small>}
         </Title>
         <p>{content}</p>
       </Wrapper>

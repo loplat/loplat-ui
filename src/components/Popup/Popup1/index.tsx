@@ -28,17 +28,25 @@ export const Popup1 = ({
   icon = 'check',
   onClose,
   label,
+  ...props
 }: PopupProps): React.ReactElement => {
   const [mainColor, buttonColor] =
     color === 'danger' ? ([danger, 'danger1'] as const) : ([primary, 'primary1'] as const);
   const CustomIcon = generateCustomIcon(icon, mainColor);
 
   return (
-    <Dialog role="dialog" aria-live="assertive" title={label}>
+    <Dialog
+      role="dialog"
+      aria-live="assertive"
+      title={label}
+      aria-labelledby="dialogTitle"
+      aria-describedby="dialogDesc"
+      {...props}
+    >
       <Wrapper color={mainColor} onlyTitle={content === ''} onlyContent={title === ''}>
         {CustomIcon}
-        {title !== '' && <h1>{title}</h1>}
-        {content !== '' && <p>{content}</p>}
+        {title !== '' && <h1 id="dialogTitle">{title}</h1>}
+        {content !== '' && <p id="dialogDesc">{content}</p>}
       </Wrapper>
       <Button fullWidth color={buttonColor} tabIndex={0} onClick={onClose}>
         확인

@@ -7,7 +7,10 @@ import { primary, Small } from '../../../core';
 import { BasePopupProps, DivProps, TwoButtons } from '../';
 import { generateCustomIcon } from '../Popup1/';
 
-export type Popup2Props = Omit<Required<BasePopupProps>, 'onClose' | 'color'> & { color?: string } & TwoButtons &
+export type Popup2Props = Omit<Required<BasePopupProps>, 'onClose' | 'color' | 'className'> & {
+  color?: string;
+  className?: string;
+} & TwoButtons &
   DivProps;
 
 export const Popup2 = ({
@@ -27,11 +30,18 @@ export const Popup2 = ({
   const CustomIcon = generateCustomIcon(icon, color);
 
   return (
-    <Dialog role="dialog" aria-live="assertive" title={label} {...props}>
+    <Dialog
+      role="dialog"
+      aria-live="assertive"
+      title={label}
+      aria-labelledby="dialogTitle"
+      aria-describedby="dialogDesc"
+      {...props}
+    >
       <Wrapper color={color}>
         {CustomIcon}
-        <h1>{title}</h1>
-        <p>{content}</p>
+        <h1 id="dialogTitle">{title}</h1>
+        <p id="dialogDesc">{content}</p>
       </Wrapper>
       <ButtonWrapper>
         <Button fullWidth color={leftButtonColor} tabIndex={0} onClick={leftButtonClick}>

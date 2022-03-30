@@ -29,6 +29,7 @@ export type BasePopupProps = {
   icon?: 'check' | 'warning' | React.ReactElement;
   /** `popup 컴포넌트`를 닫을 수 있는 함수여야 합니다. */
   onClose: () => void;
+  className?: string;
 };
 export type DivProps = React.HTMLAttributes<HTMLDivElement>;
 export type PopupProps = BasePopupProps & DivProps;
