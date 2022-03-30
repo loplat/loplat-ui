@@ -8,7 +8,7 @@ export const parameters = {
         'core',
         'Typography',
         'Components',
-        ['Button', 'Input', 'Checkbox', 'RadioButton'],
+        ['Button', 'Input', 'Checkbox', 'RadioButton', 'Popup', ['Popup1', 'Popup2']],
         'Assets',
         'Utils',
       ],
