@@ -46,7 +46,7 @@ export const popup = {
   },
 };
 
-export const icon = {
+export const popupIcon = {
   icon: {
     table: {
       category: 'icon',
