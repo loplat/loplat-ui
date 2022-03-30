@@ -5,6 +5,8 @@ import eventHandler from './eventHandler';
 import typography from './typography';
 import spinner from './spinner';
 import hideCanvas from './hideCanvas';
+import { popup, twoButtons, icon as popupIcon } from './popup';
+import button from './button';
 
 export const pickPropsInObj = (obj: { [k: string]: unknown }, ...props: string[]): unknown => {
   const result: Record<string, unknown> = {};
@@ -19,4 +21,16 @@ export const pickPropsInObj = (obj: { [k: string]: unknown }, ...props: string[]
   return result;
 };
 
-export { spacing, borderless, icon, eventHandler, typography, spinner, hideCanvas };
+export {
+  spacing,
+  borderless,
+  icon,
+  eventHandler,
+  typography,
+  spinner,
+  hideCanvas,
+  popup,
+  twoButtons,
+  popupIcon,
+  button,
+};

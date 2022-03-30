@@ -11,3 +11,7 @@ declare module '*.webp' {
   const src: string;
   export default src;
 }
+
+declare type PrefixKey<Type, Keyword extends string> = {
+  [Key in keyof Type as `${Keyword}${Capitalize<string & Key>}`]: Type[Key];
+};

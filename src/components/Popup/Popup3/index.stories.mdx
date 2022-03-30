@@ -1,0 +1,120 @@
+import { useState } from 'react';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { Popup3 } from '../index';
+import { Popup3 as PopupThree } from './index';
+import { Button } from '../../Button';
+import { primary, danger } from '../../../core/styles/palette';
+import { initialArgs } from '../Popup2/index.stories.mdx';
+import { popup, twoButtons } from '../../../storybook-props';
+
+<Meta
+  title="Components/Popup/Popup3"
+  component={Popup3}
+  argTypes={{
+    showCloseButton: {
+      description: '오른쪽 상단의 닫기 버튼을 숨길 수 있습니다.',
+      control: {
+        type: 'boolean',
+      },
+      table: {
+        defaultValue: { summary: 'true' },
+      },
+    },
+    ...twoButtons,
+    ...popup,
+  }}
+/>
+
+export const Template = (args) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const toggle = () => {
+    setIsOpen(!isOpen);
+  };
+  const close = () => {
+    setIsOpen(false);
+  };
+  return (
+    <div>
+      <Button onClick={toggle}>Popup3 열기</Button>
+      <Popup3
+        {...initialArgs}
+        {...args}
+        isOpen={isOpen}
+        onClose={close}
+        label="확인완료"
+        rightButtonClick={close}
+        leftButtonClick={close}
+      />
+    </div>
+  );
+};
+
+export const DialogTemplate = (args) => <PopupThree {...initialArgs} {...args} />;
+
+# 팝업3
+
+닫을 수 있는 경고, 확인 및 기타 상호작용이 가능한 컴포넌트입니다. 화면 정중앙에 렌더링이 됩니다.
+
+`<Modal/>`을 기반으로 만들어졌습니다. 배경을 클릭하거나 esc를 눌러도 팝업 컴포넌트가 닫힙니다.
+
+## 차이점
+
+- 팝업을 닫는 버튼아이콘이 우측상단에 존재합니다.
+- 다른 팝업컴포넌트와 다르게 아이콘이 없습니다.
+- 타이틀색상을 수정하는 속성이 없습니다.
+- 텍스트가 왼쪽정렬입니다.
+
+<Canvas>
+  <Story name="default" args={{ description: '타이틀에 대한 설명이 작성되는 부분입니다.' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+## 예제
+
+색상과 아이콘, 버튼색상과 버튼라벨을 변경할 수 있습니다.
+
+### no close Button
+
+상단우측의 닫기버튼을 없앨 수 있습니다. description을 생략할 수 있습니다.
+
+<Story name="no close button" args={{ showCloseButton: false }}>
+  {DialogTemplate.bind({})}
+</Story>
+
+### too long title
+
+`width: max-content`, `max-width: 1200px`으로, 최대 1200px을 유지합니다.
+
+<Story
+  name="too long everything"
+  args={{
+    title:
+      '타이틀작성위치,타이틀작성위치타이틀작성위치,타이틀작성위치타이틀작성위치,타이틀작성위치타이틀작성위치,타이틀작성위치타이틀작성위치,타이틀작성위치타이틀작성위치,타이틀작성위치타이틀작성위치,타이틀작성위치타이틀작성위치,타이틀작성위치',
+    content:
+      '내용을 입력해주세요.내용을 입력해주세요.내용을 입력해주세요.내용을 입력해주세요.내용을 입력해주세요.내용을 입력해주세요.내용을 입력해주세요.내용을 입력해주세요.내용을 입력해주세요.내용을 입력해주세요.',
+    description:
+      '타이틀에 대한 설명이 작성되 부분입니다.타이틀에 대한 설명이 작성되는 부분입니다.타이틀에 대한 설명이 작성되는 부분입니다.타이틀에 대한 설명이 작성되는 부분입니다.타이틀에 대한 설명이 작성되는 부분입니다.타이틀에 대한 설명이 작성되는 부분입니다.타이틀에 대한 설명이 작성되는 부분입니다.타이틀에 대한 설명이 작성되는 부분입니다.타이틀에 대한 설명이 작성되는 부분입니다.타이틀에 대한 설명이 작성되는 부분입니다.타이틀에 대한 설명이 작성되는 부분입니다.타이틀에 대한 설명이 작성되는 부분입니다.타이틀에 대한 설명이 작성되는 부분입니다.타이틀에 대한 설명이 작성되는 부분입니다.타이틀에 대한 설명이 작성되는 부분입니다.타이틀에 대한 설명이 작성되는 부분입니다.타이틀에 대한 설명이 작성되는 부분입니다.타이틀에 대한 설명이 작성되는 부분입니다.타이틀에 대한 설명이 작성되는 부분입니다.타이틀에 대한 설명이 작성되는 부분입니다.타이틀에 대한 설명이 작성되는 부분입니다.',
+  }}
+>
+  {Template.bind({})}
+</Story>
+
+### variant button color
+
+버튼의 색상을 다양하게 사용할 수 있습니다.
+
+<Story
+  name="variant button color"
+  args={{
+    leftButtonColor: 'danger1',
+    rightButtonColor: 'primary2',
+    leftButtonLabel: 'left',
+    rightButtonLabel: 'right',
+    description: '왼쪽 오른쪽 버튼을 커스텀할 수 있습니다.',
+  }}
+>
+  {DialogTemplate.bind({})}
+</Story>

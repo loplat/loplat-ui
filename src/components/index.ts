@@ -6,3 +6,4 @@ export * from './Toast';
 export * from './Spinner';
 export * from './Checkbox';
 export * from './RadioButton';
+export * from './Popup';

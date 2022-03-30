@@ -1,0 +1,134 @@
+import { useState } from 'react';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { Popup1 as PopupOne } from './index';
+import { Popup1 } from '../index.tsx';
+import { DiamondIcon } from '../../../assets/Icon/';
+import { Button } from '../../Button';
+import { popup, popupIcon } from '../../../storybook-props';
+
+<Meta
+  title="Components/Popup/Popup1"
+  component={Popup1}
+  argTypes={{
+    ...popup,
+    ...popupIcon,
+  }}
+/>
+
+export const Template = (args) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const toggle = () => {
+    setIsOpen(!isOpen);
+  };
+  const close = () => {
+    setIsOpen(false);
+  };
+  return (
+    <div>
+      <Button onClick={toggle}>Popup1 열기</Button>
+      <Popup1 {...args} isOpen={isOpen} onClose={close} label="확인완료" />
+    </div>
+  );
+};
+
+export const DialogTemplate = (args) => <PopupOne {...args} onClose={() => {}} label="test" />;
+
+# 팝업1
+
+닫을 수 있는 경고, 확인 및 기타 상호작용이 가능한 컴포넌트입니다. 화면 정중앙에 렌더링이 됩니다.
+
+`<Modal/>`을 기반으로 만들어졌습니다. 배경을 클릭하거나 esc를 눌러도 팝업 컴포넌트가 닫힙니다.
+
+하나의 `onClose`함수로 컴포넌트를 닫고, 버튼클릭이벤트로 사용합니다.
+
+<Canvas>
+  <Story
+    name="default"
+    args={{
+      title: '확인 완료했습니다.',
+      content: '한번 지운 내용은 다시 되돌릴 수 없습니다.',
+      color: 'primary',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+## 예제
+
+아래 예제는 title, content, color, icon을 여러 방식으로 바꾼 것입니다.
+
+### only title, icon: warning, color: danger
+
+<Story name="no content" args={{ title: '오류가 있습니다!!', color: 'danger', icon: 'warning' }}>
+  {DialogTemplate.bind({})}
+</Story>
+
+### too long title, icon: warning, color: danger
+
+<Story
+  name="too long title"
+  args={{
+    icon: 'warning',
+    title:
+      '오류가 있습니다!!오류가 있습니다!!오류가 있습니다!!오류가 있습니다!!오류가 있습니다!!오류가 있습니다!!오류가 있습니다!!오류가 있습니다!!오류가 있습니다!!',
+    color: 'danger',
+  }}
+>
+  {DialogTemplate.bind({})}
+</Story>
+
+### only content, color: primary
+
+<Story name="only content" args={{ color: 'primary', content: '텍스트를 입력하는 부분입니다.' }}>
+  {DialogTemplate.bind({})}
+</Story>
+
+### too long content, icon: warning, color: primary
+
+<Story
+  name="too long content"
+  args={{
+    color: 'primary',
+    icon: 'warning',
+    content:
+      '텍스트를 입력하는 부분입니다. 텍스트를 입력하는 부분입니다.텍스트를 입력하는 부분입니다.텍스트를 입력하는 부분입니다.텍스트를 입력하는 부분입니다.텍스트를 입력하는 부분입니다.텍스트를 입력하는 부분입니다.',
+  }}
+>
+  {DialogTemplate.bind({})}
+</Story>
+
+### custom icon
+
+icon props으로 원하는 icon svg을 할당할 수 있습니다.
+
+**loplat UI 에서 제공하는 아이콘을 사용하는 것을 권장**합니다.
+그래야 색상과 크기를 따로 설정하지 않아도 기본 크기와 색상을 계승할 수 있습니다.
+
+<Story
+  name="custom Icon"
+  args={{
+    color: 'danger',
+    icon: <DiamondIcon />,
+    title: '빨간 다이아몬드',
+    content: '빨간 다이아몬드는 반짝반짝',
+  }}
+>
+  {DialogTemplate.bind({})}
+</Story>
+
+<Canvas>
+  <Story
+    name="icon popup example"
+    args={{
+      color: 'danger',
+      icon: <DiamondIcon />,
+      title: '빨간 다이아몬드',
+      content: '빨간 다이아몬드는 반짝반짝',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>

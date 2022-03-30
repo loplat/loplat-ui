@@ -1,0 +1,126 @@
+import { useState } from 'react';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { Popup2 as PopupTwo } from './index';
+import { Popup2 } from '../index.tsx';
+import { primary, danger } from '../../../core/styles/palette';
+import { LanguageIcon } from '../../../assets/Icon';
+import { Button } from '../../Button';
+import { popup, twoButtons, popupIcon } from '../../../storybook-props';
+
+<Meta
+  title="Components/Popup/Popup2"
+  component={Popup2}
+  argTypes={{
+    ...twoButtons,
+    ...popup,
+    ...popupIcon,
+    color: {
+      description: 'icon, title 색상을 결정합니다.',
+      table: {
+        defaultValue: { summary: 'primary' },
+      },
+      control: 'color',
+    },
+  }}
+/>
+
+export const Template = (args) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const toggle = () => {
+    setIsOpen(!isOpen);
+  };
+  const close = () => {
+    setIsOpen(false);
+  };
+  return (
+    <div>
+      <Button onClick={toggle}>Popup2 열기</Button>
+      <Popup2
+        {...args}
+        isOpen={isOpen}
+        onClose={close}
+        label="확인완료"
+        rightButtonClick={close}
+        leftButtonClick={close}
+      />
+    </div>
+  );
+};
+
+export const DialogTemplate = (args) => <PopupTwo {...initialArgs} {...args} />;
+
+# 팝업2
+
+닫을 수 있는 경고, 확인 및 기타 상호작용이 가능한 컴포넌트입니다. 화면 정중앙에 렌더링이 됩니다.
+
+`<Modal/>`을 기반으로 만들어졌습니다. 배경을 클릭하거나 esc를 눌러도 팝업 컴포넌트가 닫힙니다.
+
+`<Popup1/>`컴포넌트를 계승합니다.
+색상을 `<Popup1/>` 컴포넌트와는 다르게 원하는 색상코드를 모두 입력 가능합니다.
+
+<Canvas>
+  <Story
+    name="default"
+    args={{
+      ...initialArgs,
+      color: `${primary}`,
+      icon: 'warning',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+## 예제
+
+- 아이콘을 변경할 수 있습니다.
+- 색상이 아이콘과 타이틀에 적용이 됩니다.
+- 좌우 버튼 모두 커스텀 할 수 있습니다.
+
+### 내용이 긴 경우
+
+<Story
+  name="too long content"
+  args={{
+    color: `${danger}`,
+    icon: 'check',
+    leftButtonLabel: '왼쪽',
+    rightButtonLabel: '오른쪽',
+    rightButtonColor: 'danger1',
+    leftButtonColor: 'danger2',
+    content:
+      '내용을 입력해주세요.내용을 입력해주세요.내용을 입력해주세요.내용을 입력해주세요.내용을 입력해주세요.내용을 입력해주세요.내용을 입력해주세요.내용을 입력해주세요.',
+  }}
+>
+  {DialogTemplate.bind({})}
+</Story>
+
+### 타이틀이 긴 경우
+
+<Story
+  name="too long title"
+  args={{
+    color: `${primary}`,
+    icon: <LanguageIcon />,
+    leftButtonLabel: '왼쪽',
+    leftButtonColor: 'ghost',
+    rightButtonLabel: '오른쪽',
+    rightButtonColor: 'primary2',
+    title:
+      '타이틀이 들어가는 자리. 타이틀이 들어가는 자리. 타이틀이 들어가는 자리. 타이틀이 들어가는 자리. 타이틀이 들어가는 자리. 타이틀이 들어가는 자리. 타이틀이 들어가는 자리. 타이틀이 들어가는 자리.',
+    content: '소박한 내용입니다.',
+  }}
+>
+  {DialogTemplate.bind({})}
+</Story>
+
+export const initialArgs = {
+  title: '타이틀이 들어가는 자리',
+  content: '내용을 입력해주세요',
+  leftButtonLabel: '취소',
+  rightButtonLabel: '확인',
+  rightButtonColor: 'primary1',
+  label: 'test',
+};
