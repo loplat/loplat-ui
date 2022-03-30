@@ -1,4 +1,4 @@
-import button from './button';
+import button from '../../storybook-props/button';
 
 const required = {
   type: {
@@ -68,7 +68,10 @@ export const icon = {
 const twoButton = ['leftButton', 'rightButton'] as const;
 const buttonProps = ['label', 'click', 'color'] as const;
 const capitalize = (str: string): string => str.charAt(0).toUpperCase() + str.substring(1);
-const keyList = twoButton.reduce((prev, curr) => prev.concat(buttonProps.map((props) => curr + capitalize(props))), []);
+const keyList = twoButton.reduce(
+  (prev, curr) => prev.concat(buttonProps.map((prop) => `${curr}${capitalize(prop)}`)),
+  [] as string[],
+);
 
 const describeButton = (label: string) => {
   const category = { category: 'button props' };
@@ -103,6 +106,6 @@ const describeButton = (label: string) => {
   }
 };
 
-export const twoButtons = keyList.reduce((acc, curr) => {
+export const twoButtonsDescription = keyList.reduce((acc, curr) => {
   return Object.assign(acc, describeButton(curr));
 }, {});
