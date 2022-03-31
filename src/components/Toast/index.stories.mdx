@@ -17,6 +17,9 @@ import { Button } from '../Button';
     gap: {
       description: '여러개의 토스트가 화면에 나타날 때, 토스트 사이의 간격을 설정합니다.',
     },
+    position: {
+      description: '토스트가 화면에 나타나는 위치입니다.',
+    },
   }}
 />
 
@@ -41,7 +44,7 @@ export const Template = (args) => (
 화면 상단 중앙에 알림을 띄웁니다.
 
 <Canvas>
-  <Story name="success" args={{ mt: 4, mx: 2 }}>
+  <Story name="success" args={{ my: 4, mx: 2 }}>
     {Template.bind({})}
   </Story>
 </Canvas>
