@@ -97,10 +97,10 @@ const Label = styled.label<BaseLabel>`
         border-color: ${grayscale500};
       }
     }
-    &:hover + span {
+    &:hover:not(:checked) + span {
       border-color: ${grayscale300};
     }
-    &:focus ~ span {
+    &:focus-visible ~ span {
       outline: 2px solid ${primary};
     }
   }

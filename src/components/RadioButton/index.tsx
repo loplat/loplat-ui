@@ -60,7 +60,8 @@ const RadioButtonContainer = styled.label<RadioStyleProps>`
     position: absolute;
     opacity: 0;
 
-    &:focus ~ span {
+    &:focus-visible ~ span {
+      outline: 2px solid ${primary};
       background-color: ${blue100};
     }
   }
