@@ -1,19 +1,13 @@
 import styled from '@emotion/styled';
 import { bluescale500, black } from '../../../core/colors';
-import { Dialog as DialogRef, WrapperCommonStyle } from '../Popup1';
+import { Dialog as DialogRef } from '../Popup1';
 import { Button } from '../../Button';
-import { Large, Small } from '../../../core';
+import { Large, Small } from '../../../core/MediaQuery';
 import { IconButton } from '../../IconButton';
 import { CloseIcon } from '../../../assets/Icon/export.generated';
-import { TwoButtons, BasePopupProps, DivProps } from '../';
+import { Popup3Props } from '../core/types';
 import { ButtonWrapper as ButtonWrapperRef } from '../Popup2';
-
-export type Popup3Props = Omit<Required<BasePopupProps>, 'icon' | 'color' | 'className'> & {
-  description?: string;
-  showCloseButton?: boolean;
-  className?: string;
-} & TwoButtons &
-  DivProps;
+import { WrapperCommonStyle } from '../core/commonStyle';
 
 export const Popup3 = ({
   description,

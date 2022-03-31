@@ -1,45 +1,11 @@
 import React from 'react';
 import { Modal } from '../../utils';
 import { Popup1 as PopupOne } from './Popup1';
-import { Popup2Props, Popup2 as PopupTwo } from './Popup2';
-import { Popup3Props, Popup3 as PopupThree } from './Popup3';
-import { ButtonProps } from '../Button';
+import { Popup2 as PopupTwo } from './Popup2';
+import { Popup3 as PopupThree } from './Popup3';
+import { DialogProps, Popup1Props, Popup2Props, Popup3Props } from './core/types';
 
-// 기존의 Button의 Color을 그냥 가져오는게 나을지 고민
-type Color = NonNullable<ButtonProps['color']>;
-type PopupButton = {
-  label: string;
-  click: (event: unknown) => void;
-  color: Color;
-};
-export type TwoButtons = PrefixKey<PopupButton, 'leftButton'> & PrefixKey<PopupButton, 'rightButton'>;
-
-export type BasePopupProps = {
-  /** icon, button, title 색상을 결정합니다. */
-  color: 'danger' | 'primary';
-  title?: string;
-  content?: string;
-  /** title과 동일하거나, 해당 컴포넌트의 목적을 간략히 입력해주세요. dialog의 aria-label역할을 합니다. */
-  label: string;
-  /**
-   * `loplat ui icon 컴포넌트`를 전달하여 커스텀할 수 있습니다.
-   *
-   * 설정한 color에 따라 전달한 icon의 fillColor 색상이 달라집니다.
-   */
-  icon?: 'check' | 'warning' | React.ReactElement;
-  /** `popup 컴포넌트`를 닫을 수 있는 함수여야 합니다. */
-  onClose: () => void;
-  className?: string;
-};
-export type DivProps = React.HTMLAttributes<HTMLDivElement>;
-export type PopupProps = BasePopupProps & DivProps;
-
-export type DialogProps = {
-  isOpen: boolean;
-  onClose: () => void;
-};
-
-export const Popup1 = ({ isOpen, onClose, ...props }: DialogProps & PopupProps): React.ReactElement => {
+export const Popup1 = ({ isOpen, onClose, ...props }: DialogProps & Popup1Props): React.ReactElement => {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <PopupOne {...props} onClose={onClose} />

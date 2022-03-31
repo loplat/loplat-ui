@@ -1,17 +1,12 @@
-import React from 'react';
 import styled from '@emotion/styled';
 import { grayscale900 } from '../../../core/colors';
-import { Dialog, WrapperCommonStyle } from '../Popup1/';
+import { Dialog } from '../Popup1/';
 import { Button } from '../../Button';
-import { primary, Small } from '../../../core';
-import { BasePopupProps, DivProps, TwoButtons } from '../';
-import { generateCustomIcon } from '../Popup1/';
-
-export type Popup2Props = Omit<Required<BasePopupProps>, 'onClose' | 'color' | 'className'> & {
-  color?: string;
-  className?: string;
-} & TwoButtons &
-  DivProps;
+import { Small } from '../../../core/MediaQuery';
+import { primary } from '../../../core';
+import { generateCustomIcon } from '../core/utils';
+import { WrapperCommonStyle } from '../core/commonStyle';
+import { Popup2Props } from '../core/types';
 
 export const Popup2 = ({
   label,
