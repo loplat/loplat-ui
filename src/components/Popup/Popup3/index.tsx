@@ -1,13 +1,11 @@
 import styled from '@emotion/styled';
 import { bluescale500, black } from '../../../core/colors';
-import { Dialog as DialogRef } from '../Popup1';
 import { Button } from '../../Button';
 import { Large, Small } from '../../../core/MediaQuery';
 import { IconButton } from '../../IconButton';
 import { CloseIcon } from '../../../assets/Icon/export.generated';
 import { Popup3Props } from '../core/types';
-import { ButtonWrapper as ButtonWrapperRef } from '../Popup2';
-import { WrapperCommonStyle } from '../core/commonStyle';
+import { WrapperCommonStyle, Dialog as DialogRef, ButtonWrapper as ButtonWrapperRef } from '../core/commonStyle';
 
 export const Popup3 = ({
   description,

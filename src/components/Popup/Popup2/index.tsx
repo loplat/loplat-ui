@@ -1,11 +1,9 @@
 import styled from '@emotion/styled';
 import { grayscale900 } from '../../../core/colors';
-import { Dialog } from '../Popup1/';
 import { Button } from '../../Button';
-import { Small } from '../../../core/MediaQuery';
 import { primary } from '../../../core';
 import { generateCustomIcon } from '../core/utils';
-import { WrapperCommonStyle } from '../core/commonStyle';
+import { WrapperCommonStyle, Dialog, ButtonWrapper } from '../core/commonStyle';
 import { Popup2Props } from '../core/types';
 
 export const Popup2 = ({
@@ -69,21 +67,5 @@ export const Wrapper = styled.div<{ color: string }>`
     color: ${grayscale900};
     font-size: 0.875rem;
     line-height: 21px;
-  }
-`;
-
-export const ButtonWrapper = styled.section`
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-
-  button {
-    &:first-of-type {
-      margin-right: 15px;
-    }
-
-    ${Small} {
-      padding: 16px 0;
-    }
   }
 `;

@@ -1,12 +1,11 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Button } from '../../Button';
-import { white, black as black500, bluescale500 } from '../../../core/colors';
+import { black as black500, bluescale500 } from '../../../core/colors';
 import { primary, danger } from '../../../core/styles/palette';
-import { Large, Small } from '../../../core/MediaQuery';
 import { Popup1Props } from '../core/types';
 import { generateCustomIcon } from '../core/utils';
-import { WrapperCommonStyle } from '../core/commonStyle';
+import { WrapperCommonStyle, Dialog } from '../core/commonStyle';
 
 export const Popup1 = ({
   color,
@@ -41,27 +40,6 @@ export const Popup1 = ({
     </Dialog>
   );
 };
-
-export const Dialog = styled.div`
-  background-color: ${white};
-  border-radius: 16px;
-  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.3);
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-
-  ${Large} {
-    max-width: 400px;
-    padding: 24px 32px;
-  }
-  ${Small} {
-    max-width: 100%;
-    padding: 16px 24px;
-  }
-`;
 
 export const Wrapper = styled.div<{ color: string; onlyTitle: boolean; onlyContent: boolean }>`
   ${WrapperCommonStyle};

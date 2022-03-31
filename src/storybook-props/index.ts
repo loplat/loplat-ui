@@ -21,4 +21,4 @@ export const pickPropsInObj = (obj: { [k: string]: unknown }, ...props: string[]
   return result;
 };
 
-export { spacing, borderless, icon, eventHandler, typography, spinner, hideCanvas, button };
+export { spacing, borderless, icon, eventHandler, typography, spinner, hideCanvas, button, disabled };
