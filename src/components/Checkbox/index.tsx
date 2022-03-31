@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 import { blue500, grayscale800, grayscale200, grayscale500, grayscale100, grayscale300 } from '../../core/colors';
-import { primary } from '../../core';
+import { primary } from '../../core/styles/palette';
 
 type BaseLabel = {
   boldLabel?: boolean;
