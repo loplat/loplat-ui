@@ -1,7 +1,8 @@
 import { AriaRole } from 'react';
 
-export type ToastType = 'success' | 'info' | 'danger' | 'warning' | 'white';
+export type ToastPosition = 'top' | 'bottom';
 export type ToastRole = Extract<AriaRole, 'alert' | 'status'>;
+export type ToastType = 'success' | 'info' | 'danger' | 'warning' | 'white';
 
 export interface ToastItem {
   id: string;

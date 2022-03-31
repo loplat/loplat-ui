@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import { MarginSpacing, marginSpacingProps, marginSpacingStyle } from '../../../core/Spacing';
-import { ToastItem } from '../core/types';
+import { ToastItem, ToastPosition } from '../core/types';
 import Toaster from '../core/toaster';
 import { ToastBar } from './ToastBar';
 
@@ -9,11 +9,18 @@ export interface Props extends MarginSpacing {
   duration?: number;
   zIndex?: number;
   gap?: number;
+  position?: ToastPosition;
 }
 
 export let toast: Toaster = new Toaster(null);
 
-export const Toast = ({ duration = 3000, zIndex = 9999, gap = 8, ...props }: Props): React.ReactElement => {
+export const Toast = ({
+  duration = 3000,
+  zIndex = 9999,
+  gap = 8,
+  position = 'top',
+  ...props
+}: Props): React.ReactElement => {
   const [toastItems, setToastItems] = useState<ToastItem[]>([]);
   const [heightOfToastBars, setHeightOfToastBars] = useState<{ id: ToastItem['id']; height: number }[]>([]);
 
@@ -55,6 +62,7 @@ export const Toast = ({ duration = 3000, zIndex = 9999, gap = 8, ...props }: Pro
           onEmitElementHeight={addHeightOfToastBars}
           offsetY={calculateOffsetYByIndex(index)}
           duration={duration}
+          position={position}
           key={toastItem.id}
         />
       ))}

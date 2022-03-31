@@ -1,13 +1,14 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import { IconButton } from './index.tsx';
 import { Campaign as CampaignIcon } from '../../assets/Icon/generated/Campaign.tsx';
-import { spacing, borderless, pickPropsInObj, eventHandler } from '../../storybook-props/';
+import { spacing, borderless, disabled, pickPropsInObj, eventHandler } from '../../storybook-props/';
 
 <Meta
   title="Components/Button/IconButton"
   component={IconButton}
   argTypes={{
     ...borderless,
+    ...disabled('button'),
     ...spacing('margin'),
     ...pickPropsInObj(eventHandler, 'onClick'),
     children: {
