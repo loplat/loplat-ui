@@ -5,7 +5,7 @@ import { Input } from './index';
 import { Campaign } from '../../assets/Icon/generated/Campaign.tsx';
 import { red300 } from '../../core/colors/red';
 import { bluescale500 } from '../../core/colors/bluescale.ts';
-import { icon, pickPropsInObj, eventHandler } from '../../storybook-props/';
+import { disabled as disabledProp, icon, pickPropsInObj, eventHandler } from '../../storybook-props/';
 
 <Meta
   title="Components/Input"
@@ -23,7 +23,6 @@ import { icon, pickPropsInObj, eventHandler } from '../../storybook-props/';
       type: 'string',
       table: { category: 'input' },
     },
-    disabled: { description: '`input` 태그의 `disabled` 속성입니다.', type: 'boolean', table: { category: 'input' } },
     placeholder: {
       description: '`input` 태그의 `placeholder` 속성입니다.',
       type: 'string',
@@ -32,6 +31,7 @@ import { icon, pickPropsInObj, eventHandler } from '../../storybook-props/';
     className: { description: '`input` 태그의 `class` 속성입니다.', type: 'string', table: { category: 'input' } },
     error: { description: '`true`일 때, `errorMessage`가 하단에 표시됩니다.', table: { category: 'error' } },
     errorMessage: { table: { category: 'error' } },
+    ...disabledProp('input', 'input'),
     ...pickPropsInObj(icon, 'isIconVisible', 'rightIcon'),
     ...pickPropsInObj(eventHandler, 'onKeyPress', 'onBlur', 'onFocus', 'onChange'),
   }}
