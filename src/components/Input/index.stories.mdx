@@ -1,9 +1,11 @@
+import { useState } from 'react';
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { runTest } from './storybookTest.ts';
 import { Input } from './index';
 import { Campaign } from '../../assets/Icon/generated/Campaign.tsx';
 import { red300 } from '../../core/colors/red';
 import { bluescale500 } from '../../core/colors/bluescale.ts';
-import { icon, pickPropsInObj, eventHandler } from '../../storybook-props/';
+import { disabled as disabledProp, icon, pickPropsInObj, eventHandler } from '../../storybook-props/';
 
 <Meta
   title="Components/Input"
@@ -21,7 +23,6 @@ import { icon, pickPropsInObj, eventHandler } from '../../storybook-props/';
       type: 'string',
       table: { category: 'input' },
     },
-    disabled: { description: '`input` 태그의 `disabled` 속성입니다.', type: 'boolean', table: { category: 'input' } },
     placeholder: {
       description: '`input` 태그의 `placeholder` 속성입니다.',
       type: 'string',
@@ -30,19 +31,30 @@ import { icon, pickPropsInObj, eventHandler } from '../../storybook-props/';
     className: { description: '`input` 태그의 `class` 속성입니다.', type: 'string', table: { category: 'input' } },
     error: { description: '`true`일 때, `errorMessage`가 하단에 표시됩니다.', table: { category: 'error' } },
     errorMessage: { table: { category: 'error' } },
+    ...disabledProp('input', 'input'),
     ...pickPropsInObj(icon, 'isIconVisible', 'rightIcon'),
     ...pickPropsInObj(eventHandler, 'onKeyPress', 'onBlur', 'onFocus', 'onChange'),
   }}
 />
 
-export const Template = (args) => (
-  <Input name="test" placeholder="10글자 이상 시 에러 발생 가능" errorMessage="에러가 발생했습니다!" {...args} />
-);
+export const Template = (args) => {
+  const [value, setValue] = useState(args.initialValue ?? '');
+  return (
+    <Input
+      placeholder="값을 입력해주세요"
+      error={value.length > 20}
+      errorMessage="20자 이하로 작성해주세요."
+      {...args}
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+    />
+  );
+};
 
 # Input
 
 <Canvas>
-  <Story name="default">{Template.bind({})}</Story>
+  <Story name="default">{runTest(Template.bind({}))}</Story>
 </Canvas>
 
 <ArgsTable story="default" />
@@ -81,10 +93,9 @@ export const Template = (args) => (
   <Story
     name="right icon error"
     args={{
-      value: 'error가 발생하는 값',
+      initialValue: '20자 이상의 error가 발생하는 값',
       rightIcon: <Campaign fillColor={red300} size={30} />,
       isIconVisible: true,
-      error: true,
     }}
   >
     {Template.bind({})}

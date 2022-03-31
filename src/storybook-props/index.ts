@@ -1,5 +1,6 @@
 import spacing from './spacing';
 import borderless from './borderless';
+import disabled from './disabled';
 import icon from './icon';
 import eventHandler from './eventHandler';
 import typography from './typography';

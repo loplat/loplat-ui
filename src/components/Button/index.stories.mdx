@@ -10,6 +10,7 @@ import { button, spacing, icon, pickPropsInObj, eventHandler, borderless } from 
   argTypes={{
     ...button,
     ...borderless,
+    ...disabled('button'),
     ...spacing('margin'),
     ...pickPropsInObj(icon, 'leftIcon', 'rightIcon'),
     ...pickPropsInObj(eventHandler, 'onClick'),

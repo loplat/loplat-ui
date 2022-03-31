@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ForwardedRef } from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 import {
@@ -294,18 +294,23 @@ export const BaseButton = styled.button<BaseButtonProps>`
         `}
 `;
 
-export const Button = ({ disabled = false, ...props }: ButtonProps): JSX.Element => {
-  return (
-    <BaseButton
-      disabled={disabled}
-      {...ColorSet[props.color ?? 'default']}
-      {...SizeSet[props.size ?? 'md']}
-      {...marginSpacingProps(props)}
-      {...props}
-    >
-      {props.leftIcon && <div className="leftIcon">{props.leftIcon}</div>}
-      <span>{props.children}</span>
-      {props.rightIcon && <div className="rightIcon">{props.rightIcon}</div>}
-    </BaseButton>
-  );
-};
+export const Button = React.forwardRef(
+  (
+    { color, size, leftIcon, rightIcon, children, ...props }: ButtonProps,
+    ref: ForwardedRef<HTMLButtonElement>,
+  ): JSX.Element => {
+    return (
+      <BaseButton
+        {...ColorSet[color ?? 'default']}
+        {...SizeSet[size ?? 'md']}
+        {...marginSpacingProps(props)}
+        {...props}
+        ref={ref}
+      >
+        {leftIcon && <div className="leftIcon">{leftIcon}</div>}
+        <span>{children}</span>
+        {rightIcon && <div className="rightIcon">{rightIcon}</div>}
+      </BaseButton>
+    );
+  },
+);
