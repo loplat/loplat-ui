@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { grayscale50, grayscale800, grayscale200, grayscale500 } from '../../core/colors';
+import { blue100 } from '../../core/colors/blue';
 import { primary } from '../../core/styles/palette';
 
 export interface RadioButtonProps {
@@ -55,9 +56,14 @@ const RadioButtonContainer = styled.label<RadioStyleProps>`
   color: ${({ isDisabled }) => (isDisabled ? grayscale500 : grayscale800)};
   cursor: ${({ isDisabled }) => (isDisabled ? 'not-allowed' : 'pointer')};
 
-  input {
+  input[type='radio'] {
     position: absolute;
     opacity: 0;
+
+    &:focus-visible ~ span {
+      outline: 2px solid ${primary};
+      background-color: ${blue100};
+    }
   }
 `;
 
