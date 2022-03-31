@@ -14,7 +14,7 @@ export interface SpinnerProps {
 export const CubeSpinner = ({ duration = 1000, scale = 1, zIndex = 0 }: SpinnerProps): React.ReactElement => {
   const steps = 28;
   return (
-    <Wrapper width={3248} height={132} steps={steps} scale={scale} zIndex={zIndex} aria-busy="true" aria-live="polite">
+    <Wrapper width={3248} height={132} steps={steps} scale={scale} zIndex={zIndex} role="progressbar">
       <picture>
         <source srcSet={CubeWebp} type="image/webp" />
         <SpriteImage src={Cube} alt="" duration={duration} steps={steps} />
@@ -26,7 +26,7 @@ export const CubeSpinner = ({ duration = 1000, scale = 1, zIndex = 0 }: SpinnerP
 export const CircleSpinner = ({ duration = 1000, scale = 1, zIndex = 0 }: SpinnerProps): React.ReactElement => {
   const steps = 30;
   return (
-    <Wrapper width={3480} height={132} steps={steps} scale={scale} zIndex={zIndex} aria-busy="true" aria-live="polite">
+    <Wrapper width={3480} height={132} steps={steps} scale={scale} zIndex={zIndex} role="progressbar">
       <picture>
         <source srcSet={CircleWebp} type="image/webp" />
         <SpriteImage src={Circle} alt="" duration={duration} steps={steps} />
