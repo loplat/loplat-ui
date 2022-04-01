@@ -3,9 +3,9 @@ import { IconProps } from '../../../assets/Icon';
 
 type Color = NonNullable<ButtonProps['color']>;
 type PopupButton = {
-  label: string;
-  color: Color;
-  onClick: () => void;
+  label?: string;
+  color?: Color;
+  onClick: (e?: React.MouseEvent<HTMLButtonElement>) => void;
 };
 type CustomButtonKey<Key extends string> = PrefixKey<Omit<PopupButton, 'onClick'>, `${Key}`> &
   PostfixKey<Pick<PopupButton, 'onClick'>, `${Key}`>;

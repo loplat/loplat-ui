@@ -14,12 +14,12 @@ export const Popup2Component = ({
   title,
   icon = 'check',
   color = primary,
-  leftButtonColor,
+  leftButtonColor = 'default',
   onClickLeftButton,
-  leftButtonLabel,
+  leftButtonLabel = '취소',
   onClickRightButton,
-  rightButtonColor,
-  rightButtonLabel,
+  rightButtonColor = 'primary1',
+  rightButtonLabel = '확인',
   ...props
 }: Popup2Props): JSX.Element => {
   const CustomIcon = generateCustomIcon(icon, color);

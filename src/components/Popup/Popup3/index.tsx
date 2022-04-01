@@ -16,12 +16,12 @@ export const Popup3Component = ({
   content,
   title,
   showCloseButton = true,
-  leftButtonColor,
+  leftButtonColor = 'default',
   onClickLeftButton,
-  leftButtonLabel,
+  leftButtonLabel = '취소',
   onClickRightButton,
-  rightButtonColor,
-  rightButtonLabel,
+  rightButtonColor = 'primary1',
+  rightButtonLabel = '확인',
   ...props
 }: Popup3Props): JSX.Element => {
   return (

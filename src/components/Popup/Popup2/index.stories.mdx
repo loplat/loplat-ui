@@ -39,8 +39,8 @@ export const Template = (args) => {
         isOpen={isOpen}
         onClose={close}
         label="확인완료"
-        onclickRightButton={close}
-        onclickLeftButton={close}
+        onClickRightButton={close}
+        onClickLeftButton={close}
       />
     </div>
   );
@@ -118,8 +118,5 @@ export const DialogTemplate = (args) => <Popup2Component {...initialArgs} {...ar
 export const initialArgs = {
   title: '말 파란 별 까닭입니다.',
   content: '이름자를 가슴속에 위에도 당신은 아직 덮어 있습니다. 밤이 위에도 아이들의 까닭입니다.',
-  leftButtonLabel: '취소',
-  rightButtonLabel: '확인',
-  rightButtonColor: 'primary1',
   label: 'test',
 };
