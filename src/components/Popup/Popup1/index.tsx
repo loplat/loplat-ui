@@ -6,6 +6,7 @@ import { primary, danger } from '../../../core/styles/palette';
 import { Popup1Props } from '../core/types';
 import { generateCustomIcon } from '../core/utils';
 import { WrapperCommonStyle, Dialog } from '../core/commonStyle';
+import { spacing } from '../../../core';
 
 export const Popup1 = ({
   color,
@@ -44,7 +45,7 @@ export const Popup1 = ({
 export const Wrapper = styled.div<{ color: string; onlyTitle: boolean; onlyContent: boolean }>`
   ${WrapperCommonStyle};
   > svg {
-    margin: 24px 0 8px 0;
+    margin: ${spacing(6)}px 0 ${spacing(2)}px 0;
     ${({ onlyContent }) => (onlyContent ? `margin-top: 0px` : ``)}
   }
 
@@ -65,7 +66,7 @@ export const Wrapper = styled.div<{ color: string; onlyTitle: boolean; onlyConte
     ${({ onlyContent }) =>
       onlyContent
         ? `
-      margin-top: 4px; 
+      margin-top: ${spacing(1)}px; 
       line-height: 24px; 
       font-size: 1rem; 
       color: ${black500};`

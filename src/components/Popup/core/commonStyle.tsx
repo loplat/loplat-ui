@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 import { white } from '../../../core/colors';
-import { Large, Small } from '../../../core/MediaQuery';
+import { Large, Small } from '../../../core/styles/mediaQuery';
+import { spacing } from '../../../core';
 
 export const WrapperCommonStyle = css`
   display: flex;
@@ -10,7 +11,7 @@ export const WrapperCommonStyle = css`
   justify-items: center;
   text-align: center;
   word-break: keep-all;
-  margin-bottom: 32px;
+  margin-bottom: ${spacing(8)}px;
 `;
 
 export const Dialog = styled.div`
@@ -27,11 +28,11 @@ export const Dialog = styled.div`
 
   ${Large} {
     max-width: 400px;
-    padding: 24px 32px;
+    padding: ${spacing(6)}px ${spacing(8)}px;
   }
   ${Small} {
     max-width: 100%;
-    padding: 16px 24px;
+    padding: ${spacing(4)}px ${spacing(6)}px;
   }
 `;
 
@@ -42,11 +43,11 @@ export const ButtonWrapper = styled.section`
 
   button {
     &:first-of-type {
-      margin-right: 15px;
+      margin-right: ${spacing(4)}px;
     }
 
     ${Small} {
-      padding: 16px 0;
+      padding: ${spacing(4)}px 0;
     }
   }
 `;

@@ -1,11 +1,12 @@
 import styled from '@emotion/styled';
 import { bluescale500, black } from '../../../core/colors';
 import { Button } from '../../Button';
-import { Large, Small } from '../../../core/MediaQuery';
+import { Large, Small } from '../../../core/styles/mediaQuery';
 import { IconButton } from '../../IconButton';
 import { CloseIcon } from '../../../assets/Icon/export.generated';
 import { Popup3Props } from '../core/types';
 import { WrapperCommonStyle, Dialog as DialogRef, ButtonWrapper as ButtonWrapperRef } from '../core/commonStyle';
+import { spacing } from '../../../core';
 
 export const Popup3 = ({
   description,
@@ -62,12 +63,12 @@ const Dialog = styled(DialogRef)`
   ${Small} {
     width: 100%;
     max-width: 100%;
-    padding: 24px;
+    padding: ${spacing(6)}px;
   }
   ${Large} {
     min-width: 450px;
     max-width: 1200px;
-    padding: 32px 24px;
+    padding: ${spacing(8)}px ${spacing(6)}px;
   }
 
   .close_dialog {
@@ -104,15 +105,15 @@ const Title = styled.section`
     color: ${black};
     line-height: 30px;
     margin: 0;
-    max-width: calc(100% - 34px);
+    max-width: calc(100% - ${spacing(8)}px);
   }
   small {
-    margin: 4px 0 0 0;
+    margin: ${spacing(1)}px 0 0 0;
     font-size: 0.75rem;
     color: ${bluescale500};
     line-height: 18px;
   }
-  margin-bottom: 24px;
+  margin-bottom: ${spacing(6)}px;
 `;
 
 const ButtonWrapper = styled(ButtonWrapperRef)`
@@ -121,7 +122,7 @@ const ButtonWrapper = styled(ButtonWrapperRef)`
 
   button {
     ${Small} {
-      padding: 16px 20px;
+      padding: ${spacing(4)}px ${spacing(5)}px;
     }
   }
 `;

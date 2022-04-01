@@ -5,6 +5,7 @@ import { primary } from '../../../core';
 import { generateCustomIcon } from '../core/utils';
 import { WrapperCommonStyle, Dialog, ButtonWrapper } from '../core/commonStyle';
 import { Popup2Props } from '../core/types';
+import { spacing } from '../../../core';
 
 export const Popup2 = ({
   label,
@@ -52,7 +53,7 @@ export const Wrapper = styled.div<{ color: string }>`
   ${WrapperCommonStyle};
 
   > svg {
-    margin: 16px 0 12px 0;
+    margin: ${spacing(4)}px 0 ${spacing(3)}px 0;
   }
 
   h1 {
@@ -63,7 +64,7 @@ export const Wrapper = styled.div<{ color: string }>`
     margin: 0;
   }
   p {
-    margin: 24px 0 0 0;
+    margin: ${spacing(6)}px 0 0 0;
     color: ${grayscale900};
     font-size: 0.875rem;
     line-height: 21px;
