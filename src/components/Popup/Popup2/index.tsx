@@ -9,7 +9,6 @@ import { Popup2Props, DialogProps } from '../core/types';
 import { spacing } from '../../../core';
 
 export const Popup2Component = ({
-  label,
   content,
   title,
   icon = 'check',
@@ -25,14 +24,7 @@ export const Popup2Component = ({
   const CustomIcon = generateCustomIcon(icon, color);
 
   return (
-    <Dialog
-      role="dialog"
-      aria-live="assertive"
-      title={label}
-      aria-labelledby="dialogTitle"
-      aria-describedby="dialogDesc"
-      {...props}
-    >
+    <Dialog role="dialog" aria-live="assertive" aria-labelledby="dialogTitle" aria-describedby="dialogDesc" {...props}>
       <Wrapper color={color}>
         {CustomIcon}
         <h1 id="dialogTitle">{title}</h1>

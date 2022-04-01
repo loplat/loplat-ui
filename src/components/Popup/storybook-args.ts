@@ -18,11 +18,6 @@ export const popup = {
     },
     control: 'null',
   },
-  label: {
-    ...required,
-    description: 'title과 동일하거나, 해당 컴포넌트의 목적을 간략히 입력해주세요. dialog의 aria-label역할을 합니다.',
-    control: 'text',
-  },
   content: {
     ...required,
     description: '`popup 컴포넌트`가 왜 켜졌는지를 사용자에게 설명합니다.',

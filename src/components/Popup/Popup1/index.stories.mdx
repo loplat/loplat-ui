@@ -25,7 +25,7 @@ export const Template = (args) => {
   return (
     <div>
       <Button onClick={toggle}>Popup1 열기</Button>
-      <Popup1 {...args} isOpen={isOpen} onClose={close} label="확인완료" />
+      <Popup1 {...args} isOpen={isOpen} onClose={close} />
     </div>
   );
 };
@@ -38,6 +38,7 @@ export const DialogTemplate = (args) => <Popup1Component {...args} onClose={() =
 
 `<Modal/>`을 기반으로 만들어졌습니다. 배경을 클릭하거나 esc를 눌러도 팝업 컴포넌트가 닫힙니다.
 
+`title`혹은 `content` 둘 중 하나는 입력하셔야 합니다.
 하나의 `onClose`함수로 컴포넌트를 닫고, 버튼클릭이벤트로 사용합니다.
 
 <Canvas>

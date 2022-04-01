@@ -12,7 +12,6 @@ import { Modal } from '../../../utils';
 export const Popup3Component = ({
   description,
   onClose,
-  label,
   content,
   title,
   showCloseButton = true,
@@ -28,7 +27,6 @@ export const Popup3Component = ({
     <StyledDialog
       role="dialog"
       aria-live="assertive"
-      title={label}
       aria-labelledby="dialogTitle"
       aria-describedby="dialogDesc"
       {...props}
@@ -41,9 +39,9 @@ export const Popup3Component = ({
       <Wrapper>
         <Title>
           <h1 id="dialogTitle">{title}</h1>
-          {description && <small id="dialogDesc">{description}</small>}
+          {description && <small>{description}</small>}
         </Title>
-        <p>{content}</p>
+        <p id="dialogDesc">{content}</p>
       </Wrapper>
       <StyledButtonWrapper>
         <Button color={leftButtonColor} onClick={onClickLeftButton}>

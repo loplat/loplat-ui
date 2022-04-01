@@ -5,20 +5,16 @@ type Color = NonNullable<ButtonProps['color']>;
 type PopupButton = {
   label?: string;
   color?: Color;
-  onClick: (e?: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 };
 type CustomButtonKey<Key extends string> = PrefixKey<Omit<PopupButton, 'onClick'>, `${Key}`> &
   PostfixKey<Pick<PopupButton, 'onClick'>, `${Key}`>;
-
 export type TwoButtons = CustomButtonKey<'leftButton'> & CustomButtonKey<'rightButton'>;
 
-export type BasePopupProps = {
+type BasePopupConstructor = { title: string; content?: string } | { title?: string; content: string };
+export type BasePopupProps = BasePopupConstructor & {
   /** icon, button, title 색상을 결정합니다. */
-  color: 'danger' | 'primary';
-  title?: string;
-  content?: string;
-  /** title과 동일하거나, 해당 컴포넌트의 목적을 간략히 입력해주세요. dialog의 aria-label역할을 합니다. */
-  label: string;
+  color?: 'danger' | 'primary';
   /**
    * `loplat-ui icon 컴포넌트`를 전달하여 커스텀할 수 있습니다.
    *
@@ -26,7 +22,7 @@ export type BasePopupProps = {
    */
   icon?: 'check' | 'warning' | React.ReactElement<IconProps>;
   /** `popup 컴포넌트`를 닫을 수 있는 함수여야 합니다. */
-  onClose: () => void;
+  onClose: (e: React.MouseEvent<HTMLButtonElement>) => void;
 };
 export type DivProps = React.HTMLAttributes<HTMLDivElement>;
 

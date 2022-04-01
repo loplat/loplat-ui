@@ -10,12 +10,11 @@ import { spacing } from '../../../core';
 import { Modal } from '../../../utils';
 
 export const Popup1Component = ({
-  color,
-  title = '',
-  content = '',
+  color = 'primary',
+  title,
+  content,
   icon = 'check',
   onClose,
-  label,
   ...props
 }: Popup1Props): React.ReactElement => {
   const [mainColor, buttonColor] =
@@ -23,18 +22,11 @@ export const Popup1Component = ({
   const CustomIcon = generateCustomIcon(icon, mainColor);
 
   return (
-    <Dialog
-      role="dialog"
-      aria-live="assertive"
-      title={label}
-      aria-labelledby="dialogTitle"
-      aria-describedby="dialogDesc"
-      {...props}
-    >
-      <Wrapper color={mainColor} onlyTitle={content === ''} onlyContent={title === ''}>
+    <Dialog role="dialog" aria-live="assertive" title={title ?? content} {...props}>
+      <Wrapper color={mainColor} onlyTitle={!content} onlyContent={!title}>
         {CustomIcon}
-        {title !== '' && <h1 id="dialogTitle">{title}</h1>}
-        {content !== '' && <p id="dialogDesc">{content}</p>}
+        {title && <h1>{title}</h1>}
+        {content && <p>{content}</p>}
       </Wrapper>
       <Button fullWidth color={buttonColor} tabIndex={0} onClick={onClose}>
         확인
