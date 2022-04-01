@@ -1,0 +1,81 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { defaultValue } from '../../../storybook-props';
+import { Highlight, Underline } from './index.stories.tsx';
+
+<Meta title="core/decorator" />
+
+# Underline
+
+`SerializedStyles`를 적용하여 밑줄을 긋습니다.
+
+<Canvas>
+  <Story
+    name="underline"
+    argTypes={{
+      borderRadius: {
+        description: '`underline`의 border-radius 입니다.',
+        type: 'string',
+        ...defaultValue('2px'),
+      },
+      bottom: {
+        description: '`underline`이 요소의 bottom과 떨어져있는 정도입니다.',
+        type: 'string',
+        ...defaultValue('-8px'),
+      },
+      color: { description: '`underline`의 색상입니다.', type: 'string', ...defaultValue('#0c8efc') },
+      height: { description: '`underline`의 높이입니다.', type: 'string', ...defaultValue('3px') },
+      width: {
+        description: '`underline`의 너비입니다.',
+        type: 'string',
+        ...defaultValue('10px'),
+      },
+    }}
+  >
+    {(args) => <Underline {...args} />}
+  </Story>
+</Canvas>
+
+<ArgsTable story="underline" />
+
+## 사용 방법
+
+underline은 `@emotion`의 `SerializedStyles`를 return 합니다.
+
+```js
+import { styled, underline } from 'loplat-ui';
+
+const Text = styled.span`
+  ${underline({ borderRadius, bottom, color, height, width })};
+`;
+```
+
+# Highlight
+
+`SerializedStyles`를 적용하여 강조 효과를 줍니다.
+
+<Canvas>
+  <Story
+    name="highlight"
+    argTypes={{
+      color: { description: '`highlight`의 색상입니다.', type: 'string', ...defaultValue('#ebf6fe') },
+      positionX: { description: '`highlight` 시작점의 X좌표 입니다.', type: 'string', ...defaultValue('50%') },
+      width: { description: '`highlight`의 너비입니다.', type: 'string', ...defaultValue('100%') },
+    }}
+  >
+    {(args) => <Highlight {...args} />}
+  </Story>
+</Canvas>
+
+<ArgsTable story="highlight" />
+
+## 사용 방법
+
+highlight는 `@emotion`의 `SerializedStyles`를 return 합니다.
+
+```js
+import { styled, highlight } from 'loplat-ui';
+
+const Text = styled.span`
+  ${highlight({ color, positionX, width })};
+`;
+```
