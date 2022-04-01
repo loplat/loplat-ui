@@ -61,8 +61,7 @@ const Dialog = styled(DialogRef)`
   position: relative;
 
   ${Small} {
-    width: 100%;
-    max-width: 100%;
+    width: 100vw;
     padding: ${spacing(6)}px;
   }
   ${Large} {
