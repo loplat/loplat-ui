@@ -22,7 +22,7 @@ export const Popup1Component = ({
   const CustomIcon = generateCustomIcon(icon, mainColor);
 
   return (
-    <Dialog role="dialog" aria-live="assertive" title={title ?? content} {...props}>
+    <Dialog role="alertdialog" aria-modal="true" aria-live="assertive" title={title ?? content} {...props}>
       <Wrapper color={mainColor} onlyTitle={!content} onlyContent={!title}>
         {CustomIcon}
         {title && <h1>{title}</h1>}

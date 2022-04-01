@@ -29,6 +29,7 @@ export const Popup3Component = ({
       aria-live="assertive"
       aria-labelledby="dialogTitle"
       aria-describedby="dialogDesc"
+      aria-modal="true"
       {...props}
     >
       {showCloseButton && (
