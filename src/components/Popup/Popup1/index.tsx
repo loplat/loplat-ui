@@ -22,11 +22,17 @@ export const Popup1Component = ({
   const CustomIcon = generateCustomIcon(icon, mainColor);
 
   return (
-    <Dialog role="alertdialog" aria-modal="true" aria-live="assertive" title={title ?? content} {...props}>
+    <Dialog
+      role="alertdialog"
+      aria-modal="true"
+      aria-live="assertive"
+      aria-labelledby={title ? 'dialogTitle' : 'dialogDesc'}
+      {...props}
+    >
       <Wrapper color={mainColor} onlyTitle={!content} onlyContent={!title}>
         {CustomIcon}
-        {title && <h1>{title}</h1>}
-        {content && <p>{content}</p>}
+        {title && <h1 id="dialogTitle">{title}</h1>}
+        {content && <p id="dialogDesc">{content}</p>}
       </Wrapper>
       <Button fullWidth color={buttonColor} tabIndex={0} onClick={onClose}>
         확인
