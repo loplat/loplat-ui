@@ -5,7 +5,7 @@ type Color = NonNullable<ButtonProps['color']>;
 type PopupButton = {
   label: string;
   color: Color;
-  onClick: (property: unknown) => void;
+  onClick: () => void;
 };
 type CustomButtonKey<Key extends string> = PrefixKey<Omit<PopupButton, 'onClick'>, `${Key}`> &
   PostfixKey<Pick<PopupButton, 'onClick'>, `${Key}`>;
