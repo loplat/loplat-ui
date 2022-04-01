@@ -4,10 +4,13 @@ import { IconProps } from '../../../assets/Icon';
 type Color = NonNullable<ButtonProps['color']>;
 type PopupButton = {
   label: string;
-  click: (event: unknown) => void;
   color: Color;
+  onClick: (property: unknown) => void;
 };
-export type TwoButtons = PrefixKey<PopupButton, 'leftButton'> & PrefixKey<PopupButton, 'rightButton'>;
+type CustomButtonKey<Key extends string> = PrefixKey<Omit<PopupButton, 'onClick'>, `${Key}`> &
+  PostfixKey<Pick<PopupButton, 'onClick'>, `${Key}`>;
+
+export type TwoButtons = CustomButtonKey<'leftButton'> & CustomButtonKey<'rightButton'>;
 
 export type BasePopupProps = {
   /** icon, button, title 색상을 결정합니다. */

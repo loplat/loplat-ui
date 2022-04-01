@@ -1,22 +1,23 @@
 import styled from '@emotion/styled';
-import { grayscale900 } from '../../../core/colors';
+import { Modal } from '../../../utils';
 import { Button } from '../../Button';
+import { grayscale900 } from '../../../core/colors';
 import { primary } from '../../../core';
 import { generateCustomIcon } from '../core/utils';
 import { WrapperCommonStyle, Dialog, ButtonWrapper } from '../core/commonStyle';
-import { Popup2Props } from '../core/types';
+import { Popup2Props, DialogProps } from '../core/types';
 import { spacing } from '../../../core';
 
-export const Popup2 = ({
+export const Popup2Component = ({
   label,
   content,
   title,
   icon = 'check',
   color = primary,
   leftButtonColor,
-  leftButtonClick,
+  onClickLeftButton,
   leftButtonLabel,
-  rightButtonClick,
+  onClickRightButton,
   rightButtonColor,
   rightButtonLabel,
   ...props
@@ -38,10 +39,10 @@ export const Popup2 = ({
         <p id="dialogDesc">{content}</p>
       </Wrapper>
       <ButtonWrapper>
-        <Button fullWidth color={leftButtonColor} tabIndex={0} onClick={leftButtonClick}>
+        <Button fullWidth color={leftButtonColor} tabIndex={0} onClick={onClickLeftButton}>
           {leftButtonLabel}
         </Button>
-        <Button fullWidth color={rightButtonColor} onClick={rightButtonClick}>
+        <Button fullWidth color={rightButtonColor} onClick={onClickRightButton}>
           {rightButtonLabel}
         </Button>
       </ButtonWrapper>
@@ -49,7 +50,15 @@ export const Popup2 = ({
   );
 };
 
-export const Wrapper = styled.div<{ color: string }>`
+export const Popup2 = ({ isOpen, onClose, ...props }: DialogProps & Popup2Props): React.ReactElement => {
+  return (
+    <Modal isOpen={isOpen} onClose={onClose}>
+      <Popup2Component {...props} />
+    </Modal>
+  );
+};
+
+export const Wrapper = styled.section<{ color: string }>`
   ${WrapperCommonStyle};
 
   > svg {

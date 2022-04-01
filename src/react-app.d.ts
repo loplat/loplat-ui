@@ -15,3 +15,7 @@ declare module '*.webp' {
 declare type PrefixKey<Type, Keyword extends string> = {
   [Key in keyof Type as `${Keyword}${Capitalize<string & Key>}`]: Type[Key];
 };
+
+declare type PostfixKey<Type, Keyword extends string> = {
+  [Key in keyof Type as `${Key}${Capitalize<string & Keyword>}`]: Type[Key];
+};

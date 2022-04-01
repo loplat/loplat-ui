@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
-import { Popup2 as PopupTwo } from './index';
-import { Popup2 } from '../index.tsx';
+import { Popup2, Popup2Component } from './index';
 import { primary, danger } from '../../../core/styles/palette';
 import { LanguageIcon } from '../../../assets/Icon';
 import { Button } from '../../Button';
@@ -40,14 +39,14 @@ export const Template = (args) => {
         isOpen={isOpen}
         onClose={close}
         label="확인완료"
-        rightButtonClick={close}
-        leftButtonClick={close}
+        onclickRightButton={close}
+        onclickLeftButton={close}
       />
     </div>
   );
 };
 
-export const DialogTemplate = (args) => <PopupTwo {...initialArgs} {...args} />;
+export const DialogTemplate = (args) => <Popup2Component {...initialArgs} {...args} />;
 
 # 팝업2
 

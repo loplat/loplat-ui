@@ -4,11 +4,12 @@ import { Button } from '../../Button';
 import { Large, Small } from '../../../core/styles/mediaQuery';
 import { IconButton } from '../../IconButton';
 import { CloseIcon } from '../../../assets/Icon/export.generated';
-import { Popup3Props } from '../core/types';
-import { WrapperCommonStyle, Dialog as DialogRef, ButtonWrapper as ButtonWrapperRef } from '../core/commonStyle';
+import { Popup3Props, DialogProps } from '../core/types';
+import { WrapperCommonStyle, Dialog, ButtonWrapper } from '../core/commonStyle';
 import { spacing } from '../../../core';
+import { Modal } from '../../../utils';
 
-export const Popup3 = ({
+export const Popup3Component = ({
   description,
   onClose,
   label,
@@ -16,15 +17,15 @@ export const Popup3 = ({
   title,
   showCloseButton = true,
   leftButtonColor,
-  leftButtonClick,
+  onClickLeftButton,
   leftButtonLabel,
-  rightButtonClick,
+  onClickRightButton,
   rightButtonColor,
   rightButtonLabel,
   ...props
 }: Popup3Props): JSX.Element => {
   return (
-    <Dialog
+    <StyledDialog
       role="dialog"
       aria-live="assertive"
       title={label}
@@ -44,19 +45,27 @@ export const Popup3 = ({
         </Title>
         <p>{content}</p>
       </Wrapper>
-      <ButtonWrapper>
-        <Button color={leftButtonColor} onClick={leftButtonClick}>
+      <StyledButtonWrapper>
+        <Button color={leftButtonColor} onClick={onClickLeftButton}>
           {leftButtonLabel}
         </Button>
-        <Button color={rightButtonColor} onClick={rightButtonClick}>
+        <Button color={rightButtonColor} onClick={onClickRightButton}>
           {rightButtonLabel}
         </Button>
-      </ButtonWrapper>
-    </Dialog>
+      </StyledButtonWrapper>
+    </StyledDialog>
   );
 };
 
-const Dialog = styled(DialogRef)`
+export const Popup3 = ({ isOpen, onClose, ...props }: DialogProps & Popup3Props): React.ReactElement => {
+  return (
+    <Modal isOpen={isOpen} onClose={onClose}>
+      <Popup3Component {...props} onClose={onClose} />
+    </Modal>
+  );
+};
+
+const StyledDialog = styled(Dialog)`
   width: auto;
   position: relative;
 
@@ -77,7 +86,7 @@ const Dialog = styled(DialogRef)`
   }
 `;
 
-const Wrapper = styled.div`
+const Wrapper = styled.section`
   ${WrapperCommonStyle};
   align-items: flex-start;
   width: 100%;
@@ -91,7 +100,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const Title = styled.section`
+const Title = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -115,7 +124,7 @@ const Title = styled.section`
   margin-bottom: ${spacing(6)}px;
 `;
 
-const ButtonWrapper = styled(ButtonWrapperRef)`
+const StyledButtonWrapper = styled(ButtonWrapper)`
   align-items: center;
   justify-content: flex-end;
 

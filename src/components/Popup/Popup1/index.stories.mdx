@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
-import { Popup1 as PopupOne } from './index';
-import { Popup1 } from '../index.tsx';
+import { Popup1, Popup1Component } from './index';
 import { DiamondIcon } from '../../../assets/Icon/';
 import { Button } from '../../Button';
 import { popup, popupIcon } from '../storybook-args.ts';
@@ -31,7 +30,7 @@ export const Template = (args) => {
   );
 };
 
-export const DialogTemplate = (args) => <PopupOne {...args} onClose={() => {}} label="test" />;
+export const DialogTemplate = (args) => <Popup1Component {...args} onClose={() => {}} label="test" />;
 
 # 팝업1
 

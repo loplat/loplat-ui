@@ -3,12 +3,13 @@ import styled from '@emotion/styled';
 import { Button } from '../../Button';
 import { black as black500, bluescale500 } from '../../../core/colors';
 import { primary, danger } from '../../../core/styles/palette';
-import { Popup1Props } from '../core/types';
+import { Popup1Props, DialogProps } from '../core/types';
 import { generateCustomIcon } from '../core/utils';
 import { WrapperCommonStyle, Dialog } from '../core/commonStyle';
 import { spacing } from '../../../core';
+import { Modal } from '../../../utils';
 
-export const Popup1 = ({
+export const Popup1Component = ({
   color,
   title = '',
   content = '',
@@ -42,7 +43,15 @@ export const Popup1 = ({
   );
 };
 
-export const Wrapper = styled.div<{ color: string; onlyTitle: boolean; onlyContent: boolean }>`
+export const Popup1 = ({ isOpen, onClose, ...props }: DialogProps & Popup1Props): React.ReactElement => {
+  return (
+    <Modal isOpen={isOpen} onClose={onClose}>
+      <Popup1Component {...props} onClose={onClose} />
+    </Modal>
+  );
+};
+
+export const Wrapper = styled.section<{ color: string; onlyTitle: boolean; onlyContent: boolean }>`
   ${WrapperCommonStyle};
   > svg {
     margin: ${spacing(6)}px 0 ${spacing(2)}px 0;
