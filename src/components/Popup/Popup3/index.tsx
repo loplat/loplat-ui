@@ -38,7 +38,7 @@ export const Popup3Component = ({
         </IconButton>
       )}
       <Wrapper>
-        <Title>
+        <Title showCloseButton={showCloseButton}>
           <h1 id="dialogTitle">{title}</h1>
           {description && <small>{description}</small>}
         </Title>
@@ -99,7 +99,7 @@ const Wrapper = styled.section`
   }
 `;
 
-const Title = styled.div`
+const Title = styled.div<Pick<Popup3Props, 'showCloseButton'>>`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -112,7 +112,7 @@ const Title = styled.div`
     color: ${black};
     line-height: 30px;
     margin: 0;
-    max-width: calc(100% - ${spacing(8)}px);
+    max-width: ${({ showCloseButton }) => (showCloseButton ? `calc(100% - ${spacing(8)}px)` : '100%')};
   }
   small {
     margin: ${spacing(1)}px 0 0 0;
