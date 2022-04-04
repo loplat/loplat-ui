@@ -14,24 +14,21 @@ import { Highlight, Underline } from './index.stories.tsx';
     argTypes={{
       borderRadius: {
         description: '`underline`의 border-radius 입니다.',
-        type: 'string',
-        ...generateTable({ defaultValue: '2px' }),
+        ...generateTable({ defaultValue: '2px', type: 'string' }),
       },
       bottom: {
         description: '`underline`이 요소의 bottom과 떨어져있는 정도입니다.',
-        type: 'string',
-        ...generateTable({ defaultValue: '-8px' }),
+        ...generateTable({ defaultValue: '-8px', type: 'string' }),
       },
       color: {
         description: '`underline`의 색상입니다.',
-        type: 'string',
+        control: 'color',
         ...generateTable({ defaultValue: '#0c8efc' }),
       },
-      height: { description: '`underline`의 높이입니다.', type: 'string', ...generateTable({ defaultValue: '3px' }) },
+      height: { description: '`underline`의 높이입니다.', ...generateTable({ defaultValue: '3px', type: 'string' }) },
       width: {
         description: '`underline`의 너비입니다.',
-        type: 'string',
-        ...generateTable({ defaultValue: '10px' }),
+        ...generateTable({ defaultValue: '10px', type: 'string' }),
       },
     }}
   >
@@ -65,15 +62,14 @@ const Underline = styled.span`
     argTypes={{
       color: {
         description: '`highlight`의 색상입니다.',
-        type: 'string',
-        ...generateTable({ defaultValue: '#ebf6fe' }),
+        control: 'color',
+        ...generateTable({ defaultValue: '#ebf6fe', type: 'string' }),
       },
       positionX: {
         description: '`highlight` 시작점의 X좌표 입니다.',
-        type: 'string',
-        ...generateTable({ defaultValue: '50%' }),
+        ...generateTable({ defaultValue: '50%', type: 'string' }),
       },
-      width: { description: '`highlight`의 너비입니다.', type: 'string', ...generateTable({ defaultValue: '100%' }) },
+      width: { description: '`highlight`의 너비입니다.', ...generateTable({ defaultValue: '100%', type: 'string' }) },
     }}
   >
     {(args) => <Highlight {...args} />}
