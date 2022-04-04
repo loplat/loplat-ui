@@ -32,7 +32,11 @@ export const Popup1Component = ({
       <Wrapper color={mainColor} onlyTitle={!content} onlyContent={!title}>
         {CustomIcon}
         {title && <h1 id="dialogTitle">{title}</h1>}
-        {content && <p id="dialogDesc">{content}</p>}
+        {content && typeof content === 'string' ? (
+          <p id="dialogDesc">{content}</p>
+        ) : (
+          <div id="dialogDesc">{content}</div>
+        )}
       </Wrapper>
       <Button fullWidth color={buttonColor} tabIndex={0} onClick={onClose}>
         확인
@@ -64,7 +68,8 @@ export const Wrapper = styled.section<{ color: string; onlyTitle: boolean; onlyC
     margin: 0;
     ${({ onlyTitle }) => (onlyTitle ? `font-size: 1.25rem; margin-bottom: 16px;` : '')}
   }
-  p {
+
+  #dialogDesc {
     margin: 24px 0 0 0;
     color: ${bluescale500};
     font-size: 0.875rem;

@@ -1,10 +1,10 @@
 import React from 'react';
 import { IconProps, CheckCircleOutlineIcon, WarningCircleOutlineIcon } from '../../../assets/Icon';
 import { generateUniqueId } from '../../../functions/generator';
-import { Popup1Props } from '../core/types';
+import { BasePopupProps } from '../core/types';
 
 export const generateCustomIcon = (
-  icon: NonNullable<Popup1Props['icon']>,
+  icon: NonNullable<BasePopupProps['icon']>,
   mainColor: string,
 ): React.ReactElement<IconProps> => {
   const Icon = icon === 'check' ? <CheckCircleOutlineIcon /> : icon === 'warning' ? <WarningCircleOutlineIcon /> : icon;

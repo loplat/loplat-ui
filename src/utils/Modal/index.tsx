@@ -20,14 +20,11 @@ const changeAccessibility = (root: HTMLElement, modalStatus: 'open' | 'close') =
     root.removeAttribute('aria-disabled');
   }
 
-  for (const tabbableTag of TABBABLE_TAGS) {
-    const nodeList = root.querySelectorAll(tabbableTag);
-
-    nodeList.forEach((node) => {
-      if (modalStatus === 'open') node.setAttribute('tabindex', '-1');
-      else node.removeAttribute('tabindex');
-    });
-  }
+  const nodeList = root.querySelectorAll(TABBABLE_TAGS.join(', '));
+  nodeList.forEach((node) => {
+    if (modalStatus === 'open') node.setAttribute('tabindex', '-1');
+    else node.removeAttribute('tabindex');
+  });
 };
 
 export function Modal({ isOpen, onClose, zIndex = 9999, children }: ModalProps): React.ReactElement | null {
@@ -55,11 +52,13 @@ export function Modal({ isOpen, onClose, zIndex = 9999, children }: ModalProps):
   }, [portalId]);
 
   useEffect(() => {
-    const divList = document.body.querySelectorAll('div');
-    const portal = document.body.querySelector(`div#${portalId}`) as HTMLDivElement;
+    const divList = document.querySelectorAll<HTMLDivElement>('body > div');
+    const portal = document.querySelector(`body > div#${portalId}`) as HTMLDivElement;
 
-    const notPortalDivList = [] as HTMLElement[];
-    divList.forEach((div) => !portal.contains(div) && notPortalDivList.push(div));
+    const notPortalDivList: HTMLDivElement[] = [];
+    divList.forEach((div) => {
+      if (!portal.contains(div)) notPortalDivList.push(div);
+    });
 
     if (isOpen) {
       document.body.style.overflow = 'hidden';

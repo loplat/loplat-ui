@@ -42,7 +42,7 @@ export const Popup3Component = ({
           <h1 id="dialogTitle">{title}</h1>
           {description && <small>{description}</small>}
         </Title>
-        <p id="dialogDesc">{content}</p>
+        {typeof content === 'string' ? <p id="dialogDesc">{content}</p> : <div id="dialogDesc">{content}</div>}
       </Wrapper>
       <StyledButtonWrapper>
         <Button color={leftButtonColor} onClick={onClickLeftButton}>
@@ -91,7 +91,7 @@ const Wrapper = styled.section`
   width: 100%;
   text-align: left;
 
-  p {
+  #dialogDesc {
     margin: 0;
     color: ${black};
     font-size: 1rem;

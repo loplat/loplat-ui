@@ -1,5 +1,6 @@
 import { ButtonProps } from '../../Button';
 import { IconProps } from '../../../assets/Icon';
+import React from 'react';
 
 type Color = NonNullable<ButtonProps['color']>;
 type PopupButton = {
@@ -11,7 +12,9 @@ type CustomButtonKey<Key extends string> = PrefixKey<Omit<PopupButton, 'onClick'
   PostfixKey<Pick<PopupButton, 'onClick'>, `${Key}`>;
 export type TwoButtons = CustomButtonKey<'leftButton'> & CustomButtonKey<'rightButton'>;
 
-type BasePopupConstructor = { title: string; content?: string } | { title?: string; content: string };
+type BasePopupConstructor =
+  | { title: string; content?: React.ReactElement | string }
+  | { title?: string; content: React.ReactElement | string };
 export type BasePopupProps = BasePopupConstructor & {
   /** icon, button, title 색상을 결정합니다. */
   color?: 'danger' | 'primary';
@@ -43,6 +46,7 @@ export type Popup3Props = Omit<Required<BasePopupProps>, 'icon' | 'color'> & {
   DivProps;
 
 export type DialogProps = {
+  /** 팝업 모달을 열 수 있는 값입니다. */
   isOpen: boolean;
   onClose: () => void;
 };

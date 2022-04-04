@@ -35,7 +35,7 @@ export const Popup2Component = ({
       <Wrapper color={color}>
         {CustomIcon}
         <h1 id="dialogTitle">{title}</h1>
-        <p id="dialogDesc">{content}</p>
+        {typeof content === 'string' ? <p id="dialogDesc">{content}</p> : <div id="dialogDesc">{content}</div>}
       </Wrapper>
       <ButtonWrapper>
         <Button fullWidth color={leftButtonColor} tabIndex={0} onClick={onClickLeftButton}>
@@ -71,7 +71,7 @@ export const Wrapper = styled.section<{ color: string }>`
     line-height: 30px;
     margin: 0;
   }
-  p {
+  #dialogDesc {
     margin: ${spacing(6)}px 0 0 0;
     color: ${grayscale900};
     font-size: 0.875rem;
