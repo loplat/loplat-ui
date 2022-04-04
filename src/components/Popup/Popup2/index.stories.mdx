@@ -1,0 +1,113 @@
+import { useState } from 'react';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { Popup2, Popup2Component } from './index';
+import { primary, danger } from '../../../core/styles/palette';
+import { LanguageIcon } from '../../../assets/Icon';
+import { Button } from '../../Button';
+import { popup, twoButtonsDescription, popupIcon } from '../storybook-args.ts';
+import { generateTable } from '../../../storybook-props/';
+
+<Meta
+  title="Components/Popup/Popup2"
+  component={Popup2}
+  argTypes={{
+    ...twoButtonsDescription,
+    ...popup,
+    ...popupIcon,
+    color: {
+      description: 'icon, title 색상을 결정합니다.',
+      ...generateTable({ defaultValue: '#40a6fd', summary: 'string' }),
+      control: 'color',
+    },
+  }}
+/>
+
+export const Template = (args) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const toggle = () => {
+    setIsOpen(!isOpen);
+  };
+  const close = () => {
+    setIsOpen(false);
+  };
+  return (
+    <div>
+      <Button onClick={toggle}>Popup2 열기</Button>
+      <Popup2 {...args} isOpen={isOpen} onClose={close} onClickRightButton={close} onClickLeftButton={close} />
+    </div>
+  );
+};
+
+export const DialogTemplate = (args) => <Popup2Component {...initialArgs} {...args} />;
+
+# 팝업2
+
+닫을 수 있는 경고, 확인 및 기타 상호작용이 가능한 컴포넌트입니다. 화면 정중앙에 렌더링이 됩니다.
+
+`<Modal/>`을 기반으로 만들어졌습니다.
+
+`<Popup1/>`컴포넌트를 계승합니다.
+색상을 `<Popup1/>` 컴포넌트와는 다르게 원하는 색상코드를 모두 입력 가능합니다.
+
+<Canvas>
+  <Story
+    name="default"
+    args={{
+      ...initialArgs,
+      color: `${primary}`,
+      icon: 'warning',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+## 예제
+
+- 아이콘을 변경할 수 있습니다.
+- 색상이 아이콘과 타이틀에 적용이 됩니다.
+- 좌우 버튼 모두 커스텀 할 수 있습니다.
+
+### 내용이 긴 경우
+
+<Story
+  name="too long content"
+  args={{
+    color: `${danger}`,
+    icon: 'check',
+    leftButtonLabel: '왼쪽',
+    rightButtonLabel: '오른쪽',
+    rightButtonColor: 'danger1',
+    leftButtonColor: 'danger2',
+    content:
+      '딴은 하나에 별 별이 패, 했던 별들을 자랑처럼 까닭입니다. 하나에 다 가을로 가난한 내일 이름자 차 소학교 까닭입니다. 풀이 내린 쓸쓸함과 멀듯이, 어머니 까닭입니다.',
+  }}
+>
+  {DialogTemplate.bind({})}
+</Story>
+
+### 타이틀이 긴 경우
+
+<Story
+  name="too long title"
+  args={{
+    color: `${primary}`,
+    icon: LanguageIcon,
+    leftButtonLabel: '왼쪽',
+    leftButtonColor: 'ghost',
+    rightButtonLabel: '오른쪽',
+    rightButtonColor: 'primary2',
+    title:
+      '딴은 하나에 별 별이 패, 했던 별들을 자랑처럼 까닭입니다. 하나에 다 가을로 가난한 내일 이름자 차 소학교 까닭입니다. 풀이 내린 쓸쓸함과 멀듯이, 어머니 까닭입니다.',
+    content: '새겨지는 별이 이름을 된 이웃 거외다.',
+  }}
+>
+  {DialogTemplate.bind({})}
+</Story>
+
+export const initialArgs = {
+  title: '말 파란 별 까닭입니다.',
+  content: '이름자를 가슴속에 위에도 당신은 아직 덮어 있습니다. 밤이 위에도 아이들의 까닭입니다.',
+};

@@ -1,0 +1,146 @@
+import { useState } from 'react';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { Popup1, Popup1Component } from './index';
+import { DiamondIcon } from '../../../assets/Icon/';
+import { Button } from '../../Button';
+import { popup, popupIcon } from '../storybook-args.ts';
+
+<Meta
+  title="Components/Popup/Popup1"
+  component={Popup1}
+  argTypes={{
+    ...popup,
+    ...popupIcon,
+  }}
+/>
+
+export const Template = (args) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const toggle = () => {
+    setIsOpen(!isOpen);
+  };
+  const close = () => {
+    setIsOpen(false);
+  };
+  return (
+    <div>
+      <Button onClick={toggle}>Popup1 열기</Button>
+      <Popup1 {...args} isOpen={isOpen} onClose={close} />
+    </div>
+  );
+};
+
+export const DialogTemplate = (args) => <Popup1Component {...args} onClose={() => {}} label="test" />;
+
+# 팝업1
+
+닫을 수 있는 경고, 확인 및 기타 상호작용이 가능한 컴포넌트입니다. 화면 정중앙에 렌더링이 됩니다.
+
+`<Modal/>`을 기반으로 만들어졌습니다.
+
+`title`혹은 `content` 둘 중 하나는 입력하셔야 합니다.
+하나의 `onClose`함수로 컴포넌트를 닫고, 버튼클릭이벤트로 사용합니다.
+
+<Canvas>
+  <Story
+    name="default"
+    args={{
+      title: '말 파란 별 까닭입니다.',
+      content: '이름자를 가슴속에 위에도 당신은 아직 덮어 있습니다. 밤이 위에도 아이들의 까닭입니다.',
+      color: 'primary',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+## 예제
+
+아래 예제는 title, content, color, icon을 여러 방식으로 바꾼 것입니다.
+
+### only title, icon: warning, color: danger
+
+<Story
+  name="no content"
+  args={{
+    title: '북간도에 지나가는 언덕 새워 동경과 까닭입니다.',
+    color: 'danger',
+    icon: 'warning',
+  }}
+>
+  {DialogTemplate.bind({})}
+</Story>
+
+### too long title, icon: warning, color: danger
+
+title과 content가 동시에 작성되면 title의 글자크기가 줄어들고, content의 색상이 회색으로 변경됩니다.
+
+<Story
+  name="too long title"
+  args={{
+    icon: 'warning',
+    title:
+      '다 한 그리고 했던 버리었습니다. 풀이 말 토끼, 어머니 못 보고, 하나에 하나에 계십니다. 소녀들의 오는 까닭이요, 아직 이제 헤일 겨울이 아스라히 까닭입니다. 이국 북간도에 흙으로 어머님, 하나에 별을 버리었습니다.',
+    color: 'danger',
+    content: '별 북간도에 소녀들의 파란 언덕 까닭이요, 어머니, 거외다. 사랑과 풀이 벌레는 별 까닭입니다.',
+  }}
+>
+  {DialogTemplate.bind({})}
+</Story>
+
+### only content, color: primary
+
+content만 작성되면 검정색으로 정해집니다.
+
+<Story name="only content" args={{ color: 'primary', content: '새겨지는 별이 이름을 된 이웃 거외다.' }}>
+  {DialogTemplate.bind({})}
+</Story>
+
+### too long content, icon: warning, color: primary
+
+<Story
+  name="too long content"
+  args={{
+    color: 'primary',
+    icon: 'warning',
+    content:
+      '딴은 당신은 흙으로 가득 까닭이요, 아침이 프랑시스 이름자를 거외다. 노새, 불러 그러나 토끼, 무엇인지 아이들의 소녀들의 이름을 나의 듯합니다. 계절이 나는 언덕 한 너무나 별 별 책상을 봅니다. 가을로 밤을 가을 나의 이름과, 부끄러운 하나에 옥 까닭입니다. 슬퍼하는 겨울이 내 어머니 멀리 별을 이제 계십니다. 사람들의 지나가는 다하지 하나의 했던 내린 듯합니다. 이제 가을 지나고 시인의 위에 별을 하나에 있습니다.',
+  }}
+>
+  {DialogTemplate.bind({})}
+</Story>
+
+### custom icon
+
+icon props으로 원하는 icon svg을 할당할 수 있습니다.
+
+**loplat UI 에서 제공하는 아이콘을 사용하는 것을 권장**합니다.
+그래야 색상과 크기를 따로 설정하지 않아도 기본 크기와 색상을 계승할 수 있습니다.
+
+<Story
+  name="custom Icon"
+  args={{
+    color: 'danger',
+    icon: DiamondIcon,
+    title: '새겨지는 별이 이름을 된 이웃 거외다.',
+    content:
+      '내 너무나 별이 쓸쓸함과 나는 덮어 봅니다. 토끼, 당신은 풀이 까닭입니다. 어머니, 토끼, 피어나듯이 버리었습니다.',
+  }}
+>
+  {DialogTemplate.bind({})}
+</Story>
+
+```js
+import { DiamondIcon, Popup1 } from 'loplat-ui';
+
+const Popup = (
+  <Popup1
+    icon={DiamondIcon}
+    color="danger"
+    title="새겨지는 별이 이름을 된 이웃 거외다."
+    content="내 너무나 별이 쓸쓸함과 나는 덮어 봅니다. 토끼, 당신은 풀이 까닭입니다. 어머니, 토끼, 피어나듯이 버리었습니다."
+  />
+);
+```

@@ -1,0 +1,137 @@
+import { useState } from 'react';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { Popup3, Popup3Component } from './index';
+import { Button } from '../../Button';
+import { primary, danger } from '../../../core/styles/palette';
+import { initialArgs } from '../Popup2/index.stories.mdx';
+import { popup, twoButtonsDescription, description } from '../storybook-args.ts';
+import { generateTable } from '../../../storybook-props';
+
+<Meta
+  title="Components/Popup/Popup3"
+  component={Popup3}
+  argTypes={{
+    showCloseButton: {
+      description: '오른쪽 상단의 닫기 버튼을 숨길 수 있습니다.',
+      control: 'boolean',
+      ...generateTable({ defaultValue: 'true', type: 'boolean' }),
+    },
+    ...twoButtonsDescription,
+    ...popup,
+    ...description,
+  }}
+/>
+
+export const Template = (args) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const toggle = () => {
+    setIsOpen(!isOpen);
+  };
+  const close = () => {
+    setIsOpen(false);
+  };
+  return (
+    <div>
+      <Button onClick={toggle}>Popup3 열기</Button>
+      <Popup3
+        {...initialArgs}
+        {...args}
+        isOpen={isOpen}
+        onClose={close}
+        onClickRightButton={close}
+        onClickLeftButton={close}
+      />
+    </div>
+  );
+};
+
+export const DialogTemplate = (args) => <Popup3Component {...args} {...initialArgs} />;
+
+# 팝업3
+
+닫을 수 있는 경고, 확인 및 기타 상호작용이 가능한 컴포넌트입니다. 화면 정중앙에 렌더링이 됩니다.
+
+`<Modal/>`을 기반으로 만들어졌습니다.
+
+첫번째 tabIndex는 항상 우측상단의 버튼입니다.
+
+## 차이점
+
+- 팝업을 닫는 버튼아이콘이 우측상단에 존재합니다.
+- 다른 팝업컴포넌트와 다르게 아이콘이 없습니다.
+- 타이틀색상을 수정하는 속성이 없습니다.
+- 텍스트가 왼쪽정렬입니다.
+
+<Canvas>
+  <Story name="default" args={{ description: '타이틀에 대한 설명이 작성되는 부분입니다.' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+## 예제
+
+색상과 아이콘, 버튼색상과 버튼라벨을 변경할 수 있습니다.
+
+### no close Button
+
+상단우측의 닫기버튼을 없앨 수 있습니다. description을 생략할 수 있습니다.
+
+<Story name="no close button" args={{ showCloseButton: false }}>
+  {DialogTemplate.bind({})}
+</Story>
+
+### too long title
+
+`width: max-content`, `max-width: 1200px`으로, 최대 1200px을 유지합니다.
+
+- `showCloseButton: true` 일 경우, 타이틀은 버튼을 제외한 width로 수정됩니다.
+
+<Story
+  name="too long everything"
+  args={{
+    title:
+      '그리고 하나에 책상을 못 까닭입니다. 잔디가 다 애기 사랑과 하나에 마리아 우는 둘 봅니다. 아이들의 딴은 아스라히 많은 있습니다. 하나 별빛이 릴케 지나고 불러 남은 있습니다. 어머니, 이런 파란 이웃 마디씩 노루, 잔디가 어머님, 위에 까닭입니다. 하나에 묻힌 딴은 어머니, 계십니다.',
+    content:
+      '오면 하나에 파란 밤이 봅니다. 않은 별이 이름을 가난한 보고, 소학교 이름과 있습니다. 차 별빛이 릴케 이름과, 내린 가슴속에 이네들은 듯합니다. 나는 별 라이너 벌써 이웃 했던 이름자 까닭입니다. 이름을 사랑과 나는 가을 버리었습니다. 이름을 언덕 오면 있습니다. 너무나 계절이 자랑처럼 별을 피어나듯이 오는 어머니, 이름과, 까닭이요, 버리었습니다.',
+    description:
+      '청춘이 별빛이 이름자를 이름과, 마리아 별 없이 가을로 계십니다. 같이 않은 하늘에는 별을 내린 어머님, 사람들의 불러 까닭입니다. 계집애들의 토끼, 아침이 다 별 별 것은 까닭입니다. 이름자 새겨지는 이름과, 자랑처럼 패, 애기 계십니다. 별 시인의 비둘기, 까닭입니다. 이런 헤일 겨울이 동경과 봅니다. 이제 벌레는 이름을 까닭입니다.',
+  }}
+>
+  {Template.bind({})}
+</Story>
+
+- `showCloseButton: false` 일 경우, 타이틀은 width: 100% 을 유지합니다.
+
+<Story
+  name="too long everything2"
+  args={{
+    showCloseButton: false,
+    title:
+      '그리고 하나에 책상을 못 까닭입니다. 잔디가 다 애기 사랑과 하나에 마리아 우는 둘 봅니다. 아이들의 딴은 아스라히 많은 있습니다. 하나 별빛이 릴케 지나고 불러 남은 있습니다. 어머니, 이런 파란 이웃 마디씩 노루, 잔디가 어머님, 위에 까닭입니다. 하나에 묻힌 딴은 어머니, 계십니다.',
+    content:
+      '오면 하나에 파란 밤이 봅니다. 않은 별이 이름을 가난한 보고, 소학교 이름과 있습니다. 차 별빛이 릴케 이름과, 내린 가슴속에 이네들은 듯합니다. 나는 별 라이너 벌써 이웃 했던 이름자 까닭입니다. 이름을 사랑과 나는 가을 버리었습니다. 이름을 언덕 오면 있습니다. 너무나 계절이 자랑처럼 별을 피어나듯이 오는 어머니, 이름과, 까닭이요, 버리었습니다.',
+    description:
+      '청춘이 별빛이 이름자를 이름과, 마리아 별 없이 가을로 계십니다. 같이 않은 하늘에는 별을 내린 어머님, 사람들의 불러 까닭입니다. 계집애들의 토끼, 아침이 다 별 별 것은 까닭입니다. 이름자 새겨지는 이름과, 자랑처럼 패, 애기 계십니다. 별 시인의 비둘기, 까닭입니다. 이런 헤일 겨울이 동경과 봅니다. 이제 벌레는 이름을 까닭입니다.',
+  }}
+>
+  {Template.bind({})}
+</Story>
+
+### variant button color
+
+버튼의 색상과 라벨을 다양하게 적용할 수 있습니다.
+
+<Story
+  name="variant button color"
+  args={{
+    leftButtonColor: 'danger1',
+    rightButtonColor: 'primary2',
+    leftButtonLabel: 'left',
+    rightButtonLabel: 'right',
+    description: '추억과 이국 없이 이 까닭이요, 사람들의 별 가득 듯합니다. 풀이 써 가을로 있습니다.',
+  }}
+>
+  {DialogTemplate.bind({})}
+</Story>

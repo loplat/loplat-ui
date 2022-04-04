@@ -10,28 +10,40 @@ export interface ModalProps {
   children: React.ReactElement;
 }
 
+const TABBABLE_TAGS = ['a', 'input', 'select', 'button', 'textarea', 'details'];
+const changeAccessibility = (root: HTMLElement, modalStatus: 'open' | 'close') => {
+  if (modalStatus === 'open') {
+    root.setAttribute('aria-hidden', 'true');
+    root.setAttribute('aria-disabled', 'true');
+  } else {
+    root.removeAttribute('aria-hidden');
+    root.removeAttribute('aria-disabled');
+  }
+
+  const tabbableTagList = root.querySelectorAll(TABBABLE_TAGS.join(', '));
+  tabbableTagList.forEach((node) => {
+    if (modalStatus === 'open') node.setAttribute('tabindex', '-1');
+    else node.removeAttribute('tabindex');
+  });
+};
+
 export function Modal({ isOpen, onClose, zIndex = 9999, children }: ModalProps): React.ReactElement | null {
   const portalId = useMemo(() => `loplat-ui-modal__${generateUniqueId()}`, []);
   const [container, setContainer] = useState<Element | null>(null);
 
   useEffect(() => {
-    // create container
     const newContainer = document.createElement('div');
     newContainer.setAttribute('id', portalId);
     document.body.appendChild(newContainer);
 
-    // add eventListeners
     function onKeyDownESC(e: KeyboardEvent) {
-      if (e.key === 'Escape') {
-        onClose();
-      }
+      if (e.key === 'Escape') onClose();
     }
     document.addEventListener('keydown', onKeyDownESC);
 
     // trigger rerender
     setContainer(newContainer);
 
-    // remove container & eventListeners
     return () => {
       document.removeEventListener('keydown', onKeyDownESC);
       const containerDOM = document.getElementById(portalId) as HTMLDivElement;
@@ -40,12 +52,21 @@ export function Modal({ isOpen, onClose, zIndex = 9999, children }: ModalProps):
   }, [portalId]);
 
   useEffect(() => {
+    const divList = document.querySelectorAll<HTMLDivElement>('body > div');
+    const portal = document.querySelector(`body > div#${portalId}`) as HTMLDivElement;
+
+    const notPortalDivList: HTMLDivElement[] = [];
+    divList.forEach((div) => {
+      if (!portal.contains(div)) notPortalDivList.push(div);
+    });
+
     if (isOpen) {
-      // prevent scroll
       document.body.style.overflow = 'hidden';
+      notPortalDivList.forEach((root) => changeAccessibility(root, 'open'));
     }
     return () => {
-      document.body.style.overflow = '';
+      document.body.style.overflow = 'initial';
+      notPortalDivList.forEach((root) => changeAccessibility(root, 'close'));
     };
   }, [isOpen]);
 
