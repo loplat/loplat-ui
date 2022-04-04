@@ -23,7 +23,7 @@ export type BasePopupProps = BasePopupConstructor & {
    *
    * 설정한 `color`에 따라 전달한 `icon 컴포넌트`의 `fillColor` 색상이 달라집니다.
    */
-  icon?: 'check' | 'warning' | React.ReactElement<IconProps>;
+  icon?: 'check' | 'warning' | React.NamedExoticComponent<IconProps>;
   /** `popup 컴포넌트`를 닫을 수 있는 함수여야 합니다. */
   onClose: (e: React.MouseEvent<HTMLButtonElement>) => void;
 };

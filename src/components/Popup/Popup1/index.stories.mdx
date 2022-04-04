@@ -123,7 +123,7 @@ icon props으로 원하는 icon svg을 할당할 수 있습니다.
   name="custom Icon"
   args={{
     color: 'danger',
-    icon: <DiamondIcon />,
+    icon: DiamondIcon,
     title: '새겨지는 별이 이름을 된 이웃 거외다.',
     content:
       '내 너무나 별이 쓸쓸함과 나는 덮어 봅니다. 토끼, 당신은 풀이 까닭입니다. 어머니, 토끼, 피어나듯이 버리었습니다.',
@@ -132,17 +132,15 @@ icon props으로 원하는 icon svg을 할당할 수 있습니다.
   {DialogTemplate.bind({})}
 </Story>
 
-<Canvas>
-  <Story
-    name="icon popup example"
-    args={{
-      color: 'danger',
-      icon: <DiamondIcon />,
-      title: '새겨지는 별이 이름을 된 이웃 거외다.',
-      content:
-        '내 너무나 별이 쓸쓸함과 나는 덮어 봅니다. 토끼, 당신은 풀이 까닭입니다. 어머니, 토끼, 피어나듯이 버리었습니다.',
-    }}
-  >
-    {Template.bind({})}
-  </Story>
-</Canvas>
+```js
+import { DiamondIcon, Popup1 } from 'loplat-ui';
+
+const Popup = (
+  <Popup1
+    icon={DiamondIcon}
+    color="danger"
+    title="새겨지는 별이 이름을 된 이웃 거외다."
+    content="내 너무나 별이 쓸쓸함과 나는 덮어 봅니다. 토끼, 당신은 풀이 까닭입니다. 어머니, 토끼, 피어나듯이 버리었습니다."
+  />
+);
+```
