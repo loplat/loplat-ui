@@ -46,7 +46,6 @@ export type Popup3Props = Omit<Required<BasePopupProps>, 'icon' | 'color'> & {
   DivProps;
 
 export type DialogProps = {
-  /** 팝업 모달을 열 수 있는 값입니다. */
   isOpen: boolean;
   onClose: () => void;
 };

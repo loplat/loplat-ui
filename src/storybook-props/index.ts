@@ -1,6 +1,5 @@
 import spacing from './spacing';
 import borderless from './borderless';
-import defaultValue from './defaultValue';
 import disabled from './disabled';
 import icon from './icon';
 import eventHandler from './eventHandler';
@@ -8,7 +7,7 @@ import typography from './typography';
 import spinner from './spinner';
 import hideCanvas from './hideCanvas';
 import button from './button';
-import required from './required';
+import generateTable from './generateTable';
 
 export const pickPropsInObj = (obj: { [k: string]: unknown }, ...props: string[]): unknown => {
   const result: Record<string, unknown> = {};
@@ -23,16 +22,4 @@ export const pickPropsInObj = (obj: { [k: string]: unknown }, ...props: string[]
   return result;
 };
 
-export {
-  required,
-  spacing,
-  borderless,
-  defaultValue,
-  disabled,
-  icon,
-  eventHandler,
-  typography,
-  spinner,
-  hideCanvas,
-  button,
-};
+export { spacing, borderless, disabled, icon, eventHandler, typography, spinner, hideCanvas, button, generateTable };

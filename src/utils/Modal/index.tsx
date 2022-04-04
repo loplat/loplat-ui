@@ -20,8 +20,8 @@ const changeAccessibility = (root: HTMLElement, modalStatus: 'open' | 'close') =
     root.removeAttribute('aria-disabled');
   }
 
-  const nodeList = root.querySelectorAll(TABBABLE_TAGS.join(', '));
-  nodeList.forEach((node) => {
+  const tabbableTagList = root.querySelectorAll(TABBABLE_TAGS.join(', '));
+  tabbableTagList.forEach((node) => {
     if (modalStatus === 'open') node.setAttribute('tabindex', '-1');
     else node.removeAttribute('tabindex');
   });

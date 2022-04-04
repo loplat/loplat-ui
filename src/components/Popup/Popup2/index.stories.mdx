@@ -5,6 +5,7 @@ import { primary, danger } from '../../../core/styles/palette';
 import { LanguageIcon } from '../../../assets/Icon';
 import { Button } from '../../Button';
 import { popup, twoButtonsDescription, popupIcon } from '../storybook-args.ts';
+import { generateTable } from '../../../storybook-props/';
 
 <Meta
   title="Components/Popup/Popup2"
@@ -15,9 +16,7 @@ import { popup, twoButtonsDescription, popupIcon } from '../storybook-args.ts';
     ...popupIcon,
     color: {
       description: 'icon, title 색상을 결정합니다.',
-      table: {
-        defaultValue: { summary: 'primary' },
-      },
+      ...generateTable({ defaultValue: '#40a6fd', summary: 'string' }),
       control: 'color',
     },
   }}
@@ -45,7 +44,7 @@ export const DialogTemplate = (args) => <Popup2Component {...initialArgs} {...ar
 
 닫을 수 있는 경고, 확인 및 기타 상호작용이 가능한 컴포넌트입니다. 화면 정중앙에 렌더링이 됩니다.
 
-`<Modal/>`을 기반으로 만들어졌습니다. 배경을 클릭하거나 esc를 눌러도 팝업 컴포넌트가 닫힙니다.
+`<Modal/>`을 기반으로 만들어졌습니다.
 
 `<Popup1/>`컴포넌트를 계승합니다.
 색상을 `<Popup1/>` 컴포넌트와는 다르게 원하는 색상코드를 모두 입력 가능합니다.

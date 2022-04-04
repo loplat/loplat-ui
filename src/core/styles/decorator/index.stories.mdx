@@ -1,5 +1,5 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
-import { defaultValue } from '../../../storybook-props';
+import { generateTable } from '../../../storybook-props';
 import { Highlight, Underline } from './index.stories.tsx';
 
 <Meta title="core/decorator" />
@@ -15,22 +15,25 @@ import { Highlight, Underline } from './index.stories.tsx';
       borderRadius: {
         description: '`underline`의 border-radius 입니다.',
         type: 'string',
-        table: { ...defaultValue('2px') },
+        ...generateTable({ defaultValue: '2px' }),
       },
       bottom: {
         description: '`underline`이 요소의 bottom과 떨어져있는 정도입니다.',
         type: 'string',
-        table: { ...defaultValue('-8px') },
+        ...generateTable({ defaultValue: '-8px' }),
       },
-      color: { description: '`underline`의 색상입니다.', type: 'string', table: { ...defaultValue('#0c8efc') } },
-      height: { description: '`underline`의 높이입니다.', type: 'string', table: { ...defaultValue('3px') } },
+      color: {
+        description: '`underline`의 색상입니다.',
+        type: 'string',
+        ...generateTable({ defaultValue: '#0c8efc' }),
+      },
+      height: { description: '`underline`의 높이입니다.', type: 'string', ...generateTable({ defaultValue: '3px' }) },
       width: {
         description: '`underline`의 너비입니다.',
         type: 'string',
-        table: { ...defaultValue('10px') },
+        ...generateTable({ defaultValue: '10px' }),
       },
     }}
-    args={{ borderRadius: '2px', bottom: '-8px', color: '#0c8efc', height: '3px' }}
   >
     {(args) => <Underline {...args} />}
   </Story>
@@ -40,12 +43,14 @@ import { Highlight, Underline } from './index.stories.tsx';
 
 ## 사용 방법
 
-underline은 `@emotion`의 `SerializedStyles`를 return 합니다.
+`underline`은 `@emotion`의 `SerializedStyles`를 return 하는 함수입니다.
+
+적용하기 위해서는 `underline`를 사용하는 styled 컴포넌트를 생성해야 합니다.
 
 ```js
 import { styled, underline } from 'loplat-ui';
 
-const Text = styled.span`
+const Underline = styled.span`
   ${underline({ borderRadius, bottom, color, height, width })};
 `;
 ```
@@ -58,15 +63,18 @@ const Text = styled.span`
   <Story
     name="highlight"
     argTypes={{
-      color: { description: '`highlight`의 색상입니다.', type: 'string', table: { ...defaultValue('#ebf6fe') } },
+      color: {
+        description: '`highlight`의 색상입니다.',
+        type: 'string',
+        ...generateTable({ defaultValue: '#ebf6fe' }),
+      },
       positionX: {
         description: '`highlight` 시작점의 X좌표 입니다.',
         type: 'string',
-        table: { ...defaultValue('50%') },
+        ...generateTable({ defaultValue: '50%' }),
       },
-      width: { description: '`highlight`의 너비입니다.', type: 'string', table: { ...defaultValue('100%') } },
+      width: { description: '`highlight`의 너비입니다.', type: 'string', ...generateTable({ defaultValue: '100%' }) },
     }}
-    args={{ color: '#ebf6fe', positionX: '50%', width: '100%' }}
   >
     {(args) => <Highlight {...args} />}
   </Story>
@@ -76,12 +84,14 @@ const Text = styled.span`
 
 ## 사용 방법
 
-highlight는 `@emotion`의 `SerializedStyles`를 return 합니다.
+`highlight`는 `@emotion`의 `SerializedStyles`를 return 하는 함수입니다.
+
+적용하기 위해서는 `highlight`를 사용하는 styled 컴포넌트를 생성해야 합니다.
 
 ```js
 import { styled, highlight } from 'loplat-ui';
 
-const Text = styled.span`
+const Highlight = styled.span`
   ${highlight({ color, positionX, width })};
 `;
 ```

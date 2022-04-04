@@ -5,7 +5,7 @@ import { Button } from '../../Button';
 import { primary, danger } from '../../../core/styles/palette';
 import { initialArgs } from '../Popup2/index.stories.mdx';
 import { popup, twoButtonsDescription, description } from '../storybook-args.ts';
-import { defaultValue } from '../../../storybook-props';
+import { generateTable } from '../../../storybook-props';
 
 <Meta
   title="Components/Popup/Popup3"
@@ -14,13 +14,7 @@ import { defaultValue } from '../../../storybook-props';
     showCloseButton: {
       description: '오른쪽 상단의 닫기 버튼을 숨길 수 있습니다.',
       control: 'boolean',
-      defaultValue: 'true',
-      type: {
-        summary: 'boolean',
-      },
-      table: {
-        ...defaultValue('true'),
-      },
+      ...generateTable({ defaultValue: 'true', type: 'boolean' }),
     },
     ...twoButtonsDescription,
     ...popup,
@@ -51,13 +45,15 @@ export const Template = (args) => {
   );
 };
 
-export const DialogTemplate = (args) => <Popup3Component {...initialArgs} {...args} />;
+export const DialogTemplate = (args) => <Popup3Component {...args} {...initialArgs} />;
 
 # 팝업3
 
 닫을 수 있는 경고, 확인 및 기타 상호작용이 가능한 컴포넌트입니다. 화면 정중앙에 렌더링이 됩니다.
 
-`<Modal/>`을 기반으로 만들어졌습니다. 배경을 클릭하거나 esc를 눌러도 팝업 컴포넌트가 닫힙니다.
+`<Modal/>`을 기반으로 만들어졌습니다.
+
+첫번째 tabIndex는 항상 우측상단의 버튼입니다.
 
 ## 차이점
 
@@ -106,7 +102,7 @@ export const DialogTemplate = (args) => <Popup3Component {...initialArgs} {...ar
 
 ### variant button color
 
-버튼의 색상을 다양하게 사용할 수 있습니다.
+버튼의 색상과 라벨을 다양하게 적용할 수 있습니다.
 
 <Story
   name="variant button color"

@@ -62,10 +62,21 @@ export const Template = (args) => {
 
 portal을 통해 열기 때문에 `<Modal/>`컴포넌트가 어느 위치에 작성되어있어도 항상 최상단에서 구현됩니다.
 
-키보드의 `esc`키를 누르거나 배경을 누를경우, 모달이 닫힙니다.
+## 열릴 때의 구현
+
+- body의 overflow 속성이 hidden으로 변경됩니다.
+- 키보드의 `esc`키를 누르거나 배경을 누를경우, 모달이 닫힙니다.
+- portal을 제외한 div의 aria-hidden과 aia-disabled이 true로 변경됩니다.
+- portal을 제외한 div안의 tab으로 접근가능한 태그들이 모두 접근불가능하게 변경됩니다.
 
 <Canvas>
   <Story name="default">{Template.bind({})}</Story>
 </Canvas>
 
 <ArgsTable story="default" />
+
+## 활용 예제
+
+`Popup`컴포넌트는 `Modal`을 활용하여 만들어졌습니다.
+
+<Story id="components-popup-popup1--default-story" />
