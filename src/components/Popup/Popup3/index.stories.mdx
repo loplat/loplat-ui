@@ -4,7 +4,8 @@ import { Popup3, Popup3Component } from './index';
 import { Button } from '../../Button';
 import { primary, danger } from '../../../core/styles/palette';
 import { initialArgs } from '../Popup2/index.stories.mdx';
-import { popup, twoButtonsDescription } from '../storybook-args.ts';
+import { popup, twoButtonsDescription, description } from '../storybook-args.ts';
+import { defaultValue } from '../../../storybook-props';
 
 <Meta
   title="Components/Popup/Popup3"
@@ -12,15 +13,18 @@ import { popup, twoButtonsDescription } from '../storybook-args.ts';
   argTypes={{
     showCloseButton: {
       description: '오른쪽 상단의 닫기 버튼을 숨길 수 있습니다.',
-      control: {
-        type: 'boolean',
+      control: 'boolean',
+      defaultValue: 'true',
+      type: {
+        summary: 'boolean',
       },
       table: {
-        defaultValue: { summary: 'true' },
+        ...defaultValue('true'),
       },
     },
     ...twoButtonsDescription,
     ...popup,
+    ...description,
   }}
 />
 

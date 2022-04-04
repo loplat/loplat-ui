@@ -1,33 +1,26 @@
-import button from '../../storybook-props/button';
+import { button, defaultValue, required } from '../../storybook-props';
 
-const required = {
-  type: {
-    required: 'true',
+export const description = {
+  description: {
+    description: 'title 로는 부족한 설명을 덧붙일 수 있습니다.',
   },
 };
 
 export const popup = {
-  description: {
-    description: 'title 로는 부족한 설명을 덧붙일 수 있습니다.',
-  },
   isOpen: {
-    description: '',
-    type: {
-      summary: 'boolean',
-      required: 'true',
-    },
+    ...required('boolean'),
     control: 'null',
   },
   content: {
-    ...required,
+    ...required('string | React.ReactElement'),
     description: '`popup 컴포넌트`가 왜 켜졌는지를 사용자에게 설명합니다.',
     table: {
-      defaultValue: { summary: '' },
+      ...defaultValue(''),
     },
     control: 'text',
   },
   title: {
-    ...required,
+    ...required('string'),
     description: '`popup 컴포넌트`가 왜 켜졌는지를 사용자에게 설명합니다.',
     control: 'text',
   },
@@ -54,9 +47,7 @@ export const popupIcon = {
     description:
       '`<Popup/>`의 상단정중앙 아이콘을 `check`, `warning`으로 정해진 아이콘을 설정하거나 직접 아이콘을 주입할 수 있습니다.',
     options: ['check', 'warning'],
-    control: {
-      type: 'radio',
-    },
+    control: 'radio',
   },
 };
 
@@ -71,31 +62,35 @@ const keyList = twoButton.reduce(
 const describeButton = (label: string) => {
   const category = { category: 'button props' };
   if (label.endsWith('Label')) {
+    const defaultLabel = label.startsWith('left') ? '취소' : '확인';
     return {
       [label]: {
-        ...required,
-        table: { ...category, type: { summary: 'string' } },
+        table: { ...category, type: { summary: 'string' }, ...defaultValue(defaultLabel) },
         control: 'text',
       },
     };
   }
   if (label.endsWith('Color')) {
+    const defaultLabel = label.startsWith('left') ? 'default' : 'primary';
     return {
       [label]: {
-        ...required,
         description: '버튼의 색상입니다. `loplat ui`의 `<Button/>`의 색상을 사용합니다',
-        table: { ...category },
+        table: { ...category, ...defaultValue(defaultLabel) },
         options: button.color.options,
+        control: button.color.control,
+        type: {
+          summary: button.color.options,
+        },
       },
     };
   }
   if (label.endsWith('Click')) {
     return {
       [label]: {
-        ...required,
+        ...required(),
         description: '버튼의 onClick 이벤트를 할당합니다.',
         table: { ...category, type: { summary: '() => void' } },
-        control: { type: 'null' },
+        control: 'null',
       },
     };
   }

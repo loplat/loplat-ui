@@ -15,21 +15,22 @@ import { Highlight, Underline } from './index.stories.tsx';
       borderRadius: {
         description: '`underline`의 border-radius 입니다.',
         type: 'string',
-        ...defaultValue('2px'),
+        table: { ...defaultValue('2px') },
       },
       bottom: {
         description: '`underline`이 요소의 bottom과 떨어져있는 정도입니다.',
         type: 'string',
-        ...defaultValue('-8px'),
+        table: { ...defaultValue('-8px') },
       },
-      color: { description: '`underline`의 색상입니다.', type: 'string', ...defaultValue('#0c8efc') },
-      height: { description: '`underline`의 높이입니다.', type: 'string', ...defaultValue('3px') },
+      color: { description: '`underline`의 색상입니다.', type: 'string', table: { ...defaultValue('#0c8efc') } },
+      height: { description: '`underline`의 높이입니다.', type: 'string', table: { ...defaultValue('3px') } },
       width: {
         description: '`underline`의 너비입니다.',
         type: 'string',
-        ...defaultValue('10px'),
+        table: { ...defaultValue('10px') },
       },
     }}
+    args={{ borderRadius: '2px', bottom: '-8px', color: '#0c8efc', height: '3px' }}
   >
     {(args) => <Underline {...args} />}
   </Story>
@@ -57,10 +58,15 @@ const Text = styled.span`
   <Story
     name="highlight"
     argTypes={{
-      color: { description: '`highlight`의 색상입니다.', type: 'string', ...defaultValue('#ebf6fe') },
-      positionX: { description: '`highlight` 시작점의 X좌표 입니다.', type: 'string', ...defaultValue('50%') },
-      width: { description: '`highlight`의 너비입니다.', type: 'string', ...defaultValue('100%') },
+      color: { description: '`highlight`의 색상입니다.', type: 'string', table: { ...defaultValue('#ebf6fe') } },
+      positionX: {
+        description: '`highlight` 시작점의 X좌표 입니다.',
+        type: 'string',
+        table: { ...defaultValue('50%') },
+      },
+      width: { description: '`highlight`의 너비입니다.', type: 'string', table: { ...defaultValue('100%') } },
     }}
+    args={{ color: '#ebf6fe', positionX: '50%', width: '100%' }}
   >
     {(args) => <Highlight {...args} />}
   </Story>
