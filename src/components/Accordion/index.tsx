@@ -111,7 +111,13 @@ export const Accordion = React.memo(
             <ChevronDownIcon size={12} className="accordion_chevron" />
           </button>
         </Heading>
-        <Body tableHeight={tableHeight} isExpanded={isExpanded} duration={duration} id={bodyId}>
+        <Body
+          tableHeight={tableHeight}
+          isExpanded={isExpanded}
+          duration={duration}
+          id={bodyId}
+          data-testid="loplat-ui_accordion_content"
+        >
           <div ref={bodyRef}>{content}</div>
         </Body>
       </Wrapper>

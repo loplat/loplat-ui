@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs';
 import { Accordion, AccordionGroup } from './index.tsx';
 import { generateTable } from '../../storybook-props';
+import { runTest } from './storybookTest.ts';
 
 <Meta
   title="Components/Accordion/Single"
@@ -44,7 +45,7 @@ export const Template = (args) => {
 토글하여 `isExpanded`상태가 `true`일 때, 자세한 설명을 볼 수 있는 컴포넌트입니다.
 
 <Canvas>
-  <Story name="default">{Template.bind({})}</Story>
+  <Story name="default">{runTest(Template.bind({}))}</Story>
 </Canvas>
 
 <ArgsTable story="default" />
