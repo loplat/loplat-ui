@@ -1,0 +1,62 @@
+import { useState } from 'react';
+import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs';
+import { Accordion, AccordionGroup } from './index.tsx';
+import { generateTable } from '../../storybook-props';
+
+<Meta
+  title="Components/Accordion/Single"
+  component={Accordion}
+  argTypes={{
+    content: {
+      control: 'text',
+      ...generateTable({ type: 'string | React.ReactElement' }),
+    },
+    duration: {
+      ...generateTable({ defaultValue: 0.2 }),
+    },
+    headingLevel: {
+      ...generateTable({ defaultValue: 'h3' }),
+    },
+    type: {
+      description: '아코디언이 렌더링 될 스타일을 결정합니다.',
+      ...generateTable({ defaultValue: 'fill' }),
+    },
+    isExpanded: {
+      ...generateTable({ defaultValue: false }),
+    },
+  }}
+/>
+
+export const data = {
+  title: '새겨지는 별이 이름을 된 이웃 거외다.',
+  content:
+    '딴은 당신은 흙으로 가득 까닭이요, 아침이 프랑시스 이름자를 거외다. 노새, 불러 그러나 토끼, 무엇인지 아이들의 소녀들의 이름을 나의 듯합니다. 계절이 나는 언덕 한 너무나 별 별 책상을 봅니다. 가을로 밤을 가을 나의 이름과, 부끄러운 하나에 옥 까닭입니다. 슬퍼하는 겨울이 내 어머니 멀리 별을 이제 계십니다. 사람들의 지나가는 다하지 하나의 했던 내린 듯합니다. 이제 가을 지나고 시인의 위에 별을 하나에 있습니다.',
+};
+
+export const Template = (args) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const toggle = () => setIsOpen((prev) => !prev);
+  return <Accordion {...data} {...args} isExpanded={isOpen} toggle={toggle} />;
+};
+
+# Accordion
+
+토글하여 `isExpanded`상태가 `true`일 때, 자세한 설명을 볼 수 있는 컴포넌트입니다.
+
+<Canvas>
+  <Story name="default">{Template.bind({})}</Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+---
+
+## 예제
+
+`type: 'line'` 인 컴포넌트입니다.
+
+<Canvas>
+  <Story name="line" args={{ type: 'line' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
