@@ -33,11 +33,13 @@ pipelines:
                 EXTRA_ARGS: '--only hosting:staging'
                 DEBUG: 'false'
             - export COMMIT_MESSAGE=`git log --format=%B -n 1 $BITBUCKET_COMMIT`
+            - export BRANCH_NAME=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
             - echo $COMMIT_MESSAGE
+            - echo $BRANCH_NAME
             - curl -X POST -H "Content-type:application/json" --data "{
-              \"text\":\"PR이 생성되어, 스토리북이 업데이트 되었습니다.
+              \"text\":\"*$BRANCH_NAME PR이 업데이트되었습니다.* 스토리북을 확인해주세요.
               \n\n https://staging-loplat-ui.web.app/
-              \n\n *개발자 커밋메시지* $COMMIT_MESSAGE\"}" $WEBHOOK_URL
+              \n\n *개발자 커밋메시지:* $COMMIT_MESSAGE\"}" $WEBHOOK_URL
       - step:
           name: Storybook Tests on browser using Docker
           image: mcr.microsoft.com/playwright:focal
@@ -76,12 +78,11 @@ pipelines:
                 MESSAGE: 'deploying to loplat UI'
                 EXTRA_ARGS: '--only hosting:production'
                 DEBUG: 'false'
-            - export COMMIT_MESSAGE=`git log --format=%B -n 1 $BITBUCKET_COMMIT`
-            - echo $COMMIT_MESSAGE
+            - export VERSION=$(yarn version | grep version | awk -F":" '{ print $2 }' | sed '/^$/d' | tr -d ' ')
+            - echo $VERSION
             - curl -X POST -H "Content-type:application/json" --data "{
-              \"text\":\"스토리북이 업데이트 되었습니다.
-              \n\n https://ui.loplat.com/
-              \n\n*개발자 커밋메시지:* $COMMIT_MESSAGE\"}" $WEBHOOK_URL
+              \"text\":\"*loplat ui $VERSION 버젼이 배포되었습니다.*
+              \n\n https://ui.loplat.com/ \"}" $WEBHOOK_URL
       - step:
           name: Storybook Tests on browser using Docker
           image: mcr.microsoft.com/playwright:focal
