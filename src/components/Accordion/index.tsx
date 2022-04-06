@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect, useRef } from 'react';
+import React, { useState, useCallback, useEffect, useRef, useMemo } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { black, bluescale100, grayscale200, grayscale800 } from '../../core/colors';
@@ -110,8 +110,10 @@ export const Accordion = React.memo(
     duration = 0.2,
   }: AccordionProps): JSX.Element => {
     const bodyRef = useRef<HTMLDivElement>(null);
-    const uniqueId = generateUniqueId();
-    const bodyId = `loplat_accordion_body_${uniqueId}`;
+    const [bodyId, headId] = useMemo(() => {
+      const uniqueId = generateUniqueId();
+      return [`loplat_accordion_body_${uniqueId}`, `loplat_accordion_head_${uniqueId}`];
+    }, []);
     const [height, setHeight] = useState(0);
 
     useEffect(() => {
@@ -119,9 +121,9 @@ export const Accordion = React.memo(
     }, [isExpanded]);
 
     return (
-      <Wrapper role="group" isExpanded={isExpanded} onClick={toggle} type={type} duration={duration}>
+      <Wrapper role="group" isExpanded={isExpanded} type={type} duration={duration}>
         <Heading as={headingLevel} className="heading">
-          <button aria-expanded={isExpanded} aria-controls={bodyId}>
+          <button aria-expanded={isExpanded} aria-controls={bodyId} onClick={toggle} id={headId}>
             {title}
             <ChevronDownIcon size={12} className="accordion_chevron" />
           </button>
@@ -132,6 +134,8 @@ export const Accordion = React.memo(
           duration={duration}
           id={bodyId}
           data-testid="loplat-ui_accordion_content"
+          role="region"
+          aria-labelledby={headId}
         >
           <div ref={bodyRef}>{content}</div>
         </Body>
