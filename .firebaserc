@@ -1,5 +1,17 @@
 {
   "projects": {
     "default": "loplat-ui"
+  },
+  "targets": {
+    "loplat-ui": {
+      "hosting": {
+        "production": [
+          "loplat-ui"
+        ],
+        "staging": [
+          "staging-loplat-ui"
+        ]
+      }
+    }
   }
 }
