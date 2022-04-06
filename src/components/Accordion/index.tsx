@@ -7,7 +7,7 @@ import { generateUniqueId } from '../../functions/generator';
 import { spacing } from '../../core';
 import { ChevronDownIcon } from '../../assets/Icon';
 
-const transition = (label: string, duration: number) =>
+const transition = (label: string, duration = 0.2) =>
   css`
     will-change: ${label};
     transition: ${label} ${duration}s cubic-bezier(0.4, 0, 0.2, 1);
@@ -34,32 +34,47 @@ const Heading = styled.h3`
 `;
 
 const Wrapper = styled.div<Pick<Required<AccordionProps>, 'type' | 'isExpanded' | 'duration'>>`
-  background-color: white;
   box-sizing: border-box;
-
+  background-color: white;
   ${({ type, isExpanded }) =>
     type === 'fill' && isExpanded
       ? `background: ${bluescale100};`
       : type === 'fill'
       ? ` background: white;`
       : `border-bottom: 1px solid ${grayscale200};`};
+  ${({ duration }) => transition('background', duration)};
 
   .heading {
     color: ${({ isExpanded }) => (isExpanded ? primary : `${black}`)};
-    ${({ duration }) => duration && transition('color', duration)};
+    ${({ duration }) => transition('color', duration)};
   }
   .accordion_chevron {
     transform: ${({ isExpanded }) => (isExpanded ? 'rotate(-180deg)' : 'rotate(0deg)')};
-    ${({ duration }) => duration && transition('transform', duration)};
+    ${({ duration }) => transition('transform', duration)};
   }
 `;
 
-const Body = styled.div<{ tableHeight: number } & Pick<AccordionProps, 'isExpanded' | 'duration'>>`
+const changeVisibilityStyle = (isVisible: boolean, duration = 0.2) => {
+  if (isVisible) {
+    return css`
+      visibility: visible;
+      ${transition('height', duration)}
+      will-change: height, visibility;
+    `;
+  }
+  return css`
+    visibility: hidden;
+    will-change: height, visibility;
+    transition: height ${duration}s cubic-bezier(0.4, 0, 0.2, 1), visibility 0s ${duration}s;
+  `;
+};
+
+const Body = styled.div<{ height: number } & Pick<AccordionProps, 'isExpanded' | 'duration'>>`
   overflow: hidden;
   font-size: 1rem;
   color: ${grayscale800};
-  height: ${({ tableHeight }) => tableHeight}px;
-  ${({ duration }) => duration && transition('height', duration)};
+  height: ${({ height }) => height}px;
+  ${({ height, duration }) => changeVisibilityStyle(height !== 0, duration)}
 
   > div {
     padding: ${spacing(2)}px ${spacing(6)}px ${spacing(8)}px;
@@ -97,10 +112,10 @@ export const Accordion = React.memo(
     const bodyRef = useRef<HTMLDivElement>(null);
     const uniqueId = generateUniqueId();
     const bodyId = `loplat_accordion_body_${uniqueId}`;
-    const [tableHeight, setTableHeight] = useState(0);
+    const [height, setHeight] = useState(0);
 
     useEffect(() => {
-      setTableHeight(isExpanded ? bodyRef.current?.scrollHeight ?? 0 : 0);
+      setHeight(isExpanded ? bodyRef.current?.scrollHeight ?? 0 : 0);
     }, [isExpanded]);
 
     return (
@@ -112,7 +127,7 @@ export const Accordion = React.memo(
           </button>
         </Heading>
         <Body
-          tableHeight={tableHeight}
+          height={height}
           isExpanded={isExpanded}
           duration={duration}
           id={bodyId}
