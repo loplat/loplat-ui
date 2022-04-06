@@ -3,6 +3,7 @@ import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs';
 import { Accordion, AccordionGroup } from './index.tsx';
 import { generateTable } from '../../storybook-props';
 import { data } from './single.stories.mdx';
+import { runTestGroup } from './storybookTest.ts';
 
 export const list = Array.from({ length: 4 }).fill(data);
 
@@ -43,7 +44,7 @@ export const Template = (args) => <AccordionGroup list={list} {...args} />;
 `tab`과 `shift+tab`을 이용하여 아코디언의 타이틀 사이를 이동할 수 있습니다.
 
 <Canvas>
-  <Story name="list fill">{Template.bind({})}</Story>
+  <Story name="list fill">{runTestGroup(Template.bind({}))}</Story>
 </Canvas>
 
 <ArgsTable story="list fill" />
