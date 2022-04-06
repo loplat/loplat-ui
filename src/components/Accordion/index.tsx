@@ -98,16 +98,22 @@ type AccordionProps = {
   toggle: () => void;
   /** 여닫는 transition css 초 시간입니다.  */
   duration?: number;
+  /**
+   * SSR에서 발생하는 _unique id collision_ 을 막기 위한 suffix를 제공합니다.
+   * CRA에서는 추가하지 않으셔도 괜찮습니다.
+   */
+  iconSuffix?: string;
 };
 export const Accordion = React.memo(
   ({
     title,
     content,
-    isExpanded = false,
+    isExpanded,
     toggle,
     type = 'fill',
     headingLevel = 'h3',
     duration = 0.2,
+    iconSuffix,
   }: AccordionProps): JSX.Element => {
     const bodyRef = useRef<HTMLDivElement>(null);
     const [bodyId, headId] = useMemo(() => {
@@ -125,7 +131,7 @@ export const Accordion = React.memo(
         <Heading as={headingLevel} className="heading">
           <button aria-expanded={isExpanded} aria-controls={bodyId} onClick={toggle} id={headId}>
             {title}
-            <ChevronDownIcon size={12} className="accordion_chevron" />
+            <ChevronDownIcon size={12} className="accordion_chevron" suffixForId={iconSuffix} />
           </button>
         </Heading>
         <Body
@@ -146,7 +152,7 @@ export const Accordion = React.memo(
 
 type AccordionGroupProps = {
   list: Pick<AccordionProps, 'title' | 'content'>[];
-} & Partial<Pick<Required<AccordionProps>, 'type' | 'headingLevel' | 'duration'>> & {
+} & Partial<Pick<Required<AccordionProps>, 'type' | 'headingLevel' | 'duration' | 'iconSuffix'>> & {
     /**
      * 최초 렌더시, 열린 상태에서 렌더링 하고자하는 list의 index를 입력하면 됩니다.
      * list의 index보다 큰 숫자를 입력 할 경우, 모든 아코디언이 닫힌 상태로 렌더링됩니다.
@@ -157,6 +163,7 @@ type AccordionGroupProps = {
 export const AccordionGroup = ({
   list,
   defaultExpandedIndex = -1,
+  iconSuffix,
   ...otherProps
 }: AccordionGroupProps): JSX.Element => {
   const [expanded, setExpanded] = useState(defaultExpandedIndex < list.length ? defaultExpandedIndex : -1);
@@ -168,7 +175,13 @@ export const AccordionGroup = ({
     <React.Fragment>
       {list.map((props, index) => (
         <div key={`props.title_${index}`}>
-          <Accordion {...props} {...otherProps} isExpanded={expanded === index} toggle={() => toggle(index)} />
+          <Accordion
+            {...props}
+            {...otherProps}
+            isExpanded={expanded === index}
+            toggle={() => toggle(index)}
+            iconSuffix={iconSuffix && `${iconSuffix}_${index}`}
+          />
         </div>
       ))}
     </React.Fragment>
