@@ -1,3 +1,27 @@
+# 1.6.0 (2022-04-06)
+
+## Added
+- Popup 컴포넌트를 추가했습니다.
+  - [Popup1](https://ui.loplat.com/?path=/docs/components-popup-popup1--default-story), [Popup2](https://ui.loplat.com/?path=/docs/components-popup-popup2--default-story), [Popup3](https://ui.loplat.com/?path=/docs/components-popup-popup3--default-story) 로 나누어 3가지 상황에 대한 UI를 제공합니다.
+- [highlight](https://ui.loplat.com/?path=/docs/core-decorator--highlight), [underline](https://ui.loplat.com/?path=/docs/core-decorator--underline) decorator style을 추가했습니다.
+
+## Fixed
+- Modal 컴포넌트에서 aria-hidden, aria-disabled, tabindex를 조작하여 접근성을 높였습니다.
+- Toast 컴포넌트에 position prop을 추가했습니다.
+- CheckBox, RadioButton 컴포넌트에 focus-visible style을 추가했습니다.
+- Input, Checkbox 컴포넌트의 불필요한 div tag를 제거했습니다.
+- Button, IconButton 컴포넌트에 모든 button HTMLAttributes를 적용할 수 있습니다.
+- Button, IconButton 컴포넌트에 React.forwardRef를 적용했습니다.
+- Spinner 컴포넌트에 `role="progressbar"` 속성을 추가했습니다.
+
+## Test
+- [Input](https://ui.loplat.com/?path=/story/components-input--default-story) 컴포넌트에 interactions 테스트를 추가했습니다.
+
+## Docs
+- [Storybook](https://ui.loplat.com) 데모 사이트의 URL을 `ui.loplat.com`으로 변경했습니다.
+- spacing(margin/padding) system prop의 설명을 보충했습니다.
+
+
 # 1.5.2 (2022-03-15)
 
 ## Test
