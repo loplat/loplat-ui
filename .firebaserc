@@ -10,6 +10,9 @@
         ],
         "staging": [
           "staging-loplat-ui"
+        ],
+        "feature": [
+          "feature-loplat-ui"
         ]
       }
     }
