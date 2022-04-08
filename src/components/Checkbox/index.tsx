@@ -29,29 +29,38 @@ export const Checkbox = ({
   checked,
   onChange,
   disabled,
+  boldLabel,
   className,
   id,
   ...props
 }: CheckboxProps): JSX.Element => {
-  const isChecked: boolean = typeof checked === 'string' ? checked !== 'unchecked' : checked;
+  const isChecked: boolean = typeof checked === 'boolean' ? checked : checked === 'checked' ? true : false;
+  const isIntermediate: boolean = checked === 'intermediate' ? true : false;
 
   return (
     <Label
-      checked={checked}
+      isIntermediate={isIntermediate}
+      boldLabel={boldLabel}
       disabled={disabled}
+      {...marginSpacingProps(props)}
       className={className}
       id={id}
-      {...marginSpacingProps(props)}
-      data-testid="loplat-ui__label"
     >
-      <input type="checkbox" name={name} checked={isChecked} onChange={onChange} disabled={disabled} {...props} />
+      <input
+        type="checkbox"
+        name={name}
+        defaultChecked={isChecked}
+        onChange={onChange}
+        disabled={disabled}
+        {...props}
+      />
       <Checkmark />
       {label}
     </Label>
   );
 };
 
-const Label = styled.label<BaseLabel & MarginSpacing>`
+const Label = styled.label<Pick<BaseLabel, 'boldLabel' | 'disabled'> & MarginSpacing & { isIntermediate: boolean }>`
   ${marginSpacingStyle};
   width: fit-content;
   display: flex;
@@ -60,7 +69,7 @@ const Label = styled.label<BaseLabel & MarginSpacing>`
   font-size: 1rem;
   font-weight: ${({ boldLabel }) => (boldLabel ? 600 : 400)};
   color: ${({ disabled }) => (disabled ? grayscale500 : grayscale800)};
-  cursor: pointer;
+  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
 
   input[type='checkbox'] {
     position: absolute;
@@ -68,27 +77,30 @@ const Label = styled.label<BaseLabel & MarginSpacing>`
 
     &:checked ~ span {
       border-color: ${blue500};
-
-      &::after {
-        ${(props) =>
-          props.checked === 'intermediate'
-            ? css`
-                width: 0.7rem;
-                height: 0;
-                transform: translate(-50%, -50%);
-                border-bottom: 2px solid ${blue500};
-                box-sizing: border-box;
-              `
-            : css`
-                width: 0.7rem;
-                height: 0.35rem;
-                transform: translate(-50%, -80%) rotate(-45deg);
-                border: 2px solid ${blue500};
-                border-top: 0;
-                border-right: 0;
-                box-sizing: border-box;
-              `};
+      ::after {
+        width: 0.7rem;
+        height: 0.35rem;
+        transform: translate(-50%, -80%) rotate(-45deg);
+        border: 2px solid ${blue500};
+        border-top: 0;
+        border-right: 0;
+        box-sizing: border-box;
       }
+    }
+    &:not(:checked) ~ span {
+      ${({ isIntermediate }) =>
+        isIntermediate &&
+        css`
+          border-color: ${blue500};
+          ::after {
+            border-color: ${blue500};
+            width: 0.7rem;
+            height: 0;
+            transform: translate(-50%, -50%);
+            border-bottom: 2px solid ${blue500};
+            box-sizing: border-box;
+          }
+        `}
     }
     &:disabled ~ span {
       border-color: ${grayscale200};
