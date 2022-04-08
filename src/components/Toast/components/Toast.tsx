@@ -6,9 +6,13 @@ import Toaster from '../core/toaster';
 import { ToastBar } from './ToastBar';
 
 export interface Props extends MarginSpacing {
+  /** 토스트가 화면에 띄어지는 시간입니다. `ms`단위입니다. */
   duration?: number;
+  /** 토스트의 z-index값을 설정합니다. */
   zIndex?: number;
+  /** 여러개의 토스트가 화면에 나타날 때, 토스트 사이의 간격을 설정합니다. */
   gap?: number;
+  /** 토스트가 화면에 나타나는 위치를 결정합니다. */
   position?: ToastPosition;
 }
 
