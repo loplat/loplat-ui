@@ -1,6 +1,6 @@
 import { Toast, toast } from './index';
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
-import { spacing } from '../../storybook-props/';
+import { spacing, generateTable } from '../../storybook-props/';
 import { Button } from '../Button';
 
 <Meta
@@ -9,16 +9,16 @@ import { Button } from '../Button';
   argTypes={{
     ...spacing('margin'),
     duration: {
-      description: '토스트가 화면에 띄어지는 시간입니다. `ms`단위입니다.',
+      ...generateTable({ defaultValue: 3000 }),
     },
     zIndex: {
-      description: '토스트의 z-index값을 설정합니다.',
+      ...generateTable({ defaultValue: 9999 }),
     },
     gap: {
-      description: '여러개의 토스트가 화면에 나타날 때, 토스트 사이의 간격을 설정합니다.',
+      ...generateTable({ defaultValue: 8 }),
     },
     position: {
-      description: '토스트가 화면에 나타나는 위치입니다.',
+      ...generateTable({ defaultValue: 'top' }),
     },
   }}
 />
