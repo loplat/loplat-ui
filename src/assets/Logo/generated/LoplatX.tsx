@@ -1,9 +1,9 @@
 import React from 'react';
 import { LogoProps } from '../index';
-import Wrapper from '../../wrapper';
+import Svg from '../../svg';
 import { marginSpacingProps } from '../../../core/Spacing';
 export const LoplatX = React.memo<LogoProps>(({ width = 18, ...props }) => (
-  <Wrapper
+  <Svg
     {...marginSpacingProps(props)}
     width={width}
     height={(width * 28) / 35}
@@ -25,5 +25,5 @@ export const LoplatX = React.memo<LogoProps>(({ width = 18, ...props }) => (
         <path mask="url(#loplat-x_svg__b)" d="M0 14h8.398L16 5.86 13.083 0z" />
       </g>
     </g>
-  </Wrapper>
+  </Svg>
 ));

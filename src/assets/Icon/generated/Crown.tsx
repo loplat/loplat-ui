@@ -1,11 +1,11 @@
 import React from 'react';
 import { IconProps } from '../index';
 import { marginSpacingProps } from '../../../core/Spacing';
-import Wrapper from '../../wrapper';
+import Svg from '../../svg';
 export const Crown = React.memo<IconProps>(({ size = 18, fillColor = '#9DAAB7', suffixForId, ...props }) => {
   const uniqueId = suffixForId ?? String(Math.random().toString(36).slice(2, 11));
   return (
-    <Wrapper
+    <Svg
       {...marginSpacingProps(props)}
       {...props}
       width={size}
@@ -28,6 +28,6 @@ export const Crown = React.memo<IconProps>(({ size = 18, fillColor = '#9DAAB7', 
           <path fill={fillColor} d="M-2-6h32v32H-2z" />
         </g>
       </g>
-    </Wrapper>
+    </Svg>
   );
 });
