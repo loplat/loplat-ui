@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import { Checkbox } from './index';
 import { pickPropsInObj, eventHandler } from '../../storybook-props/';
@@ -24,12 +25,18 @@ import { runTest } from './storybookTest.ts';
   }}
 />
 
-export const Template = (args) => <Checkbox name="checkbox test" {...args} />;
+export const Template = (args) => {
+  const [checked, setChecked] = useState(args.checked ?? false);
+  const toggle = (e) => {
+    setChecked(!e.target.checked);
+  };
+  return <Checkbox {...args} checked={checked} onChange={toggle} />;
+};
 
 # Checkbox
 
 <Canvas>
-  <Story name="default" args={{ label: '체크박스' }}>
+  <Story name="default" args={{ label: '체크박스', checked: false, name: '기본' }}>
     {runTest(Template.bind({}))}
   </Story>
 </Canvas>
@@ -47,11 +54,11 @@ export const Template = (args) => <Checkbox name="checkbox test" {...args} />;
 
 <Canvas>
   <Story name="상태">
-    <Checkbox label="체크안됨" checked={false} mb={2} />
-    <Checkbox label="체크" checked={true} mb={2} />
-    <Checkbox label="중간값" checked="intermediate" mb={2} />
-    <Checkbox label="unchecked and disabled" checked={false} disabled mb={2} />
-    <Checkbox label="checked and disabled" checked={true} disabled mb={2} />
-    <Checkbox label="intermediate and disabled" checked="intermediate" disabled />
+    <Checkbox label="체크안됨" checked={false} mb={2} name="01" />
+    <Checkbox label="체크" checked={true} mb={2} name="02" />
+    <Checkbox label="중간값" checked="intermediate" mb={2} name="03" />
+    <Checkbox label="unchecked and disabled" checked={false} disabled mb={2} name="04" />
+    <Checkbox label="checked and disabled" checked={true} disabled mb={2} name="05" />
+    <Checkbox label="intermediate and disabled" checked="intermediate" disabled name="06" />
   </Story>
 </Canvas>
