@@ -1,25 +1,27 @@
 import React, { useState, useCallback, useEffect, useRef, useMemo } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { black, bluescale100, grayscale200, grayscale800 } from '../../core/colors';
+import { black, bluescale100, grayscale200, grayscale800, blue100, white } from '../../core/colors';
 import { primary } from '../../core/styles/palette';
+import { transition } from '../../core/styles/transition';
 import { generateUniqueId } from '../../functions/generator';
 import { spacing } from '../../core';
 import { ChevronDownIcon } from '../../assets/Icon';
-
-const transition = (label: string, duration = 0.2) =>
-  css`
-    will-change: ${label};
-    transition: ${label} ${duration}s cubic-bezier(0.4, 0, 0.2, 1);
-  `;
 
 const Heading = styled.h3`
   margin: 0;
   line-height: 24px;
   font-weight: normal;
   font-size: 1rem;
+  &:focus {
+    color: ${primary};
+  }
+  &:hover {
+    background-color: ${blue100};
+  }
 
   button {
+    cursor: pointer;
     color: inherit;
     font-size: inherit;
     display: flex;
@@ -35,23 +37,25 @@ const Heading = styled.h3`
 
 const Wrapper = styled.div<Pick<Required<AccordionProps>, 'type' | 'isExpanded' | 'duration'>>`
   box-sizing: border-box;
-  background-color: white;
-  ${({ type, isExpanded }) =>
-    type === 'fill' && isExpanded
-      ? `background: ${bluescale100};`
-      : type === 'fill'
-      ? ` background: white;`
-      : `border-bottom: 1px solid ${grayscale200};`};
-  ${({ duration }) => transition('background', duration)};
+  ${({ type, duration, isExpanded }) =>
+    css`
+      ${transition('background-color', duration)};
+      background-color: ${type === 'fill' && isExpanded ? bluescale100 : white};
+      border-bottom: ${type === 'line' && `1px solid ${grayscale200}`};
 
-  .heading {
-    color: ${({ isExpanded }) => (isExpanded ? primary : `${black}`)};
-    ${({ duration }) => transition('color', duration)};
-  }
-  .accordion_chevron {
-    transform: ${({ isExpanded }) => (isExpanded ? 'rotate(-180deg)' : 'rotate(0deg)')};
-    ${({ duration }) => transition('transform', duration)};
-  }
+      .heading {
+        ${transition('background-color', duration)};
+        color: ${isExpanded ? primary : `${black}`};
+        > button {
+          ${transition('color', duration)};
+        }
+      }
+
+      .accordion_chevron {
+        ${transition('transform', duration)};
+        transform: ${isExpanded ? 'rotate(-180deg)' : 'rotate(0deg)'};
+      }
+    `};
 `;
 
 const changeVisibilityStyle = (isVisible: boolean, duration = 0.2) => {
