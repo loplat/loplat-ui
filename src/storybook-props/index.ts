@@ -4,7 +4,6 @@ import disabled from './disabled';
 import icon from './icon';
 import eventHandler from './eventHandler';
 import typography from './typography';
-import spinner from './spinner';
 import hideCanvas from './hideCanvas';
 import button from './button';
 import generateTable from './generateTable';
@@ -22,4 +21,4 @@ export const pickPropsInObj = (obj: { [k: string]: unknown }, ...props: string[]
   return result;
 };
 
-export { spacing, borderless, disabled, icon, eventHandler, typography, spinner, hideCanvas, button, generateTable };
+export { spacing, borderless, disabled, icon, eventHandler, typography, hideCanvas, button, generateTable };
