@@ -7,7 +7,7 @@ type Props = {
   defaultValue?: string | boolean | number;
 };
 /** 스토리북의 args의 설명을 생성합니다. */
-const generateTable = ({ required, category, type, detail, defaultValue }: Props) => {
+export const generateTable = ({ required, category, type, detail, defaultValue }: Props) => {
   return {
     type: {
       required,
@@ -23,5 +23,3 @@ const generateTable = ({ required, category, type, detail, defaultValue }: Props
     defaultValue,
   };
 };
-
-export default generateTable;
