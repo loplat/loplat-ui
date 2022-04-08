@@ -7,3 +7,4 @@ export * from './Spinner';
 export * from './Checkbox';
 export * from './RadioButton';
 export * from './Popup';
+export * from './Accordion';

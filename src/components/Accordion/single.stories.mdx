@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs';
-import { Accordion, AccordionGroup } from './index.tsx';
+import { Accordion } from './component/single.tsx';
 import { generateTable } from '../../storybook-props';
 import { runTest } from './storybookTest.ts';
 
@@ -50,11 +50,9 @@ export const Template = (args) => {
 
 <ArgsTable story="default" />
 
----
-
 ## 예제
 
-`type: 'line'` 인 컴포넌트입니다.
+### type: line
 
 <Canvas>
   <Story name="line" args={{ type: 'line' }}>
