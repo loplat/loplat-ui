@@ -1,14 +1,16 @@
 import React from 'react';
-import type { IconProps } from '../index';
-export const GeoGroup = React.memo<IconProps>(({ size = 18, fillColor = '#9DAAB7', suffixForId, className, style }) => {
+import { IconProps } from '../index';
+import { marginSpacingProps } from '../../../core/Spacing';
+import Wrapper from '../../wrapper';
+export const GeoGroup = React.memo<IconProps>(({ size = 18, fillColor = '#9DAAB7', suffixForId, ...props }) => {
   const uniqueId = suffixForId ?? String(Math.random().toString(36).slice(2, 11));
   return (
-    <svg
+    <Wrapper
+      {...marginSpacingProps(props)}
+      {...props}
       width={size}
       height={size}
       xmlns="http://www.w3.org/2000/svg"
-      style={style}
-      className={className}
       viewBox="0 0 32 32"
     >
       <g fill="none" fillRule="evenodd">
@@ -25,6 +27,6 @@ export const GeoGroup = React.memo<IconProps>(({ size = 18, fillColor = '#9DAAB7
           />
         </g>
       </g>
-    </svg>
+    </Wrapper>
   );
 });
