@@ -3,14 +3,17 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/css';
 import { primary, danger } from '../../core/styles/palette';
 import { white, bluescale500, grayscale500, grayscale200, bluescale50, grayscale900 } from '../../core/colors';
-import { spacing } from '../../core/Spacing';
+import { MarginSpacing, marginSpacingProps, marginSpacingStyle, spacing } from '../../core/Spacing';
+import { IconProps } from '../../assets/Icon';
 
-export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export type CommonInput = {
   error?: boolean;
   errorMessage?: string;
-  rightIcon?: React.ReactElement;
+  rightIcon?: React.ReactElement<IconProps>;
   isIconVisible?: boolean;
-}
+};
+
+export type InputProps = CommonInput & React.InputHTMLAttributes<HTMLInputElement> & MarginSpacing;
 
 const BaseInput = styled.input<Pick<InputProps, 'isIconVisible' | 'error'>>`
   width: 100%;
@@ -69,6 +72,10 @@ const RightIconContainer = styled.div<Pick<InputProps, 'isIconVisible' | 'disabl
   }
 `;
 
+const Wrapper = styled.div`
+  ${marginSpacingStyle};
+`;
+
 const InlineError = React.memo(({ children }): React.ReactElement => {
   return (
     <p
@@ -87,7 +94,7 @@ const InlineError = React.memo(({ children }): React.ReactElement => {
 
 export const Input = React.forwardRef((props: InputProps, ref: ForwardedRef<HTMLInputElement>): React.ReactElement => {
   return (
-    <>
+    <Wrapper {...marginSpacingProps(props)}>
       {props.rightIcon ? (
         <div
           className={`${css`
@@ -110,6 +117,6 @@ export const Input = React.forwardRef((props: InputProps, ref: ForwardedRef<HTML
       )}
 
       {props.error && props.errorMessage && <InlineError>{props.errorMessage}</InlineError>}
-    </>
+    </Wrapper>
   );
 });
