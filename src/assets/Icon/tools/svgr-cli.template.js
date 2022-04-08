@@ -5,9 +5,11 @@ function defaultTemplate({ template }, _, { componentName, jsx }) {
 
   return typeScriptTpl.ast`
     import React from 'react';
-    import type { IconProps } from '../index';
+    import { IconProps } from '../index';
+    import { marginSpacingProps } from '../../../core/Spacing';
+    import Wrapper from '../../wrapper';
     
-    export const ${IconComponentName} = React.memo<IconProps>(({size = 18, fillColor = '#9DAAB7', suffixForId, className, style}) => {
+    export const ${IconComponentName} = React.memo<IconProps>(({ size = 18, fillColor = '#9DAAB7', suffixForId, ...props }) => {
       const uniqueId = suffixForId ?? String(Math.random().toString(36).slice(2, 11));
       return ${jsx}
     })
