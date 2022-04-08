@@ -1,0 +1,55 @@
+import { useState } from 'react';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { RadioButton, RadioButtonProps, RadioButtonGroup } from './index';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { spacing, generateTable } from '../../storybook-props';
+
+<Meta
+  title="Components/RadioButton/Single"
+  component={RadioButton}
+  argTypes={{
+    disabled: {
+      control: 'boolean',
+      ...generateTable({ type: 'boolean' }),
+    },
+    checked: {
+      control: 'boolean',
+      ...generateTable({ type: 'boolean' }),
+    },
+    ...spacing('margin'),
+  }}
+/>
+
+export const SingleTemplate = (args) => <RadioButton {...args} />;
+
+# RadioButton
+
+`<RadioButton />`는 관련된 옵션을 나타내는 라디오 그룹에서 사용합니다.
+
+임의의 그룹 내에서는 동시에 하나의 라디오 버튼만 선택할 수 있습니다.
+
+`input[type='radio']` 의 속성을 계승합니다.
+
+<Canvas>
+  <Story name="default" args={{ name: 'job', value: 'programmer', label: '개발자' }}>
+    {SingleTemplate.bind({})}
+  </Story>
+  <Story name="nonChecked" args={{ name: 'job', value: 'designer', label: '디자이너' }}>
+    {SingleTemplate.bind({})}
+  </Story>
+  <Story name="disabled" args={{ name: 'job', value: 'planner', label: '기획자', disabled: true }}>
+    {SingleTemplate.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+## 상태
+
+라디오 버튼의 상태는 3가지가 있습니다.
+
+<Canvas>
+  <RadioButton name="state" value="item1" label="regular" />
+  <RadioButton name="state" value="item2" label="checked" checked />
+  <RadioButton name="state" value="item3" label="disabled" disabled />
+</Canvas>

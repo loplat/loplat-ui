@@ -1,25 +1,21 @@
-import { RadioButton } from './';
+import { RadioButtonGroup } from './';
 import { ComponentStory } from '@storybook/react';
 import { expect } from '@storybook/jest';
 import { userEvent, within } from '@storybook/testing-library';
-import { radioValues } from './index.stories';
 
-export function runTest(story: ComponentStory<typeof RadioButton>): ComponentStory<typeof RadioButton> {
+export function runTest(story: ComponentStory<typeof RadioButtonGroup>): ComponentStory<typeof RadioButtonGroup> {
   story.play = async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const form = canvas.getByTestId('loplat-ui__form');
-    const availableRadioButton = canvas.getByLabelText(radioValues[0]);
-    const disabledRadioButton = canvas.getByLabelText(radioValues[4]);
+    const availableRadioButton = canvas.getByLabelText('테스트1');
+    const disabledRadioButton = canvas.getByLabelText('테스트3');
 
-    expect(form).toHaveLength(radioValues.length);
-
-    // click available radio button
+    expect(canvas.getByLabelText('테스트0')).toBeChecked();
     userEvent.click(availableRadioButton);
     expect(availableRadioButton).toBeChecked();
 
-    // click disabled radio button
     userEvent.click(disabledRadioButton);
     expect(disabledRadioButton).toBeDisabled();
+    expect(disabledRadioButton).not.toBeChecked();
   };
 
   return story;
