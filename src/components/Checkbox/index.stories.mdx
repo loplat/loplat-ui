@@ -1,26 +1,26 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import { Checkbox } from './index';
 import { pickPropsInObj, eventHandler } from '../../storybook-props/';
+import { spacing, generateTable } from '../../storybook-props';
+import { runTest } from './storybookTest.ts';
 
 <Meta
   title="Components/Checkbox"
   component={Checkbox}
   argTypes={{
+    ...spacing('margin'),
     ...pickPropsInObj(eventHandler, 'onChange'),
-    checked: {
-      description: '체크 여부와 중간값을 할당할 수 있습니다.',
-      options: [true, false, 'checked', 'unchecked', 'intermediate'],
-      controls: {
-        type: 'select',
-      },
-    },
     boldLabel: {
-      description: '라벨의 폰트굵기를 굵게 만듭니다.',
+      ...generateTable({ defaultValue: false }),
     },
-    label: {
-      description: '체크박스와 연동된 `label`태그입니다.',
+    checked: {
+      ...generateTable({ required: true, type: 'boolean | "checked" | "unchecked" | "intermediate"' }),
+      options: [true, false, 'checked', 'unchecked', 'intermediate'],
+      control: 'select',
     },
-    name: { description: '`label`과 `input`을 연동하는 프로퍼티입니다. form을 이용해 submit될 때, key값입니다.' },
+    disabled: {
+      ...generateTable({ defaultValue: false }),
+    },
   }}
 />
 
@@ -30,28 +30,28 @@ export const Template = (args) => <Checkbox name="checkbox test" {...args} />;
 
 <Canvas>
   <Story name="default" args={{ label: '체크박스' }}>
-    {Template.bind({})}
+    {runTest(Template.bind({}))}
   </Story>
 </Canvas>
 
 <ArgsTable story="default" />
 
-## 예제
+## 상태
 
-### Intermediate
+체크박스의 상태는 4가지가 있습니다.
 
-체크여부가 `boolean`으로 측정할 수 없을 때 사용합니다.
-
-<Canvas>
-  <Story name="중간값" args={{ label: '중간값', checked: 'intermediate' }}>
-    {Template.bind({})}
-  </Story>
-</Canvas>
-
-### Checked Disabled
+- false (unchecked)
+- true (checked)
+- intermediate: 체크여부를 `boolean`으로 측정할 수 없을 때 사용합니다.
+- disabled
 
 <Canvas>
-  <Story name="중간값 disabled" args={{ label: '사용 불가능', checked: true, disabled: true }}>
-    {Template.bind({})}
+  <Story name="상태">
+    <Checkbox label="체크안됨" checked={false} mb={2} />
+    <Checkbox label="체크" checked={true} mb={2} />
+    <Checkbox label="중간값" checked="intermediate" mb={2} />
+    <Checkbox label="unchecked and disabled" checked={false} disabled mb={2} />
+    <Checkbox label="checked and disabled" checked={true} disabled mb={2} />
+    <Checkbox label="intermediate and disabled" checked="intermediate" disabled />
   </Story>
 </Canvas>
