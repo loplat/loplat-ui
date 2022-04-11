@@ -46,7 +46,7 @@ export const Template = (args) => <CircleSpinner zIndex="9999" {...args} />;
 ### 느린 속도
 
 <Canvas>
-  <Story name="fast" args={{ duration: 1600, scale: 0.5 }}>
+  <Story name="slow" args={{ duration: 1600, scale: 0.5 }}>
     {Template.bind({})}
   </Story>
 </Canvas>
@@ -70,7 +70,7 @@ export const Template = (args) => <CircleSpinner zIndex="9999" {...args} />;
   <Story name="accessibility" args={{ 'aria-labelledby': 'example', 'aria-describedby': 'example' }}>
     {(args) => (
       <div>
-        <Template {...args} />
+        <CircleSpinner {...args} />
         <Badge id="example" aria-busy={true} text="#example" />
       </div>
     )}

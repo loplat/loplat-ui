@@ -8,7 +8,7 @@ import CircleWebp from './images/circle.webp';
 export type SpinnerProps = {
   /** 스피너 컴포넌트가 한바퀴를 도는데 걸리는 시간을 조절합니다. 숫자가 작아질수록 빠르게, 커질수록 느리게 돌아갑니다. */
   duration?: number;
-  /** 컴포넌트의 크기를 조절합니 */
+  /** 컴포넌트의 크기를 조절합니다. */
   scale?: number;
   /** css의 z-index를 결정합니다. */
   zIndex?: number;

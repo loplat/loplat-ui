@@ -70,7 +70,7 @@ export const Template = (args) => <CubeSpinner {...args} aria-valuenow="20" />;
   <Story name="accessibility" args={{ 'aria-labelledby': 'example', 'aria-describedby': 'example' }}>
     {(args) => (
       <div>
-        <Template {...args} />
+        <CubeSpinner {...args} />
         <Badge id="example" aria-busy={true} text="#example" />
       </div>
     )}
