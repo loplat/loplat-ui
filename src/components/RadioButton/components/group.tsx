@@ -31,6 +31,7 @@ export const RadioButtonGroup = ({
 
 const Wrapper = styled.div<BoxSpacing & Pick<RadioButtonGroupProps, 'direction'>>`
   display: flex;
+  flex-wrap: wrap;
   flex-direction: ${({ direction }) => direction};
   ${boxSpacingStyle};
 
