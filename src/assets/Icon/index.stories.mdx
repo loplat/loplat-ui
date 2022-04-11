@@ -1,18 +1,22 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import * as IconComponents from './export.generated';
 import { Icons } from './styles.jsx';
-import { hideCanvas } from '../../storybook-props/';
+import { hideCanvas, spacing, generateTable } from '../../storybook-props/';
 
 <Meta
   title="Assets/Icon"
   component={IconComponents.CloudIcon}
   argTypes={{
-    size: { description: '`px` 단위입니다.' },
+    ...spacing('margin'),
+    size: { description: '`px` 단위입니다.', ...generateTable({ defaultValue: 32 }) },
+    fillColor: { control: 'color', ...generateTable({ defaultValue: '#9DAAB7' }) },
     suffixForId: {
       description: `기본적으로 \`unique id\`를 생성하여 _id collision_을 막습니다. __하지만 SSR(next.js)에서 아이콘을 사용할 경우, server렌더링한 \`unique id\`와 client렌더링한 \`unique id\`가 서로 다른 문제__가 생깁니다. 이문제를 해결하기 위해서는 사용자가 직접 \`suffixForId\`를 제공해서 _server와 client의 icon id를 통일_해야 합니다.`,
     },
   }}
-  parameters={{ ...hideCanvas }}
+  parameters={{
+    ...hideCanvas,
+  }}
 />
 
 export const Template = (args) => <IconComponents.CloudIcon {...args} />;

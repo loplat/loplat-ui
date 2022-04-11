@@ -1,16 +1,18 @@
 import React from 'react';
-import type { IconProps } from '../index';
+import { IconProps } from '../index';
+import { marginSpacingProps } from '../../../core/Spacing';
+import Svg from '../../svg';
 export const QuestionCircleFill = React.memo<IconProps>(
-  ({ size = 18, fillColor = '#9DAAB7', suffixForId, className, style }) => {
+  ({ size = 18, fillColor = '#9DAAB7', suffixForId, ...props }) => {
     const uniqueId = suffixForId ?? String(Math.random().toString(36).slice(2, 11));
     return (
-      <svg
+      <Svg
+        {...marginSpacingProps(props)}
+        {...props}
         width={size}
         height={size}
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
-        style={style}
-        className={className}
         viewBox="0 0 32 32"
       >
         <defs>
@@ -27,7 +29,7 @@ export const QuestionCircleFill = React.memo<IconProps>(
             <path fill={fillColor} d="M-2-2h32v32H-2z" />
           </g>
         </g>
-      </svg>
+      </Svg>
     );
   },
 );

@@ -1,11 +1,11 @@
 import React from 'react';
+import { MarginSpacing } from '../../core/Spacing';
 
 export type IconProps = {
   size?: number;
   fillColor?: string;
   suffixForId?: string;
-  className?: string;
-  style?: React.CSSProperties;
-};
+} & MarginSpacing &
+  React.SVGAttributes<SVGElement>;
 
 export * from './export.generated';
