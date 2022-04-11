@@ -26,17 +26,17 @@ import { runTest } from './storybookTest.ts';
 />
 
 export const Template = (args) => {
-  const [checked, setChecked] = useState(args.checked ?? false);
+  const [checked, setChecked] = useState(false);
   const toggle = (e) => {
-    setChecked(!e.target.checked);
+    setChecked(e.target.checked);
   };
-  return <Checkbox {...args} checked={checked} onChange={toggle} />;
+  return <Checkbox checked={checked} {...args} onChange={toggle} />;
 };
 
 # Checkbox
 
 <Canvas>
-  <Story name="default" args={{ label: '체크박스', checked: false, name: '기본' }}>
+  <Story name="default" args={{ label: '체크박스', name: '기본' }}>
     {runTest(Template.bind({}))}
   </Story>
 </Canvas>
@@ -54,11 +54,55 @@ export const Template = (args) => {
 
 <Canvas>
   <Story name="상태">
-    <Checkbox label="체크안됨" checked={false} mb={2} name="01" />
-    <Checkbox label="체크" checked={true} mb={2} name="02" />
-    <Checkbox label="중간값" checked="intermediate" mb={2} name="03" />
-    <Checkbox label="unchecked and disabled" checked={false} disabled mb={2} name="04" />
-    <Checkbox label="checked and disabled" checked={true} disabled mb={2} name="05" />
-    <Checkbox label="intermediate and disabled" checked="intermediate" disabled name="06" />
+    {(args) => {
+      const [checked, setChecked] = useState([false, true, 'intermediate', 'unchecked', 'checked', 'intermediate']);
+      const toggle = (idx, isChecked) => {
+        const newResult = [...checked];
+        newResult[idx] = isChecked;
+        setChecked(newResult);
+      };
+      return (
+        <>
+          <Checkbox
+            label="체크안됨"
+            checked={checked[0]}
+            mb={2}
+            name="01"
+            onChange={(e) => toggle(0, e.target.checked)}
+          />
+          <Checkbox label="체크" checked={checked[1]} mb={2} name="02" onChange={(e) => toggle(1, e.target.checked)} />
+          <Checkbox
+            label="중간값"
+            checked={checked[2]}
+            mb={2}
+            name="03"
+            onChange={(e) => toggle(2, e.target.checked)}
+          />
+          <Checkbox
+            label="unchecked and disabled"
+            checked={checked[3]}
+            disabled
+            mb={2}
+            name="04"
+            onChange={(e) => toggle(3, e.target.checked)}
+          />
+          <Checkbox
+            label="checked and disabled"
+            checked={checked[4]}
+            disabled
+            mb={2}
+            name="05"
+            onChange={(e) => toggle(4, e.target.checked)}
+          />
+          <Checkbox
+            label="intermediate and disabled"
+            checked={checked[5]}
+            disabled
+            name="06"
+            onChange={(e) => toggle(5, e.target.checked)}
+          />
+        </>
+      );
+    }}
   </Story>
 </Canvas>

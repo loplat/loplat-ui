@@ -6,7 +6,7 @@ export type BaseLabel = {
   boldLabel?: boolean;
   disabled?: boolean;
   /** 체크 여부와 중간값을 할당할 수 있습니다.*/
-  checked: boolean | 'checked' | 'unchecked' | 'intermediate';
+  checked?: boolean | 'checked' | 'unchecked' | 'intermediate';
 };
 
 export type CheckboxProps = {

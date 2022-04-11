@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { render, screen } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
-import { Checkbox, CheckboxProps } from './index';
+import { Checkbox } from './index';
+import { CheckboxProps } from './types';
 import userEvent from '@testing-library/user-event';
 
 const label = '체크박스 라벨';
@@ -10,7 +11,7 @@ type Checked = CheckboxProps['checked'];
 const useCheck = (initial: Checked) => {
   const [isCheck, setIsChecked] = useState<Checked>(initial);
   const onchange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setIsChecked(e.currentTarget.checked);
+    setIsChecked(e.target.checked);
   };
   return { isCheck, onchange };
 };
@@ -79,7 +80,7 @@ describe('<Checkbox />', () => {
     const checkbox = screen.getByRole('checkbox');
     expect(checkbox).toBeChecked();
     userEvent.click(checkbox);
-    expect(checkbox).not.toBeChecked();
+    expect(result.current.isCheck).toBeFalsy();
   });
 
   test('<Checkbox /> 의 checked가 false 일 때 클릭하면 checked 가 된다.', () => {
@@ -88,7 +89,7 @@ describe('<Checkbox />', () => {
     const checkbox = screen.getByRole('checkbox');
     expect(checkbox).not.toBeChecked();
     userEvent.click(checkbox);
-    expect(checkbox).toBeChecked();
+    expect(result.current.isCheck).toBeTruthy();
   });
 
   test('<Checkbox /> 의 checked가 intermediate 일때 클릭하면 선택된다.', () => {
@@ -96,7 +97,7 @@ describe('<Checkbox />', () => {
     render(<Checkbox onChange={result.current.onchange} name="test" label={label} checked={result.current.isCheck} />);
     const checkbox = screen.getByRole('checkbox');
     userEvent.click(checkbox);
-    expect(checkbox).toBeChecked();
+    expect(result.current.isCheck).toBeTruthy();
   });
 
   test('<Checkbox /> 의 checked가 checked 일때 클릭하면 선택해제된다.', () => {
@@ -105,7 +106,7 @@ describe('<Checkbox />', () => {
     const checkbox = screen.getByRole('checkbox');
     expect(checkbox).toBeChecked();
     userEvent.click(checkbox);
-    expect(checkbox).not.toBeChecked();
+    expect(result.current.isCheck).toBeFalsy();
   });
 
   test('<Checkbox /> 의 checked가 unchecked 일때 클릭하면 선택된다.', () => {
@@ -114,6 +115,6 @@ describe('<Checkbox />', () => {
     const checkbox = screen.getByRole('checkbox');
     expect(checkbox).not.toBeChecked();
     userEvent.click(checkbox);
-    expect(checkbox).toBeChecked();
+    expect(result.current.isCheck).toBeTruthy();
   });
 });
