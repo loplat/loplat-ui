@@ -42,7 +42,6 @@ export const Badge = ({
   return (
     <div
       className={`${css`
-        ${boxSpacingStyle(props)};
         display: flex;
         align-items: center;
         justify-content: center;
@@ -54,6 +53,7 @@ export const Badge = ({
         border: 1px solid ${ColorSet[color]};
         color: ${fontColor};
         background-color: ${backgroundColor};
+        ${boxSpacingStyle(props)};
       `} ${className}`}
       {...props}
     >
