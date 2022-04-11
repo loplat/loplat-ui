@@ -1,4 +1,4 @@
-import { RadioButtonGroup } from './';
+import { RadioButtonGroup } from '..';
 import { ComponentStory } from '@storybook/react';
 import { expect } from '@storybook/jest';
 import { userEvent, within } from '@storybook/testing-library';
