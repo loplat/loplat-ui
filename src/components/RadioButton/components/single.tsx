@@ -77,7 +77,7 @@ const Radio = styled.span`
   width: 20px;
   border-radius: 50%;
   box-sizing: border-box;
-  border: 1px solid;
+  border: 1px solid ${grayscale200};
   background-color: white;
   margin-right: 8px;
 
