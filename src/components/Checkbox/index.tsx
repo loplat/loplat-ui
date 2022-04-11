@@ -9,7 +9,7 @@ import { CheckboxProps, BaseLabel } from './types';
 export const Checkbox = ({
   label,
   name,
-  checked,
+  checked = false,
   onChange,
   disabled,
   boldLabel,
@@ -29,14 +29,7 @@ export const Checkbox = ({
       className={className}
       id={id}
     >
-      <input
-        type="checkbox"
-        name={name}
-        defaultChecked={isChecked}
-        onChange={onChange}
-        disabled={disabled}
-        {...props}
-      />
+      <input type="checkbox" name={name} checked={isChecked} onChange={onChange} disabled={disabled} {...props} />
       <Checkmark />
       {label}
     </Label>
