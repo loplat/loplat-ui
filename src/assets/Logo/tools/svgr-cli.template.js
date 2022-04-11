@@ -5,9 +5,11 @@ function defaultTemplate({ template }, _, { componentName, jsx }) {
 
   return typeScriptTpl.ast`
     import React from 'react';
-    import type { LogoProps } from '../index';
+    import { LogoProps } from '../index';
+    import Svg from '../../svg';
+    import { marginSpacingProps } from '../../../core/Spacing'
     
-    export const ${IconComponentName} = React.memo<LogoProps>(({width = 18, className, style}) => (
+    export const ${IconComponentName} = React.memo<LogoProps>(({width = 18, ...props}) => (
       ${jsx}
     ));
   `;

@@ -1,15 +1,9 @@
 {
-  "expandProps": false,
-  "prettier": true,
+  "expandProps": "end",
   "dimensions": true,
-  "replaceAttrValues": {
-    "#9DAAB7": "{fillColor}"
-  },
   "svgProps": {
     "width": "{width}",
     "height": "{width}",
-    "style": "{style}",
-    "className": "{className}",
     "viewBox": "0 0 32 32"
   }
 }
