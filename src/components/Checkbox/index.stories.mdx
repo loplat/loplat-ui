@@ -3,7 +3,7 @@ import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import { Checkbox } from './index';
 import { pickPropsInObj, eventHandler } from '../../storybook-props/';
 import { spacing, generateTable } from '../../storybook-props';
-import { runTest } from './storybookTest.ts';
+import { runTest, runGroupTest } from './storybookTest.ts';
 
 <Meta
   title="Components/Checkbox"
@@ -33,6 +33,41 @@ export const Template = (args) => {
   return <Checkbox checked={checked} {...args} onChange={toggle} />;
 };
 
+export const Group = (args) => {
+  const checkBoxList = [
+    false,
+    true,
+    'checked',
+    'unchecked',
+    'intermediate',
+    'unchecked',
+    'checked',
+    'intermediate',
+  ].map((checked, idx) => ({
+    checked,
+    disabled: idx > checked.length / 2,
+    label: `${checked}${idx > checked.length / 2 ? ' & disabled' : ''}`,
+    name: idx,
+  }));
+  const [list, setList] = useState(checkBoxList);
+  const toggle = (label, isChecked) => {
+    const newResult = list.map((item) => {
+      if (item.label === label) {
+        return { ...item, checked: isChecked };
+      }
+      return item;
+    });
+    setList(newResult);
+  };
+  return (
+    <>
+      {list.map((props) => (
+        <Checkbox {...props} onChange={(e) => toggle(props.label, e.target.checked)} key={props.label} mb={2} />
+      ))}
+    </>
+  );
+};
+
 # Checkbox
 
 <Canvas>
@@ -52,57 +87,4 @@ export const Template = (args) => {
 - intermediate: 체크여부를 `boolean`으로 측정할 수 없을 때 사용합니다.
 - disabled
 
-<Canvas>
-  <Story name="상태">
-    {(args) => {
-      const [checked, setChecked] = useState([false, true, 'intermediate', 'unchecked', 'checked', 'intermediate']);
-      const toggle = (idx, isChecked) => {
-        const newResult = [...checked];
-        newResult[idx] = isChecked;
-        setChecked(newResult);
-      };
-      return (
-        <>
-          <Checkbox
-            label="체크안됨"
-            checked={checked[0]}
-            mb={2}
-            name="01"
-            onChange={(e) => toggle(0, e.target.checked)}
-          />
-          <Checkbox label="체크" checked={checked[1]} mb={2} name="02" onChange={(e) => toggle(1, e.target.checked)} />
-          <Checkbox
-            label="중간값"
-            checked={checked[2]}
-            mb={2}
-            name="03"
-            onChange={(e) => toggle(2, e.target.checked)}
-          />
-          <Checkbox
-            label="unchecked and disabled"
-            checked={checked[3]}
-            disabled
-            mb={2}
-            name="04"
-            onChange={(e) => toggle(3, e.target.checked)}
-          />
-          <Checkbox
-            label="checked and disabled"
-            checked={checked[4]}
-            disabled
-            mb={2}
-            name="05"
-            onChange={(e) => toggle(4, e.target.checked)}
-          />
-          <Checkbox
-            label="intermediate and disabled"
-            checked={checked[5]}
-            disabled
-            name="06"
-            onChange={(e) => toggle(5, e.target.checked)}
-          />
-        </>
-      );
-    }}
-  </Story>
-</Canvas>
+<Story name="상태">{runGroupTest(Group.bind({}))}</Story>
