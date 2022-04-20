@@ -4,7 +4,7 @@ type Props = {
   type?: string;
   detail?: string;
   category?: string;
-  defaultValue?: string;
+  defaultValue?: string | boolean | number;
 };
 /** 스토리북의 args의 설명을 생성합니다. */
 const generateTable = ({ required, category, type, detail, defaultValue }: Props) => {
