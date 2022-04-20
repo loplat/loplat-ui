@@ -4,6 +4,7 @@ import { RadioButtonGroup } from './group.tsx';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { spacing, generateTable, pickPropsInObj, eventHandler } from '../../../storybook-props';
 import { runTest } from './storybookTest.ts';
+import { GroupWrapper } from './styles.tsx';
 
 <Meta
   title="Components/RadioButton/Group"
@@ -51,17 +52,22 @@ export const Template = (args) => {
 
 ## Do's and Don't
 
-### Do
+<GroupWrapper>
+<div>
+<h3>Do</h3>
 
 - 항상 하나의 아이템이 선택되어야 합니다.
 - 선택된 기본값은 가장 흔하고 대중적이어야 합니다.
 
 <Template selectedValue="test0" />
+</div>
+<div>
 
-### Don't
+<h3>Don't</h3>
 
 - 중복으로 선택할 수 있게 하지마세요.
-
 - 라디오그룹을 선택하지 않은 채로 두지 마세요. 마땅한 기본값이 없다고 생각된다면, 드랍다운을 사용하세요.
 
 <Template />
+</div>
+</GroupWrapper>

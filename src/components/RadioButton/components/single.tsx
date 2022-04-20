@@ -57,7 +57,7 @@ const RadioButtonWrapper = styled.label<Pick<RadioButtonProps, 'disabled' | 'che
       border-color: ${primary};
       background-color: ${grayscale50};
       :after {
-        display: 'block';
+        display: block;
         background-color: ${primary};
       }
     }
