@@ -1,21 +1,22 @@
 import React from 'react';
+import { css } from '@emotion/css';
 import { white } from '../../core/colors';
 import { primary, danger, warning, success, primaryLight } from '../../core/styles/palette';
-import { css } from '@emotion/css';
+import { BoxSpacing, boxSpacingStyle } from '../../core/Spacing';
 
 type BadgeType = 'pill' | 'round' | 'new';
 type Color = 'primary' | 'danger' | 'success' | 'light' | 'warning';
 type variant = 'filled' | 'outlined';
 type Size = 'normal' | 'small';
 
-export interface BadgeProps {
+export type BadgeProps = {
   type?: BadgeType;
   color?: Color;
   text: string;
   variant?: variant;
   size?: Size;
-  className?: string;
-}
+} & BoxSpacing &
+  React.HTMLAttributes<HTMLDivElement>;
 
 const ColorSet = {
   primary,
@@ -31,11 +32,13 @@ export const Badge = ({
   text,
   variant = 'filled',
   size = 'normal',
-  className = '',
+  className,
+  ...props
 }: BadgeProps): React.ReactElement => {
   const [padding, fontSize] =
     type === 'new' ? [0, '0.5rem'] : size === 'small' ? ['1px 5px', '0.5rem'] : ['3px 11px', '0.75rem'];
   const [fontColor, backgroundColor] = variant === 'filled' ? [white, ColorSet[color]] : [ColorSet[color], white];
+
   return (
     <div
       className={`${css`
@@ -50,7 +53,9 @@ export const Badge = ({
         border: 1px solid ${ColorSet[color]};
         color: ${fontColor};
         background-color: ${backgroundColor};
+        ${boxSpacingStyle(props)};
       `} ${className}`}
+      {...props}
     >
       {type === 'new' ? text.charAt(0) : text}
     </div>

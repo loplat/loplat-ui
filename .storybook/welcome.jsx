@@ -38,7 +38,7 @@ export const Welcome = () => {
 };
 
 export default {
-  title: 'Intro/Welcome',
+  title: 'Welcome',
   component: Welcome,
   parameters: {
     viewMode: 'canvas',

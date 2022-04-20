@@ -4,7 +4,7 @@ export const parameters = {
     showPanel: true,
     storySort: {
       order: [
-        'Intro',
+        'Welcome',
         'core',
         'Typography',
         'Components',

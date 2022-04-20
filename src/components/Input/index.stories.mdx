@@ -5,7 +5,7 @@ import { Input } from './index';
 import { Campaign } from '../../assets/Icon/generated/Campaign.tsx';
 import { red300 } from '../../core/colors/red';
 import { bluescale500 } from '../../core/colors/bluescale.ts';
-import { disabled as disabledProp, icon, pickPropsInObj, eventHandler } from '../../storybook-props/';
+import { disabled as disabledProp, icon, pickPropsInObj, eventHandler, spacing } from '../../storybook-props/';
 
 <Meta
   title="Components/Input"
@@ -34,6 +34,7 @@ import { disabled as disabledProp, icon, pickPropsInObj, eventHandler } from '..
     ...disabledProp('input', 'input'),
     ...pickPropsInObj(icon, 'isIconVisible', 'rightIcon'),
     ...pickPropsInObj(eventHandler, 'onKeyPress', 'onBlur', 'onFocus', 'onChange'),
+    ...spacing('margin'),
   }}
 />
 
