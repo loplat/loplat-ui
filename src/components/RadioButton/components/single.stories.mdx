@@ -1,0 +1,72 @@
+import { useState } from 'react';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { RadioButton, RadioButtonProps, RadioButtonGroup } from './single.tsx';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { spacing, generateTable } from '../../../storybook-props';
+import { SingleWrapper } from './styles.tsx';
+
+<Meta
+  title="Components/RadioButton/Single"
+  component={RadioButton}
+  argTypes={{
+    disabled: {
+      control: 'boolean',
+      ...generateTable({ type: 'boolean' }),
+    },
+    checked: {
+      control: 'boolean',
+      ...generateTable({ type: 'boolean' }),
+    },
+    ...spacing('margin'),
+  }}
+/>
+
+export const SingleTemplate = (args) => {
+  const [selected, setSelected] = useState(args.selectedValue);
+  const onChange = (e) => {
+    setSelected(e.target.value);
+  };
+  return <RadioButton name="job" onChange={onChange} {...args} />;
+};
+
+export const StatusTest = () => {
+  const [selected, setSelected] = useState('item2');
+  const onChange = (e) => {
+    setSelected(e.target.value);
+  };
+  return (
+    <SingleWrapper>
+      <RadioButton name="state" value="item1" label="regular" onChange={onChange} checked={'item1' === selected} />
+      <RadioButton name="state" value="item2" label="checked" onChange={onChange} checked={'item2' === selected} />
+      <RadioButton name="state" value="item3" label="disabled" onChange={onChange} disabled />
+    </SingleWrapper>
+  );
+};
+
+# RadioButton
+
+`<RadioButton />`는 관련된 옵션을 나타내는 라디오 그룹에서 사용합니다.
+
+임의의 그룹 내에서는 동시에 하나의 라디오 버튼만 선택할 수 있습니다.
+
+`input[type='radio']` 의 속성을 계승합니다.
+
+<Canvas>
+  <Story name="default" args={{ value: 'programmer', label: '개발자' }}>
+    {SingleTemplate.bind({})}
+  </Story>
+  <Story name="nonChecked" args={{ value: 'designer', label: '디자이너' }}>
+    {SingleTemplate.bind({})}
+  </Story>
+  <Story name="disabled" args={{ value: 'planner', label: '기획자', disabled: true }}>
+    {SingleTemplate.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+## 상태
+
+라디오 버튼의 상태는 3가지가 있습니다.
+
+<StatusTest />

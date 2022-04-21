@@ -1,0 +1,73 @@
+import { useState } from 'react';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { RadioButtonGroup } from './group.tsx';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { spacing, generateTable, pickPropsInObj, eventHandler } from '../../../storybook-props';
+import { runTest } from './storybookTest.ts';
+import { GroupWrapper } from './styles.tsx';
+
+<Meta
+  title="Components/RadioButton/Group"
+  component={RadioButtonGroup}
+  argTypes={{
+    ...pickPropsInObj(eventHandler, 'onChange'),
+    ...spacing('margin'),
+    ...spacing('padding'),
+    list: {
+      control: 'null',
+    },
+  }}
+/>
+
+export const list = Array.from({ length: 5 }).map((item, index) => ({
+  label: `테스트${index}`,
+  value: `test${index}`,
+}));
+
+export const Template = (args) => {
+  const [selected, setSelected] = useState(args.selectedValue);
+  const onChange = (e) => {
+    setSelected(e.target.value);
+  };
+  return (
+    <form>
+      <RadioButtonGroup {...args} list={list} onChange={onChange} selectedValue={selected} />
+    </form>
+  );
+};
+
+# RadioButtonGroup
+
+`<RadioButtonGroup />`는 `<RadioButton />`을 이용한 컴포넌트 입니다.
+
+선택할 수 있는 리스트를 나열합니다.
+
+<Canvas>
+  <Story name="default" args={{ name: '예제', selectedValue: 'test0', disabledValue: 'test3' }}>
+    {runTest(Template.bind({}))}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+## Do's and Don't
+
+<GroupWrapper>
+<div>
+<h3>Do</h3>
+
+- 항상 하나의 아이템이 선택되어야 합니다.
+- 선택된 기본값은 가장 흔하고 대중적이어야 합니다.
+
+<Template selectedValue="test0" />
+</div>
+<div>
+
+<h3>Don't</h3>
+
+- 중복으로 선택할 수 있게 하지마세요.
+- 라디오그룹을 선택하지 않은 채로 두지 마세요. 마땅한 기본값이 없다고 생각된다면, 드랍다운을 사용하세요.
+
+<Template />
+</div>
+</GroupWrapper>
