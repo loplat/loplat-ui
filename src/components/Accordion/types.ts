@@ -2,8 +2,6 @@ import React from 'react';
 
 export type DetailsProps = Omit<React.DetailsHTMLAttributes<HTMLDetailsElement>, 'onToggle' | 'onClick' | 'open'>;
 export type AccordionProps = {
-  /** 아코디언의 여닫음을 나타내는 상태입니다. */
-  open: boolean;
   /** 아코디언의 제목을 작성합니다. */
   title: string;
   /** 아코디언의 내용을 작성합니다. */
@@ -21,8 +19,10 @@ export type AccordionProps = {
    * CRA에서는 추가하지 않으셔도 괜찮습니다.
    */
   iconSuffix?: string;
+  /** 아코디언의 여닫음을 나타내는 상태입니다. */
+  open?: boolean;
   /** 아코디언의 `open`상태를 조작할 수 있는 함수여야합니다. */
-  onToggle: (e: React.MouseEvent<HTMLElement>) => void;
+  onToggle?: (e: React.MouseEvent<HTMLElement>) => void;
 };
 
 export type AccordionGroupProps = {
