@@ -35,3 +35,8 @@ export type AccordionGroupProps = {
      * */
     defaultExpandedIndex?: number;
   };
+
+export type AnimationName = 'expand' | 'shrink';
+export type Timers = Record<AnimationName, NodeJS.Timeout[]>;
+export type AnimationStatus = { name: AnimationName; running: boolean };
+export type AnimateFunction = (body: HTMLDivElement, content: HTMLDivElement, timer: Timers) => void;
