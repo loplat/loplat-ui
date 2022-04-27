@@ -22,7 +22,7 @@ import { runTest } from './storybookTest.ts';
       ...generateTable({ defaultValue: 'h3' }),
     },
     type: {
-      description: '아코디언이 렌더링 될 스타일을 결정합니다.',
+      description: '아코디언의 스타일을 결정합니다.',
       ...generateTable({ defaultValue: 'fill' }),
     },
     open: {
@@ -45,7 +45,7 @@ export const data = {
 };
 
 export const Template = (args) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(args.open || false);
   const toggle = () => {
     setIsOpen((prev) => !prev);
   };
@@ -58,19 +58,11 @@ export const UncontrolledTemplate = (args) => <Accordion {...data} {...args} onT
 
 토글하여 자세한 설명을 볼 수 있는 컴포넌트입니다.
 
-## uncontrolled
-
-**`open`상태와 `onToggle`함수를 전달하지 않아도 독립적으로 여닫을 수 있습니다.**
-
-<Canvas>
-  <Story name="uncontrolled" args={{ type: 'line', duration: 1 }}>
-    {UncontrolledTemplate.bind()}
-  </Story>
-</Canvas>
+`open`과 `onToggle`을 할당하여 **직접 조작**하거나, 전달하지 않아도 **전달하지 않아도 독립적으로 여닫을 수 있습니다.**
 
 ## contorlled
 
-`open`과 `onToggle`을 할당하여 **직접 조작**할 수 있습니다.
+`open`, `onToggle`을 할당하여 직접 조작합니다.
 
 <Canvas>
   <Story name="controlled" args={{ duration: 1 }}>
@@ -80,13 +72,38 @@ export const UncontrolledTemplate = (args) => <Accordion {...data} {...args} onT
 
 <ArgsTable story="controlled" />
 
-## 예제
+## uncontorlled
 
-### type: line
+아래 컴포넌트는 `open`과 `onToggle`을 전달하지 않았지만 동일하게 움직입니다.
 
 <Canvas>
-  <Story name="line" args={{ type: 'line' }}>
+  <Story name="uncontrolled" args={{ type: 'line', duration: 1 }}>
+    {UncontrolledTemplate.bind()}
+  </Story>
+</Canvas>
+
+## 예제
+
+### type
+
+스타일 타입은 `line`과 `fill`이 있습니다.
+
+<Canvas isColumn>
+  <Story name="fill" args={{ type: 'fill', title: `type : 'fill'` }}>
     {Template.bind({})}
+  </Story>
+  <Story name="line" args={{ type: 'line', title: `type : 'line'` }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### open 상태
+
+`open={true}`를 전달하여 열린 상태로 렌더링 할 수 있습니다.
+
+<Canvas>
+  <Story name="line-default-open" args={{ open: true }}>
+    {UncontrolledTemplate.bind({})}
   </Story>
 </Canvas>
 
@@ -94,22 +111,17 @@ export const UncontrolledTemplate = (args) => <Accordion {...data} {...args} onT
 
 아코디언을 열거하여 사용할 수 있습니다.
 
+마찬가지로 특정 아코디언의 열림상태를 기본으로 줄 수 있습니다.
+
+`uncontrolled` 상태로 사용하고 싶을 경우 `open`프로퍼티만 이용해주세요.
+
 <Canvas>
-  <Story name="accordions">
-    {() => {
-      const [open, setOpen] = useState(Array(4).fill(false));
-      const toggle = (idx) => {
-        const newState = [...open];
-        newState[idx] = !open[idx];
-        setOpen(newState);
-      };
-      return (
-        <div>
-          {open.map((status, idx) => (
-            <Accordion {...data} open={status} key={idx} onToggle={() => toggle(idx)} type="line" />
-          ))}
-        </div>
-      );
-    }}
+  <Story name="accordions-uncontrolled">
+    <Accordion {...data} type="line" />
+    <Accordion {...data} type="line" open={true} title="이 아코디언만 초기에 열려있습니다." />
+    <Accordion {...data} type="line" />
+    <Accordion {...data} type="line" />
   </Story>
 </Canvas>
+
+위의 예시와 다르게, 한번에 하나의 아코디언만 열고 싶다면 `open`과 `onToggle` 속성을 적절하게 이용하여 구현할 수 있습니다.
