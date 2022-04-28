@@ -12,7 +12,6 @@ type DetailsProps = Pick<Required<AccordionProps>, 'duration' | 'type'> & {
 export const Details = styled.details<DetailsProps>(
   (props) => css`
     background-color: white;
-    overflow: hidden;
     border-bottom: ${props.type === 'line' ? `1px solid ${grayscale200}` : ''};
     ${transition('background,height', props.duration)};
 
@@ -48,16 +47,18 @@ export const Details = styled.details<DetailsProps>(
 );
 
 export const Summary = styled.summary`
-  background-color: white;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  padding: ${spacing(4)}px ${spacing(6)}px;
   list-style: none;
-
+  background-color: white;
   &::-webkit-details-marker {
     display: none;
+  }
+
+  > div {
+    padding: ${spacing(4)}px ${spacing(6)}px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
   }
 `;
 
@@ -69,6 +70,7 @@ export const Heading = styled.h3`
 `;
 
 export const Body = styled.div`
+  overflow: hidden;
   font-size: 1rem;
   color: ${grayscale800};
   height: 0px;
