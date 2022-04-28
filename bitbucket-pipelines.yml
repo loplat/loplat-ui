@@ -41,13 +41,55 @@ pipelines:
               \n\n https://staging-loplat-ui.web.app/
               \n\n *개발자 커밋메시지:* $COMMIT_MESSAGE\"}" $WEBHOOK_URL
       - step:
-          name: Storybook Tests on browser using Docker
-          image: mcr.microsoft.com/playwright:focal
+          name: Storybook Tests on browser
+          image: mcr.microsoft.com/playwright:v1.21.0
           caches:
             - node
           script:
-            - yarn test-storybook --browsers firefox --url https://staging-loplat-ui.web.app/
+            - npx playwright install
+            - yarn test-storybook --url https://feature-loplat-ui.web.app/
   branches:
+    develop:
+      - step:
+          name: Install and Test
+          caches:
+            - node
+          script:
+            - yarn install
+            - yarn test --watchAll==false
+      - step:
+          name: Build Storybook
+          caches:
+            - node
+          script:
+            - yarn build-storybook
+          artifacts: # defining the artifacts to be passed to each future step.
+            - storybook-static/**
+      - step:
+          size: 2x
+          name: Publish Storybook
+          caches:
+            - node
+          script:
+            - unset CI
+            - pipe: atlassian/firebase-deploy:0.3.4
+              variables:
+                FIREBASE_TOKEN: $FIREBASE_TOKEN
+                PROJECT_ID: $FIREBASE_PROJECT_ID
+                MESSAGE: 'deploying to loplat UI'
+                EXTRA_ARGS: '--only hosting:staging'
+                DEBUG: 'false'
+            - curl -X POST -H "Content-type:application/json" --data "{
+              \"text\":\"*loplat ui develop 브랜치가 배포되었습니다.*
+              \n\n https://staging-loplat-ui.web.app/\"}" $WEBHOOK_URL
+      - step:
+          name: Storybook Tests on browser
+          image: mcr.microsoft.com/playwright:v1.21.0
+          caches:
+            - node
+          script:
+            - npx playwright install
+            - yarn test-storybook --url https://staging-loplat-ui.web.app/
     main:
       - step:
           name: Install and Test
@@ -84,9 +126,10 @@ pipelines:
               \"text\":\"*loplat ui $VERSION 버젼이 배포되었습니다.*
               \n\n https://ui.loplat.com/ \"}" $WEBHOOK_URL
       - step:
-          name: Storybook Tests on browser using Docker
-          image: mcr.microsoft.com/playwright:focal
+          name: Storybook Tests on browser
+          image: mcr.microsoft.com/playwright:v1.21.0
           caches:
             - node
           script:
-            - yarn test-storybook --browsers firefox --url https://ui.loplat.com
+            - npx playwright install
+            - yarn test-storybook --url https://ui.loplat.com
