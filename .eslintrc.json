@@ -1,6 +1,11 @@
 {
   "plugins": ["import", "@typescript-eslint"],
-  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "prettier"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
   "rules": {
     "react/no-unescaped-entities": "off",
     "import/no-unresolved": "error",
