@@ -1,4 +1,4 @@
-import generateTable from './generateTable';
+import { generateTable } from './generateTable';
 
 type Label = 'margin' | 'padding';
 const positions = ['top', 'right', 'left', 'bottom', 'x', 'y'] as const;
@@ -17,8 +17,6 @@ const generateDescription = (label: Label, position: Position) => {
   };
 };
 
-const spacing = (label: Label): unknown => {
+export const spacing = (label: Label): unknown => {
   return positions.reduce((acc, curr) => Object.assign(acc, generateDescription(label, curr)), {});
 };
-
-export default spacing;

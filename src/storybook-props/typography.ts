@@ -1,9 +1,9 @@
-import generateTable from './generateTable';
+import { generateTable } from './generateTable';
 
 const category = 'text style';
 const initialTable = generateTable({ category });
 
-const typography = {
+export const typography = {
   textAlign: {
     description: 'text-align을 결정합니다.',
     ...initialTable,
@@ -34,5 +34,3 @@ const typography = {
     ...generateTable({ type: 'React.ReactNode' }),
   },
 };
-
-export default typography;

@@ -30,7 +30,7 @@ pipelines:
                 FIREBASE_TOKEN: $FIREBASE_TOKEN
                 PROJECT_ID: $FIREBASE_PROJECT_ID
                 MESSAGE: 'deploying to loplat UI'
-                EXTRA_ARGS: '--only hosting:staging'
+                EXTRA_ARGS: '--only hosting:feature'
                 DEBUG: 'false'
             - export COMMIT_MESSAGE=`git log --format=%B -n 1 $BITBUCKET_COMMIT`
             - export BRANCH_NAME=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
@@ -38,7 +38,7 @@ pipelines:
             - echo $BRANCH_NAME
             - curl -X POST -H "Content-type:application/json" --data "{
               \"text\":\"*$BRANCH_NAME PR이 업데이트되었습니다.* 스토리북을 확인해주세요.
-              \n\n https://staging-loplat-ui.web.app/
+              \n\n https://feature-loplat-ui.web.app/
               \n\n *개발자 커밋메시지:* $COMMIT_MESSAGE\"}" $WEBHOOK_URL
       - step:
           name: Storybook Tests on browser

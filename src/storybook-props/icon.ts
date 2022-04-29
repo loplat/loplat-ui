@@ -1,4 +1,4 @@
-import generateTable from './generateTable';
+import { generateTable } from './generateTable';
 
 const category = 'icon';
 const iconTable = generateTable({
@@ -14,7 +14,7 @@ const initialIconDescription = {
   },
 };
 
-const icon = {
+export const icon = {
   leftIcon: {
     ...initialIconDescription,
   },
@@ -23,5 +23,3 @@ const icon = {
   },
   isIconVisible: { ...generateTable({ category }), description: '아이콘이 보일지 말지를 결정합니다.' },
 };
-
-export default icon;
