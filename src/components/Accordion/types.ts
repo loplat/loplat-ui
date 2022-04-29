@@ -12,7 +12,7 @@ export type AccordionProps = {
    * 기본은 h3 입니다.
    */
   headingLevel?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-  /** 여닫는 transition css 초 시간입니다.  */
+  /** 여닫는 transition css millisecond 입니다.  */
   duration?: number;
   /**
    * SSR에서 발생하는 _unique id collision_ 을 막기 위한 suffix를 제공합니다.

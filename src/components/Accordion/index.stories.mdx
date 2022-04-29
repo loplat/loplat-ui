@@ -16,7 +16,7 @@ import { runTest } from './storybookTest.ts';
       ...generateTable({ type: 'string | React.ReactElement' }),
     },
     duration: {
-      ...generateTable({ defaultValue: 0.3 }),
+      ...generateTable({ defaultValue: 300 }),
     },
     headingLevel: {
       ...generateTable({ defaultValue: 'h3' }),
@@ -65,9 +65,7 @@ export const UncontrolledTemplate = (args) => <Accordion {...data} {...args} onT
 `open`, `onToggle`을 할당하여 직접 조작합니다.
 
 <Canvas>
-  <Story name="controlled" args={{ duration: 1 }}>
-    {runTest(Template.bind({}))}
-  </Story>
+  <Story name="controlled">{runTest(Template.bind({}))}</Story>
 </Canvas>
 
 <ArgsTable story="controlled" />
@@ -77,7 +75,7 @@ export const UncontrolledTemplate = (args) => <Accordion {...data} {...args} onT
 아래 컴포넌트는 `open`과 `onToggle`을 전달하지 않았지만 동일하게 움직입니다.
 
 <Canvas>
-  <Story name="uncontrolled" args={{ type: 'line', duration: 1 }}>
+  <Story name="uncontrolled" args={{ type: 'line' }}>
     {UncontrolledTemplate.bind()}
   </Story>
 </Canvas>
@@ -89,10 +87,10 @@ export const UncontrolledTemplate = (args) => <Accordion {...data} {...args} onT
 스타일 타입은 `line`과 `fill`이 있습니다.
 
 <Canvas isColumn>
-  <Story name="fill" args={{ type: 'fill', title: `type : 'fill'` }}>
+  <Story name="fill" args={{ type: 'fill', title: `type : 'fill'`, duration: 1000 }}>
     {Template.bind({})}
   </Story>
-  <Story name="line" args={{ type: 'line', title: `type : 'line'` }}>
+  <Story name="line" args={{ type: 'line', title: `type : 'line'`, duration: 1000 }}>
     {Template.bind({})}
   </Story>
 </Canvas>

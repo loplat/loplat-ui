@@ -1,9 +1,9 @@
 import { css, SerializedStyles } from '@emotion/react';
 
-export const transition = (property: string, duration = 0.2): SerializedStyles => {
+export const transition = (property: string, duration = 300): SerializedStyles => {
   return css`
     transition-property: ${property};
-    transition-duration: ${duration}s;
+    transition-duration: ${duration}ms;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   `;
 };

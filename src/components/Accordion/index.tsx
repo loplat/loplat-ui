@@ -11,7 +11,7 @@ export const Accordion = React.memo(
     onToggle,
     type = 'fill',
     headingLevel = 'h3',
-    duration = 0.3,
+    duration = 300,
     iconSuffix,
     ...props
   }: AccordionProps & DetailsProps): JSX.Element => {
@@ -34,7 +34,7 @@ export const Accordion = React.memo(
       const { name, running } = animationStatus.current;
       if (!running) return;
       timers.current[name].forEach((timer) => clearTimeout(timer));
-    }, [timers]);
+    }, []);
 
     const expanding: (onMount: boolean) => AnimateFunction = useCallback(
       (onMount = false) =>
@@ -69,7 +69,7 @@ export const Accordion = React.memo(
             // NOTE: 다 펼쳐지고 나서 height: auto로 바꿔줘야 펼침상태에서 Responsive하게 height을 반영할 수 있다.
             body.style.height = 'auto';
             setAnimationStatus('expand', false);
-          }, duration * 1000);
+          }, duration);
         },
       [],
     );
@@ -84,16 +84,16 @@ export const Accordion = React.memo(
         // NOTE: open 상태는 나중에 바뀌어야함. summary 이외 노드의 visibility 상태가 dom에서 자동으로 변경되기 때문
         setIsOpen(false);
         setAnimationStatus('shrink', false);
-      }, duration * 1000);
+      }, duration);
     }, []);
 
-    const toggleAnimation = useCallback((isExpanding: boolean) => {
+    const toggleAnimation = useCallback((shouldExpand: boolean) => {
       const body = bodyRef.current as HTMLDivElement;
       const content = contentRef.current as HTMLDivElement;
       const timer = timers.current as Timers;
 
       cancelAnimation();
-      if (isExpanding) expanding(false)(body, content, timer);
+      if (shouldExpand) expanding(false)(body, content, timer);
       else shirking(body, content, timer);
     }, []);
 
@@ -102,10 +102,10 @@ export const Accordion = React.memo(
       animationStatus.current.running = state;
     }, []);
 
-    const toggle = useCallback(() => {
+    const toggle = () => {
       setExpanded((prev) => !prev);
       toggleAnimation(!expanded);
-    }, [expanded]);
+    };
 
     return (
       <Details open={isOpen} expanded={expanded} type={type} duration={duration} {...props}>
