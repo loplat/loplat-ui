@@ -28,12 +28,17 @@ export const Accordion = React.memo(
         expanding(true)(bodyRef.current as HTMLDivElement, contentRef.current as HTMLDivElement, timers.current);
         contentHeight.current = contentRef.current?.offsetHeight ?? 0;
       }
-    }, []);
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     const cancelAnimation = useCallback(() => {
       const { name, running } = animationStatus.current;
       if (!running) return;
       timers.current[name].forEach((timer) => clearTimeout(timer));
+    }, []);
+
+    const setAnimationStatus = useCallback((name: AnimationName, state: boolean) => {
+      animationStatus.current.name = name;
+      animationStatus.current.running = state;
     }, []);
 
     const expanding: (onMount: boolean) => AnimateFunction = useCallback(
@@ -71,36 +76,37 @@ export const Accordion = React.memo(
             setAnimationStatus('expand', false);
           }, duration);
         },
-      [],
+      [duration, setAnimationStatus],
     );
 
-    const shirking: AnimateFunction = useCallback((body, content, timer) => {
-      setAnimationStatus('shrink', true);
-      body.style.height = `${content.offsetHeight}px`;
-      contentHeight.current = content.offsetHeight;
+    const shirking: AnimateFunction = useCallback(
+      (body, content, timer) => {
+        setAnimationStatus('shrink', true);
+        body.style.height = `${content.offsetHeight}px`;
+        contentHeight.current = content.offsetHeight;
 
-      timer.shrink[0] = setTimeout(() => (body.style.height = '0px'), 10);
-      timer.shrink[1] = setTimeout(() => {
-        // NOTE: open 상태는 나중에 바뀌어야함. summary 이외 노드의 visibility 상태가 dom에서 자동으로 변경되기 때문
-        setIsOpen(false);
-        setAnimationStatus('shrink', false);
-      }, duration);
-    }, []);
+        timer.shrink[0] = setTimeout(() => (body.style.height = '0px'), 10);
+        timer.shrink[1] = setTimeout(() => {
+          // NOTE: open 상태는 나중에 바뀌어야함. summary 이외 노드의 visibility 상태가 dom에서 자동으로 변경되기 때문
+          setIsOpen(false);
+          setAnimationStatus('shrink', false);
+        }, duration);
+      },
+      [duration, setAnimationStatus],
+    );
 
-    const toggleAnimation = useCallback((shouldExpand: boolean) => {
-      const body = bodyRef.current as HTMLDivElement;
-      const content = contentRef.current as HTMLDivElement;
-      const timer = timers.current as Timers;
+    const toggleAnimation = useCallback(
+      (shouldExpand: boolean) => {
+        const body = bodyRef.current as HTMLDivElement;
+        const content = contentRef.current as HTMLDivElement;
+        const timer = timers.current as Timers;
 
-      cancelAnimation();
-      if (shouldExpand) expanding(false)(body, content, timer);
-      else shirking(body, content, timer);
-    }, []);
-
-    const setAnimationStatus = useCallback((name: AnimationName, state: boolean) => {
-      animationStatus.current.name = name;
-      animationStatus.current.running = state;
-    }, []);
+        cancelAnimation();
+        if (shouldExpand) expanding(false)(body, content, timer);
+        else shirking(body, content, timer);
+      },
+      [cancelAnimation, expanding, shirking],
+    );
 
     const toggle = () => {
       setExpanded((prev) => !prev);
