@@ -18,13 +18,7 @@ class Toaster {
   }
 
   removeToastItem(toastId: ToastItem['id']): void {
-    this.setToastItems((state: ToastItem[]) => {
-      const indexToRemove = state.findIndex((toastItem) => toastItem.id === toastId);
-      if (indexToRemove > -1) {
-        return [...state.slice(0, indexToRemove), ...state.slice(indexToRemove + 1)];
-      }
-      return state;
-    });
+    this.setToastItems((state: ToastItem[]) => state.filter(({ id }) => id !== toastId));
   }
 
   success(message: ToastItem['message'], role: ToastRole = 'status'): void {
