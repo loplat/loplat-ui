@@ -39,13 +39,7 @@ export const Toast = ({
   }, []);
 
   const removeHeightItem = (toastId: ToastItem['id']) => {
-    setHeightOfToastBars((state) => {
-      const indexToRemove = state.findIndex((heightItem) => heightItem.id === toastId);
-      if (indexToRemove > -1) {
-        return [...state.slice(0, indexToRemove), ...state.slice(indexToRemove + 1)];
-      }
-      return state;
-    });
+    setHeightOfToastBars((state) => state.filter(({ id }) => id !== toastId));
   };
 
   const addHeightOfToastBars = useCallback((toastId: ToastItem['id'], height: number) => {
