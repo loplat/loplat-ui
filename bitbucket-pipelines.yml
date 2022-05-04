@@ -123,7 +123,7 @@ pipelines:
             - export VERSION=$(yarn version | grep version | awk -F":" '{ print $2 }' | sed '/^$/d' | tr -d ' ')
             - echo $VERSION
             - curl -X POST -H "Content-type:application/json" --data "{
-              \"text\":\"*loplat ui $VERSION 버젼이 배포되었습니다.*
+              \"text\":\"*loplat ui $VERSION 버전이 배포되었습니다.*
               \n\n https://ui.loplat.com/ \"}" $WEBHOOK_URL
       - step:
           name: Storybook Tests on browser
