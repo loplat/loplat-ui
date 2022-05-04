@@ -28,7 +28,7 @@ export const Accordion = React.memo(
         expanding(true)(bodyRef.current as HTMLDivElement, contentRef.current as HTMLDivElement, timers.current);
         contentHeight.current = contentRef.current?.offsetHeight ?? 0;
       }
-    }, []);
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     const cancelAnimation = useCallback(() => {
       const { name, running } = animationStatus.current;
@@ -36,10 +36,15 @@ export const Accordion = React.memo(
       timers.current[name].forEach((timer) => clearTimeout(timer));
     }, []);
 
+    const setAnimationStatus = useCallback((name: AnimationName, state: boolean) => {
+      animationStatus.current.name = name;
+      animationStatus.current.running = state;
+    }, []);
+
     const expanding: (onMount: boolean) => AnimateFunction = useCallback(
       (onMount = false) =>
         (body, content, timer) => {
-          // NOTE: open:true를 초기설정으로 줄 때 CLS가 생기지 않도록 하는 로직
+          // NOTE: open=true가 초기값일 경우, CLS가 생기지 않도록 하는 로직
           if (onMount) {
             body.style.height = 'auto';
             setAnimationStatus('expand', false);
@@ -56,7 +61,7 @@ export const Accordion = React.memo(
           setAnimationStatus('expand', true);
 
           setTimeout(() => {
-            // NOTE: safari의 div(height:0) 안의 div의 offsetHeight을 0으로 계산하는 이슈 대응
+            // NOTE: safari에서 Body div(height=0)의 자식인 Content div의 offsetHeight을 0으로 계산하는 이슈 대응
             if (isNeededToCalcHeight) {
               body.style.height = 'auto';
               contentHeight.current = content.offsetHeight;
@@ -66,41 +71,42 @@ export const Accordion = React.memo(
           }, 5);
 
           timer.expand[1] = setTimeout(() => {
-            // NOTE: 다 펼쳐지고 나서 height: auto로 바꿔줘야 펼침상태에서 Responsive하게 height을 반영할 수 있다.
+            // NOTE: 펼쳐지고나면 height을 'auto'로 바꾸어 resizing 대응
             body.style.height = 'auto';
             setAnimationStatus('expand', false);
           }, duration);
         },
-      [],
+      [duration, setAnimationStatus],
     );
 
-    const shirking: AnimateFunction = useCallback((body, content, timer) => {
-      setAnimationStatus('shrink', true);
-      body.style.height = `${content.offsetHeight}px`;
-      contentHeight.current = content.offsetHeight;
+    const shirking: AnimateFunction = useCallback(
+      (body, content, timer) => {
+        setAnimationStatus('shrink', true);
+        body.style.height = `${content.offsetHeight}px`;
+        contentHeight.current = content.offsetHeight;
 
-      timer.shrink[0] = setTimeout(() => (body.style.height = '0px'), 10);
-      timer.shrink[1] = setTimeout(() => {
-        // NOTE: open 상태는 나중에 바뀌어야함. summary 이외 노드의 visibility 상태가 dom에서 자동으로 변경되기 때문
-        setIsOpen(false);
-        setAnimationStatus('shrink', false);
-      }, duration);
-    }, []);
+        timer.shrink[0] = setTimeout(() => (body.style.height = '0px'), 10);
+        timer.shrink[1] = setTimeout(() => {
+          // NOTE: summary 이외 노드의 visibility가 DOM에서 자동으로 변경되기 때문에, open 상태값은 나중에 바뀌어야한다.
+          setIsOpen(false);
+          setAnimationStatus('shrink', false);
+        }, duration);
+      },
+      [duration, setAnimationStatus],
+    );
 
-    const toggleAnimation = useCallback((shouldExpand: boolean) => {
-      const body = bodyRef.current as HTMLDivElement;
-      const content = contentRef.current as HTMLDivElement;
-      const timer = timers.current as Timers;
+    const toggleAnimation = useCallback(
+      (shouldExpand: boolean) => {
+        const body = bodyRef.current as HTMLDivElement;
+        const content = contentRef.current as HTMLDivElement;
+        const timer = timers.current as Timers;
 
-      cancelAnimation();
-      if (shouldExpand) expanding(false)(body, content, timer);
-      else shirking(body, content, timer);
-    }, []);
-
-    const setAnimationStatus = useCallback((name: AnimationName, state: boolean) => {
-      animationStatus.current.name = name;
-      animationStatus.current.running = state;
-    }, []);
+        cancelAnimation();
+        if (shouldExpand) expanding(false)(body, content, timer);
+        else shirking(body, content, timer);
+      },
+      [cancelAnimation, expanding, shirking],
+    );
 
     const toggle = () => {
       setExpanded((prev) => !prev);
@@ -121,7 +127,7 @@ export const Accordion = React.memo(
             }
           }}
         >
-          {/* NOTE: safari 구버젼에서 summary에 flex가 안먹히는 버그 */}
+          {/* NOTE: safari 구버전에서 summary tag에 flex가 적용되지 않는 버그 대응 */}
           <div>
             <Heading as={headingLevel}>{title}</Heading>
             <ChevronDownIcon size={12} suffixForId={iconSuffix} />

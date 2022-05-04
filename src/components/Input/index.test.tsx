@@ -90,12 +90,7 @@ describe('<Input />', () => {
     userEvent.click(getByPlaceholderText('검색어를 입력해주세요.'));
     userEvent.keyboard('에러 생성');
     expect(getByDisplayValue('에러 생성')).toBeVisible();
-    // NOTE: toBeVisible()일 경우 에러가 발생하여 (아마 opacity로 줘서때문인듯) 이걸로 대체함
+    // NOTE: toBeVisible()일 경우 에러가 발생하여 toBeInTheDocument()를 사용(opacity가 원인일 것으로 예상)
     expect(rightIcon).toBeInTheDocument();
-
-    // TODO: 확인되지않고있음
-    // expect(getByRole('alert')).toBeInTheDocument();
-    // expect(getByRole('alert')).toBeVisible();
-    // expect(getByRole('alert')).toHaveTextContent('에러메세지');
   });
 });

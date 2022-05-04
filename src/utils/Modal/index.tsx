@@ -49,7 +49,7 @@ export function Modal({ isOpen, onClose, zIndex = 9999, children }: ModalProps):
       const containerDOM = document.getElementById(portalId) as HTMLDivElement;
       containerDOM.remove();
     };
-  }, [portalId]);
+  }, [onClose, portalId]);
 
   useEffect(() => {
     const divList = document.querySelectorAll<HTMLDivElement>('body > div');
@@ -68,7 +68,7 @@ export function Modal({ isOpen, onClose, zIndex = 9999, children }: ModalProps):
       document.body.style.overflow = 'initial';
       notPortalDivList.forEach((root) => changeAccessibility(root, 'close'));
     };
-  }, [isOpen]);
+  }, [isOpen, portalId]);
 
   if (!isOpen) return null;
   return (
