@@ -1,3 +1,20 @@
+# 1.7.0 (2022-05-04)
+
+## Added
+- [Accordion](https://ui.loplat.com/?path=/docs/components-accordion--controlled) 컴포넌트를 추가했습니다.
+- [RadioGroup](https://ui.loplat.com/?path=/docs/components-radiobutton-group--default-story) 컴포넌트를 추가했습니다.
+
+## Fixed
+- 아래 열거한 컴포넌트에 margin 속성을 추가했습니다.
+  - Checkbox, RadioButton, Icon, Logo, Badge, Input
+- Spinner 컴포넌트에 aria-* 속성을 추가했습니다.
+
+## Docs
+- Spinner 컴포넌트에 aria-* 속성을 추가하여 [접근성을 높일 수 있는 방법](https://ui.loplat.com/?path=/docs/components-spinner-circle--default-story#접근성) 에 대해 추가 작성했습니다.
+  - Spinner 컴포넌트가 특정 영역의 상태임을 알려주는 방법
+  - Spinner 컴포넌트가 무엇을 기다리는 것인지 알려주는 방법
+  - Spinner 컴포넌트에 진행상태 값을 제공하는 방법
+
 # 1.6.0 (2022-04-06)
 
 ## Added
