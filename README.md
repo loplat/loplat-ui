@@ -70,9 +70,7 @@ If you have recently updated, please read the [changelog](https://github.com/lop
 
 ## Roadmap
 
-- apply [Storybook Addon Interactions](https://storybook.js.org/addons/@storybook/addon-interactions)
 - D3.js Charts
-- Popup
 
 ## License
 
