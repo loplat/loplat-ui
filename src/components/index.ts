@@ -3,7 +3,7 @@ export * from './Button';
 export * from './IconButton';
 export * from './Input';
 export * from './Toast';
-export * from './Spinner';
+export * from './Loading';
 export * from './Checkbox';
 export * from './RadioButton';
 export * from './Popup';
