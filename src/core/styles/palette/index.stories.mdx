@@ -1,0 +1,25 @@
+import { Meta } from '@storybook/addon-docs';
+import { Palette } from './index.stories.tsx';
+import { hideCanvas } from '../../../storybook-props/';
+
+<Meta
+  title="core/palette"
+  component={Palette}
+  parameters={{
+    ...hideCanvas,
+  }}
+/>
+
+# Palette
+
+**loplat**에서 사용하는 팔레트입니다.
+
+## 사용 방법
+
+```js
+import { primary, success } from 'loplat-ui';
+```
+
+## 색상 목록
+
+<Palette />

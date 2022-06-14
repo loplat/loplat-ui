@@ -6,6 +6,7 @@ export const parameters = {
       order: [
         'Welcome',
         'core',
+        ['colors', 'palette', 'decorator'],
         'Typography',
         'Components',
         ['Button', 'Input', 'Checkbox', 'RadioButton', 'Popup', ['Popup1', 'Popup2']],
