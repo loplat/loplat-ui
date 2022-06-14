@@ -1,20 +1,20 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
-import { CircleLoading } from './index';
+import { LineLoading } from './index';
 import { generateTable } from '../../../storybook-props/';
 import { Badge } from '../../Badge';
 
 <Meta
-  title="Components/Loading/Circle"
-  component={CircleLoading}
+  title="Components/Loading/Line"
+  component={LineLoading}
   argTypes={{
     color: {
       ...generateTable({ defaultValue: '#40a6fd' }),
     },
     duration: {
-      ...generateTable({ defaultValue: 500 }),
+      ...generateTable({ defaultValue: 600 }),
     },
     size: {
-      ...generateTable({ defaultValue: 100 }),
+      ...generateTable({ defaultValue: 80 }),
     },
     zIndex: {
       ...generateTable({ defaultValue: 0 }),
@@ -22,9 +22,9 @@ import { Badge } from '../../Badge';
   }}
 />
 
-export const Template = (args) => <CircleLoading zIndex="9999" {...args} />;
+export const Template = (args) => <LineLoading {...args} />;
 
-# CircleLoading
+# LineLoading
 
 시간이 오래걸리는 일이나 여러 단계를 거쳐야할 때, 진행상태 혹은 진행중임을 표시하기 위해 사용됩니다.
 
@@ -41,7 +41,7 @@ export const Template = (args) => <CircleLoading zIndex="9999" {...args} />;
 ### 작은 크기
 
 <Canvas>
-  <Story name="small" args={{ duration: 500, size: 50 }}>
+  <Story name="small" args={{ size: 30 }}>
     {Template.bind({})}
   </Story>
 </Canvas>
@@ -49,14 +49,14 @@ export const Template = (args) => <CircleLoading zIndex="9999" {...args} />;
 ### 느린 속도
 
 <Canvas>
-  <Story name="slow" args={{ duration: 1600 }}>
+  <Story name="slow" args={{ duration: 1200 }}>
     {Template.bind({})}
   </Story>
 </Canvas>
 
 ## 접근성
 
-`<CircleLoading />` 컴포넌트의 `role` 은 `progressbar` 입니다.
+`<LineLoading />` 컴포넌트의 `role` 은 `progressbar` 입니다.
 
 스크린리더 사용자는 접근 가능한 이름이 없는 `role = "progressbar"`의 **목적을 인지할 수 없습니다**.
 따라서 식별 가능한 이름, 목적 등을 스크린유저에게 제공해야 합니다. 반드시 `aria-label`, `aria-labelledby` 혹은 `title`을 이용해 제공해 주세요.
@@ -66,14 +66,14 @@ export const Template = (args) => <CircleLoading zIndex="9999" {...args} />;
 
 스크린리더 사용자는 `aria-valuenow`를 `aria-valuemin`과 `aria-valuemax` 사이의 값을 계산하여, 백분율(%)로 제공받습니다.
 
-`<CircleLoading />` 컴포넌트가 *특정 영역*의 진행상태를 설명하는 경우, `aria-describedby`를 사용하여 *특정 영역*의 상태임을 표기해야합니다.
+`<LineLoading />` 컴포넌트가 *특정 영역*의 진행상태를 설명하는 경우, `aria-describedby`를 사용하여 *특정 영역*의 상태임을 표기해야합니다.
 또한, 로딩이 완료 될 때까지 *특정 영역*에 `aria-busy: true`를 설정해야 합니다. (아래의 예시 코드 참고)
 
 <Canvas withSource="open">
   <Story name="accessibility" args={{ 'aria-labelledby': 'example', 'aria-describedby': 'example' }}>
     {(args) => (
       <div>
-        <CircleLoading {...args} />
+        <LineLoading {...args} />
         <Badge id="example" aria-busy={true} text="#example" />
       </div>
     )}
