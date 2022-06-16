@@ -1,3 +1,15 @@
+# 1.7.1 (2022-06-16)
+
+## Renewal
+- 이미지 기반 Spinner 컴포넌트를 SVG 기반 [Loading](https://ui.loplat.com/?path=/docs/components-loading-circle--default-story) 컴포넌트로 교체하여 용량을 최적화했습니다.
+
+## Added
+- [palette](https://ui.loplat.com/?path=/docs/core-palette--page) 를 storybook에서 확인할 수 있습니다.
+
+## Fixed
+- Typography 컴포넌트에 HTMLAttributes를 적용할 수 있습니다.
+
+
 # 1.7.0 (2022-05-04)
 
 ## Added
@@ -10,10 +22,11 @@
 - Spinner 컴포넌트에 aria-* 속성을 추가했습니다.
 
 ## Docs
-- Spinner 컴포넌트에 aria-* 속성을 추가하여 [접근성을 높일 수 있는 방법](https://ui.loplat.com/?path=/docs/components-spinner-circle--default-story#접근성) 에 대해 추가 작성했습니다.
+- Spinner 컴포넌트에 aria-* 속성을 추가하여 [접근성을 높일 수 있는 방법](https://ui.loplat.com/?path=/docs/components-loading-circle--default-story#접근성) 에 대해 추가 작성했습니다.
   - Spinner 컴포넌트가 특정 영역의 상태임을 알려주는 방법
   - Spinner 컴포넌트가 무엇을 기다리는 것인지 알려주는 방법
   - Spinner 컴포넌트에 진행상태 값을 제공하는 방법
+
 
 # 1.6.0 (2022-04-06)
 
