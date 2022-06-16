@@ -1,17 +1,20 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
-import { CubeSpinner } from './index';
-import { Badge } from '../Badge';
-import { generateTable } from '../../storybook-props/';
+import { CircleLoading } from './index';
+import { generateTable } from '../../../storybook-props/';
+import { Badge } from '../../Badge';
 
 <Meta
-  title="Components/Spinner/Cube"
-  component={CubeSpinner}
+  title="Components/Loading/Circle"
+  component={CircleLoading}
   argTypes={{
-    duration: {
-      ...generateTable({ defaultValue: 1000 }),
+    color: {
+      ...generateTable({ defaultValue: '#40a6fd' }),
     },
-    scale: {
-      ...generateTable({ defaultValue: 1 }),
+    duration: {
+      ...generateTable({ defaultValue: 500 }),
+    },
+    size: {
+      ...generateTable({ defaultValue: 100 }),
     },
     zIndex: {
       ...generateTable({ defaultValue: 0 }),
@@ -19,17 +22,17 @@ import { generateTable } from '../../storybook-props/';
   }}
 />
 
-export const Template = (args) => <CubeSpinner {...args} aria-valuenow="20" />;
+export const Template = (args) => <CircleLoading aria-label="loading" {...args} />;
 
-# CubeSpinner
+# CircleLoading
 
 시간이 오래걸리는 일이나 여러 단계를 거쳐야할 때, 진행상태 혹은 진행중임을 표시하기 위해 사용됩니다.
 
 <Canvas>
-  <Story name="default" args={{ 'aria-label': '큐브스피너 예제' }}>
-    {Template.bind({})}
-  </Story>
+  <Story name="default">{Template.bind({})}</Story>
 </Canvas>
+
+## Props
 
 <ArgsTable story="default" />
 
@@ -38,22 +41,22 @@ export const Template = (args) => <CubeSpinner {...args} aria-valuenow="20" />;
 ### 작은 크기
 
 <Canvas>
-  <Story name="small" args={{ duration: 1000, scale: 0.5, zIndex: 9999, 'aria-label': '큐브스피너 예제' }}>
+  <Story name="small" args={{ size: 50 }}>
     {Template.bind({})}
   </Story>
 </Canvas>
 
-### 빠른 속도
+### 느린 속도
 
 <Canvas>
-  <Story name="fast" args={{ duration: 300, scale: 0.5, zIndex: 9999, 'aria-label': '큐브스피너 예제' }}>
+  <Story name="slow" args={{ duration: 1600 }}>
     {Template.bind({})}
   </Story>
 </Canvas>
 
 ## 접근성
 
-`<CubeSpinner />` 컴포넌트의 `role` 은 `progressbar` 입니다.
+`<CircleLoading />` 컴포넌트의 `role` 은 `progressbar` 입니다.
 
 스크린리더 사용자는 접근 가능한 이름이 없는 `role = "progressbar"`의 **목적을 인지할 수 없습니다**.
 따라서 식별 가능한 이름, 목적 등을 스크린유저에게 제공해야 합니다. 반드시 `aria-label`, `aria-labelledby` 혹은 `title`을 이용해 제공해 주세요.
@@ -63,14 +66,14 @@ export const Template = (args) => <CubeSpinner {...args} aria-valuenow="20" />;
 
 스크린리더 사용자는 `aria-valuenow`를 `aria-valuemin`과 `aria-valuemax` 사이의 값을 계산하여, 백분율(%)로 제공받습니다.
 
-`<CubeSpinner />` 컴포넌트가 *특정 영역*의 진행상태를 설명하는 경우, `aria-describedby`를 사용하여 *특정 영역*의 상태임을 표기해야합니다.
-또한, 로딩이 완료 될 때까지 *특정 영역*에 `aria-busy: true`를 설정해야 합니다.
+`<CircleLoading />` 컴포넌트가 *특정 영역*의 진행상태를 설명하는 경우, `aria-describedby`를 사용하여 *특정 영역*의 상태임을 표기해야합니다.
+또한, 로딩이 완료 될 때까지 *특정 영역*에 `aria-busy: true`를 설정해야 합니다. (아래의 예시 코드 참고)
 
-<Canvas>
+<Canvas withSource="open">
   <Story name="accessibility" args={{ 'aria-labelledby': 'example', 'aria-describedby': 'example' }}>
     {(args) => (
       <div>
-        <CubeSpinner {...args} />
+        <CircleLoading {...args} />
         <Badge id="example" aria-busy={true} text="#example" />
       </div>
     )}
