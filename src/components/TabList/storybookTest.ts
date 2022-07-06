@@ -10,12 +10,11 @@ export function runTest(story: ComponentStory<typeof TabList>): ComponentStory<t
     const tabs = canvas.getAllByRole('tab');
 
     // click tab
-    await sleep(1000);
+    await sleep(500);
     userEvent.click(tabs[2]);
     expect(tabs[2].ariaSelected).toBe('true');
 
     // click disabled tab
-    await sleep(500);
     userEvent.click(tabs[1]);
     expect(tabs[1].ariaSelected).toBe('false');
 

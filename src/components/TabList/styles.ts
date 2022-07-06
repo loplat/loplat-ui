@@ -36,6 +36,9 @@ export const TabListDiv = styled.div<{ DecoratorCss: DecoratorCss | null }>`
 
 export const Tab = styled.button<Pick<TabProps, 'isSelected'>>`
   z-index: 2;
+  display: flex;
+  align-items: center;
+
   padding: ${spacing(2)}px ${spacing(6)}px;
   margin: 0;
   border: none;

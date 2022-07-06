@@ -11,8 +11,10 @@ export const TabList = ({ tabs, selectedValue, onChange, ...props }: TabListProp
 
   const handleClickTab = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLElement;
-    if (target.tagName === 'BUTTON') {
-      const targetValueWithUniqueId = String(target.dataset.value);
+    const targetTab = tabElements.current.find((tabElement) => tabElement.contains(target));
+
+    if (targetTab) {
+      const targetValueWithUniqueId = String(targetTab.dataset.value);
       const targetValue = detachUniqueId(targetValueWithUniqueId, uniqueId);
       if (selectedValue !== targetValue) {
         onChange(e, targetValue);
