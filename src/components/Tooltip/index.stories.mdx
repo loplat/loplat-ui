@@ -1,0 +1,159 @@
+import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs';
+import { Tooltip } from './index.tsx';
+import { Badge } from '../Badge';
+import { bluescale500 } from '../../core';
+import { generateTable } from '../../storybook-props';
+
+<Meta
+  title="Components/Tooltip"
+  component={Tooltip}
+  argTypes={{
+    children: {
+      ...generateTable({ type: 'React.ReactElement' }),
+      control: 'null',
+    },
+    title: {
+      ...generateTable({ type: 'string | React.ReactElement' }),
+      control: 'text',
+    },
+  }}
+/>
+
+export const QuestionCircleIcon = (props) => {
+  return (
+    <div
+      style={{
+        width: 24,
+        height: 24,
+        border: '1px solid',
+        borderColor: bluescale500,
+        color: bluescale500,
+        borderRadius: '50%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+      onMouseOver={props.onMouseOver}
+      onMouseLeave={props.onMouseLeave}
+    >
+      ?
+    </div>
+  );
+};
+
+export const Template = (args) => {
+  return (
+    <div style={{ display: 'flex', justifyContent: 'space-between', margin: '64px 0' }}>
+      <Tooltip {...args}>
+        <QuestionCircleIcon
+          onMouseOver={() => console.log('children over')}
+          onMouseLeave={() => console.log('children leave')}
+        />
+      </Tooltip>
+      <Tooltip {...args}>
+        <QuestionCircleIcon
+          onMouseOver={() => console.log('children over')}
+          onMouseLeave={() => console.log('children leave')}
+        />
+      </Tooltip>
+      <Tooltip {...args}>
+        <QuestionCircleIcon
+          onMouseOver={() => console.log('children over')}
+          onMouseLeave={() => console.log('children leave')}
+        />
+      </Tooltip>
+    </div>
+  );
+};
+
+# Tooltip
+
+<Canvas>
+  <Story
+    name="default"
+    args={{
+      title: '잔디가 별 흙으로 무엇인지 차 별 언덕 까닭입니다. 말 나는 한 밤이 어머니 헤는 까닭입니다.',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+## 사용 방법
+
+- tooltip을 표시할 요소를 Tooltip 컴포넌트로 감싸주세요.
+
+```jsx
+import { Tooltip } from 'loplat-ui';
+
+function App() {
+  return (
+    <Tooltip title="tooltip 문구">
+      <div>tooltip이 필요한 요소</div>
+    </Tooltip>
+  );
+}
+```
+
+- title prop에 **ReactElement**를 전달할 수도 있습니다.
+
+<Canvas>
+  <Story name="title with ReactElement">
+    {(args) => (
+      <Tooltip
+        title={
+          <div>
+            <Badge text="Badge" mb={1} />
+            <Badge text="Badge" variant="outlined" />
+          </div>
+        }
+        placement="bottom"
+        {...args}
+      >
+        <QuestionCircleIcon />
+      </Tooltip>
+    )}
+  </Story>
+</Canvas>
+
+```jsx
+return (
+  <Tooltip
+    title={
+      <div>
+        <Badge text="Badge" mb={1} />
+        <Badge text="Badge" variant="outlined" />
+      </div>
+    }
+    {...args}
+  >
+    <QuestionCircleIcon />
+  </Tooltip>
+);
+```
+
+## 주의 사항
+
+- Tooltip의 **children**으로 **Custom React Element**를 사용할 경우 주의가 필요합니다.
+  - Tooltip은 chlidren에게 _onMouseOver_ 과 _onMouseLeave_ event listener prop을 주입해야합니다.
+  - 따라서, children React Element는 DOM 요소에 props를 spread 해야합니다.
+
+```jsx
+export const QuestionCircleIcon = (props) => {
+  return <div {...props}>?</div>;
+};
+```
+
+또는
+
+```jsx
+export const QuestionCircleIcon = (props) => {
+  return (
+    <div onMouseOver={props.onMouseOver} onMouseLeave={props.onMouseLeave}>
+      ?
+    </div>
+  );
+};
+```
