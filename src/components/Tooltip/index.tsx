@@ -28,13 +28,12 @@ export const Tooltip = ({
 
     // popper 위치 계산
     setTimeout(() => {
-      const wrapperBoundingRect = wrapperRef.current!.getBoundingClientRect();
-
       const windowScrollY = window.scrollY;
       const windowScrollX = window.scrollX;
       const windowScrollWidth = document.body.scrollWidth;
       const windowClientWidth = document.body.clientWidth;
 
+      const wrapperBoundingRect = wrapperRef.current!.getBoundingClientRect();
       const wrapperTop = windowScrollY + wrapperBoundingRect.top;
       const wrapperBottom = windowScrollY + wrapperBoundingRect.bottom;
       const wrapperHorizontalCenter = windowScrollX + wrapperBoundingRect.left + wrapperBoundingRect.width / 2;

@@ -3,6 +3,7 @@ import { Tooltip } from './index.tsx';
 import { Badge } from '../Badge';
 import { bluescale500 } from '../../core';
 import { generateTable } from '../../storybook-props';
+import { runTest } from './storybookTest';
 
 <Meta
   title="Components/Tooltip"
@@ -16,6 +17,9 @@ import { generateTable } from '../../storybook-props';
       ...generateTable({ type: 'string | React.ReactElement' }),
       control: 'text',
     },
+  }}
+  parameters={{
+    controls: { exclude: ['data-testid'] },
   }}
 />
 
@@ -33,8 +37,7 @@ export const QuestionCircleIcon = (props) => {
         justifyContent: 'center',
         alignItems: 'center',
       }}
-      onMouseOver={props.onMouseOver}
-      onMouseLeave={props.onMouseLeave}
+      {...props}
     >
       ?
     </div>
@@ -46,21 +49,16 @@ export const Template = (args) => {
     <div style={{ display: 'flex', justifyContent: 'space-between', margin: '64px 0' }}>
       <Tooltip {...args}>
         <QuestionCircleIcon
-          onMouseOver={() => console.log('children over')}
-          onMouseLeave={() => console.log('children leave')}
+          data-testid="loplat-ui__left-tooltip"
+          onMouseOver={() => console.log('children mouseover')}
+          onMouseLeave={() => console.log('children mouseleave')}
         />
       </Tooltip>
       <Tooltip {...args}>
-        <QuestionCircleIcon
-          onMouseOver={() => console.log('children over')}
-          onMouseLeave={() => console.log('children leave')}
-        />
+        <QuestionCircleIcon data-testid="loplat-ui__center-tooltip" />
       </Tooltip>
       <Tooltip {...args}>
-        <QuestionCircleIcon
-          onMouseOver={() => console.log('children over')}
-          onMouseLeave={() => console.log('children leave')}
-        />
+        <QuestionCircleIcon data-testid="loplat-ui__right-tooltip" />
       </Tooltip>
     </div>
   );
@@ -73,9 +71,10 @@ export const Template = (args) => {
     name="default"
     args={{
       title: '잔디가 별 흙으로 무엇인지 차 별 언덕 까닭입니다. 말 나는 한 밤이 어머니 헤는 까닭입니다.',
+      'data-testid': 'loplat-ui__popper',
     }}
   >
-    {Template.bind({})}
+    {runTest(Template.bind({}))}
   </Story>
 </Canvas>
 
