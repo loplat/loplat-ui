@@ -85,7 +85,7 @@ export const TabList = ({ tabs, selectedValue, onChange, ...props }: TabListProp
           <Tab
             role="tab"
             tabIndex={isSelected ? 0 : -1}
-            aria-selected={isSelected}
+            aria-selected={isDisabled ? undefined : isSelected}
             isSelected={isSelected}
             disabled={isDisabled}
             data-value={valueWithUniqueId}

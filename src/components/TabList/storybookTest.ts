@@ -16,7 +16,7 @@ export function runTest(story: ComponentStory<typeof TabList>): ComponentStory<t
 
     // click disabled tab
     userEvent.click(tabs[1]);
-    expect(tabs[1].ariaSelected).toBe('false');
+    expect(tabs[1].ariaSelected).toBe(null);
 
     // keydown arrow & enter
     await sleep(500);
