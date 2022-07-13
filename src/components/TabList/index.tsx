@@ -1,21 +1,22 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { TabListProps, DecoratorCss } from './types';
 import { TabListDiv, Tab } from './styles';
-import { attachUniqueId, detachUniqueId, generateUniqueId } from '../../functions/uniqueId';
+import { attachUniqueId, generateUniqueId } from '../../functions/uniqueId';
 
 export const TabList = ({ tabs, selectedValue, onChange, ...props }: TabListProps): React.ReactElement => {
   const tabListRef = useRef<HTMLDivElement>(null);
   const tabElements = useRef<HTMLButtonElement[]>([]);
   const [decoratorCss, setDecoratorCss] = useState<DecoratorCss | null>(null);
+
   const uniqueId = useMemo(() => generateUniqueId(), []);
+  const tabListId = useMemo(() => attachUniqueId('loplat-ui-tablist', uniqueId), [uniqueId]);
 
   const handleClickTab = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLElement;
     const targetTab = tabElements.current.find((tabElement) => tabElement.contains(target));
 
     if (targetTab) {
-      const targetValueWithUniqueId = String(targetTab.dataset.value);
-      const targetValue = detachUniqueId(targetValueWithUniqueId, uniqueId);
+      const targetValue = String(targetTab.dataset.value);
       if (selectedValue !== targetValue) {
         onChange(e, targetValue);
       }
@@ -40,9 +41,8 @@ export const TabList = ({ tabs, selectedValue, onChange, ...props }: TabListProp
   };
 
   const updateDecoratorCss = () => {
-    const selectedValueWithUniqueId = attachUniqueId(selectedValue, uniqueId);
     const selectedTab = document.querySelector(
-      `button[data-value="${selectedValueWithUniqueId}"]`,
+      `#${tabListId} button[data-value="${selectedValue}"]`,
     ) as HTMLButtonElement;
 
     if (selectedTab) {
@@ -72,6 +72,7 @@ export const TabList = ({ tabs, selectedValue, onChange, ...props }: TabListProp
     <TabListDiv
       role="tablist"
       ref={tabListRef}
+      id={tabListId}
       onClick={handleClickTab}
       onKeyDown={handleArrowKey}
       DecoratorCss={decoratorCss}
@@ -79,8 +80,6 @@ export const TabList = ({ tabs, selectedValue, onChange, ...props }: TabListProp
     >
       {tabs.map(({ value, label, isDisabled, ...tabProps }, index) => {
         const isSelected = value === selectedValue;
-        const valueWithUniqueId = attachUniqueId(value, uniqueId);
-
         return (
           <Tab
             role="tab"
@@ -88,7 +87,7 @@ export const TabList = ({ tabs, selectedValue, onChange, ...props }: TabListProp
             aria-selected={isDisabled ? undefined : isSelected}
             isSelected={isSelected}
             disabled={isDisabled}
-            data-value={valueWithUniqueId}
+            data-value={value}
             data-index={index}
             key={index}
             {...tabProps}
