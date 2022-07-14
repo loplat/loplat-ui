@@ -38,37 +38,38 @@ export const Tooltip = ({
       const wrapperBottom = windowScrollY + wrapperBoundingRect.bottom;
       const wrapperHorizontalCenter = windowScrollX + wrapperBoundingRect.left + wrapperBoundingRect.width / 2;
 
-      if (popperRef.current) {
+      const popperElement = popperRef.current;
+      if (popperElement) {
         // 기본 위치
         if (placement === 'top') {
-          popperRef.current.style.top = `${wrapperTop - spacing(2)}px`;
-          popperRef.current.style.left = `${wrapperHorizontalCenter}px`;
-          popperRef.current.style.transform = 'translate(-50%, -100%)';
+          popperElement.style.top = `${wrapperTop - spacing(2)}px`;
+          popperElement.style.left = `${wrapperHorizontalCenter}px`;
+          popperElement.style.transform = 'translate(-50%, -100%)';
         } else if (placement === 'bottom') {
-          popperRef.current.style.top = `${wrapperBottom + spacing(2)}px`;
-          popperRef.current.style.left = `${wrapperHorizontalCenter}px`;
-          popperRef.current.style.transform = 'translate(-50%, 0)';
+          popperElement.style.top = `${wrapperBottom + spacing(2)}px`;
+          popperElement.style.left = `${wrapperHorizontalCenter}px`;
+          popperElement.style.transform = 'translate(-50%, 0)';
         }
 
         // 기본 위치가 window를 벗어났을 경우
-        const popperBoundingRect = popperRef.current.getBoundingClientRect();
+        const popperBoundingRect = popperElement.getBoundingClientRect();
         if (popperBoundingRect.width >= windowClientWidth) {
           // popper의 너비가 viewport 너비보다 클 경우
-          popperRef.current.style.width = '100%';
-          popperRef.current.style.left = `${windowScrollX}px`;
-          popperRef.current.style.transform = `translate(0, ${placement === 'top' ? '-100%' : '0'})`;
+          popperElement.style.width = '100%';
+          popperElement.style.left = `${windowScrollX}px`;
+          popperElement.style.transform = `translate(0, ${placement === 'top' ? '-100%' : '0'})`;
         } else if (windowScrollX + popperBoundingRect.left < 0) {
           // window 왼쪽으로 벗어났을 경우
-          popperRef.current.style.left = `${windowScrollX + spacing(2)}px`;
-          popperRef.current.style.transform = `translate(0, ${placement === 'top' ? '-100%' : '0'})`;
+          popperElement.style.left = `${windowScrollX + spacing(2)}px`;
+          popperElement.style.transform = `translate(0, ${placement === 'top' ? '-100%' : '0'})`;
         } else if (windowScrollX + popperBoundingRect.right > windowScrollWidth) {
           // window 오른쪽으로 벗어났을 경우
-          popperRef.current.style.left = `${windowScrollWidth - (popperBoundingRect.width + spacing(2))}px`;
-          popperRef.current.style.transform = `translate(0, ${placement === 'top' ? '-100%' : '0'})`;
+          popperElement.style.left = `${windowScrollWidth - (popperBoundingRect.width + spacing(2))}px`;
+          popperElement.style.transform = `translate(0, ${placement === 'top' ? '-100%' : '0'})`;
         }
 
         // show popper
-        popperRef.current.style.opacity = '1';
+        popperElement.style.opacity = '1';
       }
     }, enterDelay);
   };
