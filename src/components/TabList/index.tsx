@@ -1,22 +1,18 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { TabListProps, DecoratorCss } from './types';
 import { TabListDiv, Tab } from './styles';
-import { attachUniqueId, generateUniqueId } from '../../functions/uniqueId';
 
 export const TabList = ({ tabs, selectedValue, onChange, ...props }: TabListProps): React.ReactElement => {
   const tabListRef = useRef<HTMLDivElement>(null);
   const tabElements = useRef<HTMLButtonElement[]>([]);
   const [decoratorCss, setDecoratorCss] = useState<DecoratorCss | null>(null);
 
-  const uniqueId = useMemo(() => generateUniqueId(), []);
-  const tabListId = useMemo(() => attachUniqueId('loplat-ui-tablist', uniqueId), [uniqueId]);
-
   const handleClickTab = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLElement;
     const targetTab = tabElements.current.find((tabElement) => tabElement.contains(target));
 
     if (targetTab) {
-      const targetValue = String(targetTab.dataset.value);
+      const targetValue = targetTab.dataset.value as string;
       if (selectedValue !== targetValue) {
         onChange(e, targetValue);
       }
@@ -41,14 +37,11 @@ export const TabList = ({ tabs, selectedValue, onChange, ...props }: TabListProp
   };
 
   const updateDecoratorCss = () => {
-    const selectedTab = document.querySelector(
-      `#${tabListId} button[data-value="${selectedValue}"]`,
-    ) as HTMLButtonElement;
+    const selectedTab = tabListRef.current!.querySelector(`button[aria-selected="true"]`) as HTMLButtonElement;
 
     if (selectedTab) {
-      const tabIndex = Number(selectedTab.dataset.index);
       setDecoratorCss({
-        left: tabElements.current.slice(0, tabIndex).reduce((prev, curr) => prev + curr.clientWidth, 0),
+        left: selectedTab.offsetLeft,
         width: selectedTab.clientWidth,
       });
     }
@@ -56,7 +49,6 @@ export const TabList = ({ tabs, selectedValue, onChange, ...props }: TabListProp
 
   useEffect(() => {
     tabElements.current = Array.from(tabListRef.current!.children) as HTMLButtonElement[]; // eslint-disable-line @typescript-eslint/no-non-null-assertion
-    updateDecoratorCss();
 
     // NOTE: 폰트에 따라 clientWidth가 변하는 것에 대응
     document.fonts.ready.then(() => {
@@ -72,13 +64,12 @@ export const TabList = ({ tabs, selectedValue, onChange, ...props }: TabListProp
     <TabListDiv
       role="tablist"
       ref={tabListRef}
-      id={tabListId}
       onClick={handleClickTab}
       onKeyDown={handleArrowKey}
-      DecoratorCss={decoratorCss}
+      decoratorCss={decoratorCss}
       {...props}
     >
-      {tabs.map(({ value, label, isDisabled, ...tabProps }, index) => {
+      {tabs.map(({ value, label, isDisabled, ...tabProps }) => {
         const isSelected = value === selectedValue;
         return (
           <Tab
@@ -88,8 +79,7 @@ export const TabList = ({ tabs, selectedValue, onChange, ...props }: TabListProp
             isSelected={isSelected}
             disabled={isDisabled}
             data-value={value}
-            data-index={index}
-            key={index}
+            key={value}
             {...tabProps}
           >
             {label ?? value}

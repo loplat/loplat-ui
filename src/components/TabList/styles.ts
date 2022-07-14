@@ -5,7 +5,7 @@ import { DecoratorCss, TabProps } from './types';
 
 const tabListTopPadding = spacing(2.5);
 
-export const TabListDiv = styled.div<{ DecoratorCss: DecoratorCss | null }>`
+export const TabListDiv = styled.div<{ decoratorCss: DecoratorCss | null }>`
   position: relative;
   display: flex;
   width: fit-content;
@@ -20,11 +20,11 @@ export const TabListDiv = styled.div<{ DecoratorCss: DecoratorCss | null }>`
     z-index: 1;
     position: absolute;
     top: ${tabListTopPadding}px;
-    ${({ DecoratorCss }) =>
-      DecoratorCss &&
+    ${({ decoratorCss }) =>
+      decoratorCss &&
       css`
-        left: ${spacing(3) + DecoratorCss.left}px;
-        width: ${DecoratorCss.width}px;
+        left: ${decoratorCss.left}px;
+        width: ${decoratorCss.width}px;
       `};
     height: calc(100% - ${tabListTopPadding * 2}px);
     transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
