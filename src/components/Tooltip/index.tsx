@@ -1,6 +1,5 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { spacing } from '../../core';
-import { generateUniqueId } from '../../functions/generator';
 import { Portal } from '../../utils';
 import { TooltipProps } from './types';
 import { Popper, Wrapper } from './styles';
@@ -12,10 +11,10 @@ export const Tooltip = ({
   enterDelay = 0,
   ...props
 }: TooltipProps): React.ReactElement => {
-  const portalId = useMemo(() => `loplat-ui-tooltip_${generateUniqueId()}`, []);
   const [container, setContainer] = useState<Element | null>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const popperRef = useRef<HTMLDivElement>(null);
+  const animation = useRef<Animation | null>(null);
 
   const onMouseOver = (e: React.MouseEvent) => {
     // children의 eventHandler 먼저 실행
@@ -24,7 +23,11 @@ export const Tooltip = ({
     }
 
     // popper 생성, 렌더링
-    createPopper();
+    if (animation.current === null) createPopper();
+    if (animation.current) {
+      animation.current.cancel();
+      return;
+    }
 
     // popper 위치 계산
     setTimeout(() => {
@@ -33,7 +36,7 @@ export const Tooltip = ({
       const windowScrollWidth = document.body.scrollWidth;
       const windowClientWidth = document.body.clientWidth;
 
-      const wrapperBoundingRect = wrapperRef.current!.getBoundingClientRect();
+      const wrapperBoundingRect = wrapperRef.current!.getBoundingClientRect(); // eslint-disable-line @typescript-eslint/no-non-null-assertion
       const wrapperTop = windowScrollY + wrapperBoundingRect.top;
       const wrapperBottom = windowScrollY + wrapperBoundingRect.bottom;
       const wrapperHorizontalCenter = windowScrollX + wrapperBoundingRect.left + wrapperBoundingRect.width / 2;
@@ -69,7 +72,13 @@ export const Tooltip = ({
         }
 
         // show popper
-        popperElement.style.opacity = '1';
+        animation.current = popperRef.current.animate([{ opacity: 0 }, { opacity: 1 }], {
+          duration: 300,
+          easing: 'cubic-bezier(0.31, -0.06, 0.68, 1)',
+        });
+        animation.current.onfinish = () => {
+          popperElement.style.opacity = '1';
+        };
       }
     }, enterDelay);
   };
@@ -85,20 +94,22 @@ export const Tooltip = ({
 
   const createPopper = useCallback(() => {
     const newContainer = document.createElement('div');
-    newContainer.setAttribute('id', portalId);
     document.body.appendChild(newContainer);
     setContainer(newContainer);
-  }, [portalId]);
+  }, []);
 
   const removePopper = useCallback(() => {
-    if (popperRef.current) {
-      popperRef.current.style.opacity = '0';
-    }
-    setTimeout(() => {
-      const containerDOM = document.getElementById(portalId) as HTMLDivElement;
-      containerDOM?.remove();
-    }, 300);
-  }, [portalId]);
+    if (!popperRef.current) return;
+    animation.current = popperRef.current.animate([{ opacity: 1 }, { opacity: 0 }], {
+      duration: 300,
+      easing: 'cubic-bezier(0.31, -0.06, 0.68, 1)',
+    });
+    animation.current.onfinish = () => {
+      container?.remove();
+      setContainer(null);
+      animation.current = null;
+    };
+  }, [container]);
 
   useEffect(() => {
     // NOTE: ESC key로 popper를 제거할 수 있어야 함
@@ -109,7 +120,7 @@ export const Tooltip = ({
     return () => {
       document.removeEventListener('keydown', onKeyDownESC);
     };
-  }, [removePopper, portalId]);
+  }, [removePopper]);
 
   return (
     <Wrapper ref={wrapperRef}>

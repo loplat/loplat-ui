@@ -14,7 +14,6 @@ export const Popper = styled.div`
   display: table; // NOTE: safari, firefox에서 fit-content를 cross browsing 하기 위함
 
   opacity: 0;
-  transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1);
 
   pointer-events: none;
   overflow-wrap: break-word;
