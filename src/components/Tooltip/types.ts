@@ -9,4 +9,6 @@ export type TooltipProps = {
   placement?: 'top' | 'bottom';
   /** tooltip이 화면에 보이기까지 delay 시간입니다. */
   enterDelay?: number;
+  /** tooltip의 z-index 입니다. */
+  zIndex?: number;
 } & React.HTMLAttributes<HTMLDivElement>;

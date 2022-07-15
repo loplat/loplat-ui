@@ -9,6 +9,7 @@ export const Tooltip = ({
   title,
   placement = 'top',
   enterDelay = 0,
+  zIndex = 9999,
   ...props
 }: TooltipProps): React.ReactElement => {
   const [container, setContainer] = useState<Element | null>(null);
@@ -126,7 +127,7 @@ export const Tooltip = ({
     <Wrapper ref={wrapperRef}>
       {React.cloneElement(children, { ...children.props, onMouseOver, onMouseLeave })}
       <Portal container={container}>
-        <Popper ref={popperRef} role="tooltip" {...props}>
+        <Popper ref={popperRef} role="tooltip" style={{ zIndex }} {...props}>
           {title}
         </Popper>
       </Portal>
