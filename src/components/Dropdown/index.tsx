@@ -38,11 +38,10 @@ export const Dropdown = ({
       menuListElement.style.minWidth = `${barBoundingRect.width}px`;
       menuListElement.style.top = `${windowScrollY + barBoundingRect.bottom + spacing(1)}px`;
       menuListElement.style.left = `${windowScrollX + barBoundingRect.left}px`;
-      menuListElement.style.zIndex = `${zIndex}`;
       menuListElement.style.transform = 'scale(1)';
       menuListElement.style.opacity = '1';
     }
-  }, [zIndex]);
+  }, []);
 
   useEffect(() => {
     window.addEventListener('resize', changeMenuListPosition);
@@ -62,10 +61,12 @@ export const Dropdown = ({
   // open/close
   const open = () => {
     const newContainer = document.createElement('div');
+    newContainer.id = uniqueId;
     document.body.appendChild(newContainer);
     setContainer(newContainer);
   };
   const close = () => {
+    const container = document.getElementById(uniqueId);
     container?.remove();
     setContainer(null);
   };
@@ -169,7 +170,7 @@ export const Dropdown = ({
         <ChevronDownIcon size={12} suffixForId={uniqueId} className="arrowIcon" />
       </Bar>
       <Portal container={container}>
-        <MenuList role="listbox" ref={menuListRef}>
+        <MenuList ref={menuListRef} role="listbox" style={{ zIndex }}>
           {options.map(({ value, label }) => {
             const isSelected = value === selectedValue;
             return (
