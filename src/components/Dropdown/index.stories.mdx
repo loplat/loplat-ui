@@ -1,0 +1,98 @@
+import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs';
+import { Dropdown } from './index.tsx';
+import { useState } from 'react';
+import { generateTable } from '../../storybook-props';
+import { runTest } from './storybookTest';
+import { HeartFillIcon } from '../../assets/Icon';
+import { Body, black, danger } from '../../core';
+
+<Meta
+  title="Components/Dropdown"
+  component={Dropdown}
+  argTypes={{
+    selectedValue: {
+      control: 'text',
+    },
+    disabled: {
+      control: 'boolean',
+    },
+    options: {
+      control: 'null',
+      ...generateTable({
+        type: "{ value: 'string'; label?: 'string | React.ReactElement'; }[]",
+      }),
+    },
+  }}
+/>
+
+export const Template = (args) => {
+  const [value, setValue] = useState(null);
+  return (
+    <div>
+      <Dropdown
+        {...args}
+        selectedValue={args.selectedValue ?? value}
+        onChange={(e, value) => {
+          setValue(value);
+        }}
+      />
+    </div>
+  );
+};
+
+# Dropdown
+
+<Canvas>
+  <Story
+    name="default"
+    args={{
+      zIndex: 9999,
+      placeholder: '선택해주세요.',
+      options: ['loplat X', 'loplat i', 'WPS', 'IPS'].map((value) => ({ value })),
+    }}
+  >
+    {runTest(Template.bind({}))}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+## React Component Label
+
+`options` prop의 `label`에 `string` 값 또는 `React.ReactElement` 컴포넌트를 넣을 수 있습니다.
+
+<Canvas withSource="open">
+  <Story
+    name="label"
+    args={{
+      zIndex: 9999,
+      placeholder: '선택해주세요.',
+      options: [
+        {
+          value: 'option 1',
+          label: (
+            <Body color={black} my={0}>
+              option 1
+            </Body>
+          ),
+        },
+        { value: 'option 2', label: <HeartFillIcon fillColor={danger} aria-label="하트 아이콘" /> },
+      ],
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## 웹 접근성
+
+### Keyboard interactions
+
+- Dropdown MenuList가 닫힌 경우
+
+  - Dropdown Bar에 focus를 두고 'Enter' 또는 'Space' key를 누르면 메뉴 목록이 펼쳐집니다.
+
+- Dropdown MenuList가 펼쳐진 경우
+
+  - 'Esc' 또는 'Tab' key를 누르면 메뉴 목록이 닫힙니다.
+  - 'ArrowUp' 또는 'ArrowDown' key를 누르면 위/아래의 메뉴로 focus가 이동합니다. 최초의 focus 대상은 현재 선택된 메뉴이며, 현재 선택된 메뉴가 없는 경우에는 첫번째 메뉴로 focus 됩니다.
