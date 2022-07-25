@@ -1,6 +1,6 @@
 import React, { SetStateAction } from 'react';
 import { ToastItem, ToastRole } from './types';
-import { generateUniqueId } from '../../../functions/generator';
+import { generateUniqueId } from '../../../functions/uniqueId';
 
 type SetToastItems = React.Dispatch<SetStateAction<ToastItem[]>>;
 

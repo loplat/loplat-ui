@@ -1,0 +1,159 @@
+import { TabList } from './index';
+import { useState } from 'react';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { runTest } from './storybookTest.ts';
+import { generateTable } from '../../storybook-props/';
+import { Body, black, danger } from '../../core';
+import { HeartFill } from '../../assets/Icon/generated/HeartFill';
+
+<Meta
+  title="Components/TabList"
+  component={TabList}
+  argTypes={{
+    selectedValue: {
+      control: 'text',
+      table: {
+        defaultValue: { summary: '탭 1' },
+        type: {
+          summary: 'string',
+        },
+      },
+    },
+    tabs: {
+      ...generateTable({
+        type: "{ value: 'string'; label?: 'string | React.ReactElement'; isDisabled?: 'boolean'; }[]",
+      }),
+    },
+    onChange: {
+      ...generateTable({
+        type: '(event: React.SyntheticEvent, value: string) => void',
+      }),
+    },
+  }}
+/>
+
+export const Template = ({ tabs, ...args }) => {
+  const [selectedValue, setSelectedValue] = useState(tabs[0].value);
+  return (
+    <TabList
+      {...args}
+      tabs={tabs}
+      selectedValue={args.selectedValue || selectedValue}
+      onChange={(e, newValue) => setSelectedValue(newValue)}
+    />
+  );
+};
+
+# TabList
+
+<Canvas>
+  <Story
+    name="default"
+    args={{
+      tabs: [
+        { value: 'tab 1', label: '탭 1' },
+        { value: '탭 2', isDisabled: true },
+        { value: '탭 3' },
+        { value: '탭 4' },
+      ],
+    }}
+  >
+    {runTest(Template.bind({}))}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+## React Component Label
+
+`tabs` prop의 `label`에 `string` 값 또는 `React.ReactElement` 컴포넌트를 넣을 수 있습니다.
+
+<Canvas withSource="open">
+  <Story
+    name="label"
+    args={{
+      tabs: [
+        {
+          value: '탭 1',
+          label: (
+            <Body color={black} my={0}>
+              탭 1
+            </Body>
+          ),
+        },
+        { value: '탭 2', label: <HeartFill fillColor={danger} aria-label="하트 아이콘" /> },
+      ],
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## 웹 접근성
+
+### Role
+
+#### role="tablist"
+
+- 다수의 Tab `button`을 자식으로 갖는 `div` Container 입니다.
+- `aria-label`을 이용해 tablist을 설명할 수 있습니다.
+
+#### role="tab"
+
+- 각각의 Tab `button` 입니다.
+- `aria-selected`은 자동으로 입력되며 스크린리더에게 올바른 정보를 제공합니다.
+- `id`와 `aria-controls`을 이용해 `tabpanel`과 관계를 형성할 수 있습니다.
+
+#### role="tabpanel"
+
+- 각각의 Tab과 관련된 `tabpanel` Element 입니다.
+- `id`와 `aria-describedby`를 이용해 `tab`과 관계를 형성할 수 있습니다.
+- 관련된 `tab`을 activate 했을 경우에만 화면에 보여야합니다.
+- tabpanel 내부에 focusable한 요소가 마땅히 없다면, `tabIndex="0"`을 이용해 tabpanel을 focusable하게 하는 것을 권장합니다.
+
+export const TabListWithA11y = ({ tabs, ...args }) => {
+  const [selectedValue, setSelectedValue] = useState(tabs[0].value);
+  return (
+    <div>
+      <TabList
+        {...args}
+        tabs={tabs}
+        selectedValue={selectedValue}
+        onChange={(e, newValue) => setSelectedValue(newValue)}
+        aria-label="loplat UI tablist"
+      />
+      <div
+        role="tabpanel"
+        id="tabpanel-1"
+        aria-describedby="tab-1"
+        style={{ display: selectedValue === tabs[0].value ? 'block' : 'none', padding: 16 }}
+        tabIndex={0}
+      >
+        tab panel 1
+      </div>
+      <div
+        role="tabpanel"
+        id="tabpanel-2"
+        aria-describedby="tab-2"
+        style={{ display: selectedValue === tabs[1].value ? 'block' : 'none', padding: 16 }}
+        tabIndex={0}
+      >
+        tab panel 2
+      </div>
+    </div>
+  );
+};
+
+<Canvas withSource="open">
+  <Story
+    name="accessibility"
+    args={{
+      tabs: [
+        { value: '탭 1', id: 'tab-1', 'aria-controls': 'tabpanel-1' },
+        { value: '탭 2', id: 'tab-2', 'aria-controls': 'tabpanel-2' },
+      ],
+    }}
+  >
+    {TabListWithA11y.bind({})}
+  </Story>
+</Canvas>

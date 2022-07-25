@@ -30,4 +30,4 @@ export type RadioButtonGroupProps = {
   direction?: 'column' | 'row';
 } & Pick<RadioButtonProps, 'name'> &
   BoxSpacing &
-  React.HtmlHTMLAttributes<HTMLDivElement>;
+  React.HTMLAttributes<HTMLDivElement>;
