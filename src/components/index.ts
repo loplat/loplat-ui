@@ -9,3 +9,4 @@ export * from './Popup';
 export * from './RadioButton';
 export * from './TabList';
 export * from './Toast';
+export * from './Tooltip';
