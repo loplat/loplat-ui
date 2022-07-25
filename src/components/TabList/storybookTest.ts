@@ -7,34 +7,34 @@ import { sleep } from '../../functions/delay';
 export function runTest(story: ComponentStory<typeof TabList>): ComponentStory<typeof TabList> {
   story.play = async ({ args, canvasElement }) => {
     const canvas = within(canvasElement);
-    const tabs = canvas.getAllByRole('tab');
+    const options = canvas.getAllByRole('tab');
 
     // click tab
     await sleep(500);
-    userEvent.click(tabs[2]);
-    expect(tabs[2].ariaSelected).toBe('true');
+    userEvent.click(options[2]);
+    expect(options[2].ariaSelected).toBe('true');
 
     // click disabled tab
-    userEvent.click(tabs[1]);
-    expect(tabs[1].ariaSelected).toBe(null);
+    userEvent.click(options[1]);
+    expect(options[1].ariaSelected).toBe(null);
 
     // keydown arrow & enter
     await sleep(500);
     userEvent.keyboard('{arrowright}');
-    expect(tabs[3]).toHaveFocus();
-    expect(tabs[3].ariaSelected).toBe('false');
+    expect(options[3]).toHaveFocus();
+    expect(options[3].ariaSelected).toBe('false');
     userEvent.keyboard('{enter}');
-    expect(tabs[3].ariaSelected).toBe('true');
+    expect(options[3].ariaSelected).toBe('true');
 
     // keydown arrow & space
     await sleep(500);
     userEvent.keyboard('{arrowright}{space}');
-    expect(tabs[0].ariaSelected).toBe('true');
+    expect(options[0].ariaSelected).toBe('true');
 
     // focusout
     await sleep(500);
     userEvent.click(canvasElement);
-    expect(tabs[0]).not.toHaveFocus();
+    expect(options[0]).not.toHaveFocus();
   };
 
   return story;

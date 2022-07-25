@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { TabListProps, DecoratorCss } from './types';
 import { TabListDiv, Tab } from './styles';
 
-export const TabList = ({ tabs, selectedValue, onChange, ...props }: TabListProps): React.ReactElement => {
+export const TabList = ({ options, selectedValue, onChange, ...props }: TabListProps): React.ReactElement => {
   const tabListRef = useRef<HTMLDivElement>(null);
   const tabElements = useRef<HTMLButtonElement[]>([]);
   const [decoratorCss, setDecoratorCss] = useState<DecoratorCss | null>(null);
@@ -67,7 +67,7 @@ export const TabList = ({ tabs, selectedValue, onChange, ...props }: TabListProp
       decoratorCss={decoratorCss}
       {...props}
     >
-      {tabs.map(({ value, label, isDisabled, ...tabProps }) => {
+      {options.map(({ value, label, isDisabled, ...tabProps }) => {
         const isSelected = value === selectedValue;
         return (
           <Tab
