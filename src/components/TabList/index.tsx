@@ -21,8 +21,6 @@ export const TabList = ({ tabs, selectedValue, onChange, ...props }: TabListProp
 
   const handleArrowKey = (e: React.KeyboardEvent<HTMLDivElement>) => {
     const focusedElement = document.activeElement as HTMLButtonElement;
-    if (!focusedElement) return;
-
     const focusableTabElements = tabElements.current.filter((element) => !element.disabled);
     const focusedTabIndex = focusableTabElements.indexOf(focusedElement);
 
@@ -37,7 +35,7 @@ export const TabList = ({ tabs, selectedValue, onChange, ...props }: TabListProp
   };
 
   const updateDecoratorCss = () => {
-    const selectedTab = tabListRef.current!.querySelector(`button[aria-selected="true"]`) as HTMLButtonElement;
+    const selectedTab = tabListRef.current?.querySelector(`button[aria-selected="true"]`) as HTMLButtonElement;
 
     if (selectedTab) {
       setDecoratorCss({
