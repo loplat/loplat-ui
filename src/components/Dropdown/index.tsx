@@ -3,7 +3,7 @@
  */
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { spacing } from '../../core';
-import { generateUniqueId } from '../../functions/generator';
+import { generateUniqueId } from '../../functions/uniqueId';
 import { Portal } from '../../utils';
 import { ChevronDownIcon } from '../../assets/Icon';
 import { DropdownProps } from './types';
