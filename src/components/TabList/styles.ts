@@ -47,6 +47,7 @@ export const Tab = styled.button<Pick<TabProps, 'isSelected'>>`
   cursor: pointer;
 
   background-color: transparent;
+  -webkit-tap-highlight-color: transparent;
   color: ${({ isSelected }) => (isSelected ? blue500 : grayscale800)};
   transition: color 300ms;
 
