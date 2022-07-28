@@ -1,125 +1,190 @@
 import { useState } from 'react';
 import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs';
-import { Accordion } from './index.tsx';
+import { Accordion, AccordionTitle, AccordionBody, AccordionIcon } from './index.tsx';
+import { ChevronDownIcon, HeartFillIcon } from '../../assets/Icon';
 import { generateTable } from '../../storybook-props';
-import { runTest } from './storybookTest.ts';
 
 <Meta
   title="Components/Accordion"
   component={Accordion}
   argTypes={{
-    title: {
-      ...generateTable({ required: true }),
-    },
-    content: {
-      control: 'text',
-      ...generateTable({ type: 'string | React.ReactElement' }),
-    },
     duration: {
-      ...generateTable({ defaultValue: 300 }),
+      description: 'transition css millisecond 입니다.',
+      ...generateTable({ defaultValue: 300, type: 'number' }),
     },
-    headingLevel: {
-      ...generateTable({ defaultValue: 'h3' }),
+    easing: {
+      description: 'transition 의 timing-function 입니다.',
+      ...generateTable({ defaultValue: 'cubic-bezier(0.4, 0, 0.2, 1)', type: 'string' }),
     },
     type: {
-      description: '아코디언의 스타일을 결정합니다.',
+      description: '로플랫 UI가 정한 스타일 바리에이션을 적용합니다.',
       ...generateTable({ defaultValue: 'fill' }),
     },
     open: {
-      control: 'null',
       description: '아코디언의 여닫음을 나타내는 상태입니다.',
       ...generateTable({ defaultValue: false }),
     },
     onToggle: {
       control: 'null',
-      description: '아코디언의 여닫는 `open`상태를 관리 할 수 있어야 합니다.',
+      description: '아코디언의 `open`상태를 관리 할 수 있어야 합니다.',
       ...generateTable({ defaultValue: undefined }),
     },
   }}
 />
+
+# Accordion
+
+**열림 상태**일 때만 상세 정보를 보여주는 컴포넌트입니다.
+
+요약이나 레이블은 `AccordionTitle` 컴포넌트, 상세 정보는 `AccordionBody` 컴포넌트 자식에 작성해주세요.
+
+`open`과 `onToggle`을 할당하여 **직접 조작**하거나, 전달하지 않아도 **전달하지 않아도 독립적으로 여닫을 수 있습니다.**
+
+<br />
+<br />
+
+## 예제
+
+### 기본형
+
+아래 컴포넌트는 `open`과 `onToggle`을 전달하지 않았지만 동일하게 움직입니다.
+
+<Canvas>
+  <Story name="default">
+    {(args) => (
+      <Accordion type="line" {...args}>
+        <AccordionTitle>
+          {data.title}
+          <AccordionIcon>
+            <ChevronDownIcon size={12} />
+          </AccordionIcon>
+        </AccordionTitle>
+        <AccordionBody>{data.content}</AccordionBody>
+      </Accordion>
+    )}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+<br />
+
+### `<AccordionIcon/>` 를 자유롭게 사용하세요.
+
+`AccordionTitle` 내부에 `AccordionIcon` 컴포넌트를 추가로 작성하여 여닫힘 상태를 추측할 수 있는 아이콘을 표시할 수 있습니다.
+
+아코디언에 아이콘이 필요하지 않다면, `<AccordionTitle/>`에 `<AccordionIcon/>`를 넣지 않으면 됩니다.
+
+<Canvas>
+  <Story name="without icon">
+    <Accordion>
+      <AccordionTitle>{data.title}</AccordionTitle>
+      <AccordionBody>{data.content}</AccordionBody>
+    </Accordion>
+  </Story>
+</Canvas>
+
+### 아이콘에 커스텀 애니메이션을 전달하세요.
+
+색다른 애니메이션을 주고싶다면 `keyframes` 속성을 이용하세요. 해당 속성은 `keyframes 객체 리스트`를 받습니다.
+
+<Canvas withSource="open">
+  <Story name="custom icon animation">
+    <Accordion open={true}>
+      <AccordionTitle>
+        <AccordionIcon
+          keyframes={[
+            { transform: 'rotate(0deg) scale(1)' },
+            { transform: 'scale(0.8)' },
+            { transform: 'rotate(-90deg) scale(1)' },
+          ]}
+        >
+          <HeartFillIcon size={20} fillColor="red" />
+        </AccordionIcon>
+        {data.title}
+      </AccordionTitle>
+      <AccordionBody>{data.content}</AccordionBody>
+    </Accordion>
+  </Story>
+</Canvas>
+
+### 아이콘을 앞에 위치시키고 싶다면 `<AccordionIcon/>` 을 첫번째 자식으로 작성하세요.
+
+만약 `<AccordionTitle/>` 내부에 `<AccordionIcon/>` 의 형제가 많고, `<AccordionIcon/>` 순서가 첫번째가 아니라면, 아이콘은 항상 오른쪽 끝에 위치합니다.
+
+<Canvas withSource="open">
+  <Story name="icon position will be last">
+    <Accordion open={true}>
+      <AccordionTitle>
+        <div>나는 첫번째 자식</div>
+        <AccordionIcon
+          keyframes={[
+            { transform: 'rotate(0deg) scale(1)' },
+            { transform: 'scale(0.8)' },
+            { transform: 'rotate(-90deg) scale(1)' },
+          ]}
+        >
+          <HeartFillIcon size={12} fillColor="red" />
+        </AccordionIcon>
+        <span>나는 AccordionIcon 의 형제이자 세번째 자식!</span>
+        나는 Accordion Title 컴포넌트의 마지막 text node!
+      </AccordionTitle>
+      <AccordionBody>{data.content}</AccordionBody>
+    </Accordion>
+  </Story>
+</Canvas>
+
+### 컨트롤 컴포넌트
+
+아래의 예제는 아코디언의 상태와 상태관리를 코드작성자에게 완전히 맡깁니다.
+
+<Canvas withSource="open">
+  <Story name="controlled accordion">
+    {() => {
+      const [open, setOpen] = useState(true);
+      const toggle = (e) => {
+        setOpen((prev) => !prev);
+        console.log('Hi from Accordion =)');
+      };
+      return (
+        <Accordion open={open} duration={700} onToggle={toggle}>
+          <AccordionTitle>
+            {data.title}
+            <AccordionIcon>
+              <ChevronDownIcon size={12} />
+            </AccordionIcon>
+          </AccordionTitle>
+          <AccordionBody>{data.content}</AccordionBody>
+        </Accordion>
+      );
+    }}
+  </Story>
+</Canvas>
+
+<br />
+
+## 웹 접근성
+
+예제의 node tree hierarchy 를 정확하게 준수한다면, 접근성을 높이기 위한 코드는 추가적으로 작성하지 않아도 충분합니다. :)
+
+<br />
+
+## ** 주의사항 **
+
+`Accordion` 의 자식으로 `AccordionTitle`, `AccordionBody` 을 넣어줘야 정상적으로 동작합니다. 그렇지 않으면 `DOMException` 에러를 던집니다!
+
+아래 예제는 `AccordionBody`을 넣지 않은 코드입니다. 정상적으로 보이지만, 클릭한다면 에러가 뜨는 것을 콘솔창에서 확인할 수 있습니다.
+
+<Canvas withSource="open">
+  <Story name="dom error">
+    <Accordion type="line">
+      <AccordionTitle>{data.title}</AccordionTitle>
+    </Accordion>
+  </Story>
+</Canvas>
 
 export const data = {
   title: '새겨지는 별이 이름을 된 이웃 거외다.',
   content:
     '딴은 당신은 흙으로 가득 까닭이요, 아침이 프랑시스 이름자를 거외다. 노새, 불러 그러나 토끼, 무엇인지 아이들의 소녀들의 이름을 나의 듯합니다. 계절이 나는 언덕 한 너무나 별 별 책상을 봅니다. 가을로 밤을 가을 나의 이름과, 부끄러운 하나에 옥 까닭입니다. 슬퍼하는 겨울이 내 어머니 멀리 별을 이제 계십니다. 사람들의 지나가는 다하지 하나의 했던 내린 듯합니다. 이제 가을 지나고 시인의 위에 별을 하나에 있습니다.',
 };
-
-export const Template = (args) => {
-  const [isOpen, setIsOpen] = useState(args.open || false);
-  const toggle = () => {
-    setIsOpen((prev) => !prev);
-  };
-  return <Accordion {...data} {...args} open={isOpen} onToggle={toggle} />;
-};
-
-export const UncontrolledTemplate = (args) => <Accordion {...data} {...args} onToggle={undefined} />;
-
-# Accordion
-
-토글하여 자세한 설명을 볼 수 있는 컴포넌트입니다.
-
-`open`과 `onToggle`을 할당하여 **직접 조작**하거나, 전달하지 않아도 **전달하지 않아도 독립적으로 여닫을 수 있습니다.**
-
-## contorlled
-
-`open`, `onToggle`을 할당하여 직접 조작합니다.
-
-<Canvas>
-  <Story name="controlled">{runTest(Template.bind({}))}</Story>
-</Canvas>
-
-<ArgsTable story="controlled" />
-
-## uncontorlled
-
-아래 컴포넌트는 `open`과 `onToggle`을 전달하지 않았지만 동일하게 움직입니다.
-
-<Canvas>
-  <Story name="uncontrolled" args={{ type: 'line' }}>
-    {UncontrolledTemplate.bind()}
-  </Story>
-</Canvas>
-
-## 예제
-
-### type
-
-스타일 타입은 `line`과 `fill`이 있습니다.
-
-<Canvas isColumn>
-  <Story name="fill" args={{ type: 'fill', title: `type : 'fill'`, duration: 1000 }}>
-    {Template.bind({})}
-  </Story>
-  <Story name="line" args={{ type: 'line', title: `type : 'line'`, duration: 1000 }}>
-    {Template.bind({})}
-  </Story>
-</Canvas>
-
-### open 상태
-
-`open={true}`를 전달하여 열린 상태로 렌더링 할 수 있습니다.
-
-<Canvas>
-  <Story name="line-default-open" args={{ open: true }}>
-    {UncontrolledTemplate.bind({})}
-  </Story>
-</Canvas>
-
-### 아코디언들
-
-아코디언을 열거하여 사용할 수 있습니다.
-
-마찬가지로 특정 아코디언의 열림상태를 기본으로 줄 수 있습니다.
-
-`uncontrolled` 상태로 사용하고 싶을 경우 `open`프로퍼티만 이용해주세요.
-
-<Canvas>
-  <Story name="accordions-uncontrolled">
-    <Accordion {...data} type="line" />
-    <Accordion {...data} type="line" open={true} title="이 아코디언만 초기에 열려있습니다." />
-    <Accordion {...data} type="line" />
-    <Accordion {...data} type="line" />
-  </Story>
-</Canvas>
-
-위의 예시와 다르게, 한번에 하나의 아코디언만 열고 싶다면 `open`과 `onToggle` 속성을 적절하게 이용하여 구현할 수 있습니다.

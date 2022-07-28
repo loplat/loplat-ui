@@ -4,62 +4,50 @@ import { black, bluescale100, grayscale200, grayscale800, blue100 } from '../../
 import { primary } from '../../core/styles/palette';
 import { transition } from '../../core/styles/transition';
 import { spacing } from '../../core';
-import { AccordionProps } from './types';
 
-type DetailsProps = Pick<Required<AccordionProps>, 'duration' | 'type'> & {
-  expanded: boolean;
-};
-export const Details = styled.details<DetailsProps>(
-  (props) => css`
+export const Summary = styled.summary<{ iconPosition: 'start' | 'end' }>(
+  ({ iconPosition }) => css`
+    cursor: pointer;
+    display: block;
     background-color: white;
-    border-bottom: ${props.type === 'line' ? `1px solid ${grayscale200}` : ''};
-    ${transition('background,height', props.duration)};
-
-    summary ~ * {
-      ${transition('height', props.duration)};
-      background-color: ${props.type === 'fill' ? bluescale100 : ''};
+    &::-webkit-details-marker {
+      display: none;
     }
 
-    summary {
-      ${transition('background-color, color', props.duration)};
-      color: ${black};
-      &:hover,
-      :focus {
-        background-color: ${blue100};
-      }
-      svg {
-        will-change: transform;
-        ${transition('transform', props.duration)}
-        transform: rotate(0deg);
-      }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    span,
+    p {
+      word-break: break-word;
+      text-align: left;
     }
+    > div {
+      display: grid;
+      column-gap: ${spacing(4)}px;
+      ${iconPosition === 'start' && `grid-template-columns: [icon] max-content [children] 1fr`};
+      ${iconPosition === 'end' && `grid-template-columns: [children] 1fr [icon] max-content`};
+      grid-template-rows: auto;
+      align-items: center;
+      padding: ${spacing(4)}px ${spacing(6)}px;
 
-    ${props.expanded &&
-    ` background-color: ${props.type === 'fill' ? bluescale100 : ''};
-      summary {
-        color: ${primary};
-        background-color: ${props.type === 'fill' ? bluescale100 : ''};
-        svg {
-          transform: rotate(-180deg);
+      > * {
+        &:not(div[data-type='icon']) {
+          grid-column-start: children;
         }
-      }`};
+      }
+    }
   `,
 );
 
-export const Summary = styled.summary`
-  list-style: none;
-  background-color: white;
-  &::-webkit-details-marker {
-    display: none;
-  }
-
-  > div {
-    padding: ${spacing(4)}px ${spacing(6)}px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
+export const IconWrapper = styled.div`
+  grid-column-start: icon;
+  grid-row: 1;
+  display: grid;
+  align-items: center;
 `;
 
 export const Heading = styled.h3`
@@ -69,13 +57,55 @@ export const Heading = styled.h3`
   font-size: 1rem;
 `;
 
-export const Body = styled.div`
+export const Content = styled.div`
   overflow: hidden;
   font-size: 1rem;
   color: ${grayscale800};
   height: 0px;
   min-height: 0px;
+
+  p,
+  span {
+    word-break: break-word;
+    text-align: left;
+  }
+
   > div {
+    line-height: 24px;
     padding: ${spacing(4)}px ${spacing(6)}px ${spacing(8)}px;
   }
 `;
+
+type DetailsProps = {
+  type: 'line' | 'fill';
+  duration: number;
+  easing: string;
+};
+export const Details = styled.details<DetailsProps>(
+  ({ type, duration, easing }) => css`
+    background-color: white;
+    border-bottom: ${type === 'line' ? `1px solid ${grayscale200}` : ''};
+    ${transition('background,height', duration, easing)};
+
+    summary ~ * {
+      background-color: ${type === 'fill' ? bluescale100 : ''};
+    }
+
+    summary {
+      ${transition('background-color, color', duration, easing)};
+      color: ${black};
+      &:hover,
+      :focus {
+        background-color: ${blue100};
+      }
+    }
+
+    &.expanded {
+      background-color: ${type === 'fill' ? bluescale100 : ''};
+      summary {
+        color: ${primary};
+        background-color: ${type === 'fill' ? bluescale100 : ''};
+      }
+    }
+  `,
+);
