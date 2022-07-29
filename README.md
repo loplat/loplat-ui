@@ -70,6 +70,8 @@ If you have recently updated, please read the [changelog](https://github.com/lop
 
 ## Roadmap
 
+- Dropdown using Compound Components
+- Accordion using Compound Components
 - D3.js Charts
 
 ## License

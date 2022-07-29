@@ -1,3 +1,10 @@
+# 1.8.0 (2022-07-29)
+
+## Added
+- [Tooltip](https://ui.loplat.com/?path=/docs/components-tooltip--default-story) 컴포넌트를 추가했습니다.
+- [TabList](https://ui.loplat.com/?path=/docs/components-tablist--default-story) 컴포넌트를 추가했습니다.
+
+
 # 1.7.1 (2022-06-16)
 
 ## Renewal
