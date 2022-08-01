@@ -3,6 +3,7 @@ import {
   blue100,
   blue500,
   bluescale100,
+  bluescale500,
   grayscale200,
   grayscale50,
   grayscale500,
@@ -30,7 +31,7 @@ export const Bar = styled.div`
 
   span {
     color: ${black};
-    &.placeholder {
+    &[aria-placeholder] {
       color: ${grayscale500};
     }
   }
@@ -45,13 +46,13 @@ export const Bar = styled.div`
   &:hover {
     border-color: ${grayscale500};
   }
-  &.open {
+  &[aria-expanded='true'] {
     border-color: ${blue500};
     .arrowIcon {
       transform: rotate(180deg);
     }
   }
-  &.disabled {
+  &[aria-disabled='true'] {
     background-color: ${grayscale50};
     cursor: not-allowed;
     span {
@@ -66,24 +67,24 @@ export const Bar = styled.div`
   }
 `;
 
-export const MenuList = styled.ul`
+export const OptionList = styled.ul`
   position: absolute;
-  box-shadow: 0 1px 8px 0 rgba(200, 212, 224, 0.3);
   opacity: 0;
   transform-origin: center top;
   transform: scale(0.75);
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1), transform 150ms cubic-bezier(0.4, 0, 0.2, 1);
 
+  box-shadow: 0 1px 8px 0 rgba(200, 212, 224, 0.3);
   list-style-type: none;
   background-color: white;
 
   box-sizing: border-box;
-  border: 1px solid ${grayscale200};
   padding: ${spacing(4)}px;
+  border: 1px solid ${grayscale200};
   margin: 0;
 `;
 
-export const MenuItem = styled.li`
+export const Option = styled.li`
   display: flex;
   align-items: center;
   padding: ${spacing(4)}px;
@@ -94,8 +95,13 @@ export const MenuItem = styled.li`
     background-color: ${blue100};
   }
 
-  &.selected {
+  &[aria-selected='true'] {
     color: ${blue500};
     background-color: ${bluescale100};
+  }
+
+  &[aria-disabled='true'] {
+    cursor: not-allowed;
+    color: ${bluescale500};
   }
 `;
