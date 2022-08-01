@@ -30,6 +30,11 @@ export function runTest(story: ComponentStory<typeof Dropdown>): ComponentStory<
     expect(bar.textContent).toBe(options[0]);
     expect(bar.ariaExpanded).toBe('false');
 
+    userEvent.keyboard('{enter}');
+    expect(bar.ariaExpanded).toBe('true');
+    userEvent.keyboard('{escape}');
+    expect(bar.ariaExpanded).toBe('false');
+
     userEvent.click(canvasElement);
   };
 

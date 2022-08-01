@@ -1,98 +1,272 @@
-import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs';
+import { Canvas, Meta, Story, Source } from '@storybook/addon-docs';
 import { Dropdown } from './index.tsx';
 import { useState } from 'react';
-import { generateTable } from '../../storybook-props';
+import { CircleLoading } from '../Loading';
+import { IconButton } from '../IconButton';
+import { MoreVertIcon } from '../../assets/Icon';
+import { Checkbox } from '../Checkbox';
 import { runTest } from './storybookTest';
-import { HeartFillIcon } from '../../assets/Icon';
-import { Body, black, danger } from '../../core';
+import { generateTable } from '../../storybook-props';
 
 <Meta
   title="Components/Dropdown"
   component={Dropdown}
   argTypes={{
-    selectedValue: {
-      control: 'text',
-    },
-    disabled: {
-      control: 'boolean',
-    },
-    options: {
-      control: 'null',
+    onChange: {
       ...generateTable({
-        type: "{ value: 'string'; label?: 'string | React.ReactElement'; }[]",
+        type: '(e: DropdownChangeEvent, value: DropdownValue) => void',
       }),
     },
   }}
 />
 
-export const Template = (args) => {
-  const [value, setValue] = useState(null);
-  return (
-    <div>
-      <Dropdown
-        {...args}
-        selectedValue={args.selectedValue ?? value}
-        onChange={(e, value) => {
-          setValue(value);
-        }}
-      />
-    </div>
-  );
-};
+export const options = ['loplat X', 'loplat i', 'WPS', 'IPS'];
 
 # Dropdown
 
-<Canvas>
-  <Story
-    name="default"
-    args={{
-      zIndex: 9999,
-      placeholder: '선택해주세요.',
-      options: ['loplat X', 'loplat i', 'WPS', 'IPS'].map((value) => ({ value })),
-    }}
-  >
-    {runTest(Template.bind({}))}
-  </Story>
+export const Template = (args) => {
+  const [selectedValue, setSelectedValue] = useState(args.selectedValue || 'loplat X');
+  return (
+    <Dropdown {...args} onChange={(e, newValue) => setSelectedValue(newValue)}>
+      <Dropdown.Trigger>
+        <Dropdown.Bar value={selectedValue} aria-label="Dropdown" />
+      </Dropdown.Trigger>
+      <Dropdown.OptionList>
+        {options.map((value) => (
+          <Dropdown.Option
+            value={value}
+            selected={value === selectedValue}
+            disabled={value === options[2]}
+            key={value}
+          />
+        ))}
+      </Dropdown.OptionList>
+    </Dropdown>
+  );
+};
+
+<Canvas withSource="none">
+  <Story name="default">{runTest(Template.bind({}))}</Story>
 </Canvas>
 
-<ArgsTable story="default" />
+Dropdown 기본 UI 입니다. 아래 코드와 같이 Dropdown.Trigger/Bar/OptionList/Option 컴포넌트를 사용합니다.
 
-## React Component Label
+- **Bar props**: `value`, `expanded`, `disabled`, `placeholder`
 
-`options` prop의 `label`에 `string` 값 또는 `React.ReactElement` 컴포넌트를 넣을 수 있습니다.
+- **OptionList props**: `zIndex`
 
-<Canvas withSource="open">
-  <Story
-    name="label"
-    args={{
-      zIndex: 9999,
-      placeholder: '선택해주세요.',
-      options: [
-        {
-          value: 'option 1',
-          label: (
-            <Body color={black} my={0}>
-              option 1
-            </Body>
-          ),
-        },
-        { value: 'option 2', label: <HeartFillIcon fillColor={danger} aria-label="하트 아이콘" /> },
-      ],
-    }}
-  >
+- **Option props**: `value`, `label`, `selected`, `disabled`
+
+export const defaultCode = `
+const [selectedValue, setSelectedValue] = useState('loplat X');
+return (
+    <Dropdown onChange={(e, newValue) => setSelectedValue(newValue)}>
+    <Dropdown.Trigger>
+      <Dropdown.Bar value={selectedValue} aria-label="Dropdown" />
+    </Dropdown.Trigger>
+    <Dropdown.OptionList>
+      {options.map((value) => (
+                 <Dropdown.Option
+         value={value}
+         selected={value === selectedValue}
+         disabled={value === options[2]}
+         key={value}
+        />
+              ))}
+    </Dropdown.OptionList>
+  </Dropdown>
+);
+`;
+
+<Source dark language="tsx" code={defaultCode} />
+
+# Custom Trigger
+
+export const CustomTrigger = (args) => {
+  const [selectedValue, setSelectedValue] = useState('loplat X');
+  return (
+    <Dropdown {...args} onChange={(e, newValue) => setSelectedValue(newValue)}>
+      <Dropdown.Trigger>
+        <IconButton>
+          <MoreVertIcon />
+        </IconButton>
+      </Dropdown.Trigger>
+      <Dropdown.OptionList>
+        {options.map((value) => (
+          <Dropdown.Option value={value} selected={value === selectedValue} key={value} />
+        ))}
+      </Dropdown.OptionList>
+    </Dropdown>
+  );
+};
+
+<Canvas withSource="none">
+  <Story name="custom trigger">{CustomTrigger.bind({})}</Story>
+</Canvas>
+
+Dropdown.Trigger의 `children`으로 custom UI 컴포넌트를 사용할 수 있습니다.
+
+이 때, `children` 컴포넌트는 **React.forwardRef**를 이용해 ref를 전달받아야합니다.
+
+(loplat UI에 있는 컴포넌트(Button/IconButton/Input, etc.)를 그대로 사용할 수 있습니다.)
+
+---
+
+Dropdown.Trigger는 `children` 컴포넌트에게 ref, expanded, disabled 속성을 전달합니다.
+
+```jsx
+return React.cloneElement(children, { ...children.props, expanded, disabled, ref: triggerRef });
+```
+
+export const customTriggerSource = `
+<Dropdown.Trigger>
+  <IconButton>
+    <MoreVertIcon />
+  </IconButton>
+</Dropdown.Trigger>
+`;
+
+<Source dark language="tsx" code={customTriggerSource} />
+
+# Option With Label
+
+export const CustomOption = (args) => {
+  const [selectedValue, setSelectedValue] = useState('loplat X');
+  return (
+    <Dropdown {...args} onChange={(e, newValue) => setSelectedValue(newValue)}>
+      <Dropdown.Trigger>
+        <Dropdown.Bar value={selectedValue} />
+      </Dropdown.Trigger>
+      <Dropdown.OptionList>
+        {options.map((value, index) => {
+          const loading = index % 2 === 1;
+          return (
+            <Dropdown.Option
+              value={value}
+              label={loading ? <CircleLoading size={50}>{value}</CircleLoading> : value}
+              selected={value === selectedValue}
+              disabled={loading}
+              key={value}
+            />
+          );
+        })}
+      </Dropdown.OptionList>
+    </Dropdown>
+  );
+};
+
+<Canvas withSource="none">
+  <Story name="option with label">{CustomOption.bind({})}</Story>
+</Canvas>
+
+Dropdown.Option의 `label` prop에 원하는 `ReactElement`나 `string`을 전달할 수 있습니다.
+
+export const optionWithLabelSource = `
+<Dropdown.OptionList>
+  {options.map((value, index) => {
+           const loading = index % 2 === 1;
+           return (
+              <Dropdown.Option
+        value={value}
+        label={loading ? <CircleLoading size={50}>{value}</CircleLoading> : value}
+        selected={value === selectedValue}
+        disabled={loading}
+        key={value}
+       />
+          );
+      })}
+</Dropdown.OptionList>
+`;
+
+<Source dark language="tsx" code={optionWithLabelSource} />
+
+# Disabled
+
+<Canvas withSource="none">
+  <Story name="disabled" args={{ disabled: true }}>
     {Template.bind({})}
   </Story>
 </Canvas>
 
-## 웹 접근성
+`disabled={true}` 일 때, Dropdown 컴포넌트 전체가 비활성화 됩니다.
 
-### Keyboard interactions
+export const disabledSource = `
+<Dropdown disabled={true}>
+`;
 
-- Dropdown MenuList가 닫힌 경우
+<Source dark language="tsx" code={disabledSource} />
 
-  - Dropdown Bar에 focus를 두고 'Enter' 또는 'Space' key를 누르면 메뉴 목록이 펼쳐집니다.
+# Multiple
 
-- Dropdown MenuList가 펼쳐진 경우
+export const Multiple = (args) => {
+  const [selectedValues, setSelectedValues] = useState(['loplat i', 'IPS']);
+  const handleChange = (e, newValue) => {
+    if (selectedValues.includes(newValue)) {
+      setSelectedValues(selectedValues.filter((value) => value !== newValue));
+    } else {
+      setSelectedValues([...selectedValues, newValue]);
+    }
+  };
+  return (
+    <Dropdown {...args} onChange={handleChange}>
+      <Dropdown.Trigger>
+        <Dropdown.Bar value={selectedValues.join(', ')} placeholder="선택해주세요." />
+      </Dropdown.Trigger>
+      <Dropdown.OptionList>
+        {options.map((value) => {
+          const selected = selectedValues.includes(value);
+          return (
+            <Dropdown.Option
+              value={value}
+              label={<Checkbox name="checkbox" label={value} checked={selected} />}
+              selected={selected}
+              key={value}
+            />
+          );
+        })}
+      </Dropdown.OptionList>
+    </Dropdown>
+  );
+};
 
-  - 'Esc' 또는 'Tab' key를 누르면 메뉴 목록이 닫힙니다.
-  - 'ArrowUp' 또는 'ArrowDown' key를 누르면 위/아래의 메뉴로 focus가 이동합니다. 최초의 focus 대상은 현재 선택된 메뉴이며, 현재 선택된 메뉴가 없는 경우에는 첫번째 메뉴로 focus 됩니다.
+<Canvas withSource="none">
+  <Story name="multiple" args={{ multiple: true }}>
+    {Multiple.bind({})}
+  </Story>
+</Canvas>
+
+`multiple={true}` 일 때, onChange event가 발생해도 OptionList가 닫히지 않습니다.
+
+export const multipleSource = `
+const [selectedValues, setSelectedValues] = useState(['loplat i', 'IPS']);
+const handleChange = (e, newValue) => {
+  if (selectedValues.includes(newValue)) {
+     setSelectedValues(selectedValues.filter((value) => value !== newValue));
+  } else {
+     setSelectedValues([...selectedValues, newValue]);
+  }
+};
+return (
+  <Dropdown onChange={handleChange} multiple={true}>
+  <Dropdown.Trigger>
+    <Dropdown.Bar value={selectedValues.join(', ')} placeholder="선택해주세요." />
+  </Dropdown.Trigger>
+  <Dropdown.OptionList>
+    {options.map((value) => {
+              const selected = selectedValues.includes(value);
+              return (
+                <Dropdown.Option
+         value={value}
+         label={<Checkbox name="checkbox" label={value} checked={selected} />}
+         selected={selected}
+         key={value}
+       />
+          );
+        })}
+  </Dropdown.OptionList>
+ </Dropdown>
+);
+`;
+
+<Source dark language="tsx" code={multipleSource} />
+```
