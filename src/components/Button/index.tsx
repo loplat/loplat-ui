@@ -214,6 +214,7 @@ export const BaseButton = styled.button<BaseButtonProps>`
   align-items: center;
   padding: ${({ padding }) => padding};
   ${marginSpacingStyle};
+  cursor: pointer;
 
   border-width: 1px;
   border-style: solid;
@@ -257,7 +258,6 @@ export const BaseButton = styled.button<BaseButtonProps>`
     cursor: not-allowed;
   }
   ${Large} {
-    cursor: pointer;
     &:hover:not(:disabled) {
       color: ${({ text }) => text.hover};
       svg g > path {
