@@ -1,14 +1,8 @@
-import { Meta } from '@storybook/addon-docs';
-import { Palette } from './index.stories.tsx';
+import { Meta, ColorPalette, ColorItem, Source } from '@storybook/addon-docs';
 import { hideCanvas } from '../../../storybook-props/';
+import { palette } from '.';
 
-<Meta
-  title="core/palette"
-  component={Palette}
-  parameters={{
-    ...hideCanvas,
-  }}
-/>
+<Meta title="core/palette" />
 
 # Palette
 
@@ -16,10 +10,18 @@ import { hideCanvas } from '../../../storybook-props/';
 
 ## 사용 방법
 
-```js
-import { primary, success } from 'loplat-ui';
-```
+<Source
+  language="js"
+  dark
+  code={`
+     import { primary, success } from 'loplat-ui';
+  `}
+/>
 
 ## 색상 목록
 
-<Palette />
+<ColorPalette>
+  {Object.entries(palette).map(([paletteName, color]) => (
+    <ColorItem key={paletteName} title={paletteName} colors={{ [paletteName]: color }} />
+  ))}
+</ColorPalette>

@@ -1,14 +1,8 @@
-import { Meta } from '@storybook/addon-docs';
-import { Colors } from './index.stories.tsx';
+import { Meta, ColorPalette, ColorItem, Source } from '@storybook/addon-docs';
 import { hideCanvas } from '../../storybook-props/';
+import { colors } from '.';
 
-<Meta
-  title="core/colors"
-  component={Colors}
-  parameters={{
-    ...hideCanvas,
-  }}
-/>
+<Meta title="core/colors" />
 
 # Colors
 
@@ -16,10 +10,38 @@ import { hideCanvas } from '../../storybook-props/';
 
 ## 사용 방법
 
-```js
-import { grayscale300, teal } from 'loplat-ui';
-```
+<Source
+  language="js"
+  dark
+  code={`
+     import { grayscale300, teal } from 'loplat-ui';
+  `}
+/>
+
+export function isSimpleColor(key, value) {
+  return typeof value === 'string' && (value.match(/^#/) || value.match(/^rgb/) || key.match(/color/i));
+}
+
+export function RendePaletteRecursively(items) {
+  return Object.entries(items).map(([mainKey, colors]) => {
+    if (isSimpleColor(mainKey, colors)) {
+      return <ColorItem key={mainKey} title={mainKey} colors={{ [mainKey]: colors }} />;
+    } else if (typeof colors === 'object') {
+      return (
+        <ColorItem
+          key={mainKey}
+          title={mainKey}
+          colors={Object.entries(colors)
+            .sort(([a], [b]) => b - a)
+            .reduce((acc, [key, value]) => {
+              return isSimpleColor(key, value) ? { ...acc, [`${mainKey}${key}`]: value } : acc;
+            }, {})}
+        />
+      );
+    } else return null;
+  });
+}
 
 ## 색상 목록
 
-<Colors />
+<ColorPalette>{RendePaletteRecursively(colors)}</ColorPalette>
