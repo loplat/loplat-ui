@@ -1,5 +1,4 @@
 import { Meta, ColorPalette, ColorItem, Source } from '@storybook/addon-docs';
-import { hideCanvas } from '../../storybook-props/';
 import { colors } from '.';
 
 <Meta title="core/colors" />
@@ -13,30 +12,29 @@ import { colors } from '.';
 <Source
   language="js"
   dark
-  code={`
-     import { grayscale300, teal } from 'loplat-ui';
-  `}
+  code={`import { grayscale300, teal } from 'loplat-ui';`}
 />
 
 export function isSimpleColor(key, value) {
   return typeof value === 'string' && (value.match(/^#/) || value.match(/^rgb/) || key.match(/color/i));
 }
 
-export function RendePaletteRecursively(items) {
+export function RenderPaletteRecursively(items) {
   return Object.entries(items).map(([mainKey, colors]) => {
     if (isSimpleColor(mainKey, colors)) {
-      return <ColorItem key={mainKey} title={mainKey} colors={{ [mainKey]: colors }} />;
+      return <ColorItem key={mainKey} title={mainKey} subtitle="" colors={{ [mainKey]: colors }} />;
     } else if (typeof colors === 'object') {
       return (
         <ColorItem
           key={mainKey}
           title={mainKey}
+          subtitle=""
           colors={Object.entries(colors)
             .sort(([a], [b]) => b - a)
             .reduce((acc, [key, value]) => {
               return isSimpleColor(key, value) ? { ...acc, [`${mainKey}${key}`]: value } : acc;
             }, {})}
-        />
+         />
       );
     } else return null;
   });
@@ -44,4 +42,4 @@ export function RendePaletteRecursively(items) {
 
 ## 색상 목록
 
-<ColorPalette>{RendePaletteRecursively(colors)}</ColorPalette>
+<ColorPalette>{RenderPaletteRecursively(colors)}</ColorPalette>
