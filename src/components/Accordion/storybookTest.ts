@@ -1,7 +1,7 @@
 import { ComponentStory } from '@storybook/react';
 import { expect } from '@storybook/jest';
 import { userEvent, within } from '@storybook/testing-library';
-import Accordion, { DEFAULT_DURATION } from './index';
+import { Accordion, DEFAULT_DURATION } from './index';
 import { sleep } from '../../functions/delay';
 
 export function runTest(story: ComponentStory<typeof Accordion>): ComponentStory<typeof Accordion> {
@@ -9,8 +9,8 @@ export function runTest(story: ComponentStory<typeof Accordion>): ComponentStory
     const duration = args.duration ?? DEFAULT_DURATION;
     const canvas = within(canvasElement);
 
-    const details = canvas.getByTestId('details');
-    const title = canvas.getByTestId('summary');
+    const details = canvasElement.querySelector('details') as HTMLDetailsElement;
+    const title = canvasElement.querySelector('summary') as HTMLDivElement;
     const body = canvas.getByRole('region');
 
     expect(body).not.toBeVisible();

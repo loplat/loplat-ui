@@ -1,56 +1,56 @@
-import React, { forwardRef, Ref, useEffect, useState } from 'react';
-import type { AccordionIconProps, AccordionProps, AccordionTitleProps, AccordionWrapperProps } from './types';
+import React, { forwardRef, HTMLAttributes, useEffect, useRef, useState } from 'react';
+import type { ReactNode, FunctionComponentElement } from 'react';
+import type { AccordionIndicatorProps, AccordionProps, AccordionTitleProps, IconPosition } from './types';
 import { AccordionContextProvider, useAccordion } from './utils';
 import { Summary, Heading, Content, Details, IconWrapper } from './styles';
 
-const DEFAULT_EASING = 'cubic-bezier(0.4, 0, 0.2, 1)';
-const Accordion = forwardRef(function (
-  {
-    children,
-    onToggle,
-    duration = 500,
-    open = false,
-    type = 'fill',
-    easing = DEFAULT_EASING,
-    ...props
-  }: AccordionProps,
-  ref: Ref<HTMLDivElement>,
-) {
-  return (
-    <AccordionContextProvider open={open} onToggle={onToggle} duration={duration} easing={easing}>
-      <div ref={ref}>
-        <Wrapper {...props} type={type} duration={duration} easing={easing}>
-          {children}
-        </Wrapper>
-      </div>
-    </AccordionContextProvider>
-  );
-});
+function narrowComponentWithDisplayName(component: ReactNode): component is FunctionComponentElement<HTMLDivElement> {
+  return React.isValidElement(component) && typeof component.type !== 'string';
+}
 
-const Wrapper = ({ children, ...props }: AccordionWrapperProps) => {
-  const { accordionRef } = useAccordion();
+export const INDICATOR_DISPLAY_NAME = 'AccordionIndicator';
+export const DEFAULT_DURATION = 300;
+export const DEFAULT_EASING = 'cubic-bezier(0.4, 0, 0.2, 1)';
+export const Accordion = ({
+  children,
+  onToggle,
+  duration = DEFAULT_DURATION,
+  open = false,
+  type,
+  easing = DEFAULT_EASING,
+  ...props
+}: AccordionProps) => {
+  const accordionRef = useRef<HTMLDetailsElement>(null);
+
   return (
-    <Details ref={accordionRef} {...props}>
-      {children}
-    </Details>
+    <AccordionContextProvider
+      open={open}
+      onToggle={onToggle}
+      duration={duration}
+      easing={easing}
+      accordionRef={accordionRef}
+    >
+      <Details ref={accordionRef} {...{ type, duration, easing }} {...props}>
+        {children}
+      </Details>
+    </AccordionContextProvider>
   );
 };
 
-type IconPosition = 'start' | 'end';
-const AccordionTitle = ({ children, headingLevel = 'h3', ...props }: AccordionTitleProps): JSX.Element => {
+const AccordionTitle = forwardRef<HTMLDivElement, AccordionTitleProps>(({ children, tag = 'h3', ...props }, ref) => {
   const { toggle, getAccordionTitleProps } = useAccordion();
   const [iconPosition, setIconPosition] = useState<IconPosition>('end');
-  const [icon, setIcon] = useState<React.ReactNode | null>(null);
+  const [icon, setIcon] = useState<ReactNode>(null);
 
   useEffect(() => {
-    const childrenArray = React.Children.toArray(children);
-    let position: IconPosition = 'end';
-    const idx = childrenArray.findIndex((child) => {
-      return React.isValidElement(child) && child.type.displayName === 'AccordionIcon';
+    React.Children.toArray(children).find((child, idx) => {
+      if (narrowComponentWithDisplayName(child) && child.type.displayName === INDICATOR_DISPLAY_NAME) {
+        if (idx === 0) setIconPosition('start');
+        setIcon(child);
+        return true;
+      }
+      return false;
     });
-    if (idx === 0) position = 'start';
-    setIconPosition(position);
-    setIcon(childrenArray[idx]);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
@@ -62,45 +62,55 @@ const AccordionTitle = ({ children, headingLevel = 'h3', ...props }: AccordionTi
         e.preventDefault();
         toggle(e);
       }}
+      ref={ref}
     >
-      <div role="button">
+      {/* NOTE: safari 구버전에서 summary tag에 flex가 적용되지 않는 버그 대응 */}
+      <div>
         {iconPosition === 'start' && icon}
         {React.Children.map(children, (child) => {
-          if (typeof child === 'string') {
-            return <Heading as={headingLevel}>{child}</Heading>;
-          }
-          if (React.isValidElement(child) && child.type?.displayName === 'AccordionIcon') return;
+          if (typeof child === 'string') return <Heading as={tag}>{child}</Heading>;
+          if (narrowComponentWithDisplayName(child) && child.type.displayName === INDICATOR_DISPLAY_NAME) return;
           return child;
         })}
         {iconPosition === 'end' && icon}
       </div>
     </Summary>
   );
-};
+});
 
-const AccordionBody = ({ children, ...props }: React.HtmlHTMLAttributes<HTMLDivElement>): JSX.Element => {
+const AccordionContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(({ children, ...props }, ref) => {
   const { contentRef, getAccordionBodyProps } = useAccordion();
 
   return (
     <Content {...props} {...getAccordionBodyProps()} ref={contentRef}>
-      <div>{children}</div>
+      {/* NOTE: padding 을 포함한 기하학 height을 정확히 구하기 위한 div wrapper */}
+      <div ref={ref}>{children}</div>
     </Content>
   );
-};
+});
 
-const defaultKeyframes = [{ transform: 'rotate(0deg)' }, { transform: 'rotate(-180deg)' }];
-export const AccordionIcon = ({ children, keyframes = defaultKeyframes }: AccordionIconProps) => {
-  const { setIconAnimation, iconRef } = useAccordion();
+export const DEFAULT_KEYFRAMES = [{ transform: 'rotate(0deg)' }, { transform: 'rotate(-180deg)' }];
+export function AccordionIndicator({ children, keyframes = DEFAULT_KEYFRAMES }: AccordionIndicatorProps) {
+  const { setIconAnimation } = useAccordion();
+  const iconRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (keyframes?.length) setIconAnimation(keyframes);
+    if (keyframes?.length && iconRef.current) setIconAnimation(keyframes, iconRef);
   }, [keyframes, setIconAnimation]);
+
   return (
     <IconWrapper ref={iconRef} data-type="icon">
       {children}
     </IconWrapper>
   );
-};
-AccordionIcon.displayName = 'AccordionIcon';
+}
+AccordionIndicator.displayName = INDICATOR_DISPLAY_NAME;
 
-export { AccordionBody, Accordion, AccordionTitle };
+Accordion.Title = AccordionTitle;
+Accordion.Content = AccordionContent;
+Accordion.Indicator = AccordionIndicator;
+
+<Accordion>
+  <Accordion.Title>hi</Accordion.Title>
+  <Accordion.Content>yes</Accordion.Content>
+</Accordion>;
