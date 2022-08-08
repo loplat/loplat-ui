@@ -3,9 +3,9 @@ import type {
   ComponentPropsWithoutRef,
   MutableRefObject,
   RefObject,
-  ReactChildren,
   HTMLAttributes,
   MouseEvent,
+  ReactNode,
 } from 'react';
 
 type Combine<T, K> = T & Omit<K, keyof T>;
@@ -35,7 +35,7 @@ export type AccordionTitleProps = {
 export type AccordionIndicatorProps = {
   /** css animation keyframe을 최소 2개 이상의 배열로 전달해주세요. */
   keyframes?: Keyframe[];
-  children: ReactChildren;
+  children: ReactNode;
 };
 
 export type AccordionContextProviderProps = {

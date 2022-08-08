@@ -21,6 +21,13 @@ export const AccordionContextProvider = ({
     [],
   );
 
+  useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    // eslint-disable-next-line import/no-unresolved
+    import('web-animations-js');
+  }, []);
+
   const toggle = (e: MouseEvent<HTMLElement>) => {
     const accordion = accordionRef.current;
     const content = contentRef.current;

@@ -109,8 +109,3 @@ AccordionIndicator.displayName = INDICATOR_DISPLAY_NAME;
 Accordion.Title = AccordionTitle;
 Accordion.Content = AccordionContent;
 Accordion.Indicator = AccordionIndicator;
-
-<Accordion>
-  <Accordion.Title>hi</Accordion.Title>
-  <Accordion.Content>yes</Accordion.Content>
-</Accordion>;
