@@ -10,12 +10,20 @@ export const CircleLoading = ({
   ...props
 }: Loading): React.ReactElement => {
   const originalSize = 40;
-  const scale = size / originalSize;
+  const scale = (size / originalSize) * 1.33;
 
   return (
     <div
       role="progressbar"
-      style={{ width: size, height: size, zIndex, display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+      style={{
+        width: size,
+        height: size,
+        zIndex,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        pointerEvents: 'none',
+      }}
       {...props}
     >
       <svg
