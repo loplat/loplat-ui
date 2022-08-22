@@ -2,12 +2,12 @@ import { useCallback, useEffect } from 'react';
 import { DropdownTypes } from './types';
 import { spacing } from '../../core';
 
-type DropdownEventParams = Pick<
-  DropdownTypes,
+type DropdownEventParams<T extends string> = Pick<
+  DropdownTypes<T>,
   'triggerRef' | 'optionListRef' | 'close' | 'toggle' | 'onChange' | 'disabled' | 'multiple'
 >;
 
-export const useClick = ({
+export const useClick = <T extends string>({
   triggerRef,
   optionListRef,
   close,
@@ -15,7 +15,7 @@ export const useClick = ({
   onChange,
   disabled,
   multiple,
-}: DropdownEventParams) => {
+}: DropdownEventParams<T>) => {
   useEffect(() => {
     function handleClick(e: MouseEvent) {
       if (disabled) return;
@@ -37,7 +37,7 @@ export const useClick = ({
           .find((optionElement) => optionElement.contains(target));
 
         if (targetOption) {
-          const value = targetOption.dataset.value as string;
+          const value = targetOption.dataset.value as T;
           onChange(e, value);
           if (!multiple) {
             close();
@@ -53,7 +53,7 @@ export const useClick = ({
   });
 };
 
-export const useKeyDown = ({
+export const useKeyDown = <T extends string>({
   triggerRef,
   optionListRef,
   close,
@@ -61,7 +61,7 @@ export const useKeyDown = ({
   onChange,
   disabled,
   multiple,
-}: DropdownEventParams) => {
+}: DropdownEventParams<T>) => {
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
       if (disabled) return;
@@ -84,7 +84,7 @@ export const useKeyDown = ({
             optionElement.contains(focusedElement),
           );
           if (targetOption) {
-            const value = targetOption.dataset.value as string;
+            const value = targetOption.dataset.value as T;
             onChange(e, value);
             if (!multiple) {
               close();

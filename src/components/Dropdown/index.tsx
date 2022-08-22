@@ -2,13 +2,23 @@
 import React, { ForwardedRef, useContext, useMemo, useRef, useState } from 'react';
 import { Portal } from '../../utils';
 import { ChevronDownIcon } from '../../assets/Icon';
-import { DropdownBarProps, DropdownProps, DropdownTypes, OptionListProps, OptionProps } from './types';
+import {
+  DefaultDropdownValue,
+  DropdownBarProps,
+  DropdownProps,
+  DropdownTypes,
+  OptionListProps,
+  OptionProps,
+} from './types';
 import { Bar, OptionList, Option } from './styles';
 import { generateUniqueId } from '../../functions/uniqueId';
 import { useClick, useKeyDown, useOptionListPosition } from './hooks';
 
 const DropdownContext = React.createContext<
-  Pick<DropdownTypes, 'container' | 'triggerRef' | 'optionListRef' | 'expanded' | 'disabled' | 'close' | 'onChange'>
+  Pick<
+    DropdownTypes<never>,
+    'container' | 'triggerRef' | 'optionListRef' | 'expanded' | 'disabled' | 'close' | 'onChange'
+  >
 >({
   container: null,
   triggerRef: null,
@@ -19,7 +29,12 @@ const DropdownContext = React.createContext<
   onChange: () => null,
 });
 
-export const Dropdown = ({ children, onChange, disabled = false, multiple = false }: DropdownProps) => {
+export const Dropdown = <T extends string = DefaultDropdownValue>({
+  children,
+  onChange,
+  disabled = false,
+  multiple = false,
+}: DropdownProps<T>) => {
   // refs
   const triggerRef = useRef<HTMLElement>(null);
   const optionListRef = useRef<HTMLUListElement>(null);
@@ -52,7 +67,14 @@ export const Dropdown = ({ children, onChange, disabled = false, multiple = fals
   useKeyDown({ triggerRef, optionListRef, close, toggle, onChange, disabled, multiple });
 
   return (
-    <DropdownContext.Provider value={{ container, triggerRef, optionListRef, expanded, disabled, close, onChange }}>
+    <DropdownContext.Provider
+      value={
+        { container, triggerRef, optionListRef, expanded, disabled, close, onChange } as Pick<
+          DropdownTypes<T>,
+          'container' | 'triggerRef' | 'optionListRef' | 'expanded' | 'disabled' | 'close' | 'onChange'
+        >
+      }
+    >
       {children}
     </DropdownContext.Provider>
   );
