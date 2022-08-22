@@ -218,7 +218,7 @@ export const Multiple = (args) => {
           return (
             <Dropdown.Option
               value={value}
-              label={<Checkbox name="checkbox" label={value} checked={selected} />}
+              label={<Checkbox name="checkbox" label={value} checked={selected} readOnly />}
               selected={selected}
               key={value}
             />
@@ -257,7 +257,7 @@ return (
               return (
                 <Dropdown.Option
          value={value}
-         label={<Checkbox name="checkbox" label={value} checked={selected} />}
+         label={<Checkbox name="checkbox" label={value} checked={selected} readOnly />}
          selected={selected}
          key={value}
        />

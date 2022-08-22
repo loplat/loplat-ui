@@ -2,7 +2,7 @@ import React from 'react';
 
 export type DropdownValue = string;
 export type DropdownChangeEvent = MouseEvent | KeyboardEvent;
-type Children = { children: React.ReactElement[] };
+type Children = { children: React.ReactNode };
 
 export type DropdownTypes = {
   container: Element | null;
