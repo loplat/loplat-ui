@@ -118,7 +118,7 @@ Dropdown.Trigger는 `children` 컴포넌트에게 ref, expanded, disabled 속성
 return React.cloneElement(children, { ...children.props, expanded, disabled, ref: triggerRef });
 ```
 
-export const customTriggerSource = `
+export const customTriggerCode = `
 <Dropdown.Trigger>
   <IconButton>
     <MoreVertIcon />
@@ -126,7 +126,7 @@ export const customTriggerSource = `
 </Dropdown.Trigger>
 `;
 
-<Source dark language="tsx" code={customTriggerSource} />
+<Source dark language="tsx" code={customTriggerCode} />
 
 # Option With Label
 
@@ -161,7 +161,7 @@ export const CustomOption = (args) => {
 
 Dropdown.Option의 `label` prop에 원하는 `ReactElement`나 `string`을 전달할 수 있습니다.
 
-export const optionWithLabelSource = `
+export const optionWithLabelCode = `
 <Dropdown.OptionList>
   {options.map((value, index) => {
            const loading = index % 2 === 1;
@@ -178,7 +178,7 @@ export const optionWithLabelSource = `
 </Dropdown.OptionList>
 `;
 
-<Source dark language="tsx" code={optionWithLabelSource} />
+<Source dark language="tsx" code={optionWithLabelCode} />
 
 # Disabled
 
@@ -190,11 +190,11 @@ export const optionWithLabelSource = `
 
 `disabled={true}` 일 때, Dropdown 컴포넌트 전체가 비활성화 됩니다.
 
-export const disabledSource = `
+export const disabledCode = `
 <Dropdown disabled={true}>
 `;
 
-<Source dark language="tsx" code={disabledSource} />
+<Source dark language="tsx" code={disabledCode} />
 
 # Multiple
 
@@ -237,7 +237,7 @@ export const Multiple = (args) => {
 
 `multiple={true}` 일 때, onChange event가 발생해도 OptionList가 닫히지 않습니다.
 
-export const multipleSource = `
+export const multipleCode = `
 const [selectedValues, setSelectedValues] = useState(['loplat i', 'IPS']);
 const handleChange = (e, newValue) => {
   if (selectedValues.includes(newValue)) {
@@ -268,5 +268,5 @@ return (
 );
 `;
 
-<Source dark language="tsx" code={multipleSource} />
+<Source dark language="tsx" code={multipleCode} />
 ```
