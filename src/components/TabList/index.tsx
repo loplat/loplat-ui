@@ -1,12 +1,19 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { TabListProps, DecoratorCss } from './types';
-import { TabListDiv, Tab } from './styles';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { TabListProps, DecoratorPosition, TabListStyles } from './types';
+import { TabListDiv, Tab, allDefaultStyles } from './styles';
 
-export const TabList = ({ options, selectedValue, onChange, ...props }: TabListProps): React.ReactElement => {
+export const TabList = ({
+  type = 'ellipse',
+  options,
+  selectedValue,
+  onChange,
+  ...props
+}: TabListProps): React.ReactElement => {
   const tabListRef = useRef<HTMLDivElement>(null);
   const tabElements = useRef<HTMLButtonElement[]>([]);
-  const [decoratorCss, setDecoratorCss] = useState<DecoratorCss | null>(null);
+  const [decoratorPosition, setDecoratorPosition] = useState<DecoratorPosition | null>(null);
 
+  /** event handlers */
   const handleClickTab = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLElement;
     const targetTab = tabElements.current.find((tabElement) => tabElement.contains(target));
@@ -34,11 +41,12 @@ export const TabList = ({ options, selectedValue, onChange, ...props }: TabListP
     }
   };
 
-  const updateDecoratorCss = () => {
+  /** background-color of selected tab */
+  const updateDecoratorPosition = () => {
     const selectedTab = tabListRef.current?.querySelector(`button[aria-selected="true"]`) as HTMLButtonElement;
 
     if (selectedTab) {
-      setDecoratorCss({
+      setDecoratorPosition({
         left: selectedTab.offsetLeft,
         width: selectedTab.clientWidth,
       });
@@ -50,13 +58,23 @@ export const TabList = ({ options, selectedValue, onChange, ...props }: TabListP
 
     // NOTE: 폰트에 따라 clientWidth가 변하는 것에 대응
     document.fonts.ready.then(() => {
-      updateDecoratorCss();
+      updateDecoratorPosition();
     });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    updateDecoratorCss();
+    updateDecoratorPosition();
   }, [selectedValue]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  /** styles */
+  const styles: TabListStyles = useMemo(() => {
+    const defaultStyles = allDefaultStyles[type];
+    const propStyles = props.styles;
+    return {
+      tabList: { ...defaultStyles.tabList, ...propStyles?.tabList },
+      tab: { ...defaultStyles.tab, ...propStyles?.tab },
+    };
+  }, [type, props.styles]);
 
   return (
     <TabListDiv
@@ -64,8 +82,9 @@ export const TabList = ({ options, selectedValue, onChange, ...props }: TabListP
       ref={tabListRef}
       onClick={handleClickTab}
       onKeyDown={handleArrowKey}
-      decoratorCss={decoratorCss}
       {...props}
+      decoratorPosition={decoratorPosition}
+      styles={styles}
     >
       {options.map(({ value, label, isDisabled, ...tabProps }) => {
         const isSelected = value === selectedValue;
@@ -79,6 +98,7 @@ export const TabList = ({ options, selectedValue, onChange, ...props }: TabListP
             data-value={value}
             key={value}
             {...tabProps}
+            styles={styles}
           >
             {label ?? value}
           </Tab>

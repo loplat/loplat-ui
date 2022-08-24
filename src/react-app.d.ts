@@ -19,3 +19,7 @@ declare type PrefixKey<T, Keyword extends string> = {
 declare type PostfixKey<T, Keyword extends string> = {
   [K in keyof T as `${K}${Capitalize<string & Keyword>}`]: T[K];
 };
+
+declare type DeepPartial<T> = {
+  [P in keyof T]?: T[P] extends object ? DeepPartial<T[P]> : T[P];
+};
