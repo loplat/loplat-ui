@@ -24,6 +24,11 @@ import { HeartFill } from '../../assets/Icon/generated/HeartFill';
         type: "{ value: 'string'; label?: 'string | React.ReactElement'; isDisabled?: 'boolean'; }[]",
       }),
     },
+    styles: {
+      ...generateTable({
+        type: 'TabListStyles',
+      }),
+    },
   }}
 />
 
@@ -150,5 +155,28 @@ export const TabListWithA11y = ({ options, ...args }) => {
     }}
   >
     {TabListWithA11y.bind({})}
+  </Story>
+</Canvas>
+
+## UI type
+
+TabList는 `ellipse`, `rectangle` 타입의 UI를 제공합니다.
+
+기본 타입은`ellipse`이며, `type="rectangle"`와 같이 type을 변경할 수 있습니다.
+
+<Canvas>
+  <Story
+    name="rectangle"
+    args={{
+      type: 'rectangle',
+      options: [
+        { value: 'tab 1', label: '탭 1' },
+        { value: '탭 2', isDisabled: true },
+        { value: '탭 3' },
+        { value: '탭 4' },
+      ],
+    }}
+  >
+    {runTest(Template.bind({}))}
   </Story>
 </Canvas>

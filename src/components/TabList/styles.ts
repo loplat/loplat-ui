@@ -65,20 +65,6 @@ export const Tab = styled.button<Pick<TabProps, 'isSelected'> & { styles: TabLis
 `;
 
 export const allDefaultStyles: { [type in TabListType]: TabListStyles } = {
-  rectangle: {
-    tabList: {
-      backgroundColor: grayscale50,
-      borderRadius: 4,
-    },
-    tab: {
-      color: grayscale800,
-      backgroundColor: 'transparent',
-      activeColor: blue500,
-      activeBackgroundColor: white,
-      borderRadius: 4,
-      boxShadow: '0 1px 4px 0 rgba(34, 34, 34, 0.15)',
-    },
-  },
   ellipse: {
     tabList: {
       backgroundColor: white,
@@ -91,6 +77,20 @@ export const allDefaultStyles: { [type in TabListType]: TabListStyles } = {
       activeColor: blue500,
       activeBackgroundColor: blue100,
       borderRadius: 20,
+    },
+  },
+  rectangle: {
+    tabList: {
+      backgroundColor: grayscale50,
+      borderRadius: 4,
+    },
+    tab: {
+      color: grayscale800,
+      backgroundColor: 'transparent',
+      activeColor: blue500,
+      activeBackgroundColor: white,
+      borderRadius: 4,
+      boxShadow: '0 1px 4px 0 rgba(34, 34, 34, 0.15)',
     },
   },
 };

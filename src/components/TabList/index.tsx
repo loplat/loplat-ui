@@ -1,14 +1,14 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { TabListProps, DecoratorPosition, TabListStyles } from './types';
+import type { TabListProps, DecoratorPosition, TabListStyles, DefaultTabValue } from './types';
 import { TabListDiv, Tab, allDefaultStyles } from './styles';
 
-export const TabList = ({
+export const TabList = <T extends string = DefaultTabValue>({
   type = 'ellipse',
   options,
   selectedValue,
   onChange,
   ...props
-}: TabListProps): React.ReactElement => {
+}: TabListProps<T>): React.ReactElement => {
   const tabListRef = useRef<HTMLDivElement>(null);
   const tabElements = useRef<HTMLButtonElement[]>([]);
   const [decoratorPosition, setDecoratorPosition] = useState<DecoratorPosition | null>(null);
@@ -19,7 +19,7 @@ export const TabList = ({
     const targetTab = tabElements.current.find((tabElement) => tabElement.contains(target));
 
     if (targetTab) {
-      const targetValue = targetTab.dataset.value as string;
+      const targetValue = targetTab.dataset.value as T;
       if (selectedValue !== targetValue) {
         onChange(e, targetValue);
       }
