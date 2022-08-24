@@ -21,7 +21,7 @@ import { HeartFill } from '../../assets/Icon/generated/HeartFill';
     },
     options: {
       ...generateTable({
-        type: "{ value: 'string'; label?: 'string | React.ReactElement'; isDisabled?: 'boolean'; }[]",
+        type: "{ value: 'string'; label?: 'string | React.ReactElement'; disabled?: 'boolean'; }[]",
       }),
     },
     styles: {
@@ -52,7 +52,7 @@ export const Template = ({ options, ...args }) => {
     args={{
       options: [
         { value: 'tab 1', label: '탭 1' },
-        { value: '탭 2', isDisabled: true },
+        { value: '탭 2', disabled: true },
         { value: '탭 3' },
         { value: '탭 4' },
       ],
@@ -171,7 +171,7 @@ TabList는 `ellipse`, `rectangle` 타입의 UI를 제공합니다.
       type: 'rectangle',
       options: [
         { value: 'tab 1', label: '탭 1' },
-        { value: '탭 2', isDisabled: true },
+        { value: '탭 2', disabled: true },
         { value: '탭 3' },
         { value: '탭 4' },
       ],

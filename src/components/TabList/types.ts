@@ -4,8 +4,8 @@ export type DefaultTabValue = string;
 export type TabProps<T extends string = DefaultTabValue> = {
   value: T;
   label?: string | React.ReactElement;
-  isDisabled?: boolean;
-  isSelected: boolean;
+  disabled?: boolean;
+  selected: boolean;
 } & Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'value'>;
 
 export type TabListType = 'ellipse' | 'rectangle';
@@ -13,7 +13,7 @@ export type TabListProps<T extends string = DefaultTabValue> = {
   /** TabList의 type입니다. */
   type?: TabListType;
   /** tab option들의 정보를 담은 배열입니다. */
-  options: Omit<TabProps<T>, 'isSelected'>[];
+  options: Omit<TabProps<T>, 'selected'>[];
   /** 현재 선택된 tab의 value 입니다. */
   selectedValue: TabProps<T>['value'];
   /** 새로 선택된 value가 기존의 selectedValue와 다를 경우 실행됩니다. */

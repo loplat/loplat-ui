@@ -86,15 +86,15 @@ export const TabList = <T extends string = DefaultTabValue>({
       decoratorPosition={decoratorPosition}
       styles={styles}
     >
-      {options.map(({ value, label, isDisabled, ...tabProps }) => {
-        const isSelected = value === selectedValue;
+      {options.map(({ value, label, disabled, ...tabProps }) => {
+        const selected = value === selectedValue;
         return (
           <Tab
             role="tab"
-            tabIndex={isSelected ? 0 : -1}
-            aria-selected={isDisabled ? undefined : isSelected}
-            isSelected={isSelected}
-            disabled={isDisabled}
+            tabIndex={selected ? 0 : -1}
+            aria-selected={disabled ? undefined : selected}
+            selected={selected}
+            disabled={disabled}
             data-value={value}
             key={value}
             {...tabProps}

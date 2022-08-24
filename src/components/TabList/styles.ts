@@ -38,7 +38,7 @@ export const TabListDiv = styled.div<{ decoratorPosition: DecoratorPosition | nu
     `};
 `;
 
-export const Tab = styled.button<Pick<TabProps, 'isSelected'> & { styles: TabListStyles }>`
+export const Tab = styled.button<Pick<TabProps, 'selected'> & { styles: TabListStyles }>`
   z-index: 2;
   display: flex;
   align-items: center;
@@ -48,8 +48,8 @@ export const Tab = styled.button<Pick<TabProps, 'isSelected'> & { styles: TabLis
   padding: ${spacing(2)}px ${spacing(6)}px;
   border: none;
 
-  ${({ isSelected, styles }) => css`
-    color: ${isSelected ? styles.tab.activeColor : styles.tab.color};
+  ${({ selected, styles }) => css`
+    color: ${selected ? styles.tab.activeColor : styles.tab.color};
     background-color: ${styles.tab.backgroundColor};
     border-radius: ${styles.tab.borderRadius}px;
   `};
