@@ -10,8 +10,8 @@ export const Wrapper = styled.div<MarginSpacing>`
 export const Popper = styled.div`
   position: absolute;
   max-width: 400px;
-  width: fit-content;
-  display: table; // NOTE: safari, firefox에서 fit-content를 cross browsing 하기 위함
+  width: max-content;
+  display: table; // NOTE: safari, firefox에서 max-content를 cross browsing 하기 위함
 
   opacity: 0;
 
