@@ -15,7 +15,15 @@ export const LineLoading = ({
   return (
     <div
       role="progressbar"
-      style={{ width: size, height: size, zIndex, display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+      style={{
+        width: size,
+        height: size,
+        zIndex,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        pointerEvents: 'none',
+      }}
       {...props}
     >
       <svg
