@@ -1,0 +1,272 @@
+import { Canvas, Meta, Story, Source } from '@storybook/addon-docs';
+import { Dropdown } from './index.tsx';
+import { useState } from 'react';
+import { CircleLoading } from '../Loading';
+import { IconButton } from '../IconButton';
+import { MoreVertIcon } from '../../assets/Icon';
+import { Checkbox } from '../Checkbox';
+import { runTest } from './storybookTest';
+import { generateTable } from '../../storybook-props';
+
+<Meta
+  title="Components/Dropdown"
+  component={Dropdown}
+  argTypes={{
+    onChange: {
+      ...generateTable({
+        type: '(e: DropdownChangeEvent, value: DropdownValue) => void',
+      }),
+    },
+  }}
+/>
+
+export const options = ['loplat X', 'loplat i', 'WPS', 'IPS'];
+
+# Dropdown
+
+export const Template = (args) => {
+  const [selectedValue, setSelectedValue] = useState(args.selectedValue || 'loplat X');
+  return (
+    <Dropdown {...args} onChange={(e, newValue) => setSelectedValue(newValue)}>
+      <Dropdown.Trigger>
+        <Dropdown.Bar value={selectedValue} aria-label="Dropdown" />
+      </Dropdown.Trigger>
+      <Dropdown.OptionList>
+        {options.map((value) => (
+          <Dropdown.Option
+            value={value}
+            selected={value === selectedValue}
+            disabled={value === options[2]}
+            key={value}
+          />
+        ))}
+      </Dropdown.OptionList>
+    </Dropdown>
+  );
+};
+
+<Canvas withSource="none">
+  <Story name="default">{runTest(Template.bind({}))}</Story>
+</Canvas>
+
+Dropdown 기본 UI 입니다. 아래 코드와 같이 Dropdown.Trigger/Bar/OptionList/Option 컴포넌트를 사용합니다.
+
+- **Bar props**: `value`, `expanded`, `disabled`, `placeholder`
+
+- **OptionList props**: `zIndex`
+
+- **Option props**: `value`, `label`, `selected`, `disabled`
+
+export const defaultCode = `
+const [selectedValue, setSelectedValue] = useState('loplat X');
+return (
+    <Dropdown onChange={(e, newValue) => setSelectedValue(newValue)}>
+    <Dropdown.Trigger>
+      <Dropdown.Bar value={selectedValue} aria-label="Dropdown" />
+    </Dropdown.Trigger>
+    <Dropdown.OptionList>
+      {options.map((value) => (
+                 <Dropdown.Option
+         value={value}
+         selected={value === selectedValue}
+         disabled={value === options[2]}
+         key={value}
+        />
+              ))}
+    </Dropdown.OptionList>
+  </Dropdown>
+);
+`;
+
+<Source dark language="tsx" code={defaultCode} />
+
+# Custom Trigger
+
+export const CustomTrigger = (args) => {
+  const [selectedValue, setSelectedValue] = useState('loplat X');
+  return (
+    <Dropdown {...args} onChange={(e, newValue) => setSelectedValue(newValue)}>
+      <Dropdown.Trigger>
+        <IconButton>
+          <MoreVertIcon />
+        </IconButton>
+      </Dropdown.Trigger>
+      <Dropdown.OptionList>
+        {options.map((value) => (
+          <Dropdown.Option value={value} selected={value === selectedValue} key={value} />
+        ))}
+      </Dropdown.OptionList>
+    </Dropdown>
+  );
+};
+
+<Canvas withSource="none">
+  <Story name="custom trigger">{CustomTrigger.bind({})}</Story>
+</Canvas>
+
+Dropdown.Trigger의 `children`으로 custom UI 컴포넌트를 사용할 수 있습니다.
+
+이 때, `children` 컴포넌트는 **React.forwardRef**를 이용해 ref를 전달받아야합니다.
+
+(loplat UI에 있는 컴포넌트(Button/IconButton/Input, etc.)를 그대로 사용할 수 있습니다.)
+
+---
+
+Dropdown.Trigger는 `children` 컴포넌트에게 ref, expanded, disabled 속성을 전달합니다.
+
+```jsx
+return React.cloneElement(children, { ...children.props, expanded, disabled, ref: triggerRef });
+```
+
+export const customTriggerCode = `
+<Dropdown.Trigger>
+  <IconButton>
+    <MoreVertIcon />
+  </IconButton>
+</Dropdown.Trigger>
+`;
+
+<Source dark language="tsx" code={customTriggerCode} />
+
+# Option With Label
+
+export const CustomOption = (args) => {
+  const [selectedValue, setSelectedValue] = useState('loplat X');
+  return (
+    <Dropdown {...args} onChange={(e, newValue) => setSelectedValue(newValue)}>
+      <Dropdown.Trigger>
+        <Dropdown.Bar value={selectedValue} />
+      </Dropdown.Trigger>
+      <Dropdown.OptionList>
+        {options.map((value, index) => {
+          const loading = index % 2 === 1;
+          return (
+            <Dropdown.Option
+              value={value}
+              label={loading ? <CircleLoading size={50}>{value}</CircleLoading> : value}
+              selected={value === selectedValue}
+              disabled={loading}
+              key={value}
+            />
+          );
+        })}
+      </Dropdown.OptionList>
+    </Dropdown>
+  );
+};
+
+<Canvas withSource="none">
+  <Story name="option with label">{CustomOption.bind({})}</Story>
+</Canvas>
+
+Dropdown.Option의 `label` prop에 원하는 `ReactElement`나 `string`을 전달할 수 있습니다.
+
+export const optionWithLabelCode = `
+<Dropdown.OptionList>
+  {options.map((value, index) => {
+           const loading = index % 2 === 1;
+           return (
+              <Dropdown.Option
+        value={value}
+        label={loading ? <CircleLoading size={50}>{value}</CircleLoading> : value}
+        selected={value === selectedValue}
+        disabled={loading}
+        key={value}
+       />
+          );
+      })}
+</Dropdown.OptionList>
+`;
+
+<Source dark language="tsx" code={optionWithLabelCode} />
+
+# Disabled
+
+<Canvas withSource="none">
+  <Story name="disabled" args={{ disabled: true }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+`disabled={true}` 일 때, Dropdown 컴포넌트 전체가 비활성화 됩니다.
+
+export const disabledCode = `
+<Dropdown disabled={true}>
+`;
+
+<Source dark language="tsx" code={disabledCode} />
+
+# Multiple
+
+export const Multiple = (args) => {
+  const [selectedValues, setSelectedValues] = useState(['loplat i', 'IPS']);
+  const handleChange = (e, newValue) => {
+    if (selectedValues.includes(newValue)) {
+      setSelectedValues(selectedValues.filter((value) => value !== newValue));
+    } else {
+      setSelectedValues([...selectedValues, newValue]);
+    }
+  };
+  return (
+    <Dropdown {...args} onChange={handleChange}>
+      <Dropdown.Trigger>
+        <Dropdown.Bar value={selectedValues.join(', ')} placeholder="선택해주세요." />
+      </Dropdown.Trigger>
+      <Dropdown.OptionList>
+        {options.map((value) => {
+          const selected = selectedValues.includes(value);
+          return (
+            <Dropdown.Option
+              value={value}
+              label={<Checkbox name="checkbox" label={value} checked={selected} readOnly />}
+              selected={selected}
+              key={value}
+            />
+          );
+        })}
+      </Dropdown.OptionList>
+    </Dropdown>
+  );
+};
+
+<Canvas withSource="none">
+  <Story name="multiple" args={{ multiple: true }}>
+    {Multiple.bind({})}
+  </Story>
+</Canvas>
+
+`multiple={true}` 일 때, onChange event가 발생해도 OptionList가 닫히지 않습니다.
+
+export const multipleCode = `
+const [selectedValues, setSelectedValues] = useState(['loplat i', 'IPS']);
+const handleChange = (e, newValue) => {
+  if (selectedValues.includes(newValue)) {
+     setSelectedValues(selectedValues.filter((value) => value !== newValue));
+  } else {
+     setSelectedValues([...selectedValues, newValue]);
+  }
+};
+return (
+  <Dropdown onChange={handleChange} multiple={true}>
+  <Dropdown.Trigger>
+    <Dropdown.Bar value={selectedValues.join(', ')} placeholder="선택해주세요." />
+  </Dropdown.Trigger>
+  <Dropdown.OptionList>
+    {options.map((value) => {
+              const selected = selectedValues.includes(value);
+              return (
+                <Dropdown.Option
+         value={value}
+         label={<Checkbox name="checkbox" label={value} checked={selected} readOnly />}
+         selected={selected}
+         key={value}
+       />
+          );
+        })}
+  </Dropdown.OptionList>
+ </Dropdown>
+);
+`;
+
+<Source dark language="tsx" code={multipleCode} />
+```

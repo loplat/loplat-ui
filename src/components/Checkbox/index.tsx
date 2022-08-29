@@ -17,8 +17,8 @@ export const Checkbox = ({
   id,
   ...props
 }: CheckboxProps): JSX.Element => {
-  const isChecked: boolean = typeof checked === 'boolean' ? checked : checked === 'checked' ? true : false;
-  const isIntermediate: boolean = checked === 'intermediate' ? true : false;
+  const isChecked: boolean = typeof checked === 'boolean' ? checked : checked === 'checked';
+  const isIntermediate: boolean = checked === 'intermediate';
 
   return (
     <Label
@@ -30,8 +30,9 @@ export const Checkbox = ({
       id={id}
     >
       <input type="checkbox" name={name} checked={isChecked} onChange={onChange} disabled={disabled} {...props} />
-      <Checkmark />
-      {label}
+      {/* TODO: label, input을 형제 관계로 변경하기 */}
+      <Checkmark onClick={(e) => e.stopPropagation()} className="checkmark" />
+      <span onClick={(e) => e.stopPropagation()}>{label}</span>
     </Label>
   );
 };
@@ -51,7 +52,7 @@ const Label = styled.label<Pick<BaseLabel, 'boldLabel' | 'disabled'> & MarginSpa
     position: absolute;
     opacity: 0;
 
-    &:checked ~ span {
+    &:checked ~ .checkmark {
       border-color: ${blue500};
       ::after {
         width: 0.7rem;
@@ -63,7 +64,7 @@ const Label = styled.label<Pick<BaseLabel, 'boldLabel' | 'disabled'> & MarginSpa
         box-sizing: border-box;
       }
     }
-    &:not(:checked) ~ span {
+    &:not(:checked) ~ .checkmark {
       ${({ isIntermediate }) =>
         isIntermediate &&
         css`
@@ -78,17 +79,17 @@ const Label = styled.label<Pick<BaseLabel, 'boldLabel' | 'disabled'> & MarginSpa
           }
         `}
     }
-    &:disabled ~ span {
+    &:disabled ~ .checkmark {
       border-color: ${grayscale200};
       background-color: ${grayscale100};
       &::after {
         border-color: ${grayscale500};
       }
     }
-    &:hover:not(:checked) ~ span {
+    &:hover:not(:checked) ~ .checkmark {
       border-color: ${grayscale300};
     }
-    &:focus-visible ~ span {
+    &:focus-visible ~ .checkmark {
       outline: 2px solid ${primary};
     }
   }

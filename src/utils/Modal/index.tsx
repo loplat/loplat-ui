@@ -37,7 +37,7 @@ export function Modal({ isOpen, onClose, zIndex = 9999, children }: ModalProps):
     document.body.appendChild(newContainer);
 
     function onKeyDownESC(e: KeyboardEvent) {
-      if (e.key === 'Escape') onClose();
+      if (e.code === 'Escape') onClose();
     }
     document.addEventListener('keydown', onKeyDownESC);
 

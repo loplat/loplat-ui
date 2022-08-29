@@ -8,14 +8,14 @@ import { generateColorSet } from '../core/utils';
 import styled from '@emotion/styled';
 import { css } from '@emotion/css';
 
-interface Props {
+export type ToastBarProps = {
   toastItem: ToastItem;
   onRemoveToastItem: (toastId: string) => void;
   onEmitElementHeight: (toastId: string, height: number) => void;
   offsetY: number;
   duration: number;
   position: ToastPosition;
-}
+};
 
 const MINIMUM_CONTENT_HEIGHT = 28;
 const ANIMATION_DURATION = 350;
@@ -27,7 +27,7 @@ export const ToastBar = ({
   offsetY,
   duration,
   position,
-}: Props): React.ReactElement => {
+}: ToastBarProps): React.ReactElement => {
   const toastDuration = useMemo(() => duration + ANIMATION_DURATION, [duration]);
   const colorSet = useMemo(() => generateColorSet(toastItem.type), [toastItem]);
 
