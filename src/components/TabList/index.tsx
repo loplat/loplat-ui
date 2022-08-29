@@ -3,10 +3,11 @@ import type { TabListProps, DecoratorPosition, TabListStyles, DefaultTabValue } 
 import { TabListDiv, Tab, allDefaultStyles } from './styles';
 
 export const TabList = <T extends string = DefaultTabValue>({
-  type = 'ellipse',
+  variant = 'ellipse',
   options,
   selectedValue,
   onChange,
+  fullWidth = false,
   ...props
 }: TabListProps<T>): React.ReactElement => {
   const tabListRef = useRef<HTMLDivElement>(null);
@@ -14,7 +15,7 @@ export const TabList = <T extends string = DefaultTabValue>({
   const [decoratorPosition, setDecoratorPosition] = useState<DecoratorPosition | null>(null);
 
   /** event handlers */
-  const handleClickTab = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleSelectTab = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLElement;
     const targetTab = tabElements.current.find((tabElement) => tabElement.contains(target));
 
@@ -64,26 +65,27 @@ export const TabList = <T extends string = DefaultTabValue>({
 
   useEffect(() => {
     updateDecoratorPosition();
-  }, [selectedValue]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [selectedValue, fullWidth]); // eslint-disable-line react-hooks/exhaustive-deps
 
   /** styles */
   const styles: TabListStyles = useMemo(() => {
-    const defaultStyles = allDefaultStyles[type];
+    const defaultStyles = allDefaultStyles[variant];
     const propStyles = props.styles;
     return {
       tabList: { ...defaultStyles.tabList, ...propStyles?.tabList },
       tab: { ...defaultStyles.tab, ...propStyles?.tab },
     };
-  }, [type, props.styles]);
+  }, [variant, props.styles]);
 
   return (
     <TabListDiv
       role="tablist"
       ref={tabListRef}
-      onClick={handleClickTab}
+      onClick={handleSelectTab}
       onKeyDown={handleArrowKey}
       {...props}
       decoratorPosition={decoratorPosition}
+      fullWidth={fullWidth}
       styles={styles}
     >
       {options.map(({ value, label, disabled, ...tabProps }) => {

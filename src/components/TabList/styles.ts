@@ -1,14 +1,16 @@
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 import { blue100, blue500, grayscale50, grayscale500, grayscale800, spacing, white } from '../../core';
-import type { TabListStyles, DecoratorPosition, TabProps, TabListType } from './types';
+import type { TabListStyles, DecoratorPosition, TabProps, TabListVariant, TabListProps } from './types';
 
 const tabListTopPadding = spacing(2.5);
 
-export const TabListDiv = styled.div<{ decoratorPosition: DecoratorPosition | null } & { styles: TabListStyles }>`
+export const TabListDiv = styled.div<
+  { decoratorPosition: DecoratorPosition | null } & { styles: TabListStyles } & Pick<TabListProps, 'fullWidth'>
+>`
   position: relative;
   display: flex;
-  width: fit-content;
+  width: ${({ fullWidth }) => (fullWidth ? '100%' : 'fit-content')};
   white-space: nowrap;
   padding: ${tabListTopPadding}px ${spacing(3)}px;
 
@@ -42,6 +44,8 @@ export const Tab = styled.button<Pick<TabProps, 'selected'> & { styles: TabListS
   z-index: 2;
   display: flex;
   align-items: center;
+  justify-content: center;
+  width: 100%;
 
   font-size: 1rem;
   margin: 0;
@@ -64,7 +68,7 @@ export const Tab = styled.button<Pick<TabProps, 'selected'> & { styles: TabListS
   }
 `;
 
-export const allDefaultStyles: { [type in TabListType]: TabListStyles } = {
+export const allDefaultStyles: { [variant in TabListVariant]: TabListStyles } = {
   ellipse: {
     tabList: {
       backgroundColor: white,

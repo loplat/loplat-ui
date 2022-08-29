@@ -8,10 +8,10 @@ export type TabProps<T extends string = DefaultTabValue> = {
   selected: boolean;
 } & Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'value'>;
 
-export type TabListType = 'ellipse' | 'rectangle';
+export type TabListVariant = 'ellipse' | 'rectangle';
 export type TabListProps<T extends string = DefaultTabValue> = {
-  /** TabList의 type입니다. */
-  type?: TabListType;
+  /** TabList Shape에 대한 variant입니다. */
+  variant?: TabListVariant;
   /** tab option들의 정보를 담은 배열입니다. */
   options: Omit<TabProps<T>, 'selected'>[];
   /** 현재 선택된 tab의 value 입니다. */
@@ -20,6 +20,8 @@ export type TabListProps<T extends string = DefaultTabValue> = {
   onChange: (event: React.MouseEvent<HTMLDivElement>, value: TabProps<T>['value']) => void;
   /** custom style을 설정할 수 있습니다. */
   styles?: DeepPartial<TabListStyles>;
+  /** TabList의 width를 100%로 설정합니다. */
+  fullWidth?: boolean;
 } & Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'>;
 
 export type DecoratorPosition = {

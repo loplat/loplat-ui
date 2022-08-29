@@ -158,17 +158,17 @@ export const TabListWithA11y = ({ options, ...args }) => {
   </Story>
 </Canvas>
 
-## UI type
+## Shape variants
 
-TabList는 `ellipse`, `rectangle` 타입의 UI를 제공합니다.
+TabList는 `ellipse`, `rectangle` 모양의 UI를 제공합니다.
 
-기본 타입은`ellipse`이며, `type="rectangle"`와 같이 type을 변경할 수 있습니다.
+기본 모양은`ellipse`이며, `variant="rectangle"`와 같이 variant를 변경할 수 있습니다.
 
 <Canvas>
   <Story
     name="rectangle"
     args={{
-      type: 'rectangle',
+      variant: 'rectangle',
       options: [
         { value: 'tab 1', label: '탭 1' },
         { value: '탭 2', disabled: true },
