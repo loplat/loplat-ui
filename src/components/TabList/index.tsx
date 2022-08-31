@@ -65,7 +65,17 @@ export const TabList = <T extends string = DefaultTabValue>({
 
   useEffect(() => {
     updateDecoratorPosition();
-  }, [selectedValue, fullWidth]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [selectedValue]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    updateDecoratorPosition();
+    if (fullWidth) {
+      window.addEventListener('resize', updateDecoratorPosition);
+    }
+    return () => {
+      window.removeEventListener('resize', updateDecoratorPosition);
+    };
+  }, [fullWidth]); // eslint-disable-line react-hooks/exhaustive-deps
 
   /** styles */
   const styles: TabListStyles = useMemo(() => {

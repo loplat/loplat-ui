@@ -13,6 +13,7 @@ export const TabListDiv = styled.div<
   width: ${({ fullWidth }) => (fullWidth ? '100%' : 'fit-content')};
   white-space: nowrap;
   padding: ${tabListTopPadding}px ${spacing(3)}px;
+  box-sizing: border-box;
 
   ${({ decoratorPosition, styles }) =>
     css`
