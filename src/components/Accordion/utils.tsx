@@ -1,6 +1,6 @@
-import React, { useRef, createContext, useContext, useMemo, useEffect } from 'react';
-import { MouseEvent, RefObject } from 'react';
-import type { AccordionContextReturnType, AccordionContextProviderProps, Keyframe } from './types';
+import { useState, useRef, createContext, useContext, useMemo, useEffect } from 'react';
+import type { MouseEvent } from 'react';
+import type { AccordionContextReturnType, AccordionContextProviderProps, Keyframe, AnimateStatus } from './types';
 import { generateUniqueId } from '../../functions/uniqueId';
 
 export const AccordionContext = createContext<AccordionContextReturnType | undefined>(undefined);
@@ -11,14 +11,15 @@ export const AccordionContextProvider = ({
   duration,
   easing,
   accordionRef,
+  variant,
 }: AccordionContextProviderProps): JSX.Element => {
   const isMounted = useRef<boolean>(false);
-  const animationStatus = useRef<{ expanding: boolean; shrinking: boolean }>({ expanding: false, shrinking: false });
+  const animationStatus = useRef<Record<AnimateStatus, boolean>>({ expanding: false, shrinking: false });
   const contentRef = useRef<HTMLDivElement>(null);
   const accordionAnimationRef = useRef<Animation | null>(null);
   const iconAnimationRef = useRef<Animation | null>(null);
-  const [headerId, bodyId] = useMemo(
-    () => ['header', 'body'].map((type) => `loplat-ui__${type}__${generateUniqueId()}`),
+  const [titleId, contentId] = useMemo(
+    () => ['title', 'content'].map((type) => `loplat-ui__${type}__${generateUniqueId()}`),
     [],
   );
 
@@ -27,24 +28,21 @@ export const AccordionContextProvider = ({
     // @ts-ignore
     // eslint-disable-next-line import/no-unresolved
     import('web-animations-js');
-  }, []);
-
-  useEffect(() => {
-    // NOTE: open=true가 초기값일 경우, CLS가 생기지 않도록 하는 로직
-    if (initialOpen) {
-      const { accordion, content } = domRequirements();
-      accordion.setAttribute('open', 'true');
-      accordion.classList.add('expanded');
-      content.style.height = 'auto';
-    }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (!isMounted.current) {
       isMounted.current = true;
-      return;
+      if (initialOpen) {
+        // NOTE: open=true가 초기값일 경우, CLS가 생기지 않도록 하는 로직
+        const { accordion, content } = domRequirements();
+        accordion.setAttribute('open', 'true');
+        accordion.classList.add('expanded');
+        content.style.height = 'auto';
+      }
+    } else {
+      animateAccordionByStatus(initialOpen);
     }
-    animateAccordionByStatus(initialOpen);
   }, [initialOpen]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const domRequirements = () => {
@@ -57,89 +55,58 @@ export const AccordionContextProvider = ({
 
   const toggle = (e: MouseEvent<HTMLElement>) => {
     if (onToggle) return onToggle(e);
+
     const { accordion } = domRequirements();
     const isExpanded = accordion.hasAttribute('open');
     const { expanding, shrinking } = animationStatus.current;
     if (shrinking || !isExpanded) {
-      requestAnimationFrame(() => {
-        animateAccordionByStatus(true);
-      });
+      animateAccordionByStatus(true);
     } else if (expanding || isExpanded) {
-      requestAnimationFrame(() => {
-        animateAccordionByStatus(false);
-      });
+      animateAccordionByStatus(false);
     }
   };
 
   const animateAccordionByStatus = (isOpen: boolean) => {
-    const { content } = domRequirements();
-    const iconAnimation = iconAnimationRef.current;
+    const { accordion, content } = domRequirements();
     const currentHeight = content.offsetHeight;
     if (isOpen) {
-      animateOpen(currentHeight);
-      if (iconAnimation) {
-        iconAnimation.playbackRate = 1;
-        iconAnimation.play();
-      }
+      // NOTE: safari에서 Body div(height=0) 일때, 자식의 offsetHeight을 0으로 계산하는 이슈 대응
+      accordion.setAttribute('open', 'true');
+      content.style.height = 'auto';
+      const finalHeight = content.scrollHeight;
+      content.style.height = `${currentHeight}px`;
+      setAccordionAnimation('expanding', currentHeight, finalHeight);
     } else {
       setAccordionAnimation('shrinking', currentHeight, 0);
-      if (iconAnimation) {
-        iconAnimation.playbackRate = -1;
-        iconAnimation.play();
-      }
     }
+    animateIconByStatus(isOpen);
   };
 
-  const animateOpen = (currentHeight: number) => {
+  const setAccordionAnimation = (status: AnimateStatus, start: number, end: number) => {
     const { accordion, content } = domRequirements();
-    // NOTE: safari에서 Body div(height=0) 일때, 자식의 offsetHeight을 0으로 계산하는 이슈 대응
-    accordion.setAttribute('open', 'true');
-    content.style.height = 'auto';
-    const finalHeight = content.scrollHeight;
-    content.style.height = `${currentHeight}px`;
-    setAccordionAnimation('expanding', currentHeight, finalHeight);
-  };
-
-  const setIconAnimation = (keyframes: Keyframe[], iconRef: RefObject<HTMLDivElement>): void => {
-    const icon = iconRef.current;
-    if (!icon) throw new DOMException('Accordion must be used.', 'NotFoundError');
-    const iconAnimation = icon.animate(keyframes, { easing, duration, fill: 'forwards' });
-    iconAnimation.pause();
-    // NOTE: open=true가 초기값일 경우, CLS가 생기지 않도록 하는 로직
-    if (initialOpen) iconAnimation.finish();
-    iconAnimationRef.current = iconAnimation;
-  };
-
-  const setAccordionAnimation = (status: 'expanding' | 'shrinking', start: number, end: number) => {
-    const { accordion, content } = domRequirements();
-    switch (status) {
-      case 'expanding':
-        if (accordion.classList.contains('expanded')) return;
-        accordion.classList.add('expanded');
-        break;
-      case 'shrinking':
-        accordion.classList.remove('expanded');
-        break;
-      default:
-        break;
+    if (status == 'expanding') {
+      if (accordion.classList.contains('expanded')) return;
+      accordion.classList.add('expanded');
+    } else {
+      accordion.classList.remove('expanded');
     }
+
     animationStatus.current[status] = true;
-
     if (accordionAnimationRef.current) accordionAnimationRef.current.cancel();
     accordionAnimationRef.current = content.animate(
       {
         height: [`${start}px`, `${end}px`],
-        easing,
       },
-      { duration },
+      { duration, easing },
     );
-    accordionAnimationRef.current.onfinish = () => onAnimationFinish(status);
+
+    accordionAnimationRef.current.onfinish = () => onAccordionAnimationFinish(status);
     accordionAnimationRef.current.oncancel = () => {
       animationStatus.current[status] = false;
     };
   };
 
-  const onAnimationFinish = (status: 'expanding' | 'shrinking') => {
+  const onAccordionAnimationFinish = (status: AnimateStatus) => {
     const { accordion, content } = domRequirements();
 
     /** NOTE: details 의 자식 중 summary 이외는 DOM에서 즉각적으로 숨기기 때문에,
@@ -156,16 +123,35 @@ export const AccordionContextProvider = ({
     animationStatus.current.expanding = false;
   };
 
+  function animateIconByStatus(isOpen: boolean) {
+    const iconAnimation = iconAnimationRef.current;
+    if (!iconAnimation) return;
+    iconAnimation.pause();
+    iconAnimation.updatePlaybackRate(isOpen ? 1 : -1);
+    iconAnimation.play();
+  }
+
+  const setIconAnimation = (keyframes: Keyframe[], icon: HTMLDivElement): void => {
+    const iconAnimation = icon.animate(keyframes, {
+      easing,
+      duration,
+      fill: 'forwards',
+    });
+    iconAnimation.pause();
+    if (initialOpen) iconAnimation.finish();
+    iconAnimationRef.current = iconAnimation;
+  };
+
   const getAccordionTitleProps = () => {
     return {
-      id: headerId,
-      'aria-controls': bodyId,
+      id: titleId,
+      'aria-controls': contentId,
     };
   };
   const getAccordionBodyProps = () => {
     return {
-      id: bodyId,
-      'aria-labelledby': headerId,
+      id: contentId,
+      'aria-labelledby': titleId,
       role: 'region',
     };
   };
@@ -179,7 +165,15 @@ export const AccordionContextProvider = ({
   );
 
   return (
-    <AccordionContext.Provider value={{ ...value, contentRef, getAccordionBodyProps, getAccordionTitleProps }}>
+    <AccordionContext.Provider
+      value={{
+        ...value,
+        contentRef,
+        getAccordionBodyProps,
+        getAccordionTitleProps,
+        variant,
+      }}
+    >
       {children}
     </AccordionContext.Provider>
   );
@@ -187,7 +181,8 @@ export const AccordionContextProvider = ({
 
 export const useAccordion = (): AccordionContextReturnType => {
   const context = useContext(AccordionContext);
-  if (!context) throw new Error('The sub-components of Accordion must be used within the Accordion component.');
+  if (!context)
+    throw new Error('The sub-components of the Accordion component must be used within a Accordion component.');
 
   return context;
 };
