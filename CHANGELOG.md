@@ -1,3 +1,21 @@
+# 1.9.0 (2022-09-01)
+
+## Added
+- [Dropdown](https://ui.loplat.com/?path=/docs/components-dropdown--default-story) 컴포넌트를 추가했습니다.
+  - Compound Components Pattern을 적용했습니다.
+
+## Fixed
+- TabList
+  - `value` type에 Generic을 적용했습니다.
+  - `variant` prop을 추가했습니다. `ellipse` 또는 `rectangle` 모양의 UI를 사용할 수 있습니다.
+  - `fullWidth` prop을 추가했습니다.
+- Checkbox
+  - 키보드로 조작할 때 Click Event가 2번 발생하는 버그를 수정했습니다.
+  - `onChange` prop을 optional로 변경했습니다.
+- Tooltip
+  - Web Animations API를 사용하여 애니메이션을 관리하도록 개선했습니다.
+
+
 # 1.8.0 (2022-07-29)
 
 ## Added
