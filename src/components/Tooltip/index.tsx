@@ -17,6 +17,13 @@ export const Tooltip = ({
   const popperRef = useRef<HTMLDivElement>(null);
   const animation = useRef<Animation | null>(null);
 
+  useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    // eslint-disable-next-line import/no-unresolved
+    import('web-animations-js');
+  }, []);
+
   const onMouseOver = (e: React.MouseEvent) => {
     // children의 eventHandler 먼저 실행
     if (children.props.onMouseOver) {
@@ -115,7 +122,7 @@ export const Tooltip = ({
   useEffect(() => {
     // NOTE: ESC key로 popper를 제거할 수 있어야 함
     function onKeyDownESC(e: KeyboardEvent) {
-      if (e.key === 'Escape') removePopper();
+      if (e.code === 'Escape') removePopper();
     }
     document.addEventListener('keydown', onKeyDownESC);
     return () => {
