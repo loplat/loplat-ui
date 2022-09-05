@@ -1,142 +1,101 @@
-import React, { useState, useCallback, useRef } from 'react';
-import { AccordionProps, DetailsProps, AnimationStatus, AnimateFunction, Timers, AnimationName } from './types';
-import { ChevronDownIcon } from '../../assets/Icon';
-import { Body, Heading, Details, Summary } from './styles';
+import React, { forwardRef, HTMLAttributes, useEffect, useRef, useState } from 'react';
+import type { ReactNode, FunctionComponentElement } from 'react';
+import type { AccordionIndicatorProps, AccordionProps, AccordionTitleProps, IconPosition } from './types';
+import { AccordionContextProvider, useAccordion } from './utils';
+import { Summary, Content, Details, IconWrapper } from './styles';
 
-export const Accordion = React.memo(
-  ({
-    title,
-    content,
-    open = false,
-    onToggle,
-    type = 'fill',
-    headingLevel = 'h3',
-    duration = 300,
-    iconSuffix,
-    ...props
-  }: AccordionProps & DetailsProps): JSX.Element => {
-    const bodyRef = useRef<HTMLDivElement>(null);
-    const contentRef = useRef<HTMLDivElement>(null);
-    const [isOpen, setIsOpen] = useState(open);
-    const [expanded, setExpanded] = useState(open);
-    const timers = useRef<Timers>({ expand: [], shrink: [] });
-    const animationStatus = useRef<AnimationStatus>({ name: 'expand', running: false });
-    const contentHeight = useRef<number>(0);
+function narrowComponentWithDisplayName(component: ReactNode): component is FunctionComponentElement<HTMLDivElement> {
+  return React.isValidElement(component) && typeof component.type !== 'string';
+}
 
-    React.useEffect(() => {
-      if (open) {
-        expanding(true)(bodyRef.current as HTMLDivElement, contentRef.current as HTMLDivElement, timers.current);
-        contentHeight.current = contentRef.current?.offsetHeight ?? 0;
-      }
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+export const INDICATOR_DISPLAY_NAME = 'AccordionIndicator';
+export const DEFAULT_DURATION = 300;
+export const DEFAULT_EASING = 'cubic-bezier(0.4, 0, 0.2, 1)';
+export const DEFAULT_KEYFRAMES = [{ transform: 'rotate(0deg)' }, { transform: 'rotate(-180deg)' }];
+export const Accordion = ({
+  children,
+  onToggle,
+  duration = DEFAULT_DURATION,
+  open = false,
+  variant,
+  easing = DEFAULT_EASING,
+  ...props
+}: AccordionProps) => {
+  const accordionRef = useRef<HTMLDetailsElement>(null);
 
-    const cancelAnimation = useCallback(() => {
-      const { name, running } = animationStatus.current;
-      if (!running) return;
-      timers.current[name].forEach((timer) => clearTimeout(timer));
-    }, []);
-
-    const setAnimationStatus = useCallback((name: AnimationName, state: boolean) => {
-      animationStatus.current.name = name;
-      animationStatus.current.running = state;
-    }, []);
-
-    const expanding: (onMount: boolean) => AnimateFunction = useCallback(
-      (onMount = false) =>
-        (body, content, timer) => {
-          // NOTE: open=true가 초기값일 경우, CLS가 생기지 않도록 하는 로직
-          if (onMount) {
-            body.style.height = 'auto';
-            setAnimationStatus('expand', false);
-            contentHeight.current = content.offsetHeight;
-            return;
-          }
-
-          let isNeededToCalcHeight = true;
-          const { name: beforeAnimationName, running } = animationStatus.current;
-          if (running && beforeAnimationName === 'shrink') isNeededToCalcHeight = false;
-          if (contentHeight.current === 0) isNeededToCalcHeight = true;
-
-          setIsOpen(true);
-          setAnimationStatus('expand', true);
-
-          setTimeout(() => {
-            // NOTE: safari에서 Body div(height=0)의 자식인 Content div의 offsetHeight을 0으로 계산하는 이슈 대응
-            if (isNeededToCalcHeight) {
-              body.style.height = 'auto';
-              contentHeight.current = content.offsetHeight;
-              body.style.height = '0px';
-            }
-            timer.expand[0] = setTimeout(() => (body.style.height = `${contentHeight.current}px`), 10);
-          }, 5);
-
-          timer.expand[1] = setTimeout(() => {
-            // NOTE: 펼쳐지고나면 height을 'auto'로 바꾸어 resizing 대응
-            body.style.height = 'auto';
-            setAnimationStatus('expand', false);
-          }, duration);
-        },
-      [duration, setAnimationStatus],
-    );
-
-    const shirking: AnimateFunction = useCallback(
-      (body, content, timer) => {
-        setAnimationStatus('shrink', true);
-        body.style.height = `${content.offsetHeight}px`;
-        contentHeight.current = content.offsetHeight;
-
-        timer.shrink[0] = setTimeout(() => (body.style.height = '0px'), 10);
-        timer.shrink[1] = setTimeout(() => {
-          // NOTE: summary 이외 노드의 visibility가 DOM에서 자동으로 변경되기 때문에, open 상태값은 나중에 바뀌어야한다.
-          setIsOpen(false);
-          setAnimationStatus('shrink', false);
-        }, duration);
-      },
-      [duration, setAnimationStatus],
-    );
-
-    const toggleAnimation = useCallback(
-      (shouldExpand: boolean) => {
-        const body = bodyRef.current as HTMLDivElement;
-        const content = contentRef.current as HTMLDivElement;
-        const timer = timers.current as Timers;
-
-        cancelAnimation();
-        if (shouldExpand) expanding(false)(body, content, timer);
-        else shirking(body, content, timer);
-      },
-      [cancelAnimation, expanding, shirking],
-    );
-
-    const toggle = () => {
-      setExpanded((prev) => !prev);
-      toggleAnimation(!expanded);
-    };
-
-    return (
-      <Details open={isOpen} expanded={expanded} type={type} duration={duration} {...props}>
-        <Summary
-          onClick={(e) => {
-            e.preventDefault();
-            if (onToggle) {
-              setExpanded(!open);
-              toggleAnimation(!open);
-              onToggle(e);
-            } else {
-              toggle();
-            }
-          }}
-        >
-          {/* NOTE: safari 구버전에서 summary tag에 flex가 적용되지 않는 버그 대응 */}
-          <div>
-            <Heading as={headingLevel}>{title}</Heading>
-            <ChevronDownIcon size={12} suffixForId={iconSuffix} />
-          </div>
-        </Summary>
-        <Body role="region" ref={bodyRef}>
-          <div ref={contentRef}>{content}</div>
-        </Body>
+  return (
+    <AccordionContextProvider {...{ open, onToggle, duration, easing, variant, accordionRef }}>
+      <Details ref={accordionRef} {...{ variant, duration, easing }} {...props}>
+        {children}
       </Details>
+    </AccordionContextProvider>
+  );
+};
+
+const AccordionTitle = forwardRef<HTMLDivElement, AccordionTitleProps>(function AccordionTitle(
+  { children, ...props },
+  ref,
+) {
+  const { toggle, getAccordionTitleProps } = useAccordion();
+  const [iconPosition, setIconPosition] = useState<IconPosition | null>(null);
+
+  useEffect(() => {
+    const idx = React.Children.toArray(children).findIndex(
+      (child) => narrowComponentWithDisplayName(child) && child.type.displayName === INDICATOR_DISPLAY_NAME,
     );
-  },
-);
+    setIconPosition(idx === 0 ? 'start' : idx > 0 ? 'end' : null);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  return (
+    <Summary
+      {...props}
+      {...getAccordionTitleProps()}
+      onClick={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        toggle(e);
+      }}
+      ref={ref}
+    >
+      {/* NOTE: safari 구버전에서 summary tag에 display: grid가 적용되지 않는 버그 대응 용으로 div 작성 */}
+      <div className={iconPosition ? `iconPosition_${iconPosition}` : ''}>{children}</div>
+    </Summary>
+  );
+});
+
+const AccordionContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(function AccordionContent(
+  { children, ...props },
+  ref,
+) {
+  const { contentRef, getAccordionBodyProps, variant } = useAccordion();
+
+  return (
+    <Content
+      {...props}
+      className={`${props.className ?? ''} ${variant ?? ''}`}
+      {...getAccordionBodyProps()}
+      ref={contentRef}
+    >
+      {/* NOTE: padding 을 포함한 기하학 height을 정확히 구하기 위한 div wrapper */}
+      <div ref={ref}>{children}</div>
+    </Content>
+  );
+});
+
+export const AccordionIndicator = ({ children, keyframes = DEFAULT_KEYFRAMES }: AccordionIndicatorProps) => {
+  const { setIconAnimation } = useAccordion();
+  const iconRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (keyframes.length < 2)
+      throw new Error('The keyframes property of Accordion.Indicator must have 2 and more keyframes.');
+    if (keyframes?.length && iconRef.current) setIconAnimation(keyframes, iconRef.current);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  return <IconWrapper ref={iconRef}>{children}</IconWrapper>;
+};
+AccordionIndicator.displayName = INDICATOR_DISPLAY_NAME;
+
+Accordion.Title = AccordionTitle;
+Accordion.Content = AccordionContent;
+Accordion.Indicator = AccordionIndicator;
