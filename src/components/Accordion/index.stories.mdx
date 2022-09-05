@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Canvas, Meta, Story, ArgsTable, Source } from '@storybook/addon-docs';
 import { Accordion, DEFAULT_EASING, DEFAULT_DURATION } from './index.tsx';
-import { ChevronDownIcon, HeartFillIcon } from '../../assets/Icon';
+import { ChevronLeftIcon, ChevronDownIcon, HeartFillIcon } from '../../assets/Icon';
 import { generateTable } from '../../storybook-props';
 import { runTest } from './storybookTest.ts';
 import { css } from '@emotion/react';
@@ -64,7 +64,7 @@ export const content =
   '딴은 당신은 흙으로 가득 까닭이요, 아침이 프랑시스 이름자를 거외다. 노새, 불러 그러나 토끼, 무엇인지 아이들의 소녀들의 이름을 나의 듯합니다. 계절이 나는 언덕 한 너무나 별 별 책상을 봅니다. 가을로 밤을 가을 나의 이름과, 부끄러운 하나에 옥 까닭입니다. 슬퍼하는 겨울이 내 어머니 멀리 별을 이제 계십니다. 사람들의 지나가는 다하지 하나의 했던 내린 듯합니다. 이제 가을 지나고 시인의 위에 별을 하나에 있습니다.';
 
 export const Template = (args) => (
-  <Accordion {...args}>
+  <Accordion {...args} onToggle={undefined}>
     <Accordion.Title>
       {title}
       <Accordion.Indicator>
@@ -328,5 +328,34 @@ export const anotherStyle = css`
       <Accordion.Title>{title}</Accordion.Title>
       <div>Accordion.Content 태그를 쓰지않으면 렌더링 되지 않습니다.</div>
     </Accordion>
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="trigger">
+    {() => {
+      const [open, setOpen] = useState(true);
+      const toggle = (e) => {
+        setOpen((prev) => !prev);
+        console.log('Accordion current status : ', open);
+      };
+      return (
+        <div>
+          <button onClick={toggle}> toggle</button>
+          <Accordion open={open} onToggle={toggle} type="line" css={anotherStyle}>
+            <Accordion.Title headingLevel={'h4'}>
+              {title}
+              <Accordion.Indicator
+                size={24}
+                keyframes={[{ transform: 'rotate(0deg)' }, { transform: 'rotate(-90deg)' }]}
+              >
+                <ChevronLeftIcon size={12} />
+              </Accordion.Indicator>
+            </Accordion.Title>
+            <Accordion.Content>{content}</Accordion.Content>
+          </Accordion>
+        </div>
+      );
+    }}
   </Story>
 </Canvas>
