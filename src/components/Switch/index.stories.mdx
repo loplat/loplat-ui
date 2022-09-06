@@ -1,0 +1,67 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { useState } from 'react';
+import { Switch } from './index';
+import { spacing, generateTable, pickPropsInObj, eventHandler } from '../../storybook-props';
+import { Button } from '../Button/index.tsx';
+
+<Meta
+  title="Components/Switch"
+  component={Switch}
+  argTypes={{
+    ...spacing('margin'),
+    ...pickPropsInObj(eventHandler, 'onChange'),
+    checked: {
+      ...generateTable({ required: true, type: 'boolean' }),
+      options: [true, false, 'checked', 'unchecked', 'intermediate'],
+      control: 'select',
+    },
+    disabled: {
+      ...generateTable({ defaultValue: false }),
+    },
+  }}
+/>
+
+# Switch
+
+`<Switch>` 컴포넌트는 두개의 상태 중 하나를 유저가 토글하여 결정할 수 있도록 합니다.
+
+export const Template = (args) => {
+  const [checked, setChecked] = useState(args.checked);
+  const toggle = () => {
+    console.log('toggled!');
+    setChecked((prev) => !prev);
+  };
+  return <Switch {...args} checked={checked} onChange={toggle} />;
+};
+
+<Canvas>
+  <Story name="default" args={{ variant: 'outlined' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+## 바깥에서 상태 변경
+
+export const Outisde = (args) => {
+  const [checked, setChecked] = useState(args.checked);
+  const toggle = () => {
+    console.log('toggled!');
+    setChecked((prev) => !prev);
+  };
+  return (
+    <div>
+      <Button color="primary1" onClick={toggle} mb={5} size="sm">
+        토글 상태: {checked ? '체크 O' : '체크 X'}
+      </Button>
+      <Switch {...args} checked={checked} />
+    </div>
+  );
+};
+
+<Canvas>
+  <Story name="outside">
+    <Outisde />
+  </Story>
+</Canvas>
