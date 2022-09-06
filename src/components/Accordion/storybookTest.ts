@@ -14,24 +14,24 @@ export function runTest(story: ComponentStory<typeof Accordion>): ComponentStory
     const body = canvas.getByRole('region');
 
     expect(body).not.toBeVisible();
+
     userEvent.click(title);
     expect(details).toHaveProperty('open');
-    expect(body).not.toBeVisible();
-
-    await sleep(duration);
+    await sleep(duration + 200);
     expect(body).toBeVisible();
 
+    // body를 클릭하면 토글되지 않음
     userEvent.click(body);
     await sleep(duration);
     expect(body).toBeVisible();
 
+    // title을 클릭하면 접힘
     userEvent.click(title);
     expect(body).toBeVisible();
     await sleep(duration - 200);
     expect(body).toBeVisible();
     expect(details).toHaveProperty('open');
     await sleep(duration + 100);
-    expect(title).not.toHaveProperty('open');
     expect(body).not.toBeVisible();
   };
 
