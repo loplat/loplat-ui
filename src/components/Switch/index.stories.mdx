@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Switch } from './index';
 import { spacing, generateTable, pickPropsInObj, eventHandler } from '../../storybook-props';
 import { Button } from '../Button/index.tsx';
+import { Body } from '../../core/Typography/Body';
 
 <Meta
   title="Components/Switch"
@@ -12,11 +13,10 @@ import { Button } from '../Button/index.tsx';
     ...pickPropsInObj(eventHandler, 'onChange'),
     checked: {
       ...generateTable({ required: true, type: 'boolean' }),
-      options: [true, false, 'checked', 'unchecked', 'intermediate'],
-      control: 'select',
     },
     disabled: {
-      ...generateTable({ defaultValue: false }),
+      ...generateTable({ defaultValue: false, type: 'boolean' }),
+      control: 'boolean',
     },
   }}
 />
@@ -35,33 +35,60 @@ export const Template = (args) => {
 };
 
 <Canvas>
-  <Story name="default" args={{ variant: 'outlined' }}>
+  <Story name="default" args={{ variant: 'solid', checked: true }}>
     {Template.bind({})}
   </Story>
 </Canvas>
 
 <ArgsTable story="default" />
 
-## 바깥에서 상태 변경
+## Label
 
-export const Outisde = (args) => {
-  const [checked, setChecked] = useState(args.checked);
-  const toggle = () => {
-    console.log('toggled!');
-    setChecked((prev) => !prev);
-  };
-  return (
-    <div>
-      <Button color="primary1" onClick={toggle} mb={5} size="sm">
-        토글 상태: {checked ? '체크 O' : '체크 X'}
-      </Button>
-      <Switch {...args} checked={checked} />
-    </div>
-  );
-};
+`<Switch>` 컴포넌트에 `<label>`요소와 연결하려면 아래와 같이 작성해야합니다.
+`<label>`의 `for`속성에 Swtich 컴포넌트의 id와 동일한 값을 할당합니다.
+
+### 연결하면 생기는 장점
+
+- `<Switch>` 컴포넌트에 `<label>`요소와 연결하면, 접근성을 높일 수 있습니다.
+- `<label>`을 클릭하여 `<Switch>`자체에 초점을 맞추거나 활성화할 수 있습니다.
+
+<Canvas>
+  <Story name="label">
+    {() => {
+      const [checked, setChecked] = useState(true);
+      const toggle = () => setChecked((prev) => !prev);
+      return (
+        <form>
+          <label htmlFor="label">
+            <Body tag="span" mr={2}>
+              Label
+            </Body>
+          </label>
+          <Switch id="label" name="label" checked={checked} onChange={toggle} />
+        </form>
+      );
+    }}
+  </Story>
+</Canvas>
+
+## 바깥에서 상태 변경
 
 <Canvas>
   <Story name="outside">
-    <Outisde />
+    {() => {
+      const [checked, setChecked] = useState(true);
+      const toggle = () => setChecked((prev) => !prev);
+      return (
+        <div>
+          <div style={{ display: 'flex', flexDirection: 'row', marginBottom: '1rem' }}>
+            <Button color="primary1" onClick={toggle} mr={5} size="sm">
+              토글
+            </Button>
+            <span>체크 상태: {checked ? 'O' : 'X'}</span>
+          </div>
+          <Switch checked={checked} onChange={toggle} />
+        </div>
+      );
+    }}
   </Story>
 </Canvas>

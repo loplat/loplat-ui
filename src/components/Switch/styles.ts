@@ -75,86 +75,86 @@ const colorSet: Record<Variant, ColorSet> = {
 
 export const Wrapper = styled.div<MarginSpacing>`
   ${marginSpacingStyle};
-
   position: relative;
   box-sizing: border-box;
   display: inline-flex;
   vertical-align: middle;
-
   height: 40px;
   width: 76px;
 `;
 
-export const ThumbWrapper = styled.span<Pick<StyledProps, 'variant'>>(({ variant }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  position: 'absolute',
-  inset: 0,
-  transition: 'transform 0.3s ease',
-  'input[type="checkbox"]': {
-    cursor: 'pointer',
-    zIndex: 2,
-    position: 'absolute',
-    inset: 0,
-    opacity: 0,
-    margin: 0,
-    padding: 0,
-    width: '100%',
-    height: '100%',
+export const ThumbWrapper = styled.span<Pick<StyledProps, 'variant'>>`
+  display: flex;
+  align-items: center;
+  position: absolute;
+  inset: 0;
+  transition: transform 0.3s ease;
+  input[type='checkbox'] {
+    cursor: pointer;
+    z-index: 2;
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    &:checked ~ span {
+      left: 50%;
+      background-color: ${({ variant }) => colorSet[variant].checked.thumb.background};
+    }
+    &:not(:checked) ~ span {
+      left: ${spacing(1)}px;
+      background-color: ${({ variant }) => colorSet[variant].notChecked.thumb.background};
+    }
+    &:focus-visible {
+      &:checked ~ span {
+        border: ${spacing(1)}px solid ${blue300};
+      }
+      &:not(:checked) ~ span {
+        border-color: ${({ variant }) => (variant === 'outlined' ? grayscale300 : bluescale200)};
+      }
+    }
+    &:disabled {
+      cursor: 'not-allowed';
+      & ~ span {
+        background-color: ${({ variant }) => colorSet[variant].disabled.thumb.background};
+      }
+    }
+  }
+`;
 
-    '&:checked ~ span': {
-      left: `50%`,
-      backgroundColor: colorSet[variant].checked.thumb.background,
-    },
-    '&:not(:checked) ~ span': {
-      left: `${spacing(1)}px`,
-      backgroundColor: colorSet[variant].notChecked.thumb.background,
-    },
-    '&:focus-visible': {
-      '&:checked ~ span': { border: `${spacing(1)}px solid ${blue300}` },
-      '&:not(:checked) ~ span': {
-        border: `${spacing(1)}px solid`,
-        borderColor: variant === 'outlined' ? grayscale300 : bluescale200,
-      },
-    },
-    '&:disabled': {
-      cursor: 'not-allowed',
-      '& ~ span': {
-        backgroundColor: colorSet[variant].disabled.thumb.background,
-      },
-    },
-  },
-}));
+export const Thumb = styled.span`
+  display: block;
+  box-sizing: border-box;
+  cursor: pointer;
+  z-index: 1;
+  position: absolute;
+  inset: 0;
+  top: ${spacing(1)}px;
+  left: ${spacing(1)}px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: ${spacing(1)}px solid transparent;
+  transition: left 0.3s ease;
+`;
 
-export const Thumb = styled.span({
-  display: 'block',
-  boxSizing: 'border-box',
-  pointerEvents: 'none',
-  cursor: 'pointer',
-  position: 'absolute',
-  zIndex: 2,
-  inset: 0,
-  top: `${spacing(1)}px`,
-  left: `${spacing(1)}px`,
-  width: '32px',
-  height: '32px',
-  borderRadius: '50%',
-  transition: 'left 0.3s ease',
-});
-
-export const Track = styled.span<StyledProps>(({ variant, checked }) => ({
-  transition: 'all 0.3s ease',
-  boxSizing: 'border-box',
-  width: '100%',
-  height: '100%',
-  zIndex: 1,
-  borderRadius: '20px',
-  position: 'absolute',
-  border: `1px solid`,
-  borderColor: `${colorSet[variant][checked ? 'checked' : 'notChecked'].track.borderColor}`,
-  backgroundColor: colorSet[variant][checked ? 'checked' : 'notChecked'].track.background,
-  '.disabled + &': {
-    backgroundColor: colorSet[variant].disabled.track.background,
-    borderColor: colorSet[variant].disabled.track.borderColor,
-  },
-}));
+export const Track = styled.span<StyledProps>`
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  border-radius: 20px;
+  position: absolute;
+  border: 1px solid;
+  ${({ variant, checked }) => `
+    border-color: ${colorSet[variant][checked ? 'checked' : 'notChecked'].track.borderColor};
+    background: ${colorSet[variant][checked ? 'checked' : 'notChecked'].track.background};
+    .disabled + & {
+      border-color: ${colorSet[variant].disabled.track.borderColor};
+      background: ${colorSet[variant].disabled.track.background};
+    }
+  `};
+`;
