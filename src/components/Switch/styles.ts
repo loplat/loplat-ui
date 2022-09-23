@@ -90,7 +90,6 @@ export const ThumbWrapper = styled.span<Pick<StyledProps, 'variant'>>`
   inset: 0;
   transition: transform 0.3s ease;
   input[type='checkbox'] {
-    cursor: pointer;
     z-index: 2;
     position: absolute;
     inset: 0;
@@ -99,6 +98,7 @@ export const ThumbWrapper = styled.span<Pick<StyledProps, 'variant'>>`
     padding: 0;
     width: 100%;
     height: 100%;
+    cursor: pointer;
     &:checked ~ span {
       left: 50%;
       background-color: ${({ variant }) => colorSet[variant].checked.thumb.background};
@@ -116,7 +116,7 @@ export const ThumbWrapper = styled.span<Pick<StyledProps, 'variant'>>`
       }
     }
     &:disabled {
-      cursor: 'not-allowed';
+      cursor: not-allowed;
       & ~ span {
         background-color: ${({ variant }) => colorSet[variant].disabled.thumb.background};
       }
@@ -127,7 +127,6 @@ export const ThumbWrapper = styled.span<Pick<StyledProps, 'variant'>>`
 export const Thumb = styled.span`
   display: block;
   box-sizing: border-box;
-  cursor: pointer;
   z-index: 1;
   position: absolute;
   inset: 0;
