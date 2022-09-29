@@ -101,7 +101,7 @@ export const Tooltip = ({
 
     timerRef.current = setTimeout(() => {
       removePopper();
-    }, 1000);
+    }, 700);
   };
 
   const createPopper = useCallback(() => {
