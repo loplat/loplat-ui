@@ -16,6 +16,7 @@ export const Tooltip = ({
   const wrapperRef = useRef<HTMLDivElement>(null);
   const popperRef = useRef<HTMLDivElement>(null);
   const animation = useRef<Animation | null>(null);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -97,13 +98,26 @@ export const Tooltip = ({
       children.props.onMouseLeave(e);
     }
     // popper 제거
-    removePopper();
+
+    timerRef.current = setTimeout(() => {
+      removePopper();
+    }, 1000);
   };
 
   const createPopper = useCallback(() => {
     const newContainer = document.createElement('div');
     document.body.appendChild(newContainer);
     setContainer(newContainer);
+
+    newContainer.onmouseenter = (e) => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+    };
+
+    newContainer.onmouseleave = () => {
+      removePopper();
+    };
   }, []);
 
   const removePopper = useCallback(() => {

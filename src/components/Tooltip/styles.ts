@@ -4,6 +4,7 @@ import { blue100, bluescale500, MarginSpacing, marginSpacingStyle, spacing } fro
 export const Wrapper = styled.div<MarginSpacing>`
   position: relative;
   width: fit-content;
+
   ${marginSpacingStyle};
 `;
 
@@ -12,10 +13,8 @@ export const Popper = styled.div`
   max-width: 400px;
   width: max-content;
   display: table; // NOTE: safari, firefox에서 max-content를 cross browsing 하기 위함
-
   opacity: 0;
 
-  pointer-events: none;
   overflow-wrap: break-word;
 
   box-sizing: border-box;
