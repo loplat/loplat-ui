@@ -12,7 +12,7 @@ export const Tooltip = ({
   zIndex = 9999,
   ...props
 }: TooltipProps): React.ReactElement => {
-  const [container, setContainer] = useState<Element | null>(null);
+  const [container, setContainer] = useState<HTMLDivElement | null>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const popperRef = useRef<HTMLDivElement>(null);
   const animation = useRef<Animation | null>(null);
@@ -25,12 +25,7 @@ export const Tooltip = ({
     import('web-animations-js');
   }, []);
 
-  const onMouseOver = (e: React.MouseEvent) => {
-    // children의 eventHandler 먼저 실행
-    if (children.props.onMouseOver) {
-      children.props.onMouseOver(e);
-    }
-
+  const renderTooltip = () => {
     // popper 생성, 렌더링
     if (animation.current === null) createPopper();
     if (animation.current) {
@@ -92,6 +87,15 @@ export const Tooltip = ({
     }, enterDelay);
   };
 
+  const onMouseOver = (e: React.MouseEvent) => {
+    // children의 eventHandler 먼저 실행
+    if (children.props.onMouseOver) {
+      children.props.onMouseOver(e);
+    }
+
+    renderTooltip();
+  };
+
   const onMouseLeave = (e: React.MouseEvent) => {
     // children의 eventHandler 먼저 실행
     if (children.props.onMouseLeave) {
@@ -108,16 +112,6 @@ export const Tooltip = ({
     const newContainer = document.createElement('div');
     document.body.appendChild(newContainer);
     setContainer(newContainer);
-
-    newContainer.onmouseenter = (e) => {
-      if (timerRef.current) {
-        clearTimeout(timerRef.current);
-      }
-    };
-
-    newContainer.onmouseleave = () => {
-      removePopper();
-    };
   }, []);
 
   const removePopper = useCallback(() => {
@@ -134,6 +128,25 @@ export const Tooltip = ({
   }, [container]);
 
   useEffect(() => {
+    const onmouseover = (e: any) => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+    };
+    const onmouseleave = () => removePopper();
+
+    if (container) {
+      container.addEventListener('mouseover', onmouseover);
+      container.addEventListener('mouseleave', onmouseleave);
+
+      return () => {
+        container.removeEventListener('mouseover', onmouseover);
+        container.removeEventListener('mouseleave', onmouseleave);
+      };
+    }
+  }, [container, removePopper]);
+
+  useEffect(() => {
     // NOTE: ESC key로 popper를 제거할 수 있어야 함
     function onKeyDownESC(e: KeyboardEvent) {
       if (e.code === 'Escape') removePopper();
@@ -146,7 +159,23 @@ export const Tooltip = ({
 
   return (
     <Wrapper ref={wrapperRef}>
-      {React.cloneElement(children, { ...children.props, onMouseOver, onMouseLeave })}
+      {React.cloneElement(children, {
+        ...children.props,
+        onMouseOver,
+        onMouseLeave,
+        tabIndex: 0,
+        onFocus: () => {
+          if (timerRef.current) {
+            clearTimeout(timerRef.current);
+          }
+
+          renderTooltip();
+        },
+        onBlur: () => {
+          console.log('blur');
+          removePopper();
+        },
+      })}
       <Portal container={container}>
         <Popper ref={popperRef} role="tooltip" style={{ zIndex }} {...props}>
           {title}
