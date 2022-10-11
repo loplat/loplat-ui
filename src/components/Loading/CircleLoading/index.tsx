@@ -1,12 +1,12 @@
 import React from 'react';
 import type { Loading } from '../types';
-import { primary } from '../../../core';
+import { loadingZIndex, primary } from '../../../core';
 
 export const CircleLoading = ({
   color = primary,
   duration = 500,
   size = 100,
-  zIndex = 0,
+  zIndex = loadingZIndex,
   ...props
 }: Loading): React.ReactElement => {
   const originalSize = 40;

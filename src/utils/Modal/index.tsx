@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import styled from '@emotion/styled';
 import { Portal } from '../Portal';
 import { generateUniqueId } from '../../functions/uniqueId';
+import { modalZIndex } from '../../core';
 
 export interface ModalProps {
   isOpen: boolean;
@@ -27,7 +28,7 @@ const changeAccessibility = (root: HTMLElement, modalStatus: 'open' | 'close') =
   });
 };
 
-export function Modal({ isOpen, onClose, zIndex = 9999, children }: ModalProps): React.ReactElement | null {
+export function Modal({ isOpen, onClose, zIndex = modalZIndex, children }: ModalProps): React.ReactElement | null {
   const portalId = useMemo(() => `loplat-ui-modal_${generateUniqueId()}`, []);
   const [container, setContainer] = useState<Element | null>(null);
 

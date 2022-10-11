@@ -13,6 +13,7 @@ import {
 import { Bar, OptionList, Option } from './styles';
 import { generateUniqueId } from '../../functions/uniqueId';
 import { useClick, useKeyDown, useOptionListPosition } from './hooks';
+import { popperZIndex } from '../../core';
 
 const DropdownContext = React.createContext<
   Pick<
@@ -107,7 +108,7 @@ Dropdown.Bar = React.forwardRef(
   },
 );
 
-Dropdown.OptionList = ({ children, zIndex = 9999, ...props }: OptionListProps) => {
+Dropdown.OptionList = ({ children, zIndex = popperZIndex, ...props }: OptionListProps) => {
   const { container, optionListRef } = useContext(DropdownContext);
 
   return (

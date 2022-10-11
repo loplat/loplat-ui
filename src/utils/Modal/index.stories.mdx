@@ -3,7 +3,8 @@ import { useState } from 'react';
 import { Modal } from './index';
 import { Button } from '../../components/Button';
 import { css } from '@emotion/css';
-import { hideCanvas } from '../../storybook-props/';
+import { generateTable, hideCanvas } from '../../storybook-props/';
+import { modalZIndex } from '../../core';
 
 <Meta
   title="Utils/Modal"
@@ -12,6 +13,9 @@ import { hideCanvas } from '../../storybook-props/';
     isOpen: { description: '모달의 열림여부 상태입니다.', control: { type: null } },
     onClose: {
       description: '모달을 닫는 함수입니다. `isOpen`상태를 변경할 수 있어야 합니다.',
+    },
+    zIndex: {
+      ...generateTable({ defaultValue: modalZIndex }),
     },
     children: {
       description: '모달안에 넣을 컨텐츠 내용을 작성해주세요.',

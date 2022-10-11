@@ -1,12 +1,12 @@
 import React from 'react';
 import type { Loading } from '../types';
-import { primary } from '../../../core';
+import { loadingZIndex, primary } from '../../../core';
 
 export const LineLoading = ({
   color = primary,
   duration = 600,
   size = 80,
-  zIndex = 0,
+  zIndex = loadingZIndex,
   ...props
 }: Loading): React.ReactElement => {
   const originalSize = 30;
