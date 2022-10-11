@@ -8,7 +8,6 @@
   ],
   "rules": {
     "react/no-unescaped-entities": "off",
-    "import/no-unresolved": "error",
     "@typescript-eslint/no-empty-interface": "off"
   },
   "settings": {
@@ -42,13 +41,9 @@
       "skipLibCheck": true,
       "strict": true,
       "target": "esnext",
-      "baseUrl": ".",
+      "baseUrl": "src",
       "paths": {
-        "@/components/*": ["components/*"],
-        "@/utils/*": ["utils/*"],
-        "@/types/*": ["interfaces/*"],
-        "@/styles/*": ["public/styles/*"],
-        "@/images/*": ["public/images/*"]
+        "@Core/*": ["core/*"]
       }
     },
     "exclude": ["node_modules"],
