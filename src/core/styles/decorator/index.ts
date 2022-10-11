@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { blue100, blue600 } from '../../colors';
+import { blue100, blue600 } from '@Core/colors';
 
 // Underline
 export interface UnderlineProps {

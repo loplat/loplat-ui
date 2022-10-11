@@ -1,6 +1,6 @@
 import React, { ForwardedRef } from 'react';
 import { ColorSet, SizeSet, BaseButton, CommonButtonProps } from '../Button';
-import { marginSpacingProps } from '../../core/Spacing';
+import { marginSpacingProps } from '@Core/Spacing';
 
 export type IconButtonProps = CommonButtonProps & {
   children: React.ReactElement;

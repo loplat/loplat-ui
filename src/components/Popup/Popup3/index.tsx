@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
-import { bluescale500, black } from '../../../core/colors';
+import { bluescale500, black } from '@Core/colors';
+import { Large, Small } from '@Core/styles/mediaQuery';
 import { Button } from '../../Button';
-import { Large, Small } from '../../../core/styles/mediaQuery';
 import { IconButton } from '../../IconButton';
 import { CloseIcon } from '../../../assets/Icon/export.generated';
 import { Popup3Props, DialogProps } from '../core/types';

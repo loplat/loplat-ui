@@ -14,7 +14,7 @@ import {
   grayscale300,
   bluescale200,
 } from '../../core';
-import { MarginSpacing, marginSpacingStyle } from '../../core/Spacing';
+import { MarginSpacing, marginSpacingStyle } from '@Core/Spacing';
 import type { Variant, SwitchProps } from './types';
 
 type Set = {

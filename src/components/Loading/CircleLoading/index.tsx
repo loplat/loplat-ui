@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Loading } from '../types';
-import { primary } from '../../../core';
+import { primary } from '@Core/styles';
 
 export const CircleLoading = ({
   color = primary,

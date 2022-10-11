@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-import { highlight } from '../../../core/styles/decorator';
-import { grayscale50, grayscale100 } from '../../../core/colors';
+import { highlight } from '@Core/styles/decorator';
+import { grayscale50, grayscale100 } from '@Core/colors';
 
 export const GroupWrapper = styled.div`
   display: flex;
