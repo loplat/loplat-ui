@@ -102,10 +102,27 @@ export const Tooltip = ({
       children.props.onMouseLeave(e);
     }
     // popper 제거
+    removePopper();
+  };
 
-    timerRef.current = setTimeout(() => {
-      removePopper();
-    }, 700);
+  const onFocus = (e: React.FocusEvent<HTMLElement>) => {
+    if (animation.current) {
+      animation.current.cancel();
+    }
+
+    if (children.props.onFocus) {
+      children.props.onFocus(e);
+    }
+
+    renderTooltip();
+  };
+
+  const onBlur = (e: React.FocusEvent<HTMLElement>) => {
+    if (children.props.onBlur) {
+      children.props.onBlur(e);
+    }
+
+    removePopper();
   };
 
   const createPopper = useCallback(() => {
@@ -119,6 +136,7 @@ export const Tooltip = ({
     animation.current = popperRef.current.animate([{ opacity: 1 }, { opacity: 0 }], {
       duration: 300,
       easing: 'cubic-bezier(0.31, -0.06, 0.68, 1)',
+      delay: 300,
     });
     animation.current.onfinish = () => {
       container?.remove();
@@ -128,9 +146,9 @@ export const Tooltip = ({
   }, [container]);
 
   useEffect(() => {
-    const onmouseover = (e: any) => {
-      if (timerRef.current) {
-        clearTimeout(timerRef.current);
+    const onmouseover = () => {
+      if (animation.current) {
+        animation.current.cancel();
       }
     };
     const onmouseleave = () => removePopper();
@@ -164,17 +182,8 @@ export const Tooltip = ({
         onMouseOver,
         onMouseLeave,
         tabIndex: 0,
-        onFocus: () => {
-          if (timerRef.current) {
-            clearTimeout(timerRef.current);
-          }
-
-          renderTooltip();
-        },
-        onBlur: () => {
-          console.log('blur');
-          removePopper();
-        },
+        onFocus,
+        onBlur,
       })}
       <Portal container={container}>
         <Popper ref={popperRef} role="tooltip" style={{ zIndex }} {...props}>
