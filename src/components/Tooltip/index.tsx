@@ -12,11 +12,10 @@ export const Tooltip = ({
   zIndex = 9999,
   ...props
 }: TooltipProps): React.ReactElement => {
-  const [container, setContainer] = useState<HTMLDivElement | null>(null);
+  const [container, setContainer] = useState<Element | null>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const popperRef = useRef<HTMLDivElement>(null);
   const animation = useRef<Animation | null>(null);
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
