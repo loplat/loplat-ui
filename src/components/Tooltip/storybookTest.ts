@@ -17,7 +17,7 @@ export function runTest(story: ComponentStory<typeof Tooltip>): ComponentStory<t
 
     // unhover tooltip
     userEvent.unhover(tooltip);
-    await waitForElementToBeRemoved(screen.getByTestId('loplat-ui__popper'));
+    await waitForElementToBeRemoved(popper);
 
     // test popper
     expect(popper).not.toBeInTheDocument();
