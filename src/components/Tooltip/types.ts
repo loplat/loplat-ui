@@ -11,4 +11,4 @@ export type TooltipProps = {
   enterDelay?: number;
   /** tooltip의 z-index 입니다. */
   zIndex?: number;
-} & React.HTMLAttributes<HTMLDivElement>;
+} & Omit<React.HTMLAttributes<HTMLDivElement>, 'title'>;

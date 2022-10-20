@@ -1,7 +1,7 @@
 import { Tooltip } from './';
 import { ComponentStory } from '@storybook/react';
 import { expect } from '@storybook/jest';
-import { userEvent, screen } from '@storybook/testing-library';
+import { userEvent, screen, waitForElementToBeRemoved } from '@storybook/testing-library';
 import { sleep } from '../../functions/delay';
 
 export function runTest(story: ComponentStory<typeof Tooltip>): ComponentStory<typeof Tooltip> {
@@ -17,7 +17,7 @@ export function runTest(story: ComponentStory<typeof Tooltip>): ComponentStory<t
 
     // unhover tooltip
     userEvent.unhover(tooltip);
-    await sleep(350);
+    await waitForElementToBeRemoved(popper);
 
     // test popper
     expect(popper).not.toBeInTheDocument();
