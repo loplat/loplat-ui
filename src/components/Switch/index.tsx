@@ -1,7 +1,7 @@
 import React from 'react';
 import type { SwitchProps } from './types';
 import { Wrapper, ThumbWrapper, Thumb, Track } from './styles';
-import { MarginSpacing, marginSpacingProps } from '../../core/Spacing';
+import { MarginSpacing, marginSpacingProps } from '@Core/Spacing';
 
 export const Switch = ({ variant = 'solid', checked, onChange, ...props }: SwitchProps & MarginSpacing) => {
   return (

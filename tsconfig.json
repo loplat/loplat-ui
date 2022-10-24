@@ -14,7 +14,11 @@
     "jsx": "react-jsx",
     "declaration": true,
     "declarationDir": ".",
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": "src",
+    "paths": {
+      "@Core/*": ["core/*"]
+    }
   },
   "include": ["src"],
   "exclude": ["**/*.stories.tsx", "**/*.test.tsx", "**/tools", "*/storybook-props", "node_modules"]

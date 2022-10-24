@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { spacing } from '../../core';
+import { spacing } from '@Core/Spacing';
 import { Portal } from '../../utils';
 import { TooltipProps } from './types';
 import { Popper, Wrapper } from './styles';

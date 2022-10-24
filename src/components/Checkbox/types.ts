@@ -1,5 +1,5 @@
 import React from 'react';
-import { MarginSpacing } from '../../core/Spacing';
+import { MarginSpacing } from '@Core/Spacing';
 
 export type BaseLabel = {
   /** `label`의 폰트굵기를 굵게 만듭니다.*/
