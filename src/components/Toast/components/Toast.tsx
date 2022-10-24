@@ -4,6 +4,7 @@ import { MarginSpacing, marginSpacingProps, marginSpacingStyle } from '@Core/Spa
 import { ToastItem, ToastPosition } from '../core/types';
 import Toaster from '../core/toaster';
 import { ToastBar } from './ToastBar';
+import { toastZIndex } from '../../../core';
 
 export interface Props extends MarginSpacing {
   /** 토스트가 화면에 띄어지는 시간입니다. `ms`단위입니다. */
@@ -20,7 +21,7 @@ export let toast: Toaster = new Toaster(null);
 
 export const Toast = ({
   duration = 3000,
-  zIndex = 9999,
+  zIndex = toastZIndex,
   gap = 8,
   position = 'top',
   ...props

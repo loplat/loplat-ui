@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { spacing } from '@Core/Spacing';
+import { spacing, tooltipZIndex } from '@Core/';
 import { Portal } from '../../utils';
 import { TooltipProps } from './types';
 import { Popper, Wrapper } from './styles';
@@ -9,7 +9,7 @@ export const Tooltip = ({
   title,
   placement = 'top',
   enterDelay = 0,
-  zIndex = 9999,
+  zIndex = tooltipZIndex,
   ...props
 }: TooltipProps): React.ReactElement => {
   const [container, setContainer] = useState<Element | null>(null);

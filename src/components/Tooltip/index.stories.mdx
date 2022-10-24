@@ -1,7 +1,7 @@
 import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs';
 import { Tooltip } from './index.tsx';
 import { Badge } from '../Badge';
-import { bluescale500 } from '../../core';
+import { bluescale500, tooltipZIndex } from '../../core';
 import { generateTable } from '../../storybook-props';
 import { runTest } from './storybookTest';
 
@@ -16,6 +16,9 @@ import { runTest } from './storybookTest';
     title: {
       ...generateTable({ type: 'string | React.ReactElement' }),
       control: 'text',
+    },
+    zIndex: {
+      ...generateTable({ defaultValue: tooltipZIndex }),
     },
   }}
   parameters={{

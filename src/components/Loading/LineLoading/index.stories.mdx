@@ -2,6 +2,7 @@ import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import { LineLoading } from './index';
 import { generateTable } from '../../../storybook-props/';
 import { Badge } from '../../Badge';
+import { loadingZIndex } from '../../../core';
 
 <Meta
   title="Components/Loading/Line"
@@ -17,7 +18,7 @@ import { Badge } from '../../Badge';
       ...generateTable({ defaultValue: 80 }),
     },
     zIndex: {
-      ...generateTable({ defaultValue: 0 }),
+      ...generateTable({ defaultValue: loadingZIndex }),
     },
   }}
 />
