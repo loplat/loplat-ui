@@ -1,5 +1,5 @@
 import React from 'react';
-import { MarginSpacing } from '../../core/Spacing';
+import { MarginSpacing } from '@Core/Spacing';
 
 export type IconProps = {
   size?: number;

@@ -1,8 +1,8 @@
 import React from 'react';
 import { css } from '@emotion/css';
-import { white } from '../../core/colors';
-import { primary, danger, warning, success, primaryLight } from '../../core/styles/palette';
-import { BoxSpacing, boxSpacingStyle } from '../../core/Spacing';
+import { white } from '@Core/colors';
+import { primary, danger, warning, success, primaryLight } from '@Core/styles';
+import { BoxSpacing, boxSpacingStyle } from '@Core/Spacing';
 
 type BadgeType = 'pill' | 'round' | 'new';
 type Color = 'primary' | 'danger' | 'success' | 'light' | 'warning';

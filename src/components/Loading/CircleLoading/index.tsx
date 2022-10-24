@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Loading } from '../types';
-import { loadingZIndex, primary } from '../../../core';
+import { primary, loadingZIndex } from '@Core/';
 
 export const CircleLoading = ({
   color = primary,

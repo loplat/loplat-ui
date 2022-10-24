@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import styled from '@emotion/styled';
-import { MarginSpacing, marginSpacingProps, marginSpacingStyle } from '../../../core/Spacing';
+import { MarginSpacing, marginSpacingProps, marginSpacingStyle } from '@Core/Spacing';
 import { ToastItem, ToastPosition } from '../core/types';
 import Toaster from '../core/toaster';
 import { ToastBar } from './ToastBar';

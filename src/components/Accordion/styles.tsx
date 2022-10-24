@@ -1,9 +1,9 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import type { AccordionProps } from './types';
-import { black, bluescale100, grayscale200, grayscale800, blue100 } from '../../core/colors';
-import { primary } from '../../core/styles/palette';
-import { transition } from '../../core/styles/transition';
+import { black, bluescale100, grayscale200, grayscale800, blue100 } from '@Core/colors';
+import { primary } from '@Core/styles';
+import { transition } from '@Core/styles';
 import { spacing } from '../../core';
 
 export const Summary = styled.summary`

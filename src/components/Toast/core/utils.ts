@@ -1,5 +1,5 @@
 import { ColorSet, ToastType } from './types';
-import { danger, success, warning } from '../../../core/styles/palette';
+import { danger, success, warning } from '@Core/styles';
 import {
   black,
   yellow100,
@@ -11,7 +11,7 @@ import {
   blue300,
   blue500,
   red100,
-} from '../../../core/colors';
+} from '@Core/colors';
 
 export function generateColorSet(type: ToastType): ColorSet {
   if (type === 'success')

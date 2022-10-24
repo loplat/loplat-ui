@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo, useRef } from 'react';
-import { Body } from '../../../core/Typography/Body';
+import { Body } from '@Core/Typography';
+import { spacing } from '@Core/Spacing';
 import { Close as CloseIcon } from '../../../assets/Icon/generated/Close';
 import { CheckCircleFill as CheckCircleFillIcon } from '../../../assets/Icon/generated/CheckCircleFill';
-import { spacing } from '../../../core/Spacing';
 import { ToastItem, ToastPosition } from '../core/types';
 import { generateColorSet } from '../core/utils';
 import styled from '@emotion/styled';
