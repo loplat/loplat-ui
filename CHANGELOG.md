@@ -1,3 +1,19 @@
+# 1.10.0 (2022-11-08)
+
+## Added
+- [Switch](https://ui.loplat.com/?path=/docs/components-switch--default-story) 컴포넌트를 추가했습니다.
+- loplat UI에서 사용하는 z-index 값들을 `zIndex` 변수로 분리했습니다. 
+
+## Fixed
+- Tooltip
+  - `web-animations-js` polyfill을 추가했습니다.
+  - popper 영역에 마우스가 들어왔을 때, popper가 사라지지 않도록 개선했습니다.
+  - 키보드 조작으로 tooltip에 접근할 수 있도록 개선했습니다.
+- Accordion
+  - `web-animations-js` polyfill을 추가했습니다.
+  - `open` prop을 변경했을 때 애니메이션이 제대로 동작하지 않는 버그를 수정했습니다.
+
+
 # 1.9.0 (2022-09-01)
 
 ## Added
