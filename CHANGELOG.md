@@ -12,6 +12,9 @@
 - Accordion
   - `web-animations-js` polyfill을 추가했습니다.
   - `open` prop을 변경했을 때 애니메이션이 제대로 동작하지 않는 버그를 수정했습니다.
+- Input
+  - 기존 `errorMessage` prop을 `helperText` prop으로 확장했습니다.
+  - `helperText`의 position을 `absolute`로 변경했습니다.
 
 
 # 1.9.0 (2022-09-01)
