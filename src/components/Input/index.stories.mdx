@@ -13,7 +13,7 @@ import { disabled as disabledProp, icon, pickPropsInObj, eventHandler, spacing }
   argTypes={{
     value: { description: '`input` 상태를 연결해주세요.', type: 'string', table: { category: 'input' } },
     id: {
-      description: '`label`태그와 연동하기 위한 `input` 태그의 `id` 속성입니다.',
+      description: '`label` 태그와 연동하기 위한 `input` 태그의 `id` 속성입니다.',
       type: 'string',
       table: { category: 'input' },
     },
@@ -29,12 +29,13 @@ import { disabled as disabledProp, icon, pickPropsInObj, eventHandler, spacing }
       table: { category: 'input' },
     },
     className: { description: '`input` 태그의 `class` 속성입니다.', type: 'string', table: { category: 'input' } },
-    error: { description: '`true`일 때, `errorMessage`가 하단에 표시됩니다.', table: { category: 'error' } },
-    errorMessage: { table: { category: 'error' } },
+    error: { description: '`true`일 때, `helperText` 가 빨간색으로 표시됩니다.' },
+    helperText: { description: '하단에 표시되는 문구입니다.' },
     ...disabledProp('input', 'input'),
     ...pickPropsInObj(icon, 'isIconVisible', 'rightIcon'),
     ...pickPropsInObj(eventHandler, 'onKeyPress', 'onBlur', 'onFocus', 'onChange'),
     ...spacing('margin'),
+    ...spacing('padding'),
   }}
 />
 
@@ -44,7 +45,7 @@ export const Template = (args) => {
     <Input
       placeholder="값을 입력해주세요"
       error={value.length > 20}
-      errorMessage="20자 이하로 작성해주세요."
+      helperText={value.length > 20 ? '20자 이하로 작성해주세요.' : ''}
       {...args}
       value={value}
       onChange={(e) => setValue(e.target.value)}
@@ -65,7 +66,7 @@ export const Template = (args) => {
 ### disabled
 
 <Canvas>
-  <Story name="disabled" args={{ disabled: true }}>
+  <Story name="disabled" args={{ disabled: true, helperText: '수정할 수 없습니다.' }}>
     {Template.bind({})}
   </Story>
 </Canvas>

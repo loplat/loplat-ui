@@ -3,17 +3,17 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/css';
 import { primary, danger } from '@Core/styles';
 import { white, bluescale500, grayscale500, grayscale200, bluescale50, grayscale900 } from '@Core/colors';
-import { MarginSpacing, marginSpacingProps, marginSpacingStyle, spacing } from '@Core/Spacing';
+import { BoxSpacing, boxSpacingProps, boxSpacingStyle, spacing } from '@Core/Spacing';
 import { IconProps } from '../../assets/Icon';
 
 export type CommonInput = {
   error?: boolean;
-  errorMessage?: string;
+  helperText?: string;
   rightIcon?: React.ReactElement<IconProps>;
   isIconVisible?: boolean;
 };
 
-export type InputProps = CommonInput & React.InputHTMLAttributes<HTMLInputElement> & MarginSpacing;
+export type InputProps = CommonInput & React.InputHTMLAttributes<HTMLInputElement> & BoxSpacing;
 
 const BaseInput = styled.input<Pick<InputProps, 'isIconVisible' | 'error'>>`
   width: 100%;
@@ -73,50 +73,48 @@ const RightIconContainer = styled.div<Pick<InputProps, 'isIconVisible' | 'disabl
 `;
 
 const Wrapper = styled.div`
-  ${marginSpacingStyle};
+  position: relative;
+  ${boxSpacingStyle};
 `;
 
-const InlineError = React.memo(({ children }): React.ReactElement => {
-  return (
-    <p
-      role="alert"
-      className={css`
-        color: ${danger};
-        margin: 3px 0 0 0;
-        font-size: 1rem;
-        width: 100%;
-      `}
-    >
-      {children}
-    </p>
-  );
-});
+const Message = styled.p<{ color: string }>`
+  position: absolute;
+  margin: 3px 0 0 0;
+  width: 100%;
+  color: ${({ color }) => color};
+`;
 
-export const Input = React.forwardRef((props: InputProps, ref: ForwardedRef<HTMLInputElement>): React.ReactElement => {
-  return (
-    <Wrapper {...marginSpacingProps(props)}>
-      {props.rightIcon ? (
-        <div
-          className={`${css`
-            position: relative;
-            display: flex;
-            width: 100%;
-          `}`}
-        >
-          <BaseInput {...props} ref={ref} />
-          <RightIconContainer
-            disabled={props.disabled}
-            isIconVisible={props.isIconVisible}
-            data-testid="loplat-ui__rightIcon"
+export const Input = React.forwardRef(
+  ({ pb = 8, ...props }: InputProps, ref: ForwardedRef<HTMLInputElement>): React.ReactElement => {
+    return (
+      <Wrapper {...boxSpacingProps(props)} pb={pb}>
+        {props.rightIcon ? (
+          <div
+            className={`${css`
+              position: relative;
+              display: flex;
+              width: 100%;
+            `}`}
           >
-            {props.rightIcon}
-          </RightIconContainer>
-        </div>
-      ) : (
-        <BaseInput {...props} ref={ref} />
-      )}
+            <BaseInput {...props} ref={ref} />
+            <RightIconContainer
+              disabled={props.disabled}
+              isIconVisible={props.isIconVisible}
+              data-testid="loplat-ui__rightIcon"
+            >
+              {props.rightIcon}
+            </RightIconContainer>
+          </div>
+        ) : (
+          <BaseInput {...props} ref={ref} />
+        )}
 
-      {props.error && props.errorMessage && <InlineError>{props.errorMessage}</InlineError>}
-    </Wrapper>
-  );
-});
+        {props.helperText && (
+          <Message role={props.error ? 'alert' : undefined} color={props.error ? danger : bluescale500}>
+            {props.helperText}
+          </Message>
+        )}
+      </Wrapper>
+    );
+  },
+);
