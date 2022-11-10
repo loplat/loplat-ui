@@ -19,7 +19,7 @@ import {
   white,
 } from '@Core/colors';
 import { primary, danger } from '@Core/styles/palette';
-import { Large } from '@Core/styles/mediaQuery';
+import { NotMobile } from '@Core/styles/mediaQuery';
 import { MarginSpacing, marginSpacingProps, marginSpacingStyle, spacing } from '@Core/Spacing';
 
 type Size = 'xs' | 'sm' | 'md' | 'lg';
@@ -257,8 +257,8 @@ export const BaseButton = styled.button<BaseButtonProps>`
     background-color: ${({ background }) => background.disabled};
     cursor: not-allowed;
   }
-  ${Large} {
-    &:hover:not(:disabled) {
+  ${NotMobile} {
+    &:hover:not(:disabled, :active) {
       color: ${({ text }) => text.hover};
       svg g > path {
         fill: ${({ text }) => text.hover};
@@ -283,8 +283,8 @@ export const BaseButton = styled.button<BaseButtonProps>`
           &:disabled {
             border-color: ${border.disabled};
           }
-          ${Large} {
-            &:hover:not(:disabled) {
+          ${NotMobile} {
+            &:hover:not(:disabled, :active) {
               border-color: ${border.hover};
             }
           }
