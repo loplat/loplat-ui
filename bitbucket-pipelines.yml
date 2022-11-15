@@ -25,9 +25,9 @@ pipelines:
             - node
           script:
             - unset CI
-            - pipe: atlassian/firebase-deploy:0.3.4
+            - pipe: atlassian/firebase-deploy:3.0.0
               variables:
-                FIREBASE_TOKEN: $FIREBASE_TOKEN
+                KEY_FILE: $FIREBASE_KEY_FILE
                 PROJECT_ID: $FIREBASE_PROJECT_ID
                 MESSAGE: 'deploying to loplat UI'
                 EXTRA_ARGS: '--only hosting:feature'
@@ -72,9 +72,9 @@ pipelines:
             - node
           script:
             - unset CI
-            - pipe: atlassian/firebase-deploy:0.3.4
+            - pipe: atlassian/firebase-deploy:3.0.0
               variables:
-                FIREBASE_TOKEN: $FIREBASE_TOKEN
+                KEY_FILE: $FIREBASE_KEY_FILE
                 PROJECT_ID: $FIREBASE_PROJECT_ID
                 MESSAGE: 'deploying to loplat UI'
                 EXTRA_ARGS: '--only hosting:staging'
@@ -113,9 +113,9 @@ pipelines:
             - node
           script:
             - unset CI
-            - pipe: atlassian/firebase-deploy:0.3.4
+            - pipe: atlassian/firebase-deploy:3.0.0
               variables:
-                FIREBASE_TOKEN: $FIREBASE_TOKEN
+                KEY_FILE: $FIREBASE_KEY_FILE
                 PROJECT_ID: $FIREBASE_PROJECT_ID
                 MESSAGE: 'deploying to loplat UI'
                 EXTRA_ARGS: '--only hosting:production'
