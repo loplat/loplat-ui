@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
-import { blue500, grayscale800, grayscale200, grayscale500, grayscale100, grayscale300 } from '@Core/colors';
-import { primary } from '@Core/styles/palette';
-import { MarginSpacing, marginSpacingProps, marginSpacingStyle } from '@Core/Spacing';
+import { blue500, grayscale800, grayscale200, grayscale500, grayscale100, grayscale300 } from '../../core/colors';
+import { primary } from '../../core/styles/palette';
+import { MarginSpacing, marginSpacingProps, marginSpacingStyle } from '../../core/Spacing';
 import { CheckboxProps, BaseLabel } from './types';
 
 export const Checkbox = ({

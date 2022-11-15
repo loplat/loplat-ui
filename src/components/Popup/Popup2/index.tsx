@@ -1,12 +1,12 @@
 import styled from '@emotion/styled';
 import { Modal } from '../../../utils';
 import { Button } from '../../Button';
-import { grayscale900 } from '@Core/colors';
-import { primary } from '@Core/styles';
-import { spacing } from '@Core/Spacing';
+import { grayscale900 } from '../../../core/colors';
+import { primary } from '../../../core';
 import { generateCustomIcon } from '../core/utils';
 import { WrapperCommonStyle, Dialog, ButtonWrapper } from '../core/commonStyle';
 import { Popup2Props, DialogProps } from '../core/types';
+import { spacing } from '../../../core';
 
 export const Popup2Component = ({
   content,

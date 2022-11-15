@@ -1,4 +1,4 @@
-import { BoxSpacing, MarginSpacing } from '@Core/Spacing';
+import { BoxSpacing, MarginSpacing } from '../../../core/Spacing';
 import React from 'react';
 
 export type BaseRadioButtonProps = {

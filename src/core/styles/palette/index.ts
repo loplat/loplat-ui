@@ -1,4 +1,4 @@
-import { green, red, yellow, blue } from '@Core/colors';
+import { green, red, yellow, blue } from '../../colors';
 
 export const success = green[300];
 export const danger = red[300];

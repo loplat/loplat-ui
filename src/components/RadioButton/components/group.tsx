@@ -1,6 +1,6 @@
 import { RadioButtonGroupProps } from '../core/types';
 import { RadioButton } from './single';
-import { BoxSpacing, boxSpacingStyle } from '@Core/Spacing';
+import { BoxSpacing, boxSpacingStyle } from '../../../core/Spacing';
 import styled from '@emotion/styled';
 
 export const RadioButtonGroup = ({

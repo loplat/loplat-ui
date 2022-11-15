@@ -1,9 +1,9 @@
 import React, { ForwardedRef } from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/css';
-import { primary, danger } from '@Core/styles';
-import { white, bluescale500, grayscale500, grayscale200, bluescale50, grayscale900 } from '@Core/colors';
-import { BoxSpacing, boxSpacingProps, boxSpacingStyle, spacing } from '@Core/Spacing';
+import { primary, danger } from '../../core/styles';
+import { white, bluescale500, grayscale500, grayscale200, bluescale50, grayscale900 } from '../../core/colors';
+import { BoxSpacing, boxSpacingProps, boxSpacingStyle, spacing } from '../../core/Spacing';
 import { IconProps } from '../../assets/Icon';
 
 export type CommonInput = {

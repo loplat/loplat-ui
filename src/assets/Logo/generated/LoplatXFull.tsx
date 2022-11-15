@@ -1,7 +1,7 @@
 import React from 'react';
 import { LogoProps } from '../index';
 import Svg from '../../svg';
-import { marginSpacingProps } from '@Core/Spacing';
+import { marginSpacingProps } from '../../../core/Spacing';
 export const LoplatXFull = React.memo<LogoProps>(({ width = 18, ...props }) => (
   <Svg
     {...marginSpacingProps(props)}

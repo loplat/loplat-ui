@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
-import { white } from '@Core/colors';
-import { Large, Small } from '@Core/styles/mediaQuery';
-import { spacing } from '@Core/Spacing';
+import { white } from '../../../core/colors';
+import { Large, Small } from '../../../core/styles/mediaQuery';
+import { spacing } from '../../../core';
 
 export const WrapperCommonStyle = css`
   display: flex;

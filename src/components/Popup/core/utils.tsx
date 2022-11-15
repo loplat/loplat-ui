@@ -1,7 +1,7 @@
 import React from 'react';
 import { IconProps, CheckCircleOutlineIcon, WarningCircleOutlineIcon } from '../../../assets/Icon';
 import { generateUniqueId } from '../../../functions/uniqueId';
-import { BasePopupProps } from './types';
+import { BasePopupProps } from '../core/types';
 
 export const generateCustomIcon = (
   icon: NonNullable<BasePopupProps['icon']>,

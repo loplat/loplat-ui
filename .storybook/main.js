@@ -1,5 +1,3 @@
-const path = require('path');
-
 module.exports = {
   stories: ['../src/**/*.stories.@(js|jsx|ts|tsx|mdx)', './welcome.jsx'],
   addons: [
@@ -15,10 +13,6 @@ module.exports = {
     interactionsDebugger: true,
   },
   webpackFinal: async (config) => {
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      '@Core': path.resolve(__dirname, '../src/core'),
-    };
     config.optimization.splitChunks = {
       ...config.optimization.splitChunks,
       chunks: 'all',

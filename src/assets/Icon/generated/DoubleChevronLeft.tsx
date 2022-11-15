@@ -1,6 +1,6 @@
 import React from 'react';
 import { IconProps } from '../index';
-import { marginSpacingProps } from '@Core/Spacing';
+import { marginSpacingProps } from '../../../core/Spacing';
 import Svg from '../../svg';
 export const DoubleChevronLeft = React.memo<IconProps>(
   ({ size = 18, fillColor = '#9DAAB7', suffixForId, ...props }) => {

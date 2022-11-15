@@ -40,11 +40,7 @@
       "resolveJsonModule": true,
       "skipLibCheck": true,
       "strict": true,
-      "target": "esnext",
-      "baseUrl": "src",
-      "paths": {
-        "@Core/*": ["core/*"]
-      }
+      "target": "esnext"
     },
     "exclude": ["node_modules"],
     "include": ["**/*.ts", "**/*.tsx"]

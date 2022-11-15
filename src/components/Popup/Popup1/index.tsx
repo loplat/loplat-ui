@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Button } from '../../Button';
-import { black as black500, bluescale500 } from '@Core/colors';
-import { primary, danger } from '@Core/styles';
+import { black as black500, bluescale500 } from '../../../core/colors';
+import { primary, danger } from '../../../core/styles/palette';
 import { Popup1Props, DialogProps } from '../core/types';
 import { generateCustomIcon } from '../core/utils';
 import { WrapperCommonStyle, Dialog } from '../core/commonStyle';
