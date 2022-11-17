@@ -17,10 +17,10 @@ import {
   grayscale500,
   transparent,
   white,
-} from '../../core/colors';
-import { primary, danger } from '../../core/styles/palette';
-import { NotMobile } from '../../core/styles/mediaQuery';
-import { MarginSpacing, marginSpacingProps, marginSpacingStyle, spacing } from '../../core/Spacing';
+} from '@Core/colors';
+import { primary, danger } from '@Core/styles/palette';
+import { Large } from '@Core/styles/mediaQuery';
+import { MarginSpacing, marginSpacingProps, marginSpacingStyle, spacing } from '@Core/Spacing';
 
 type Size = 'xs' | 'sm' | 'md' | 'lg';
 type Color = 'default' | 'primary1' | 'primary2' | 'danger1' | 'danger2' | 'solid' | 'ghost';
@@ -257,8 +257,8 @@ export const BaseButton = styled.button<BaseButtonProps>`
     background-color: ${({ background }) => background.disabled};
     cursor: not-allowed;
   }
-  ${NotMobile} {
-    &:hover:not(:disabled, :active) {
+  ${Large} {
+    &:hover:not(:disabled) {
       color: ${({ text }) => text.hover};
       svg g > path {
         fill: ${({ text }) => text.hover};
@@ -283,8 +283,8 @@ export const BaseButton = styled.button<BaseButtonProps>`
           &:disabled {
             border-color: ${border.disabled};
           }
-          ${NotMobile} {
-            &:hover:not(:disabled, :active) {
+          ${Large} {
+            &:hover:not(:disabled) {
               border-color: ${border.hover};
             }
           }
