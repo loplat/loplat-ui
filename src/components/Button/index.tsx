@@ -17,10 +17,10 @@ import {
   grayscale500,
   transparent,
   white,
-} from '@Core/colors';
-import { primary, danger } from '@Core/styles/palette';
-import { Large } from '@Core/styles/mediaQuery';
-import { MarginSpacing, marginSpacingProps, marginSpacingStyle, spacing } from '@Core/Spacing';
+} from '../../core/colors';
+import { primary, danger } from '../../core/styles/palette';
+import { MarginSpacing, marginSpacingProps, marginSpacingStyle, spacing } from '../../core/Spacing';
+import { Mobile, NotMobile } from '../../core/styles/mediaQuery';
 
 type Size = 'xs' | 'sm' | 'md' | 'lg';
 type Color = 'default' | 'primary1' | 'primary2' | 'danger1' | 'danger2' | 'solid' | 'ghost';
@@ -249,29 +249,46 @@ export const BaseButton = styled.button<BaseButtonProps>`
     }
   }
 
-  &:disabled {
-    color: ${({ text }) => text.disabled};
-    svg g > path {
-      fill: ${({ text }) => text.disabled};
-    }
-    background-color: ${({ background }) => background.disabled};
-    cursor: not-allowed;
-  }
-  ${Large} {
-    &:hover:not(:disabled) {
+  -webkit-tap-highlight-color: transparent;
+  ${Mobile} {
+    &:hover:not(:disabled, :active, :focus) {
       color: ${({ text }) => text.hover};
+      background-color: ${({ background }) => background.hover};
       svg g > path {
         fill: ${({ text }) => text.hover};
       }
+    }
+  }
+  ${NotMobile} {
+    &:hover:not(:disabled, :active) {
+      color: ${({ text }) => text.hover};
       background-color: ${({ background }) => background.hover};
+      svg g > path {
+        fill: ${({ text }) => text.hover};
+      }
+    }
+  }
+  &:focus-visible:not(:active) {
+    color: ${({ text }) => text.hover};
+    background-color: ${({ background }) => background.hover};
+    svg g > path {
+      fill: ${({ text }) => text.hover};
     }
   }
   &:active:not(:disabled) {
     color: ${({ text }) => text.act};
+    background-color: ${({ background }) => background.act};
     svg g > path {
       fill: ${({ text }) => text.act};
     }
-    background-color: ${({ background }) => background.act};
+  }
+  &:disabled {
+    cursor: not-allowed;
+    color: ${({ text }) => text.disabled};
+    background-color: ${({ background }) => background.disabled};
+    svg g > path {
+      fill: ${({ text }) => text.disabled};
+    }
   }
 
   ${({ borderless, border }) =>
@@ -283,15 +300,23 @@ export const BaseButton = styled.button<BaseButtonProps>`
           &:disabled {
             border-color: ${border.disabled};
           }
-          ${Large} {
-            &:hover:not(:disabled) {
+          ${Mobile} {
+            &:hover:not(:disabled, :active, :focus) {
               border-color: ${border.hover};
             }
+          }
+          ${NotMobile} {
+            &:hover:not(:disabled, :active) {
+              border-color: ${border.hover};
+            }
+          }
+          &:focus-visible:not(:active) {
+            border-color: ${border.hover};
           }
           &:active:not(:disabled) {
             border-color: ${border.act};
           }
-        `}
+        `};
 `;
 
 export const Button = React.forwardRef(
