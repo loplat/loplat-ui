@@ -102,7 +102,7 @@ Dropdown.Bar = React.forwardRef(
         {...props}
       >
         <span aria-placeholder={value ? undefined : placeholder}>{value || placeholder}</span>
-        <ChevronDownIcon size={12} className="arrowIcon" />
+        <ChevronDownIcon size={12} className="arrowIcon" suffixForId={`dropdown-arrow-icon__${props.id}`} />
       </Bar>
     );
   },

@@ -83,7 +83,7 @@ export const ToastBar = ({
       <CheckCircleFillIcon size={MINIMUM_CONTENT_HEIGHT} fillColor={colorSet.iconColor} />
       <Message color={colorSet.textColor}>{toastItem.message}</Message>
       <CloseButton onClick={() => onRemoveToastItem(toastItem.id)}>
-        <CloseIcon size={18} fillColor={colorSet.iconColor} />
+        <CloseIcon size={18} fillColor={colorSet.iconColor} suffixForId={`toast-bar-icon__${toastItem.id}`} />
       </CloseButton>
     </ToastBarBox>
   );
