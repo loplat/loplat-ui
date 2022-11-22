@@ -248,7 +248,11 @@ export const BaseButton = styled.button<BaseButtonProps>`
       margin-left: ${spacing(1)}px;
     }
   }
-
+  text-decoration: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   -webkit-tap-highlight-color: transparent;
   ${Mobile} {
     &:hover:not(:disabled, :active, :focus) {
