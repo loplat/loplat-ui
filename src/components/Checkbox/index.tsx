@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ForwardedRef } from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 import { blue500, grayscale800, grayscale200, grayscale500, grayscale100, grayscale300 } from '../../core/colors';
@@ -6,36 +6,39 @@ import { primary } from '../../core/styles/palette';
 import { MarginSpacing, marginSpacingProps, marginSpacingStyle } from '../../core/Spacing';
 import { CheckboxProps, BaseLabel } from './types';
 
-export const Checkbox = ({
-  label,
-  name,
-  checked = false,
-  onChange,
-  disabled,
-  boldLabel,
-  className,
-  id,
-  ...props
-}: CheckboxProps): JSX.Element => {
-  const isChecked: boolean = typeof checked === 'boolean' ? checked : checked === 'checked';
-  const isIntermediate: boolean = checked === 'intermediate';
+export const Checkbox = React.forwardRef(
+  (
+    { label, name, checked = false, onChange, disabled, boldLabel, className, id, ...props }: CheckboxProps,
+    ref: ForwardedRef<HTMLInputElement>,
+  ): JSX.Element => {
+    const isChecked: boolean = typeof checked === 'boolean' ? checked : checked === 'checked';
+    const isIntermediate: boolean = checked === 'intermediate';
 
-  return (
-    <Label
-      isIntermediate={isIntermediate}
-      boldLabel={boldLabel}
-      disabled={disabled}
-      {...marginSpacingProps(props)}
-      className={className}
-      id={id}
-    >
-      <input type="checkbox" name={name} checked={isChecked} onChange={onChange} disabled={disabled} {...props} />
-      {/* TODO: label, input을 형제 관계로 변경하기 */}
-      <Checkmark onClick={(e) => e.stopPropagation()} className="checkmark" />
-      <span onClick={(e) => e.stopPropagation()}>{label}</span>
-    </Label>
-  );
-};
+    return (
+      <Label
+        isIntermediate={isIntermediate}
+        boldLabel={boldLabel}
+        disabled={disabled}
+        {...marginSpacingProps(props)}
+        className={className}
+        id={id}
+      >
+        <input
+          type="checkbox"
+          name={name}
+          checked={isChecked}
+          onChange={onChange}
+          disabled={disabled}
+          {...props}
+          ref={ref}
+        />
+        {/* TODO: label, input을 형제 관계로 변경하기 */}
+        <Checkmark onClick={(e) => e.stopPropagation()} className="checkmark" />
+        <span onClick={(e) => e.stopPropagation()}>{label}</span>
+      </Label>
+    );
+  },
+);
 
 const Label = styled.label<Pick<BaseLabel, 'boldLabel' | 'disabled'> & MarginSpacing & { isIntermediate: boolean }>`
   ${marginSpacingStyle};
