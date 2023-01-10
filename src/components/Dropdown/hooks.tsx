@@ -27,14 +27,11 @@ export const useClick = <T extends string>({
 
       const triggerIsTarget = triggerElement && triggerElement.contains(target);
       const optionIsTarget = optionListElement && optionListElement.contains(target);
+      const targetIsInputControl = target.tagName === 'INPUT';
 
-      // input control tag에 대한 예외 처리
-      const isInputControl = ['INPUT', 'TEXTAREA'].includes(target.tagName);
-      if (isInputControl && expanded) {
+      if (targetIsInputControl && expanded) {
         return;
-      }
-
-      if (!triggerIsTarget && !optionIsTarget) {
+      } else if (!triggerIsTarget && !optionIsTarget) {
         close();
       } else if (triggerIsTarget) {
         toggle();
@@ -80,17 +77,12 @@ export const useKeyDown = <T extends string>({
 
       const triggerIsFocused = triggerElement && triggerElement.contains(focusedElement);
       const optionIsFocused = optionListElement && optionListElement.contains(focusedElement);
+      const focusedTargetIsInputControl = focusedElement.tagName === 'INPUT';
 
       if (!triggerIsFocused && !optionIsFocused) return;
 
-      // input control tag에 대한 예외 처리
-      const isInputControl = ['INPUT', 'TEXTAREA'].includes(focusedElement.tagName);
-      if (isInputControl && !expanded) {
-        toggle();
-      }
-
       if (e.code === 'Enter' || e.code === 'Space') {
-        if (triggerIsFocused && !isInputControl) {
+        if (triggerIsFocused && !focusedTargetIsInputControl) {
           toggle();
           e.preventDefault();
         } else if (optionIsFocused) {
@@ -107,16 +99,16 @@ export const useKeyDown = <T extends string>({
             }
           }
         }
-      }
-
-      if (e.code === 'Escape' || e.code === 'Tab') {
+      } else if (e.code === 'Escape' || e.code === 'Tab') {
         triggerElement?.focus();
         close();
-      }
-
-      if (e.code === 'ArrowUp' || e.code === 'ArrowDown') {
-        if (!optionListElement) return;
+      } else if (e.code === 'ArrowUp' || e.code === 'ArrowDown') {
         e.preventDefault();
+
+        if (!optionListElement) {
+          toggle();
+          return;
+        }
 
         const optionElements = Array.from(optionListElement.children) as HTMLElement[];
         const focusableOptionElements = optionElements.filter((element) => element.ariaDisabled !== 'true');
@@ -138,6 +130,8 @@ export const useKeyDown = <T extends string>({
             focusableOptionElements[focusedOptionIndex + 1]?.focus();
           }
         }
+      } else if (focusedTargetIsInputControl && !expanded) {
+        toggle();
       }
     }
 
