@@ -4,12 +4,13 @@ import { spacing } from '../../core';
 
 type DropdownEventParams<T extends string> = Pick<
   DropdownTypes<T>,
-  'triggerRef' | 'optionListRef' | 'close' | 'toggle' | 'onChange' | 'disabled' | 'multiple'
+  'triggerRef' | 'optionListRef' | 'expanded' | 'close' | 'toggle' | 'onChange' | 'disabled' | 'multiple'
 >;
 
 export const useClick = <T extends string>({
   triggerRef,
   optionListRef,
+  expanded,
   close,
   toggle,
   onChange,
@@ -26,6 +27,12 @@ export const useClick = <T extends string>({
 
       const triggerIsTarget = triggerElement && triggerElement.contains(target);
       const optionIsTarget = optionListElement && optionListElement.contains(target);
+
+      // input control tag에 대한 예외 처리
+      const isInputControl = ['INPUT', 'TEXTAREA'].includes(target.tagName);
+      if (isInputControl && expanded) {
+        return;
+      }
 
       if (!triggerIsTarget && !optionIsTarget) {
         close();
@@ -56,6 +63,7 @@ export const useClick = <T extends string>({
 export const useKeyDown = <T extends string>({
   triggerRef,
   optionListRef,
+  expanded,
   close,
   toggle,
   onChange,
@@ -75,8 +83,14 @@ export const useKeyDown = <T extends string>({
 
       if (!triggerIsFocused && !optionIsFocused) return;
 
+      // input control tag에 대한 예외 처리
+      const isInputControl = ['INPUT', 'TEXTAREA'].includes(focusedElement.tagName);
+      if (isInputControl && !expanded) {
+        toggle();
+      }
+
       if (e.code === 'Enter' || e.code === 'Space') {
-        if (triggerIsFocused) {
+        if (triggerIsFocused && !isInputControl) {
           toggle();
           e.preventDefault();
         } else if (optionIsFocused) {

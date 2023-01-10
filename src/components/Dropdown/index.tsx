@@ -64,8 +64,8 @@ export const Dropdown = <T extends string = DefaultDropdownValue>({
   // optionList의 위치를 정하는 로직
   useOptionListPosition({ container, triggerRef, optionListRef });
   // event handlers
-  useClick({ triggerRef, optionListRef, close, toggle, onChange, disabled, multiple });
-  useKeyDown({ triggerRef, optionListRef, close, toggle, onChange, disabled, multiple });
+  useClick({ triggerRef, optionListRef, expanded, close, toggle, onChange, disabled, multiple });
+  useKeyDown({ triggerRef, optionListRef, expanded, close, toggle, onChange, disabled, multiple });
 
   return (
     <DropdownContext.Provider
