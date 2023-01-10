@@ -92,6 +92,7 @@ Dropdown.Bar = React.forwardRef(
     { value, placeholder, expanded = false, disabled = false, ...props }: DropdownBarProps,
     ref: ForwardedRef<HTMLDivElement>,
   ) => {
+    const suffixId = useMemo(() => generateUniqueId(), []);
     return (
       <Bar
         ref={ref}
@@ -102,7 +103,7 @@ Dropdown.Bar = React.forwardRef(
         {...props}
       >
         <span aria-placeholder={value ? undefined : placeholder}>{value || placeholder}</span>
-        <ChevronDownIcon size={12} className="arrowIcon" suffixForId={`dropdown-arrow-icon__${props.id}`} />
+        <ChevronDownIcon size={12} className="arrowIcon" suffixForId={`dropdown-arrow-icon__${suffixId}`} />
       </Bar>
     );
   },
