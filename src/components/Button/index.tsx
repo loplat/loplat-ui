@@ -254,8 +254,6 @@ export const BaseButton = styled.button<BaseButtonProps>`
     }
   }
 
-  -webkit-user-select: none;
-  user-select: none;
   -webkit-tap-highlight-color: transparent;
 
   &:disabled {
