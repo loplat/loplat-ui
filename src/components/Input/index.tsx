@@ -1,6 +1,5 @@
 import React, { ForwardedRef } from 'react';
 import styled from '@emotion/styled';
-import { css } from '@emotion/css';
 import { primary, danger } from '../../core/styles';
 import { white, bluescale500, grayscale500, grayscale200, bluescale50, grayscale900 } from '../../core/colors';
 import { BoxSpacing, boxSpacingProps, boxSpacingStyle, spacing } from '../../core/Spacing';
@@ -89,18 +88,13 @@ export const Input = React.forwardRef(
     return (
       <Wrapper {...boxSpacingProps(props)} pb={pb}>
         {props.rightIcon ? (
-          <div
-            className={`${css`
-              position: relative;
-              display: flex;
-              width: 100%;
-            `}`}
-          >
+          <div style={{ position: 'relative', display: 'flex', width: '100%' }}>
             <BaseInput {...props} ref={ref} />
             <RightIconContainer
               disabled={props.disabled}
               isIconVisible={props.isIconVisible}
               data-testid="loplat-ui__rightIcon"
+              className="loplat-input__right-icon"
             >
               {props.rightIcon}
             </RightIconContainer>
