@@ -5,6 +5,7 @@ import { CircleLoading } from '../Loading';
 import { IconButton } from '../IconButton';
 import { MoreVertIcon } from '../../assets/Icon';
 import { Checkbox } from '../Checkbox';
+import { Input } from '../Input';
 import { runTest } from './storybookTest';
 import { generateTable } from '../../storybook-props';
 
@@ -128,6 +129,55 @@ export const customTriggerCode = `
 
 <Source dark language="tsx" code={customTriggerCode} />
 
+# Custom Input Trigger
+
+export const CustomInputTrigger = (args) => {
+  const [inputValue, setInputValue] = useState('loplat X');
+  return (
+    <Dropdown {...args} onChange={(e, newValue) => setInputValue(newValue)}>
+      <Dropdown.Trigger>
+        <Input value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
+      </Dropdown.Trigger>
+      <Dropdown.OptionList>
+        {options
+          .filter((value) => value.includes(inputValue))
+          .map((value) => (
+            <Dropdown.Option value={value} selected={value === inputValue} key={value} />
+          ))}
+      </Dropdown.OptionList>
+    </Dropdown>
+  );
+};
+
+<Canvas withSource="none">
+  <Story name="custom trigger with input">{CustomInputTrigger.bind({})}</Story>
+</Canvas>
+
+`input`을 Custom Trigger의 `children`으로 사용할 경우, `Dropdown.Trigger`에 대한 이벤트 처리 방식이 달라집니다.
+
+- Click Event: 펼침 상태(expanded)일 때, Trigger를 클릭해도 `OptionList`가 닫히지 않습니다.
+- Keyboard Event: Trigger에 focus가 있을 때, `Enter`나 `Space`를 눌러도 `OptionList`가 닫히지 않습니다.
+
+export const customInputTriggerCode = `
+const [inputValue, setInputValue] = useState('loplat X');
+return (
+  <Dropdown {...args} onChange={(e, newValue) => setInputValue(newValue)}>
+  <Dropdown.Trigger>
+    <Input value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
+  </Dropdown.Trigger>
+  <Dropdown.OptionList>
+    {options
+            .filter((value) => value.includes(inputValue))
+            .map((value) => (
+                <Dropdown.Option value={value} selected={value === inputValue} key={value} />
+            ))}
+  </Dropdown.OptionList>
+</Dropdown>
+);
+`;
+
+<Source dark language="tsx" code={customInputTriggerCode} />
+
 # Option With Label
 
 export const CustomOption = (args) => {
@@ -188,7 +238,7 @@ export const optionWithLabelCode = `
   </Story>
 </Canvas>
 
-`disabled={true}` 일 때, Dropdown 컴포넌트 전체가 비활성화 됩니다.
+`disabled={true}` 일 때, `Dropdown` 컴포넌트 전체가 비활성화 됩니다.
 
 export const disabledCode = `
 <Dropdown disabled={true}>
@@ -235,7 +285,7 @@ export const Multiple = (args) => {
   </Story>
 </Canvas>
 
-`multiple={true}` 일 때, onChange event가 발생해도 OptionList가 닫히지 않습니다.
+`multiple={true}` 일 때, `onChange` event가 발생해도 `OptionList`가 닫히지 않습니다.
 
 export const multipleCode = `
 const [selectedValues, setSelectedValues] = useState(['loplat i', 'IPS']);
