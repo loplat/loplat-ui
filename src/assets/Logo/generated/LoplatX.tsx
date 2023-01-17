@@ -6,7 +6,7 @@ export const LoplatX = React.memo<LogoProps>(({ width = 18, ...props }) => (
   <Svg
     {...marginSpacingProps(props)}
     width={width}
-    height={(width * 28) / 35}
+    height={width * (28 / 35)}
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
     viewBox="0 0 35 28"
