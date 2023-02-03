@@ -1,6 +1,5 @@
 import React, { ForwardedRef } from 'react';
 import styled from '@emotion/styled';
-import { css } from '@emotion/react';
 import {
   grayscale50,
   grayscale800,
@@ -19,8 +18,8 @@ import {
   white,
 } from '../../core/colors';
 import { primary, danger } from '../../core/styles/palette';
-import { NotMobile } from '../../core/styles/mediaQuery';
 import { MarginSpacing, marginSpacingProps, marginSpacingStyle, spacing } from '../../core/Spacing';
+import { Mobile, NotMobile } from '../../core/styles/mediaQuery';
 
 type Size = 'xs' | 'sm' | 'md' | 'lg';
 type Color = 'default' | 'primary1' | 'primary2' | 'danger1' | 'danger2' | 'solid' | 'ghost';
@@ -28,11 +27,7 @@ type FullWidth = { fullWidth?: boolean };
 type Borderless = { borderless?: boolean };
 
 export type CommonButtonProps = Partial<
-  React.ButtonHTMLAttributes<HTMLButtonElement> &
-    Borderless &
-    MarginSpacing & {
-      color: Color;
-    }
+  React.ButtonHTMLAttributes<HTMLButtonElement> & Borderless & MarginSpacing & { color: Color }
 >;
 export type ButtonProps = CommonButtonProps &
   FullWidth & {
@@ -43,10 +38,10 @@ export type ButtonProps = CommonButtonProps &
   };
 type BaseButtonProps = CommonButtonProps &
   FullWidth &
-  typeof SizeSet[keyof typeof SizeSet] &
-  typeof ColorSet[keyof typeof ColorSet];
+  typeof SIZE_SET[keyof typeof SIZE_SET] &
+  ButtonColorSet[keyof ButtonColorSet];
 
-export const SizeSet = {
+export const SIZE_SET = {
   onlyIcon: {
     padding: `${spacing(2)}px`,
   },
@@ -64,24 +59,34 @@ export const SizeSet = {
   },
 } as const;
 
-export const ColorSet = {
+type ButtonPalette = {
+  default: string;
+  hover: string;
+  active: string;
+  disabled: string;
+};
+type ButtonOptions = 'background' | 'border' | 'text';
+type ButtonPalettePerOption = Record<ButtonOptions, ButtonPalette>;
+type ButtonColorSet = Record<Color, ButtonPalettePerOption>;
+
+export const COLOR_SET: ButtonColorSet = {
   default: {
     background: {
       default: white,
       hover: blue100,
-      act: primary,
+      active: primary,
       disabled: grayscale50,
     },
     border: {
       default: grayscale200,
       hover: primary,
-      act: primary,
+      active: primary,
       disabled: grayscale200,
     },
     text: {
       default: grayscale800,
       hover: grayscale800,
-      act: white,
+      active: white,
       disabled: grayscale500,
     },
   },
@@ -89,19 +94,19 @@ export const ColorSet = {
     background: {
       default: primary,
       hover: blue600,
-      act: primary,
+      active: primary,
       disabled: blue100,
     },
     border: {
       default: primary,
       hover: blue600,
-      act: primary,
+      active: primary,
       disabled: blue100,
     },
     text: {
       default: white,
       hover: white,
-      act: white,
+      active: white,
       disabled: blue200,
     },
   },
@@ -109,19 +114,19 @@ export const ColorSet = {
     background: {
       default: white,
       hover: blue100,
-      act: primary,
+      active: primary,
       disabled: grayscale50,
     },
     border: {
       default: primary,
       hover: primary,
-      act: primary,
+      active: primary,
       disabled: grayscale200,
     },
     text: {
       default: primary,
       hover: primary,
-      act: white,
+      active: white,
       disabled: grayscale500,
     },
   },
@@ -129,19 +134,19 @@ export const ColorSet = {
     background: {
       default: danger,
       hover: red400,
-      act: danger,
+      active: danger,
       disabled: red100,
     },
     border: {
       default: danger,
       hover: red400,
-      act: danger,
+      active: danger,
       disabled: red100,
     },
     text: {
       default: white,
       hover: white,
-      act: white,
+      active: white,
       disabled: `rgba(216, 58, 94, 0.4)`,
     },
   },
@@ -149,19 +154,19 @@ export const ColorSet = {
     background: {
       default: white,
       hover: red100,
-      act: danger,
+      active: danger,
       disabled: grayscale50,
     },
     border: {
       default: danger,
       hover: danger,
-      act: danger,
+      active: danger,
       disabled: grayscale200,
     },
     text: {
       default: danger,
       hover: danger,
-      act: white,
+      active: white,
       disabled: grayscale500,
     },
   },
@@ -169,19 +174,19 @@ export const ColorSet = {
     background: {
       default: bluescale200,
       hover: bluescale400,
-      act: bluescale100,
+      active: bluescale100,
       disabled: grayscale50,
     },
     border: {
       default: bluescale200,
       hover: bluescale400,
-      act: bluescale100,
+      active: bluescale100,
       disabled: grayscale50,
     },
     text: {
       default: grayscale800,
       hover: grayscale800,
-      act: grayscale800,
+      active: grayscale800,
       disabled: grayscale500,
     },
   },
@@ -189,23 +194,23 @@ export const ColorSet = {
     background: {
       default: transparent,
       hover: blue100,
-      act: blue500,
+      active: blue500,
       disabled: transparent,
     },
     border: {
       default: transparent,
       hover: blue100,
-      act: blue500,
+      active: blue500,
       disabled: transparent,
     },
     text: {
       default: grayscale800,
       hover: blue500,
-      act: white,
+      active: white,
       disabled: grayscale500,
     },
   },
-} as const;
+};
 
 export const BaseButton = styled.button<BaseButtonProps>`
   width: ${({ fullWidth }) => fullWidth && '100%'};
@@ -249,49 +254,47 @@ export const BaseButton = styled.button<BaseButtonProps>`
     }
   }
 
+  -webkit-tap-highlight-color: transparent;
+
   &:disabled {
+    cursor: not-allowed;
     color: ${({ text }) => text.disabled};
+    border-color: ${({ border }) => border.disabled};
+    background-color: ${({ background }) => background.disabled};
     svg g > path {
       fill: ${({ text }) => text.disabled};
     }
-    background-color: ${({ background }) => background.disabled};
-    cursor: not-allowed;
   }
+
+  &:focus-visible:not(:active) {
+    color: ${({ text }) => text.hover};
+    border-color: ${({ border }) => border.hover};
+    background-color: ${({ background }) => background.hover};
+    svg g > path {
+      fill: ${({ text }) => text.hover};
+    }
+  }
+
   ${NotMobile} {
+    &:active:not(:disabled) {
+      color: ${({ text }) => text.active};
+      border-color: ${({ border }) => border.active};
+      background-color: ${({ background }) => background.active};
+      svg g > path {
+        fill: ${({ text }) => text.active};
+      }
+    }
     &:hover:not(:disabled, :active) {
       color: ${({ text }) => text.hover};
+      border-color: ${({ border }) => border.hover};
+      background-color: ${({ background }) => background.hover};
       svg g > path {
         fill: ${({ text }) => text.hover};
       }
-      background-color: ${({ background }) => background.hover};
     }
-  }
-  &:active:not(:disabled) {
-    color: ${({ text }) => text.act};
-    svg g > path {
-      fill: ${({ text }) => text.act};
-    }
-    background-color: ${({ background }) => background.act};
   }
 
-  ${({ borderless, border }) =>
-    borderless
-      ? css`
-          border-color: transparent;
-        `
-      : css`
-          &:disabled {
-            border-color: ${border.disabled};
-          }
-          ${NotMobile} {
-            &:hover:not(:disabled, :active) {
-              border-color: ${border.hover};
-            }
-          }
-          &:active:not(:disabled) {
-            border-color: ${border.act};
-          }
-        `}
+  ${({ borderless }) => (borderless ? `border-color: transparent` : ``)};
 `;
 
 export const Button = React.forwardRef(
@@ -301,8 +304,8 @@ export const Button = React.forwardRef(
   ): JSX.Element => {
     return (
       <BaseButton
-        {...ColorSet[color ?? 'default']}
-        {...SizeSet[size ?? 'md']}
+        {...COLOR_SET[color ?? 'default']}
+        {...SIZE_SET[size ?? 'md']}
         {...marginSpacingProps(props)}
         {...props}
         ref={ref}
