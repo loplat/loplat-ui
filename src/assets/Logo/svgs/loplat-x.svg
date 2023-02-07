@@ -1,22 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="35px" height="28px" viewBox="0 0 35 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>loplat-x</title>
-    <defs>
-        <polygon id="path-1" points="0 14 8.39778443 14 16 5.86043492 13.0828463 0"></polygon>
-    </defs>
-    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Symbol/loplat-x" transform="translate(0.000000, -6.000000)">
-            <g id="loplat-x" transform="translate(0.000000, 6.000000)">
-                <polygon id="Fill-1" fill="#0060A4" points="26.803047 0 1 27 9.22582255 27 35 0"></polygon>
-                <polygon id="Fill-2" fill="#00B9EB" points="6 0 20.0408461 27 29 27 14.9591539 0"></polygon>
-                <g id="Group-5" transform="translate(0.000000, 14.000000)">
-                    <mask id="mask-2" fill="white">
-                        <use xlink:href="#path-1"></use>
-                    </mask>
-                    <g id="Clip-4"></g>
-                    <polygon id="Fill-3" mask="url(#mask-2)" points="0 14 8.39778443 14 16 5.86043492 13.0828463 0"></polygon>
-                </g>
-            </g>
-        </g>
-    </g>
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M24.5259 4H32L8.4989 29H1L24.5259 4Z" fill="#0047AE"/>
+<path d="M6.34131 4H14.1347L26.7145 29H18.9211L6.34131 4Z" fill="#0580FF"/>
+<path d="M1 29H8.4989L15.2879 21.7954L12.6839 16.6065L1 29Z" fill="url(#paint0_linear_11619_58741)"/>
+<defs>
+<linearGradient id="paint0_linear_11619_58741" x1="16.0089" y1="21.4194" x2="13.346" y2="25.4729" gradientUnits="userSpaceOnUse">
+<stop stop-color="#281913" stop-opacity="0.5"/>
+<stop offset="1" stop-color="#0067A2" stop-opacity="0"/>
+</linearGradient>
+</defs>
 </svg>

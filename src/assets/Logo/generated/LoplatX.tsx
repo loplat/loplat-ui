@@ -6,24 +6,26 @@ export const LoplatX = React.memo<LogoProps>(({ width = 18, ...props }) => (
   <Svg
     {...marginSpacingProps(props)}
     width={width}
-    height={width * (28 / 35)}
+    height={width}
     xmlns="http://www.w3.org/2000/svg"
-    xmlnsXlink="http://www.w3.org/1999/xlink"
-    viewBox="0 0 35 28"
+    viewBox="0 0 32 32"
     {...props}
   >
+    <path d="M24.526 4H32L8.499 29H1L24.526 4z" fill="#0047AE" />
+    <path d="M6.341 4h7.794l12.58 25H18.92L6.341 4z" fill="#0580FF" />
+    <path d="M1 29h7.499l6.789-7.205-2.604-5.189L1 29z" fill="url(#loplat-x_svg__paint0_linear_11619_58741)" />
     <defs>
-      <path id="loplat-x_svg__a" d="M0 14h8.398L16 5.86 13.083 0z" />
+      <linearGradient
+        id="loplat-x_svg__paint0_linear_11619_58741"
+        x1={16.009}
+        y1={21.419}
+        x2={13.346}
+        y2={25.473}
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop stopColor="#281913" stopOpacity={0.5} />
+        <stop offset={1} stopColor="#0067A2" stopOpacity={0} />
+      </linearGradient>
     </defs>
-    <g fill="none" fillRule="evenodd">
-      <path fill="#0060A4" d="M26.803 0L1 27h8.226L35 0z" />
-      <path fill="#00B9EB" d="M6 0l14.04 27H29L14.96 0z" />
-      <g transform="translate(0 14)">
-        <mask id="loplat-x_svg__b" fill="#fff">
-          <use xlinkHref="#loplat-x_svg__a" />
-        </mask>
-        <path mask="url(#loplat-x_svg__b)" d="M0 14h8.398L16 5.86 13.083 0z" />
-      </g>
-    </g>
   </Svg>
 ));
