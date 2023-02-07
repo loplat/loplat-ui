@@ -28,6 +28,7 @@ export type DropdownBarProps<T extends string = DefaultDropdownValue> = {
   placeholder?: string;
   expanded?: boolean;
   disabled?: boolean;
+  suffixForId?: string;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 export type OptionListProps = {

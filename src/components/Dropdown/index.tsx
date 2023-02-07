@@ -89,10 +89,10 @@ Dropdown.Trigger = ({ children }: { children: React.ReactElement }) => {
 
 Dropdown.Bar = React.forwardRef(
   (
-    { value, placeholder, expanded = false, disabled = false, ...props }: DropdownBarProps,
+    { value, placeholder, expanded = false, disabled = false, suffixForId, ...props }: DropdownBarProps,
     ref: ForwardedRef<HTMLDivElement>,
   ) => {
-    const suffixId = useMemo(() => generateUniqueId(), []);
+    const uniqueId = useMemo(() => suffixForId ?? generateUniqueId(), [suffixForId]);
     return (
       <Bar
         ref={ref}
@@ -103,7 +103,7 @@ Dropdown.Bar = React.forwardRef(
         {...props}
       >
         <span aria-placeholder={value ? undefined : placeholder}>{value || placeholder}</span>
-        <ChevronDownIcon size={12} className="arrowIcon" suffixForId={`dropdown-arrow-icon__${suffixId}`} />
+        <ChevronDownIcon size={12} className="arrowIcon" suffixForId={`dropdown-arrow-icon__${uniqueId}`} />
       </Bar>
     );
   },
