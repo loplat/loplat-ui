@@ -19,7 +19,7 @@ import {
 } from '../../core/colors';
 import { primary, danger } from '../../core/styles/palette';
 import { MarginSpacing, marginSpacingProps, marginSpacingStyle, spacing } from '../../core/Spacing';
-import { Mobile, NotMobile } from '../../core/styles/mediaQuery';
+import { NotMobile } from '../../core/styles/mediaQuery';
 
 type Size = 'xs' | 'sm' | 'md' | 'lg';
 type Color = 'default' | 'primary1' | 'primary2' | 'danger1' | 'danger2' | 'solid' | 'ghost';
@@ -266,6 +266,15 @@ export const BaseButton = styled.button<BaseButtonProps>`
     }
   }
 
+  &:active:not(:disabled) {
+    color: ${({ text }) => text.active};
+    border-color: ${({ border }) => border.active};
+    background-color: ${({ background }) => background.active};
+    svg g > path {
+      fill: ${({ text }) => text.active};
+    }
+  }
+
   &:focus-visible:not(:active) {
     color: ${({ text }) => text.hover};
     border-color: ${({ border }) => border.hover};
@@ -276,14 +285,6 @@ export const BaseButton = styled.button<BaseButtonProps>`
   }
 
   ${NotMobile} {
-    &:active:not(:disabled) {
-      color: ${({ text }) => text.active};
-      border-color: ${({ border }) => border.active};
-      background-color: ${({ background }) => background.active};
-      svg g > path {
-        fill: ${({ text }) => text.active};
-      }
-    }
     &:hover:not(:disabled, :active) {
       color: ${({ text }) => text.hover};
       border-color: ${({ border }) => border.hover};
