@@ -1,3 +1,18 @@
+# 1.10.2 (2023-02-09)
+
+## Renewal
+- loplat, loplat X 공식 로고가 새롭게 바뀌었습니다.
+
+## Fixed
+- Button
+  - 모바일과 데스크탑에서 `focus-visible`, `hover` 스타일을 세분화했습니다.
+- Dropdown
+  - Custom Trigger의 `children`이 `input`일 경우 이벤트 처리 방식을 변경했습니다.
+  - Dropdown.Bar에 `suffixForId` prop을 추가했습니다.
+- Checkbox, Switch
+  - React.forwardRef를 적용했습니다.
+
+
 # 1.10.1 (2022-11-15)
 
 ## Fixed
