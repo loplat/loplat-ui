@@ -82,7 +82,9 @@ export const useKeyDown = <T extends string>({
       if (!triggerIsFocused && !optionIsFocused) return;
 
       if (e.code === 'Enter' || e.code === 'Space') {
-        if (triggerIsFocused && !focusedTargetIsInputControl) {
+        if (focusedTargetIsInputControl) return;
+
+        if (triggerIsFocused) {
           toggle();
           e.preventDefault();
         } else if (optionIsFocused) {
