@@ -58,6 +58,7 @@ const RightIconContainer = styled.div<Pick<InputProps, 'isIconVisible' | 'disabl
   transform: translateY(-50%);
   opacity: ${({ isIconVisible }) => (isIconVisible ? 1 : 0)};
   transition: opacity 0.2s linear;
+  display: flex;
   width: 20px;
   height: 20px;
 
