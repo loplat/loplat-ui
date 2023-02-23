@@ -1,9 +1,9 @@
-export const blue100 = '#ebf6fe';
-export const blue200 = '#cee9ff';
-export const blue300 = '#8bc9fe';
-export const blue400 = '#5cb3fc';
-export const blue500 = '#40a6fd';
-export const blue600 = '#0c8efc';
+export const blue100 = '#EBF6FF';
+export const blue200 = '#CCE8FF';
+export const blue300 = '#8CC6FF';
+export const blue400 = '#61AAFF';
+export const blue500 = '#1678FF';
+export const blue600 = '#0B63E5';
 
 export const blue = {
   100: blue100,
