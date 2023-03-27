@@ -1,4 +1,4 @@
-import { useState, useRef, createContext, useContext, useMemo, useEffect } from 'react';
+import { useRef, createContext, useContext, useMemo, useEffect } from 'react';
 import type { MouseEvent } from 'react';
 import type { AccordionContextReturnType, AccordionContextProviderProps, Keyframe, AnimateStatus } from './types';
 import { generateUniqueId } from '../../functions/uniqueId';
