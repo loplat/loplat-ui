@@ -67,13 +67,13 @@ return (
     </Dropdown.Trigger>
     <Dropdown.OptionList>
       {options.map((value) => (
-                 <Dropdown.Option
-         value={value}
-         selected={value === selectedValue}
-         disabled={value === options[2]}
-         key={value}
-        />
-              ))}
+        <Dropdown.Option
+          value={value}
+          selected={value === selectedValue}
+          disabled={value === options[2]}
+          key={value}
+          />
+        ))}
     </Dropdown.OptionList>
   </Dropdown>
 );
@@ -167,10 +167,10 @@ return (
   </Dropdown.Trigger>
   <Dropdown.OptionList>
     {options
-            .filter((value) => value.includes(inputValue))
-            .map((value) => (
-                <Dropdown.Option value={value} selected={value === inputValue} key={value} />
-            ))}
+      .filter((value) => value.includes(inputValue))
+      .map((value) => (
+          <Dropdown.Option value={value} selected={value === inputValue} key={value} />
+      ))}
   </Dropdown.OptionList>
 </Dropdown>
 );
@@ -268,7 +268,11 @@ export const Multiple = (args) => {
           return (
             <Dropdown.Option
               value={value}
-              label={<Checkbox name="checkbox" label={value} checked={selected} readOnly />}
+              label={
+                <Checkbox name="checkbox" checked={selected} readOnly>
+                  {value}
+                </Checkbox>
+              }
               selected={selected}
               key={value}
             />
@@ -307,7 +311,7 @@ return (
               return (
                 <Dropdown.Option
          value={value}
-         label={<Checkbox name="checkbox" label={value} checked={selected} readOnly />}
+         label={<Checkbox name="checkbox" checked={selected} readOnly>{value}</Checkbox>}
          selected={selected}
          key={value}
        />
@@ -325,7 +329,6 @@ return (
 export const TreeDropdown = (args) => {
   const [selectedValues, setSelectedValues] = useState(['loplat X']);
   const handleChange = (e, newValue) => {
-    console.log('set', newValue);
     if (selectedValues.includes(newValue)) {
       setSelectedValues(selectedValues.filter((value) => value !== newValue));
     } else {
@@ -342,7 +345,6 @@ export const TreeDropdown = (args) => {
           label={
             <Checkbox
               name="제품"
-              label="제품 전체 선택"
               checked={
                 options.every((option) => selectedValues.includes(option))
                   ? true
@@ -364,7 +366,9 @@ export const TreeDropdown = (args) => {
                   });
                 }
               }}
-            />
+            >
+              제품 전체 선택
+            </Checkbox>
           }
         />
         {options.map((value, index) => {
@@ -372,7 +376,11 @@ export const TreeDropdown = (args) => {
           return (
             <Dropdown.Option
               value={value}
-              label={<Checkbox name="checkbox" label={value} checked={selected} readOnly />}
+              label={
+                <Checkbox name="checkbox" checked={selected} readOnly>
+                  {value}
+                </Checkbox>
+              }
               selected={selected}
               key={value}
             />
@@ -384,7 +392,11 @@ export const TreeDropdown = (args) => {
           return (
             <Dropdown.Option
               value={option}
-              label={<Checkbox name="checkbox" label={option} checked={selected} readOnly />}
+              label={
+                <Checkbox name="checkbox" checked={selected} readOnly>
+                  {option}
+                </Checkbox>
+              }
               selected={selected}
               key={idx}
             />
