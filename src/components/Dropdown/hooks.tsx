@@ -92,12 +92,17 @@ export const useKeyDown = <T extends string>({
             optionElement.contains(focusedElement),
           );
           if (targetOption) {
+            e.preventDefault();
+
             const value = targetOption.dataset.value as T;
-            onChange(e, value);
+
+            if (value) onChange(e, value);
+            else if (targetOption.role === 'listitem' && targetOption.querySelector('input[type="checkbox"]')) {
+              (targetOption.querySelector('input[type="checkbox"]') as HTMLInputElement).click();
+            }
             if (!multiple) {
               close();
               triggerElement?.focus();
-              e.preventDefault();
             }
           }
         }
@@ -124,12 +129,16 @@ export const useKeyDown = <T extends string>({
             focusableOptionElements[0].focus();
           }
         } else if (optionIsFocused) {
-          const focusedOptionIndex = focusableOptionElements.indexOf(focusedElement);
+          const focusableOptions = focusableOptionElements.filter(
+            (node) => node.role === 'option' || !!node.querySelector('input[type="checkbox"]'),
+          );
+          const focusedOptionIndex = focusableOptions.indexOf(focusedElement);
 
           if (e.code === 'ArrowUp') {
-            focusableOptionElements[focusedOptionIndex - 1]?.focus();
+            const target = focusableOptions[focusedOptionIndex - 1];
+            target?.focus();
           } else if (e.code === 'ArrowDown') {
-            focusableOptionElements[focusedOptionIndex + 1]?.focus();
+            focusableOptions[focusedOptionIndex + 1]?.focus();
           }
         }
       } else if (focusedTargetIsInputControl && !expanded) {

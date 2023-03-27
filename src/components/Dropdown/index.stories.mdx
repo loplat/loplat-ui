@@ -341,36 +341,35 @@ export const TreeDropdown = (args) => {
         <Dropdown.Bar value={selectedValues.join(', ')} />
       </Dropdown.Trigger>
       <Dropdown.OptionList>
-        <Dropdown.ListSubHeader
-          label={
-            <Checkbox
-              name="제품"
-              checked={
-                options.every((option) => selectedValues.includes(option))
-                  ? true
-                  : options.some((option) => selectedValues.includes(option))
-                  ? 'intermediate'
-                  : false
+        <Dropdown.ListSubHeader>
+          <Checkbox
+            name="제품"
+            readOnly
+            checked={
+              options.every((option) => selectedValues.includes(option))
+                ? true
+                : options.some((option) => selectedValues.includes(option))
+                ? 'intermediate'
+                : false
+            }
+            onChange={(e) => {
+              if (e.currentTarget.checked) {
+                setSelectedValues((prev) => {
+                  const result = new Set();
+                  prev.forEach((option) => result.add(option));
+                  options.forEach((option) => result.add(option));
+                  return [...result];
+                });
+              } else {
+                setSelectedValues((prev) => {
+                  return prev.filter((option) => !selectedValues.includes(option));
+                });
               }
-              onChange={(e) => {
-                if (e.currentTarget.checked) {
-                  setSelectedValues((prev) => {
-                    const result = new Set();
-                    prev.forEach((option) => result.add(option));
-                    options.forEach((option) => result.add(option));
-                    return [...result];
-                  });
-                } else {
-                  setSelectedValues((prev) => {
-                    return prev.filter((option) => !selectedValues.includes(option));
-                  });
-                }
-              }}
-            >
-              제품 전체 선택
-            </Checkbox>
-          }
-        />
+            }}
+          >
+            제품 전체 선택
+          </Checkbox>
+        </Dropdown.ListSubHeader>
         {options.map((value, index) => {
           const selected = selectedValues.includes(value);
           return (
@@ -386,7 +385,7 @@ export const TreeDropdown = (args) => {
             />
           );
         })}
-        <Dropdown.ListSubHeader label="채용" />
+        <Dropdown.ListSubHeader>채용</Dropdown.ListSubHeader>
         {['front', 'back', 'ios', 'android'].map((option, idx) => {
           const selected = selectedValues.includes(option);
           return (

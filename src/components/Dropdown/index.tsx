@@ -137,10 +137,10 @@ Dropdown.Option = ({ value, label, selected = false, disabled = false, ...props 
   );
 };
 
-Dropdown.ListSubHeader = ({ label }: OptionProps) => {
+Dropdown.ListSubHeader = ({ children }: { children: OptionProps['label'] }) => {
   return (
-    <ListSubHeader role="option" aria-selected={false}>
-      {label}
+    <ListSubHeader role="listitem" aria-selected={false} tabIndex={-1}>
+      {children}
     </ListSubHeader>
   );
 };
