@@ -8,54 +8,43 @@ import { CheckboxProps, BaseLabel } from './types';
 
 export const Checkbox = React.forwardRef(
   (
-    { label, name, checked = false, onChange, disabled, boldLabel, className, id, ...props }: CheckboxProps,
+    { children, name, checked = false, onChange, disabled, className, ...props }: CheckboxProps,
     ref: ForwardedRef<HTMLInputElement>,
   ): JSX.Element => {
     const isChecked: boolean = typeof checked === 'boolean' ? checked : checked === 'checked';
     const isIntermediate: boolean = checked === 'intermediate';
+    const id = `loplat-ui__checkbox_${name}`;
 
     return (
-      <Label
-        isIntermediate={isIntermediate}
-        boldLabel={boldLabel}
-        disabled={disabled}
-        {...marginSpacingProps(props)}
-        className={className}
-        id={id}
-      >
+      <CheckboxWrapper className={className} isIntermediate={isIntermediate} {...marginSpacingProps(props)}>
         <input
           type="checkbox"
           name={name}
+          id={id}
           checked={isChecked}
           onChange={onChange}
-          disabled={disabled}
           {...props}
           ref={ref}
+          disabled={disabled}
         />
-        {/* TODO: label, input을 형제 관계로 변경하기 */}
-        <Checkmark onClick={(e) => e.stopPropagation()} className="checkmark" />
-        <span onClick={(e) => e.stopPropagation()}>{label}</span>
-      </Label>
+        <Label htmlFor={id} disabled={disabled}>
+          <Checkmark className="checkmark" />
+          <div>{children}</div>
+        </Label>
+      </CheckboxWrapper>
     );
   },
 );
 
-const Label = styled.label<Pick<BaseLabel, 'boldLabel' | 'disabled'> & MarginSpacing & { isIntermediate: boolean }>`
+const CheckboxWrapper = styled.div<MarginSpacing & { isIntermediate: boolean }>`
   ${marginSpacingStyle};
-  width: fit-content;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  font-size: 1rem;
-  font-weight: ${({ boldLabel }) => (boldLabel ? 600 : 400)};
-  color: ${({ disabled }) => (disabled ? grayscale500 : grayscale800)};
-  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
 
   input[type='checkbox'] {
     position: absolute;
     opacity: 0;
 
-    &:checked ~ .checkmark {
+    &:checked ~ label .checkmark {
       border-color: ${blue500};
       ::after {
         width: 0.7rem;
@@ -67,35 +56,53 @@ const Label = styled.label<Pick<BaseLabel, 'boldLabel' | 'disabled'> & MarginSpa
         box-sizing: border-box;
       }
     }
-    &:not(:checked) ~ .checkmark {
+    &:not(:checked) ~ label .checkmark {
       ${({ isIntermediate }) =>
-        isIntermediate &&
-        css`
-          border-color: ${blue500};
-          ::after {
-            border-color: ${blue500};
-            width: 0.7rem;
-            height: 0;
-            transform: translate(-50%, -50%);
-            border-bottom: 2px solid ${blue500};
-            box-sizing: border-box;
-          }
-        `}
+        isIntermediate
+          ? css`
+              border-color: ${blue500};
+              ::after {
+                border-color: ${blue500};
+                width: 0.7rem;
+                height: 0;
+                transform: translate(-50%, -50%);
+                border-bottom: 2px solid ${blue500};
+                box-sizing: border-box;
+              }
+            `
+          : ''}
     }
-    &:disabled ~ .checkmark {
+
+    ${({ isIntermediate }) =>
+      isIntermediate
+        ? ``
+        : css`
+            &:hover:not(:checked) ~ label .checkmark {
+              border-color: ${grayscale300};
+            }
+          `}
+
+    &:focus-visible ~ label .checkmark {
+      outline: 2px solid ${primary};
+    }
+    &:disabled ~ label .checkmark {
       border-color: ${grayscale200};
       background-color: ${grayscale100};
       &::after {
         border-color: ${grayscale500};
       }
     }
-    &:hover:not(:checked) ~ .checkmark {
-      border-color: ${grayscale300};
-    }
-    &:focus-visible ~ .checkmark {
-      outline: 2px solid ${primary};
-    }
   }
+`;
+
+const Label = styled.label<Pick<BaseLabel, 'disabled'>>`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 1rem;
+
+  color: ${({ disabled }) => (disabled ? grayscale500 : grayscale800)};
+  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
 `;
 
 const Checkmark = styled.span`

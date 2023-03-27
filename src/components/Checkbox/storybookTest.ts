@@ -4,10 +4,10 @@ import { expect } from '@storybook/jest';
 import { userEvent, within } from '@storybook/testing-library';
 
 export function runTest(story: ComponentStory<typeof Checkbox>): ComponentStory<typeof Checkbox> {
-  story.play = async ({ args, canvasElement }) => {
+  story.play = async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const checkbox = canvas.getByRole('checkbox');
-    const label = canvas.getByText(args.label);
+    const label = canvas.getByText('체크박스');
 
     expect(checkbox).not.toBeChecked();
 
