@@ -7,6 +7,7 @@ import {
   grayscale200,
   grayscale50,
   grayscale500,
+  grayscale800,
   primary,
   spacing,
   styled,
@@ -82,6 +83,9 @@ export const OptionList = styled.ul`
   padding: ${spacing(4)}px;
   border: 1px solid ${grayscale200};
   margin: 0;
+
+  max-height: 400px;
+  overflow-y: auto;
 `;
 
 export const Option = styled.li`
@@ -90,7 +94,10 @@ export const Option = styled.li`
   padding: ${spacing(4)}px;
   border-radius: 4px;
   cursor: pointer;
-
+  color: ${grayscale800};
+  > * {
+    width: 100%;
+  }
   &:hover {
     background-color: ${blue100};
   }
@@ -104,4 +111,14 @@ export const Option = styled.li`
     cursor: not-allowed;
     color: ${bluescale500};
   }
+`;
+
+export const ListSubHeader = styled.li`
+  > * {
+    width: 100%;
+  }
+  color: ${grayscale800};
+  font-weight: 700;
+  line-height: 3rem;
+  font-size: 1rem;
 `;

@@ -319,3 +319,84 @@ return (
 `;
 
 <Source dark language="tsx" code={multipleCode} />
+
+# TreeDropdown
+
+export const TreeDropdown = (args) => {
+  const [selectedValues, setSelectedValues] = useState(['loplat X']);
+  const handleChange = (e, newValue) => {
+    console.log('set', newValue);
+    if (selectedValues.includes(newValue)) {
+      setSelectedValues(selectedValues.filter((value) => value !== newValue));
+    } else {
+      setSelectedValues([...selectedValues, newValue]);
+    }
+  };
+  return (
+    <Dropdown {...args} onChange={handleChange}>
+      <Dropdown.Trigger>
+        <Dropdown.Bar value={selectedValues.join(', ')} />
+      </Dropdown.Trigger>
+      <Dropdown.OptionList>
+        <Dropdown.ListSubHeader
+          label={
+            <Checkbox
+              name="제품"
+              label="제품 전체 선택"
+              checked={
+                options.every((option) => selectedValues.includes(option))
+                  ? true
+                  : options.some((option) => selectedValues.includes(option))
+                  ? 'intermediate'
+                  : false
+              }
+              onChange={(e) => {
+                if (e.currentTarget.checked) {
+                  setSelectedValues((prev) => {
+                    const result = new Set();
+                    prev.forEach((option) => result.add(option));
+                    options.forEach((option) => result.add(option));
+                    return [...result];
+                  });
+                } else {
+                  setSelectedValues((prev) => {
+                    return prev.filter((option) => !selectedValues.includes(option));
+                  });
+                }
+              }}
+            />
+          }
+        />
+        {options.map((value, index) => {
+          const selected = selectedValues.includes(value);
+          return (
+            <Dropdown.Option
+              value={value}
+              label={<Checkbox name="checkbox" label={value} checked={selected} readOnly />}
+              selected={selected}
+              key={value}
+            />
+          );
+        })}
+        <Dropdown.ListSubHeader label="채용" />
+        {['front', 'back', 'ios', 'android'].map((option, idx) => {
+          const selected = selectedValues.includes(option);
+          return (
+            <Dropdown.Option
+              value={option}
+              label={<Checkbox name="checkbox" label={option} checked={selected} readOnly />}
+              selected={selected}
+              key={idx}
+            />
+          );
+        })}
+      </Dropdown.OptionList>
+    </Dropdown>
+  );
+};
+
+<Canvas withSource="none">
+  <Story name="tree" args={{ multiple: true }}>
+    {TreeDropdown.bind({})}
+  </Story>
+</Canvas>

@@ -10,7 +10,7 @@ import {
   OptionListProps,
   OptionProps,
 } from './types';
-import { Bar, OptionList, Option } from './styles';
+import { Bar, OptionList, Option, ListSubHeader } from './styles';
 import { generateUniqueId } from '../../functions/uniqueId';
 import { useClick, useKeyDown, useOptionListPosition } from './hooks';
 import { popperZIndex } from '../../core';
@@ -134,5 +134,13 @@ Dropdown.Option = ({ value, label, selected = false, disabled = false, ...props 
     >
       {label ?? value}
     </Option>
+  );
+};
+
+Dropdown.ListSubHeader = ({ label }: OptionProps) => {
+  return (
+    <ListSubHeader role="option" aria-selected={false}>
+      {label}
+    </ListSubHeader>
   );
 };
