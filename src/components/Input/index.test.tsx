@@ -18,7 +18,7 @@ const TestInput = () => {
       rightIcon={<WarningCircleOutlineIcon fillColor={danger} size={20} />}
       isIconVisible={value === '에러 생성'}
       error={value === '에러 생성'}
-      errorMessage="에러메세지"
+      helperText="에러메세지"
     />
   );
 };
