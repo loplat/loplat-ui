@@ -36,7 +36,7 @@ pipelines:
             - export BRANCH_NAME=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
             - echo $COMMIT_MESSAGE
             - echo $BRANCH_NAME
-            - curl -X POST -H "Content-type:application/json" --data "{
+            - curl -k -X POST -H "Content-type:application/json" --data "{
               \"text\":\"*$BRANCH_NAME PR이 업데이트되었습니다.* 스토리북을 확인해주세요.
               \n\n https://feature-loplat-ui.web.app/
               \n\n *개발자 커밋메시지:* $COMMIT_MESSAGE\"}" $WEBHOOK_URL
@@ -79,7 +79,7 @@ pipelines:
                 MESSAGE: 'deploying to loplat UI'
                 EXTRA_ARGS: '--only hosting:staging'
                 DEBUG: 'false'
-            - curl -X POST -H "Content-type:application/json" --data "{
+            - curl -k -X POST -H "Content-type:application/json" --data "{
               \"text\":\"*loplat ui develop 브랜치가 배포되었습니다.*
               \n\n https://staging-loplat-ui.web.app/\"}" $WEBHOOK_URL
       - step:
@@ -122,7 +122,7 @@ pipelines:
                 DEBUG: 'false'
             - export VERSION=$(yarn version | grep version | awk -F":" '{ print $2 }' | sed '/^$/d' | tr -d ' ')
             - echo $VERSION
-            - curl -X POST -H "Content-type:application/json" --data "{
+            - curl -k -X POST -H "Content-type:application/json" --data "{
               \"text\":\"*loplat ui $VERSION 버전이 배포되었습니다.*
               \n\n https://ui.loplat.com/ \"}" $WEBHOOK_URL
       - step:
