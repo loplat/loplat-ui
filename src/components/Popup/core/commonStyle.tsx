@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
-import { white } from '../../../core/colors';
+import { bluescale500, white } from '../../../core/colors';
 import { Large, Small } from '../../../core/styles/mediaQuery';
 import { spacing } from '../../../core';
 
@@ -25,6 +25,12 @@ export const Dialog = styled.div`
   align-items: center;
   justify-content: center;
   width: 100vw;
+
+  .close_dialog {
+    svg g path {
+      fill: ${bluescale500};
+    }
+  }
 
   ${Large} {
     max-width: 400px;
