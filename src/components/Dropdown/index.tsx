@@ -137,9 +137,9 @@ Dropdown.Option = ({ value, label, selected = false, disabled = false, ...props 
   );
 };
 
-Dropdown.ListSubHeader = ({ children }: { children: OptionProps['label'] }) => {
+Dropdown.ListSubHeader = ({ children, ...props }: React.HTMLAttributes<HTMLLIElement>) => {
   return (
-    <ListSubHeader role="listitem" aria-selected={false} tabIndex={-1}>
+    <ListSubHeader role="listitem" aria-selected={false} tabIndex={-1} {...props}>
       {children}
     </ListSubHeader>
   );

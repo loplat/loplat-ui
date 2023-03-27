@@ -97,7 +97,10 @@ export const useKeyDown = <T extends string>({
             const value = targetOption.dataset.value as T;
 
             if (value) onChange(e, value);
-            else if (targetOption.role === 'listitem' && targetOption.querySelector('input[type="checkbox"]')) {
+            else if (
+              targetOption.getAttribute('role') === 'listitem' &&
+              targetOption.querySelector('input[type="checkbox"]')
+            ) {
               (targetOption.querySelector('input[type="checkbox"]') as HTMLInputElement).click();
             }
             if (!multiple) {
@@ -130,13 +133,12 @@ export const useKeyDown = <T extends string>({
           }
         } else if (optionIsFocused) {
           const focusableOptions = focusableOptionElements.filter(
-            (node) => node.role === 'option' || !!node.querySelector('input[type="checkbox"]'),
+            (node) => node.getAttribute('role') === 'option' || !!node.querySelector('input[type="checkbox"]'),
           );
           const focusedOptionIndex = focusableOptions.indexOf(focusedElement);
 
           if (e.code === 'ArrowUp') {
-            const target = focusableOptions[focusedOptionIndex - 1];
-            target?.focus();
+            focusableOptions[focusedOptionIndex - 1]?.focus();
           } else if (e.code === 'ArrowDown') {
             focusableOptions[focusedOptionIndex + 1]?.focus();
           }
