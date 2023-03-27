@@ -38,7 +38,7 @@ export const DialogTemplate = (args) => <Popup1Component {...args} onClose={() =
 
 `<Modal/>`을 기반으로 만들어졌습니다.
 
-`title`혹은 `content` 둘 중 하나는 입력하셔야 합니다.
+`title`혹은 `children` 둘 중 하나는 입력하셔야 합니다.
 하나의 `onClose`함수로 컴포넌트를 닫고, 버튼클릭이벤트로 사용합니다.
 
 <Canvas>
@@ -46,7 +46,7 @@ export const DialogTemplate = (args) => <Popup1Component {...args} onClose={() =
     name="default"
     args={{
       title: '말 파란 별 까닭입니다.',
-      content: '이름자를 가슴속에 위에도 당신은 아직 덮어 있습니다. 밤이 위에도 아이들의 까닭입니다.',
+      children: '이름자를 가슴속에 위에도 당신은 아직 덮어 있습니다. 밤이 위에도 아이들의 까닭입니다.',
       color: 'primary',
     }}
   >
@@ -58,12 +58,12 @@ export const DialogTemplate = (args) => <Popup1Component {...args} onClose={() =
 
 ## 예제
 
-아래 예제는 title, content, color, icon을 여러 방식으로 바꾼 것입니다.
+아래 예제는 title, children, color, icon을 여러 방식으로 바꾼 것입니다.
 
 ### only title, icon: warning, color: danger
 
 <Story
-  name="no content"
+  name="no children"
   args={{
     title: '북간도에 지나가는 언덕 새워 동경과 까닭입니다.',
     color: 'danger',
@@ -84,7 +84,7 @@ title과 content가 동시에 작성되면 title의 글자크기가 줄어들고
     title:
       '다 한 그리고 했던 버리었습니다. 풀이 말 토끼, 어머니 못 보고, 하나에 하나에 계십니다. 소녀들의 오는 까닭이요, 아직 이제 헤일 겨울이 아스라히 까닭입니다. 이국 북간도에 흙으로 어머님, 하나에 별을 버리었습니다.',
     color: 'danger',
-    content: '별 북간도에 소녀들의 파란 언덕 까닭이요, 어머니, 거외다. 사랑과 풀이 벌레는 별 까닭입니다.',
+    children: '별 북간도에 소녀들의 파란 언덕 까닭이요, 어머니, 거외다. 사랑과 풀이 벌레는 별 까닭입니다.',
   }}
 >
   {DialogTemplate.bind({})}
@@ -92,9 +92,9 @@ title과 content가 동시에 작성되면 title의 글자크기가 줄어들고
 
 ### only content, color: primary
 
-content만 작성되면 검정색으로 정해집니다.
+children만 작성하면 검정색으로 정해집니다.
 
-<Story name="only content" args={{ color: 'primary', content: '새겨지는 별이 이름을 된 이웃 거외다.' }}>
+<Story name="only content" args={{ color: 'primary', children: '새겨지는 별이 이름을 된 이웃 거외다.' }}>
   {DialogTemplate.bind({})}
 </Story>
 
@@ -105,7 +105,7 @@ content만 작성되면 검정색으로 정해집니다.
   args={{
     color: 'primary',
     icon: 'warning',
-    content:
+    children:
       '딴은 당신은 흙으로 가득 까닭이요, 아침이 프랑시스 이름자를 거외다. 노새, 불러 그러나 토끼, 무엇인지 아이들의 소녀들의 이름을 나의 듯합니다. 계절이 나는 언덕 한 너무나 별 별 책상을 봅니다. 가을로 밤을 가을 나의 이름과, 부끄러운 하나에 옥 까닭입니다. 슬퍼하는 겨울이 내 어머니 멀리 별을 이제 계십니다. 사람들의 지나가는 다하지 하나의 했던 내린 듯합니다. 이제 가을 지나고 시인의 위에 별을 하나에 있습니다.',
   }}
 >
@@ -125,7 +125,7 @@ icon props으로 원하는 icon svg을 할당할 수 있습니다.
     color: 'danger',
     icon: DiamondIcon,
     title: '새겨지는 별이 이름을 된 이웃 거외다.',
-    content:
+    children:
       '내 너무나 별이 쓸쓸함과 나는 덮어 봅니다. 토끼, 당신은 풀이 까닭입니다. 어머니, 토끼, 피어나듯이 버리었습니다.',
   }}
 >

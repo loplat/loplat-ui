@@ -13,8 +13,8 @@ type CustomButtonKey<Key extends string> = PrefixKey<Omit<PopupButton, 'onClick'
 export type TwoButtons = CustomButtonKey<'leftButton'> & CustomButtonKey<'rightButton'>;
 
 type BasePopupConstructor =
-  | { title: string; content?: React.ReactElement | string }
-  | { title?: string; content: React.ReactElement | string };
+  | { title: string | React.ReactElement; children?: React.ReactNode }
+  | { title?: string | React.ReactElement; children: React.ReactNode };
 export type BasePopupProps = BasePopupConstructor & {
   /** icon, button, title 색상을 결정합니다. */
   color?: 'danger' | 'primary';

@@ -12,7 +12,7 @@ import { Modal } from '../../../utils';
 export const Popup1Component = ({
   color = 'primary',
   title,
-  content,
+  children,
   icon = 'check',
   onClose,
   ...props
@@ -29,13 +29,13 @@ export const Popup1Component = ({
       aria-labelledby={title ? 'dialogTitle' : 'dialogDesc'}
       {...props}
     >
-      <Wrapper color={mainColor} onlyTitle={!content} onlyContent={!title}>
+      <Wrapper color={mainColor} onlyTitle={!children} onlyContent={!title}>
         {CustomIcon}
         {title && <h1 id="dialogTitle">{title}</h1>}
-        {content && typeof content === 'string' ? (
-          <p id="dialogDesc">{content}</p>
+        {children && typeof children === 'string' ? (
+          <p id="dialogDesc">{children}</p>
         ) : (
-          <div id="dialogDesc">{content}</div>
+          <div id="dialogDesc">{children}</div>
         )}
       </Wrapper>
       <Button fullWidth color={buttonColor} tabIndex={0} onClick={onClose}>

@@ -9,7 +9,7 @@ import { Popup2Props, DialogProps } from '../core/types';
 import { spacing } from '../../../core';
 
 export const Popup2Component = ({
-  content,
+  children,
   title,
   icon = 'check',
   color = primary,
@@ -35,7 +35,7 @@ export const Popup2Component = ({
       <Wrapper color={color}>
         {CustomIcon}
         <h1 id="dialogTitle">{title}</h1>
-        {typeof content === 'string' ? <p id="dialogDesc">{content}</p> : <div id="dialogDesc">{content}</div>}
+        {typeof children === 'string' ? <p id="dialogDesc">{children}</p> : <div id="dialogDesc">{children}</div>}
       </Wrapper>
       <ButtonWrapper>
         <Button fullWidth color={leftButtonColor} tabIndex={0} onClick={onClickLeftButton}>

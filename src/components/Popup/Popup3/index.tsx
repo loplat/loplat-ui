@@ -12,7 +12,7 @@ import { Modal } from '../../../utils';
 export const Popup3Component = ({
   description,
   onClose,
-  content,
+  children,
   title,
   showCloseButton = true,
   leftButtonColor = 'default',
@@ -42,7 +42,7 @@ export const Popup3Component = ({
           <h1 id="dialogTitle">{title}</h1>
           {description && <small>{description}</small>}
         </Title>
-        {typeof content === 'string' ? <p id="dialogDesc">{content}</p> : <div id="dialogDesc">{content}</div>}
+        {typeof children === 'string' ? <p id="dialogDesc">{children}</p> : <div id="dialogDesc">{children}</div>}
       </Wrapper>
       <StyledButtonWrapper>
         <Button color={leftButtonColor} onClick={onClickLeftButton}>
