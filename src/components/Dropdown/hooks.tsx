@@ -138,9 +138,19 @@ export const useKeyDown = <T extends string>({
           const focusedOptionIndex = focusableOptions.indexOf(focusedElement);
 
           if (e.code === 'ArrowUp') {
-            focusableOptions[focusedOptionIndex - 1]?.focus();
+            focusableOptions[focusedOptionIndex - 1]?.scrollIntoView({
+              behavior: 'smooth',
+              block: 'center',
+              inline: 'nearest',
+            });
+            focusableOptions[focusedOptionIndex - 1]?.focus({ preventScroll: true });
           } else if (e.code === 'ArrowDown') {
-            focusableOptions[focusedOptionIndex + 1]?.focus();
+            focusableOptions[focusedOptionIndex - 1]?.scrollIntoView({
+              behavior: 'smooth',
+              block: 'center',
+              inline: 'nearest',
+            });
+            focusableOptions[focusedOptionIndex + 1]?.focus({ preventScroll: true });
           }
         }
       } else if (focusedTargetIsInputControl && !expanded) {
