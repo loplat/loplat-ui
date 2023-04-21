@@ -4,6 +4,7 @@ import { blue100, bluescale500, MarginSpacing, marginSpacingStyle, spacing } fro
 export const Wrapper = styled.div<MarginSpacing>`
   position: relative;
   width: fit-content;
+  display: flex;
 
   ${marginSpacingStyle};
 `;

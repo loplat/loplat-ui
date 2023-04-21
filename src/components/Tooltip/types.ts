@@ -11,4 +11,6 @@ export type TooltipProps = {
   enterDelay?: number;
   /** tooltip의 z-index 입니다. */
   zIndex?: number;
+  /** 호버를 해도 tooltip이 열리지 않습니다. */
+  disabled?: boolean;
 } & Omit<React.HTMLAttributes<HTMLDivElement>, 'title'>;

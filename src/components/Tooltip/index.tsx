@@ -10,6 +10,7 @@ export const Tooltip = ({
   placement = 'top',
   enterDelay = 0,
   zIndex = tooltipZIndex,
+  disabled = false,
   ...props
 }: TooltipProps): React.ReactElement => {
   const [container, setContainer] = useState<Element | null>(null);
@@ -25,6 +26,8 @@ export const Tooltip = ({
   }, []);
 
   const renderTooltip = () => {
+    if (disabled) return;
+
     // popper 생성, 렌더링
     if (animation.current === null) createPopper();
     if (animation.current) {
@@ -91,6 +94,7 @@ export const Tooltip = ({
     if (children.props.onMouseOver) {
       children.props.onMouseOver(e);
     }
+    if (disabled) return;
 
     renderTooltip();
   };
