@@ -1,9 +1,13 @@
 export const bluescale50 = '#fafbfc';
-export const bluescale100 = '#eef2f8';
-export const bluescale200 = '#d5e0ee';
-export const bluescale300 = '#c8d4e0';
-export const bluescale400 = '#b8c4d1';
-export const bluescale500 = '#9daab7';
+export const bluescale100 = '#F5F7FA';
+export const bluescale200 = '#EBEFF5';
+export const bluescale300 = '#DCE3ED';
+export const bluescale400 = '#CFD9E6';
+export const bluescale500 = '#BFC8D6';
+export const bluescale600 = '#A7B2C4';
+export const bluescale700 = '#818DA1';
+export const bluescale800 = '#6B778C';
+export const bluescale900 = '#626B7A';
 
 export const bluescale = {
   50: bluescale50,
@@ -12,4 +16,8 @@ export const bluescale = {
   300: bluescale300,
   400: bluescale400,
   500: bluescale500,
+  600: bluescale600,
+  700: bluescale700,
+  800: bluescale800,
+  900: bluescale900,
 } as const;
