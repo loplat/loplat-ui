@@ -1,10 +1,10 @@
-export const bluescale50 = '#fafbfc';
+export const bluescale50 = '#FAFBFC';
 export const bluescale100 = '#F5F7FA';
 export const bluescale200 = '#EBEFF5';
 export const bluescale300 = '#DCE3ED';
 export const bluescale400 = '#CFD9E6';
 export const bluescale500 = '#BFC8D6';
-export const bluescale600 = '#A7B2C4';
+export const bluescale600 = '#9CA7B8';
 export const bluescale700 = '#818DA1';
 export const bluescale800 = '#6B778C';
 export const bluescale900 = '#626B7A';
