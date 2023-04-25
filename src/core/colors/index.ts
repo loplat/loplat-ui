@@ -14,6 +14,7 @@ import { turquoise } from './turquoise';
 import { white } from './white';
 import { yellow } from './yellow';
 import { yellowGreen } from './yellowGreen';
+import { background } from './background';
 
 export const colors = {
   black,
@@ -32,6 +33,7 @@ export const colors = {
   white,
   yellow,
   yellowGreen,
+  background,
 };
 
 export * from './black';
@@ -51,3 +53,4 @@ export * from './turquoise';
 export * from './white';
 export * from './yellow';
 export * from './yellowGreen';
+export * from './background';
