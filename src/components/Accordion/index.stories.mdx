@@ -121,7 +121,7 @@ export const rotateLeft = [{ transform: 'rotate(0deg)' }, { transform: 'rotate(-
       const toggle = (e) => setOpen((prev) => !prev);
       return (
         <div>
-          <Button color="primary1" onClick={toggle} mb={5} size="sm">
+          <Button variant="primary1" onClick={toggle} mb={5} size="sm">
             toggle
           </Button>
           <Accordion open={open} onToggle={toggle} variant="fill" duration={700}>

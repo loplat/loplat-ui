@@ -20,12 +20,13 @@ import {
   grayscale300,
   grayscale900,
   background300,
+  transparent,
 } from '../../core/colors';
 import { MarginSpacing, marginSpacingProps, marginSpacingStyle, spacing } from '../../core/Spacing';
 import { NotMobile } from '../../core/styles/mediaQuery';
 
 type Size = 'xs' | 'sm' | 'md' | 'lg';
-type Variant = 'primary1' | 'primary2' | 'danger1' | 'danger2' | 'solid' | 'ghost1' | 'ghost2';
+type Variant = 'primary1' | 'primary2' | 'danger1' | 'danger2' | 'solid' | 'ghost1' | 'ghost2' | 'white';
 type FullWidth = { fullWidth?: boolean };
 type Borderless = { borderless?: boolean };
 
@@ -195,6 +196,26 @@ export const COLOR_SET: ButtonColorSet = {
   },
   ghost2: {
     background: {
+      default: transparent,
+      hover: blue100,
+      active: transparent,
+      disabled: background100,
+    },
+    border: {
+      default: grayscale200,
+      hover: blue500,
+      active: grayscale200,
+      disabled: grayscale200,
+    },
+    text: {
+      default: grayscale800,
+      hover: blue500,
+      active: blue500,
+      disabled: grayscale500,
+    },
+  },
+  white: {
+    background: {
       default: white,
       hover: blue100,
       active: white,
@@ -216,7 +237,7 @@ export const COLOR_SET: ButtonColorSet = {
 };
 
 export const BaseButton = styled.button<BaseButtonProps>`
-  width: ${({ fullWidth }) => fullWidth && '100%'};
+  width: ${({ fullWidth }) => (fullWidth ? '100%' : 'fit-content')};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -301,7 +322,7 @@ export const BaseButton = styled.button<BaseButtonProps>`
 
 export const Button = React.forwardRef(
   (
-    { variant = 'primary1', size, leftIcon, rightIcon, children, ...props }: ButtonProps,
+    { variant = 'white', size, leftIcon, rightIcon, children, ...props }: ButtonProps,
     ref: ForwardedRef<HTMLButtonElement>,
   ): JSX.Element => {
     return (
