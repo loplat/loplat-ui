@@ -9,7 +9,6 @@ import {
   red400,
   grayscale200,
   grayscale500,
-  transparent,
   white,
   blue300,
   red200,
@@ -227,7 +226,7 @@ export const BaseButton = styled.button<BaseButtonProps>`
 
   border-width: 1px;
   border-style: solid;
-  border-color: ${({ border }) => border.default};
+  border-color: ${({ border, borderless }) => (borderless ? 'transparent' : border.default)};
   border-radius: 4px;
 
   color: ${({ text }) => text.default};
@@ -263,7 +262,7 @@ export const BaseButton = styled.button<BaseButtonProps>`
   &:disabled {
     cursor: not-allowed;
     color: ${({ text }) => text.disabled};
-    border-color: ${({ border }) => border.disabled};
+    border-color: ${({ border, borderless }) => (borderless ? 'transparent' : border.disabled)};
     background-color: ${({ background }) => background.disabled};
     svg g > path {
       fill: ${({ text }) => text.disabled};
@@ -272,7 +271,7 @@ export const BaseButton = styled.button<BaseButtonProps>`
 
   &:active:not(:disabled) {
     color: ${({ text }) => text.active};
-    border-color: ${({ border }) => border.active};
+    border-color: ${({ border, borderless }) => (borderless ? 'transparent' : border.active)};
     background-color: ${({ background }) => background.active};
     svg g > path {
       fill: ${({ text }) => text.active};
@@ -281,7 +280,7 @@ export const BaseButton = styled.button<BaseButtonProps>`
 
   &:focus-visible:not(:active) {
     color: ${({ text }) => text.hover};
-    border-color: ${({ border }) => border.hover};
+    border-color: ${({ border, borderless }) => (borderless ? 'transparent' : border.hover)};
     background-color: ${({ background }) => background.hover};
     svg g > path {
       fill: ${({ text }) => text.hover};
@@ -291,15 +290,13 @@ export const BaseButton = styled.button<BaseButtonProps>`
   ${NotMobile} {
     &:hover:not(:disabled, :active) {
       color: ${({ text }) => text.hover};
-      border-color: ${({ border }) => border.hover};
+      border-color: ${({ border, borderless }) => (borderless ? 'transparent' : border.hover)};
       background-color: ${({ background }) => background.hover};
       svg g > path {
         fill: ${({ text }) => text.hover};
       }
     }
   }
-
-  ${({ borderless }) => (borderless ? `border-color: transparent` : ``)};
 `;
 
 export const Button = React.forwardRef(
