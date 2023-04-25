@@ -59,12 +59,12 @@ export const Template = (args) => {
       const toggle = () => setChecked((prev) => !prev);
       return (
         <form>
-          <label htmlFor="label">
+          <label htmlFor="label-example">
             <Body tag="span" mr={2}>
               Label
             </Body>
           </label>
-          <Switch id="label" name="label" checked={checked} onChange={toggle} />
+          <Switch id="label-example" name="label-example" checked={checked} onChange={toggle} />
         </form>
       );
     }}
@@ -80,11 +80,11 @@ export const Template = (args) => {
       const toggle = () => setChecked((prev) => !prev);
       return (
         <div>
-          <div style={{ display: 'flex', flexDirection: 'row', marginBottom: '1rem' }}>
-            <Button variant="primary1" onClick={toggle} mr={5} size="sm">
+          <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '1rem' }}>
+            <span>체크 상태: {checked ? 'O' : 'X'}</span>
+            <Button variant="white" onClick={toggle} my={1} size="xs">
               토글
             </Button>
-            <span>체크 상태: {checked ? 'O' : 'X'}</span>
           </div>
           <Switch checked={checked} onChange={toggle} />
         </div>

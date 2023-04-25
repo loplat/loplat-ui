@@ -1,7 +1,7 @@
 import React, { ForwardedRef } from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
-import { blue500, grayscale800, grayscale200, grayscale500, grayscale100, grayscale300 } from '../../core/colors';
+import { blue500, grayscale800, grayscale200, grayscale500, grayscale100, grayscale400 } from '../../core/colors';
 import { primary } from '../../core/styles/palette';
 import { MarginSpacing, marginSpacingProps, marginSpacingStyle } from '../../core/Spacing';
 import { CheckboxProps, BaseLabel } from './types';
@@ -78,7 +78,7 @@ const CheckboxWrapper = styled.div<MarginSpacing & { isIntermediate: boolean }>`
         ? ``
         : css`
             &:hover:not(:checked) ~ label .checkmark {
-              border-color: ${grayscale300};
+              border-color: ${grayscale400};
             }
           `}
 

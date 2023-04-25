@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { blue100, bluescale500, MarginSpacing, marginSpacingStyle, spacing } from '../../core';
+import { blue100, bluescale600, MarginSpacing, marginSpacingStyle, spacing } from '../../core';
 
 export const Wrapper = styled.div<MarginSpacing>`
   position: relative;
@@ -21,7 +21,7 @@ export const Popper = styled.div`
   box-sizing: border-box;
   padding: ${spacing(3)}px;
   color: ${blue100};
-  background-color: ${bluescale500};
+  background-color: ${bluescale600};
   border-radius: 8px;
   box-shadow: 2px 2px 4px 0 rgba(200, 212, 224, 0.3);
 `;

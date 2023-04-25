@@ -2,17 +2,16 @@ import styled from '@emotion/styled';
 import {
   blue100,
   blue300,
-  grayscale50,
   grayscale200,
   primary,
   spacing,
-  grayscale500,
   white,
-  grayscale700,
   bluescale400,
-  bluescale50,
   grayscale300,
   bluescale200,
+  bluescale300,
+  background300,
+  grayscale100,
 } from '../../core';
 import { MarginSpacing, marginSpacingStyle } from '../../core/Spacing';
 import type { Variant, SwitchProps } from './types';
@@ -34,17 +33,17 @@ const colorSet: Record<Variant, ColorSet> = {
       },
     },
     notChecked: {
-      thumb: { background: grayscale700 },
+      thumb: { background: bluescale400 },
       track: {
-        borderColor: grayscale500,
-        background: white,
+        borderColor: bluescale300,
+        background: background300,
       },
     },
     disabled: {
-      thumb: { background: grayscale500 },
+      thumb: { background: grayscale200 },
       track: {
-        borderColor: grayscale200,
-        background: grayscale50,
+        borderColor: grayscale100,
+        background: grayscale100,
       },
     },
   },
@@ -64,10 +63,10 @@ const colorSet: Record<Variant, ColorSet> = {
       },
     },
     disabled: {
-      thumb: { background: bluescale50 },
+      thumb: { background: grayscale200 },
       track: {
-        borderColor: grayscale200,
-        background: grayscale200,
+        borderColor: grayscale100,
+        background: grayscale100,
       },
     },
   },
