@@ -28,7 +28,7 @@ export const Template = (args) => (
   <div>
     <Toast {...args} />
     <Button
-      color="primary2"
+      variant="primary2"
       onClick={() =>
         toast.success(
           '잔디가 별 흙으로 무엇인지 차 별 언덕 까닭입니다. 말 나는 한 밤이 어머니 헤는 까닭입니다. 하늘에는 내일 벌써 피어나듯이 사랑과 듯합니다. 청춘이 차 추억과 헤는 이름을 않은 봅니다. 내린 이름자 부끄러운 내 위에 때 했던 라이너 흙으로 계십니다.',
@@ -79,7 +79,7 @@ import { toast } from 'loplat-ui';
 const SomeComponent = () => {
   return (
     // code ...
-    <Button color="primary2" onClick={() => toast.success('토스트 내용을 작성해주세요')}>
+    <Button variant="primary2" onClick={() => toast.success('토스트 내용을 작성해주세요')}>
       성공!
     </Button>
   );
@@ -93,7 +93,7 @@ const SomeComponent = () => {
 <Canvas>
   <Story name="default">
     <Button
-      color="default"
+      variant="ghost2"
       onClick={() =>
         toast.white(
           '잔디가 별 흙으로 무엇인지 차 별 언덕 까닭입니다. 말 나는 한 밤이 어머니 헤는 까닭입니다. 하늘에는 내일 벌써 피어나듯이 사랑과 듯합니다. 청춘이 차 추억과 헤는 이름을 않은 봅니다. 내린 이름자 부끄러운 내 위에 때 했던 라이너 흙으로 계십니다.',
@@ -110,7 +110,7 @@ const SomeComponent = () => {
 
 <Canvas>
   <Button
-    color="primary2"
+    variant="primary2"
     onClick={() =>
       toast.success(
         '잔디가 별 흙으로 무엇인지 차 별 언덕 까닭입니다. 말 나는 한 밤이 어머니 헤는 까닭입니다. 하늘에는 내일 벌써 피어나듯이 사랑과 듯합니다. 청춘이 차 추억과 헤는 이름을 않은 봅니다. 내린 이름자 부끄러운 내 위에 때 했던 라이너 흙으로 계십니다.',
@@ -125,7 +125,7 @@ const SomeComponent = () => {
 
 <Canvas>
   <Story name="info">
-    <Button color="primary1" onClick={() => toast.info('파란 묻힌 계절이 동경과 언덕 덮어 된 이름자 있습니다.')}>
+    <Button variant="primary1" onClick={() => toast.info('파란 묻힌 계절이 동경과 언덕 덮어 된 이름자 있습니다.')}>
       Info
     </Button>
   </Story>
@@ -135,7 +135,7 @@ const SomeComponent = () => {
 
 <Canvas>
   <Story name="danger">
-    <Button color="danger1" onClick={() => toast.danger('파란 묻힌 계절이 동경과 언덕 덮어 된 이름자 있습니다.')}>
+    <Button variant="danger1" onClick={() => toast.danger('파란 묻힌 계절이 동경과 언덕 덮어 된 이름자 있습니다.')}>
       Danger
     </Button>
   </Story>
@@ -145,7 +145,7 @@ const SomeComponent = () => {
 
 <Canvas>
   <Story name="warning">
-    <Button color="danger2" onClick={() => toast.warning('파란 묻힌 계절이 동경과 언덕 덮어 된 이름자 있습니다.')}>
+    <Button variant="danger2" onClick={() => toast.warning('파란 묻힌 계절이 동경과 언덕 덮어 된 이름자 있습니다.')}>
       Warning
     </Button>
   </Story>

@@ -1,33 +1,37 @@
 import React, { ForwardedRef } from 'react';
 import styled from '@emotion/styled';
 import {
-  grayscale50,
   grayscale800,
   blue100,
-  blue200,
   blue500,
   blue600,
-  bluescale100,
-  bluescale200,
-  bluescale400,
   red100,
   red400,
   grayscale200,
   grayscale500,
   transparent,
   white,
+  blue300,
+  red200,
+  red300,
+  bluescale700,
+  bluescale600,
+  bluescale800,
+  background100,
+  grayscale300,
+  grayscale900,
+  background300,
 } from '../../core/colors';
-import { primary, danger } from '../../core/styles/palette';
 import { MarginSpacing, marginSpacingProps, marginSpacingStyle, spacing } from '../../core/Spacing';
 import { NotMobile } from '../../core/styles/mediaQuery';
 
 type Size = 'xs' | 'sm' | 'md' | 'lg';
-type Color = 'default' | 'primary1' | 'primary2' | 'danger1' | 'danger2' | 'solid' | 'ghost';
+type Variant = 'primary1' | 'primary2' | 'danger1' | 'danger2' | 'solid' | 'ghost1' | 'ghost2';
 type FullWidth = { fullWidth?: boolean };
 type Borderless = { borderless?: boolean };
 
 export type CommonButtonProps = Partial<
-  React.ButtonHTMLAttributes<HTMLButtonElement> & Borderless & MarginSpacing & { color: Color }
+  React.ButtonHTMLAttributes<HTMLButtonElement> & Borderless & MarginSpacing & { variant: Variant }
 >;
 export type ButtonProps = CommonButtonProps &
   FullWidth & {
@@ -38,7 +42,7 @@ export type ButtonProps = CommonButtonProps &
   };
 type BaseButtonProps = CommonButtonProps &
   FullWidth &
-  typeof SIZE_SET[keyof typeof SIZE_SET] &
+  (typeof SIZE_SET)[keyof typeof SIZE_SET] &
   ButtonColorSet[keyof ButtonColorSet];
 
 export const SIZE_SET = {
@@ -67,146 +71,146 @@ type ButtonPalette = {
 };
 type ButtonOptions = 'background' | 'border' | 'text';
 type ButtonPalettePerOption = Record<ButtonOptions, ButtonPalette>;
-type ButtonColorSet = Record<Color, ButtonPalettePerOption>;
+type ButtonColorSet = Record<Variant, ButtonPalettePerOption>;
 
 export const COLOR_SET: ButtonColorSet = {
-  default: {
-    background: {
-      default: white,
-      hover: blue100,
-      active: primary,
-      disabled: grayscale50,
-    },
-    border: {
-      default: grayscale200,
-      hover: primary,
-      active: primary,
-      disabled: grayscale200,
-    },
-    text: {
-      default: grayscale800,
-      hover: grayscale800,
-      active: white,
-      disabled: grayscale500,
-    },
-  },
   primary1: {
     background: {
-      default: primary,
+      default: blue500,
       hover: blue600,
-      active: primary,
+      active: blue300,
       disabled: blue100,
     },
     border: {
-      default: primary,
+      default: blue500,
       hover: blue600,
-      active: primary,
+      active: blue300,
       disabled: blue100,
     },
     text: {
       default: white,
       hover: white,
       active: white,
-      disabled: blue200,
+      disabled: blue500,
     },
   },
   primary2: {
     background: {
       default: white,
       hover: blue100,
-      active: primary,
-      disabled: grayscale50,
+      active: blue500,
+      disabled: background100,
     },
     border: {
-      default: primary,
-      hover: primary,
-      active: primary,
+      default: blue500,
+      hover: blue500,
+      active: blue500,
       disabled: grayscale200,
     },
     text: {
-      default: primary,
-      hover: primary,
+      default: blue500,
+      hover: blue500,
       active: white,
       disabled: grayscale500,
     },
   },
   danger1: {
     background: {
-      default: danger,
+      default: red300,
       hover: red400,
-      active: danger,
+      active: red200,
       disabled: red100,
     },
     border: {
-      default: danger,
+      default: red300,
       hover: red400,
-      active: danger,
+      active: red200,
       disabled: red100,
     },
     text: {
       default: white,
       hover: white,
       active: white,
-      disabled: `rgba(216, 58, 94, 0.4)`,
+      disabled: red300,
     },
   },
   danger2: {
     background: {
       default: white,
       hover: red100,
-      active: danger,
-      disabled: grayscale50,
+      active: red300,
+      disabled: background100,
     },
     border: {
-      default: danger,
-      hover: danger,
-      active: danger,
+      default: red300,
+      hover: red300,
+      active: red300,
       disabled: grayscale200,
     },
     text: {
-      default: danger,
-      hover: danger,
+      default: red300,
+      hover: red300,
       active: white,
       disabled: grayscale500,
     },
   },
   solid: {
     background: {
-      default: bluescale200,
-      hover: bluescale400,
-      active: bluescale100,
-      disabled: grayscale50,
+      default: bluescale700,
+      hover: bluescale600,
+      active: bluescale800,
+      disabled: background300,
     },
     border: {
-      default: bluescale200,
-      hover: bluescale400,
-      active: bluescale100,
-      disabled: grayscale50,
+      default: bluescale700,
+      hover: bluescale600,
+      active: bluescale800,
+      disabled: background300,
     },
     text: {
-      default: grayscale800,
-      hover: grayscale800,
-      active: grayscale800,
+      default: white,
+      hover: white,
+      active: white,
       disabled: grayscale500,
     },
   },
-  ghost: {
+  ghost1: {
     background: {
-      default: transparent,
-      hover: blue100,
-      active: blue500,
-      disabled: transparent,
+      default: background100,
+      hover: grayscale300,
+      active: grayscale200,
+      disabled: background100,
     },
     border: {
-      default: transparent,
+      default: background100,
+      hover: grayscale300,
+      active: grayscale200,
+      disabled: background100,
+    },
+    text: {
+      default: grayscale900,
+      hover: grayscale900,
+      active: grayscale900,
+      disabled: grayscale500,
+    },
+  },
+  ghost2: {
+    background: {
+      default: white,
       hover: blue100,
-      active: blue500,
-      disabled: transparent,
+      active: white,
+      disabled: background100,
+    },
+    border: {
+      default: grayscale200,
+      hover: blue500,
+      active: grayscale200,
+      disabled: grayscale200,
     },
     text: {
       default: grayscale800,
       hover: blue500,
-      active: white,
+      active: blue500,
       disabled: grayscale500,
     },
   },
@@ -300,12 +304,12 @@ export const BaseButton = styled.button<BaseButtonProps>`
 
 export const Button = React.forwardRef(
   (
-    { color, size, leftIcon, rightIcon, children, ...props }: ButtonProps,
+    { variant = 'primary1', size, leftIcon, rightIcon, children, ...props }: ButtonProps,
     ref: ForwardedRef<HTMLButtonElement>,
   ): JSX.Element => {
     return (
       <BaseButton
-        {...COLOR_SET[color ?? 'default']}
+        {...COLOR_SET[variant]}
         {...SIZE_SET[size ?? 'md']}
         {...marginSpacingProps(props)}
         {...props}

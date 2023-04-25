@@ -2,18 +2,17 @@ import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import { runTest } from './storybookTest.ts';
 import { Button } from './index.tsx';
 import { Alert } from '../../assets/Icon/generated/Alert';
-import { button, spacing, icon, pickPropsInObj, eventHandler, borderless, disabled } from '../../storybook-props/';
+import { button, spacing, icon, pickPropsInObj, eventHandler } from '../../storybook-props/';
 
 <Meta
   title="Components/Button/Button"
   component={Button}
   argTypes={{
     ...button,
-    ...borderless,
-    ...disabled('button'),
     ...spacing('margin'),
     ...pickPropsInObj(icon, 'leftIcon', 'rightIcon'),
     ...pickPropsInObj(eventHandler, 'onClick'),
+    fullWidth: { description: '`width: 100%`를 적용합니다.' },
     children: {
       description: '버튼의 내용을 작성해주세요.',
       table: {
@@ -22,7 +21,6 @@ import { button, spacing, icon, pickPropsInObj, eventHandler, borderless, disabl
         },
       },
     },
-    fullWidth: { description: '`width: 100%`를 적용합니다.' },
   }}
 />
 
@@ -42,27 +40,30 @@ export const Template = (args) => <Button {...args} />;
 
 ## 예제
 
-### color
+### Variant
 
 `IconButton`컴포넌트와 동일한 팔레트를 가집니다.
 
 <Canvas>
-  <Story name="primary1" args={{ children: 'primary1', color: 'primary1' }}>
+  <Story name="primary1" args={{ children: 'primary1', variant: 'primary1' }}>
     {Template.bind({})}
   </Story>
-  <Story name="primary2" args={{ children: 'primary2', color: 'primary2' }}>
+  <Story name="primary2" args={{ children: 'primary2', variant: 'primary2' }}>
     {Template.bind({})}
   </Story>
-  <Story name="danger1" args={{ children: 'danger1', color: 'danger1' }}>
+  <Story name="danger1" args={{ children: 'danger1', variant: 'danger1' }}>
     {Template.bind({})}
   </Story>
-  <Story name="danger2" args={{ children: 'danger2', color: 'danger2' }}>
+  <Story name="danger2" args={{ children: 'danger2', variant: 'danger2' }}>
     {Template.bind({})}
   </Story>
-  <Story name="solid" args={{ children: 'solid', color: 'solid' }}>
+  <Story name="solid" args={{ children: 'solid', variant: 'solid' }}>
     {Template.bind({})}
   </Story>
-  <Story name="ghost" args={{ children: 'ghost', color: 'ghost' }}>
+  <Story name="ghost1" args={{ children: 'ghost', variant: 'ghost1' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="ghost2" args={{ children: 'ghost', variant: 'ghost2' }}>
     {Template.bind({})}
   </Story>
 </Canvas>
@@ -103,13 +104,13 @@ export const Template = (args) => <Button {...args} />;
 *loplat UI 에서 제공하는 아이콘을 사용*하는 것을 권장합니다.
 
 <Canvas>
-  <Story name="left icon primary2" args={{ children: 'left icon', leftIcon: <Alert />, color: 'primary2' }}>
+  <Story name="left icon primary2" args={{ children: 'left icon', leftIcon: <Alert />, variant: 'primary2' }}>
     {Template.bind({})}
   </Story>
-  <Story name="left icon ghost" args={{ children: 'left icon', leftIcon: <Alert />, color: 'ghost' }}>
+  <Story name="left icon ghost" args={{ children: 'left icon', leftIcon: <Alert />, variant: 'ghost1' }}>
     {Template.bind({})}
   </Story>
-  <Story name="right icon danger2" args={{ children: 'right icon', rightIcon: <Alert />, color: 'danger2' }}>
+  <Story name="right icon danger2" args={{ children: 'right icon', rightIcon: <Alert />, variant: 'danger2' }}>
     {Template.bind({})}
   </Story>
 </Canvas>
@@ -119,7 +120,7 @@ export const Template = (args) => <Button {...args} />;
 테두리가 없습니다.
 
 <Canvas>
-  <Story name="borderless button" args={{ children: 'primary2 borderless', color: 'primary2', borderless: true }}>
+  <Story name="borderless button" args={{ children: 'primary2 borderless', variant: 'primary2', borderless: true }}>
     {Template.bind({})}
   </Story>
 </Canvas>

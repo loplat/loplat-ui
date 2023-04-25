@@ -7,15 +7,12 @@ export type IconButtonProps = CommonButtonProps & {
 };
 
 export const IconButton = React.forwardRef(
-  ({ color, children, ...props }: IconButtonProps, ref: ForwardedRef<HTMLButtonElement>): React.ReactElement => {
+  (
+    { variant = 'primary1', children, ...props }: IconButtonProps,
+    ref: ForwardedRef<HTMLButtonElement>,
+  ): React.ReactElement => {
     return (
-      <BaseButton
-        {...COLOR_SET[color ?? 'default']}
-        {...SIZE_SET['onlyIcon']}
-        {...marginSpacingProps(props)}
-        {...props}
-        ref={ref}
-      >
+      <BaseButton {...COLOR_SET[variant]} {...SIZE_SET['onlyIcon']} {...marginSpacingProps(props)} {...props} ref={ref}>
         {children}
       </BaseButton>
     );

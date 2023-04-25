@@ -25,10 +25,10 @@ export const Welcome = () => {
           <br />각 story의 Docs 패널을 통해 Props에 대한 설명과 사용법을 확인할 수 있습니다.
         </p>
         <div className="buttons">
-          <Button color="primary1" mr={4} onClick={openGithubPage}>
+          <Button variant="primary1" mr={4} onClick={openGithubPage}>
             Github
           </Button>
-          <Button color="primary2" onClick={openNpmPage}>
+          <Button variant="primary2" onClick={openNpmPage}>
             NPM
           </Button>
         </div>

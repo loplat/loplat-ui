@@ -2,7 +2,7 @@ import { ButtonProps } from '../../Button';
 import { IconProps } from '../../../assets/Icon';
 import React from 'react';
 
-type Color = NonNullable<ButtonProps['color']>;
+type Color = NonNullable<ButtonProps['variant']>;
 type PopupButton = {
   label?: string;
   color?: Color;

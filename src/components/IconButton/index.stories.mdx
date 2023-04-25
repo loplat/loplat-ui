@@ -1,14 +1,13 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import { IconButton } from './index.tsx';
 import { Campaign as CampaignIcon } from '../../assets/Icon/generated/Campaign.tsx';
-import { spacing, borderless, disabled, pickPropsInObj, eventHandler } from '../../storybook-props/';
+import { button, spacing, pickPropsInObj, eventHandler } from '../../storybook-props/';
 
 <Meta
   title="Components/Button/IconButton"
   component={IconButton}
   argTypes={{
-    ...borderless,
-    ...disabled('button'),
+    ...button,
     ...spacing('margin'),
     ...pickPropsInObj(eventHandler, 'onClick'),
     children: {
@@ -39,22 +38,25 @@ export const Template = (args) => <IconButton {...args} children={<CampaignIcon 
 `Button`과 동일한 팔레트를 가집니다.
 
 <Canvas>
-  <Story name="primary1" args={{ color: 'primary1' }}>
+  <Story name="primary1" args={{ variant: 'primary1' }}>
     {Template.bind({})}
   </Story>
-  <Story name="primary2" args={{ color: 'primary2' }}>
+  <Story name="primary2" args={{ variant: 'primary2' }}>
     {Template.bind({})}
   </Story>
-  <Story name="danger1" args={{ color: 'danger1' }}>
+  <Story name="danger1" args={{ variant: 'danger1' }}>
     {Template.bind({})}
   </Story>
-  <Story name="danger2" args={{ color: 'danger2' }}>
+  <Story name="danger2" args={{ variant: 'danger2' }}>
     {Template.bind({})}
   </Story>
-  <Story name="solid" args={{ color: 'solid' }}>
+  <Story name="solid" args={{ variant: 'solid' }}>
     {Template.bind({})}
   </Story>
-  <Story name="ghost" args={{ color: 'ghost' }}>
+  <Story name="ghost1" args={{ variant: 'ghost1' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="ghost2" args={{ variant: 'ghost2' }}>
     {Template.bind({})}
   </Story>
 </Canvas>
@@ -64,10 +66,10 @@ export const Template = (args) => <IconButton {...args} children={<CampaignIcon 
 `Button` 컴포넌트의 `borderless` 프로퍼티와 동일한 효과를 가집니다.
 
 <Canvas>
-  <Story name="primary2 borderless" args={{ color: 'primary2', borderless: true }}>
+  <Story name="primary2 borderless" args={{ variant: 'primary2', borderless: true }}>
     {Template.bind({})}
   </Story>
-  <Story name="danger2 borderless" args={{ color: 'danger2', borderless: true }}>
+  <Story name="danger2 borderless" args={{ variant: 'danger2', borderless: true }}>
     {Template.bind({})}
   </Story>
 </Canvas>

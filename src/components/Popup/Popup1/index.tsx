@@ -38,7 +38,7 @@ export const Popup1Component = ({
           <div id="dialogDesc">{children}</div>
         )}
       </Wrapper>
-      <Button fullWidth color={buttonColor} tabIndex={0} onClick={onClose}>
+      <Button fullWidth variant={buttonColor} tabIndex={0} onClick={onClose}>
         확인
       </Button>
     </Dialog>

@@ -13,7 +13,7 @@ export const Popup2Component = ({
   title,
   icon = 'check',
   color = primary,
-  leftButtonColor = 'default',
+  leftButtonColor = 'ghost2',
   onClickLeftButton,
   leftButtonLabel = '취소',
   onClickRightButton,
@@ -38,10 +38,10 @@ export const Popup2Component = ({
         {typeof children === 'string' ? <p id="dialogDesc">{children}</p> : <div id="dialogDesc">{children}</div>}
       </Wrapper>
       <ButtonWrapper>
-        <Button fullWidth color={leftButtonColor} tabIndex={0} onClick={onClickLeftButton}>
+        <Button fullWidth variant={leftButtonColor} tabIndex={0} onClick={onClickLeftButton}>
           {leftButtonLabel}
         </Button>
-        <Button fullWidth color={rightButtonColor} onClick={onClickRightButton}>
+        <Button fullWidth variant={rightButtonColor} onClick={onClickRightButton}>
           {rightButtonLabel}
         </Button>
       </ButtonWrapper>

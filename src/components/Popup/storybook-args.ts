@@ -56,13 +56,13 @@ const describeButton = (label: string) => {
     };
   }
   if (label.endsWith('Color')) {
-    const defaultLabel = label.startsWith('left') ? 'default' : 'primary1';
+    const defaultLabel = label.startsWith('left') ? 'ghost2' : 'primary1';
     return {
       [label]: {
         description: '버튼의 색상입니다. `loplat ui`의 `<Button/>`의 색상을 사용합니다',
-        ...generateTable({ category, defaultValue: defaultLabel, type: button.color.options.join('|') }),
-        options: button.color.options,
-        control: button.color.control,
+        ...generateTable({ category, defaultValue: defaultLabel, type: button.variant.options.join('|') }),
+        options: button.variant.options,
+        control: button.variant.control,
       },
     };
   }

@@ -15,7 +15,7 @@ export const Popup3Component = ({
   children,
   title,
   showCloseButton = true,
-  leftButtonColor = 'default',
+  leftButtonColor = 'ghost2',
   onClickLeftButton,
   leftButtonLabel = '취소',
   onClickRightButton,
@@ -33,7 +33,7 @@ export const Popup3Component = ({
       {...props}
     >
       {showCloseButton && (
-        <IconButton color="ghost" onClick={onClose} aria-label="닫기" className="close_dialog" tabIndex={0}>
+        <IconButton variant="ghost2" onClick={onClose} aria-label="닫기" className="close_dialog" tabIndex={0}>
           <CloseIcon size={16} />
         </IconButton>
       )}
@@ -45,10 +45,10 @@ export const Popup3Component = ({
         {typeof children === 'string' ? <p id="dialogDesc">{children}</p> : <div id="dialogDesc">{children}</div>}
       </Wrapper>
       <StyledButtonWrapper>
-        <Button color={leftButtonColor} onClick={onClickLeftButton}>
+        <Button variant={leftButtonColor} onClick={onClickLeftButton}>
           {leftButtonLabel}
         </Button>
-        <Button color={rightButtonColor} onClick={onClickRightButton}>
+        <Button variant={rightButtonColor} onClick={onClickRightButton}>
           {rightButtonLabel}
         </Button>
       </StyledButtonWrapper>
