@@ -8,11 +8,6 @@ import { spacing } from '../../storybook-props';
   component={Badge}
   argTypes={{
     ...spacing('margin'),
-    ...spacing('padding'),
-    text: { description: '콘텐츠내용을 작성해주세요.' },
-    type: {
-      description: '외형을 결정합니다.',
-    },
   }}
 />
 
@@ -21,7 +16,7 @@ export const Template = (args) => <Badge {...args} />;
 # Badge
 
 <Canvas>
-  <Story name="default" args={{ text: 'default' }}>
+  <Story name="default" args={{ children: 'default' }}>
     {Template.bind({})}
   </Story>
 </Canvas>
@@ -30,105 +25,49 @@ export const Template = (args) => <Badge {...args} />;
 
 ## 예제
 
-### type: pill
-
-`type`프로퍼티의 default value가 `pill`이므로 따로 선언할 필요가 없습니다.
-
 <Canvas>
-  <Story name="pill primary" args={{ text: 'primary', color: 'primary' }}>
+  <Story name="primary1" args={{ children: 'primary1', variant: 'primary1' }}>
     {Template.bind({})}
   </Story>
-  <Story name="pill light" args={{ text: 'light', color: 'light' }}>
+  <Story name="primary2" args={{ children: 'primary2', variant: 'primary2' }}>
     {Template.bind({})}
   </Story>
-  <Story name="pill danger" args={{ text: 'danger', color: 'danger' }}>
+  <Story name="success1" args={{ children: 'success1', variant: 'success1' }}>
     {Template.bind({})}
   </Story>
-  <Story name="pill success" args={{ text: 'success', color: 'success' }}>
+  <Story name="success2" args={{ children: 'success2', variant: 'success2' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="danger1" args={{ children: 'danger1', variant: 'danger1' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="danger2" args={{ children: 'danger2', variant: 'danger2' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="light1" args={{ children: 'light1', variant: 'light1' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="light2" args={{ children: 'light2', variant: 'light2' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="done1" args={{ children: 'done1', variant: 'done1' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="done2" args={{ children: 'done2', variant: 'done2' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="selected" args={{ children: 'selected', variant: 'selected' }}>
     {Template.bind({})}
   </Story>
 </Canvas>
 
-### type: pill, variant: outlined
+## size
 
 <Canvas>
-  <Story name="pill primary outlined" args={{ text: 'primary', color: 'primary', variant: 'outlined' }}>
+  <Story name="small" args={{ children: 'small', variant: 'primary1', size: 'small' }}>
     {Template.bind({})}
   </Story>
-  <Story name="pill light outlined" args={{ text: 'light', color: 'light', variant: 'outlined' }}>
-    {Template.bind({})}
-  </Story>
-  <Story name="pill danger outlined" args={{ text: 'danger', color: 'danger', variant: 'outlined' }}>
-    {Template.bind({})}
-  </Story>
-  <Story name="pill success outlined" args={{ text: 'success', color: 'success', variant: 'outlined' }}>
-    {Template.bind({})}
-  </Story>
-</Canvas>
-
-### type: round
-
-<Canvas>
-  <Story name="round primary" args={{ type: 'round', text: 'primary', color: 'primary' }}>
-    {Template.bind({})}
-  </Story>
-  <Story name="round light" args={{ type: 'round', text: 'light', color: 'light' }}>
-    {Template.bind({})}
-  </Story>
-  <Story name="round danger" args={{ type: 'round', text: 'danger', color: 'danger' }}>
-    {Template.bind({})}
-  </Story>
-  <Story name="round success" args={{ type: 'round', text: 'success', color: 'success' }}>
-    {Template.bind({})}
-  </Story>
-</Canvas>
-
-### type: round, variant:outlined
-
-<Canvas>
-  <Story name="round primary outlined" args={{ type: 'round', text: 'primary', color: 'primary', variant: 'outlined' }}>
-    {Template.bind({})}
-  </Story>
-  <Story name="round light outlined" args={{ type: 'round', text: 'light', color: 'light', variant: 'outlined' }}>
-    {Template.bind({})}
-  </Story>
-  <Story name="round danger outlined" args={{ type: 'round', text: 'danger', color: 'danger', variant: 'outlined' }}>
-    {Template.bind({})}
-  </Story>
-  <Story name="round success outlined" args={{ type: 'round', text: 'success', color: 'success', variant: 'outlined' }}>
-    {Template.bind({})}
-  </Story>
-</Canvas>
-
-### type: new
-
-`text`속성에 전달된 첫번째 글자만 렌더됩니다.
-
-#### loplat 디자이너의 권장
-
-제시된 속성을 그대로 사용해야 *디자이너의 의도*대로 사용할 수 있습니다.
-
-<Canvas>
-  <Story name="new" args={{ type: 'new', variant: 'filled', color: 'danger', text: 'N' }}>
-    {Template.bind({})}
-  </Story>
-</Canvas>
-
-#### 다른 예제
-
-`color`, `variant`속성을 수정하여 다양하게 사용할 수 있습니다.
-
-<Canvas>
-  <Story name="new primary outlined" args={{ type: 'new', variant: 'outlined', color: 'primary', text: 'primary' }}>
-    {Template.bind({})}
-  </Story>
-  <Story name="new light filled" args={{ type: 'new', variant: 'filled', color: 'light', text: 'light' }}>
-    {Template.bind({})}
-  </Story>
-  <Story name="new danger outlined" args={{ type: 'new', variant: 'outlined', color: 'danger', text: 'danger' }}>
-    {Template.bind({})}
-  </Story>
-  <Story name="new green filled" args={{ type: 'new', variant: 'filled', color: 'success', text: 'green' }}>
+  <Story name="large" args={{ children: 'large', variant: 'primary1', size: 'large' }}>
     {Template.bind({})}
   </Story>
 </Canvas>

@@ -75,7 +75,9 @@ export const Template = (args) => <CircleLoading aria-label="loading" {...args} 
     {(args) => (
       <div>
         <CircleLoading {...args} />
-        <Badge id="example" aria-busy={true} text="#example" />
+        <Badge id="example" aria-busy={true}>
+          #example
+        </Badge>
       </div>
     )}
   </Story>
