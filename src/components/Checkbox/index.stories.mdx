@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import { Checkbox } from './index';
-import { pickPropsInObj, eventHandler } from '../../storybook-props/';
-import { spacing, generateTable } from '../../storybook-props';
+import { pickPropsInObj, eventHandler, spacing, generateTable } from '../../storybook-props';
 import { runTest, runGroupTest } from './storybookTest.ts';
 
 <Meta
@@ -47,11 +46,12 @@ export const Group = (args) => {
   }));
   const [list, setList] = useState(checkBoxList);
   const toggle = (children, isChecked) => {
-    const newResult = [...list].map((item) => {
-      if (item.children === children) return { ...item, checked: isChecked };
-      return item;
-    });
-    setList(newResult);
+    setList((prev) =>
+      [...prev].map((item) => {
+        if (item.children === children) return { ...item, checked: isChecked };
+        return item;
+      }),
+    );
   };
   return (
     <>
