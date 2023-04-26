@@ -1,0 +1,189 @@
+import { useState, Fragment } from 'react';
+import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs';
+import { Popover } from './index.tsx';
+import { RadioButtonGroup } from '../../components/RadioButton/';
+import { blue300, blue100, blue500, grayscale200, grayscale500, grayscale900, teal } from '../../core/colors';
+
+<Meta title="Utils/Popover" component={Popover} />
+
+# Popover
+
+export const Template = (args) => {
+  return (
+    <Popover {...args}>
+      <Popover.Trigger>
+        {(open) => (
+          <div
+            style={{
+              padding: 20,
+              border: '1px solid',
+              borderColor: grayscale900,
+              background: grayscale900,
+              color: 'white',
+            }}
+          >
+            open
+          </div>
+        )}
+      </Popover.Trigger>
+      <Popover.Content>
+        <div
+          style={{
+            border: '1px solid',
+            borderColor: blue300,
+            background: blue100,
+            padding: 8,
+            borderRadius: 2,
+            color: blue500,
+          }}
+        >
+          The content of the Popover
+        </div>
+      </Popover.Content>
+    </Popover>
+  );
+};
+
+<Canvas>
+  <Story name="default">{Template.bind({})}</Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+## position 예제
+
+export const Example = () => {
+  const [anchorVertical, setAnchorVertical] = useState('top');
+  const [anchorHorizontal, setAnchorHorizontal] = useState('right');
+  const [portalVertical, setPortalVertical] = useState('top');
+  const [portalHorizontal, setPortalHorizontal] = useState('right');
+  const position = {
+    anchor: { vertical: anchorVertical, horizontal: anchorHorizontal },
+    portal: { vertical: portalVertical, horizontal: portalHorizontal },
+  };
+  return (
+    <div>
+      <section style={{ marginBottom: '1rem', display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+        <fieldset style={{ flexBasis: '45%', maxWidth: '50%', border: 'none' }}>
+          <legend style={{ color: teal }}>anchor origin vertical</legend>
+          <div>
+            <RadioButtonGroup
+              selectedValue={anchorVertical}
+              onChange={(e) => setAnchorVertical(e.currentTarget.value)}
+              name="anchor/vertical"
+              direction="row"
+              list={[
+                { value: 'top', label: 'top' },
+                { value: 'center', label: 'center' },
+                { value: 'bottom', label: 'bottom' },
+              ]}
+            />
+          </div>
+        </fieldset>
+        <fieldset style={{ flexBasis: '45%', maxWidth: '50%', border: 'none' }}>
+          <legend style={{ color: teal }}>anchor origin horizontal</legend>
+          <div>
+            <RadioButtonGroup
+              selectedValue={anchorHorizontal}
+              onChange={(e) => setAnchorHorizontal(e.currentTarget.value)}
+              name="anchor/horizontal"
+              direction="row"
+              list={[
+                { value: 'left', label: 'left' },
+                { value: 'center', label: 'center' },
+                { value: 'right', label: 'right' },
+              ]}
+            />
+          </div>
+        </fieldset>
+        <fieldset style={{ flexBasis: '45%', maxWidth: '50%', border: 'none' }}>
+          <legend style={{ color: grayscale500 }}>portal origin vertical</legend>
+          <div>
+            <RadioButtonGroup
+              selectedValue={portalVertical}
+              onChange={(e) => setPortalVertical(e.currentTarget.value)}
+              name="portal/vertical"
+              direction="row"
+              list={[
+                { value: 'top', label: 'top' },
+                { value: 'center', label: 'center' },
+                { value: 'bottom', label: 'bottom' },
+              ]}
+            />
+          </div>
+        </fieldset>
+        <fieldset style={{ flexBasis: '45%', maxWidth: '50%', border: 'none' }}>
+          <legend style={{ color: grayscale500 }}>portal origin horizontal</legend>
+          <div>
+            <RadioButtonGroup
+              selectedValue={portalHorizontal}
+              onChange={(e) => setPortalHorizontal(e.currentTarget.value)}
+              name="portal/horizontal"
+              direction="row"
+              list={[
+                { value: 'left', label: 'left' },
+                { value: 'center', label: 'center' },
+                { value: 'right', label: 'right' },
+              ]}
+            />
+          </div>
+        </fieldset>
+      </section>
+      <Popover position={position}>
+        <Popover.Trigger>
+          {(open) => (
+            <div
+              style={{
+                userSelect: 'none',
+                width: 100,
+                padding: 20,
+                border: '1px solid',
+                borderColor: grayscale900,
+                background: open ? blue500 : grayscale900,
+                color: 'white',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                position: 'relative',
+              }}
+            >
+              {open ? 'open' : 'closed'}
+              <div
+                style={{
+                  position: 'absolute',
+                  width: 15,
+                  height: 15,
+                  borderRadius: '50%',
+                  background: teal,
+                  top: anchorVertical === 'top' ? 0 : anchorVertical === 'center' ? '50%' : '100%',
+                  left: anchorHorizontal === 'left' ? 0 : anchorHorizontal === 'center' ? '50%' : '100%',
+                  transform: `translate(-50%,-50%)`,
+                }}
+              />
+            </div>
+          )}
+        </Popover.Trigger>
+        <Popover.Content>
+          <div
+            style={{
+              border: '1px solid',
+              borderColor: blue300,
+              background: blue100,
+              padding: 8,
+              borderRadius: 2,
+              color: blue500,
+            }}
+          >
+            The content of the Popover
+          </div>
+        </Popover.Content>
+      </Popover>
+    </div>
+  );
+};
+
+<Canvas>
+  <Story name="position example">
+    <Example />
+  </Story>
+</Canvas>
