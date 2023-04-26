@@ -23,17 +23,17 @@ export function runTest(story: ComponentStory<typeof Dropdown>): ComponentStory<
     await sleep(delay);
     userEvent.tab();
     userEvent.keyboard('{space}');
-    expect(bar.ariaExpanded).toBe('true');
+    expect(bar.dataset.expanded).toBe('true');
 
     await sleep(delay);
     userEvent.keyboard('{arrowup}{arrowup}{arrowup}{enter}');
     expect(bar.textContent).toBe(options[0]);
-    expect(bar.ariaExpanded).toBe('false');
+    expect(bar.dataset.expanded).toBe('false');
 
     userEvent.keyboard('{enter}');
-    expect(bar.ariaExpanded).toBe('true');
+    expect(bar.dataset.expanded).toBe('true');
     userEvent.keyboard('{escape}');
-    expect(bar.ariaExpanded).toBe('false');
+    expect(bar.dataset.expanded).toBe('false');
 
     userEvent.click(canvasElement);
   };
