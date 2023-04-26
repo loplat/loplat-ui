@@ -3,6 +3,9 @@
   "version": "1.10.2",
   "description": "A React UI Component Library, powered by loplat Frontend Team.",
   "author": "loplat",
+  "engines": {
+    "node": ">= 16.14.0 <18"
+  },
   "license": "MIT",
   "homepage": "https://ui.loplat.com",
   "repository": {
