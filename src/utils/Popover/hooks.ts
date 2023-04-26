@@ -1,9 +1,9 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { PopoverContextType, PopoverTypes } from './type';
 
 type PopoverEventParams = Pick<
   PopoverContextType,
-  'triggerType' | 'triggerRef' | 'contentRef' | 'isOpen' | 'disabled'
+  'triggerType' | 'triggerRef' | 'contentRef' | 'isOpen' | 'disabled' | 'container'
 > & {
   toggle: () => void;
   close: () => void;
@@ -17,10 +17,9 @@ export const useClick = ({
   close,
   toggle,
   disabled,
-}: PopoverEventParams) => {
+}: Omit<PopoverEventParams, 'container'>) => {
   useEffect(() => {
-    if (triggerType === 'hover') return;
-    if (disabled) return;
+    if (disabled || triggerType === 'hover') return;
 
     function handleClick(e: MouseEvent) {
       const $active = e.target as HTMLElement;
@@ -44,29 +43,71 @@ export const useClick = ({
     return () => {
       document.removeEventListener('click', handleClick);
     };
-  });
+  }, [close, contentRef, disabled, isOpen, toggle, triggerRef, triggerType]);
 };
 
 export const useHover = ({
   triggerType,
   triggerRef,
+  container,
+  toggle,
+  close,
+  disabled,
+}: Omit<PopoverEventParams, 'isOpen' | 'contentRef'>) => {
+  const timer = useRef<ReturnType<typeof setTimeout>>();
+  const isHovered = useRef(false);
+
+  const closeSlow = useCallback(() => {
+    clearTimeout(timer.current);
+    isHovered.current = false;
+    timer.current = setTimeout(() => {
+      if (isHovered.current) return;
+      isHovered.current = false;
+      close();
+    }, 500);
+  }, []);
+
+  useEffect(() => {
+    if (disabled || triggerType === 'click') return;
+    if (!triggerRef.current) return;
+
+    function toggleConditionally() {
+      if (isHovered.current) return;
+      isHovered.current = true;
+      toggle();
+    }
+
+    triggerRef.current.addEventListener('mouseenter', toggleConditionally);
+    triggerRef.current.addEventListener('mouseleave', closeSlow);
+    () => {
+      clearTimeout(timer.current);
+      triggerRef.current?.removeEventListener('mouseenter', toggleConditionally);
+      triggerRef.current?.removeEventListener('mouseleave', closeSlow);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (disabled || triggerType === 'click') return;
+    if (!container) return;
+
+    const stayOpen = () => (isHovered.current = true);
+
+    container.addEventListener('mouseenter', stayOpen);
+    container.addEventListener('mouseleave', closeSlow);
+    return () => {
+      container.removeEventListener('mouseenter', stayOpen);
+      container.removeEventListener('mouseleave', closeSlow);
+    };
+  }, [container]);
+};
+
+export const useKeyDown = ({
+  triggerRef,
   contentRef,
-  isOpen,
   close,
   toggle,
   disabled,
-}: PopoverEventParams) => {
-  useEffect(() => {
-    if (disabled) return;
-    if (triggerType === 'click') return;
-    if (triggerRef.current) {
-      triggerRef.current.addEventListener('mouseenter', toggle);
-      triggerRef.current.addEventListener('mouseleave', close);
-    }
-  });
-};
-
-export const useKeyDown = ({ triggerRef, contentRef, close, toggle, disabled }: Omit<PopoverEventParams, 'isOpen'>) => {
+}: Omit<PopoverEventParams, 'isOpen' | 'container'>) => {
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
       if (disabled) return;

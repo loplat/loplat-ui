@@ -13,7 +13,7 @@ export const Popover = ({
   children,
   disabled,
   position = DEFAULT_POSITION,
-  triggerType = 'hover',
+  triggerType = 'click',
   offset = 0,
 }: PopoverTypes) => {
   const triggerRef = useRef<HTMLDivElement>(null);
@@ -40,7 +40,7 @@ export const Popover = ({
   };
 
   useClick({ triggerType, triggerRef, contentRef, isOpen, close, toggle, disabled });
-  useHover({ triggerType, triggerRef, contentRef, isOpen, close, toggle, disabled });
+  useHover({ triggerType, triggerRef, close, toggle, disabled, container });
   useKeyDown({ triggerRef, contentRef, close, toggle, disabled });
   usePopoverPosition({ container, triggerRef, contentRef, position, offset });
 
