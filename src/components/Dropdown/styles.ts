@@ -47,7 +47,7 @@ export const Bar = styled.div`
   &:hover {
     border-color: ${grayscale500};
   }
-  &[aria-expanded='true'] {
+  &[data-expanded='true'] {
     border-color: ${blue500};
     .arrowIcon {
       transform: rotate(180deg);

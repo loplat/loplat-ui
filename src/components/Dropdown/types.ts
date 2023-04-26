@@ -26,7 +26,6 @@ export type DropdownProps<T extends string = DefaultDropdownValue> = {
 export type DropdownBarProps<T extends string = DefaultDropdownValue> = {
   value?: T;
   placeholder?: string;
-  expanded?: boolean;
   disabled?: boolean;
   suffixForId?: string;
 } & React.HTMLAttributes<HTMLDivElement>;

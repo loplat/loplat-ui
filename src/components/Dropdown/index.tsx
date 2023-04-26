@@ -84,24 +84,17 @@ export const Dropdown = <T extends string = DefaultDropdownValue>({
 Dropdown.Trigger = ({ children }: { children: React.ReactElement }) => {
   const { triggerRef, expanded, disabled } = useContext(DropdownContext);
 
-  return React.cloneElement(children, { ...children.props, expanded, disabled, ref: triggerRef });
+  return React.cloneElement(children, { ...children.props, 'data-expanded': expanded, disabled, ref: triggerRef });
 };
 
 Dropdown.Bar = React.forwardRef(
   (
-    { value, placeholder, expanded = false, disabled = false, suffixForId, ...props }: DropdownBarProps,
+    { value, placeholder, disabled = false, suffixForId, ...props }: DropdownBarProps,
     ref: ForwardedRef<HTMLDivElement>,
   ) => {
     const uniqueId = useMemo(() => suffixForId ?? generateUniqueId(), [suffixForId]);
     return (
-      <Bar
-        ref={ref}
-        role="button"
-        tabIndex={disabled ? -1 : 0}
-        aria-expanded={expanded}
-        aria-disabled={disabled}
-        {...props}
-      >
+      <Bar ref={ref} role="button" tabIndex={disabled ? -1 : 0} aria-disabled={disabled} {...props}>
         <span aria-placeholder={value ? undefined : placeholder}>{value || placeholder}</span>
         <ChevronDownIcon size={12} className="arrowIcon" suffixForId={`dropdown-arrow-icon__${uniqueId}`} />
       </Bar>

@@ -52,7 +52,7 @@ export const Template = (args) => {
 
 Dropdown 기본 UI 입니다. 아래 코드와 같이 Dropdown.Trigger/Bar/OptionList/Option 컴포넌트를 사용합니다.
 
-- **Bar props**: `value`, `expanded`, `disabled`, `placeholder`
+- **Bar props**: `value`, `disabled`, `placeholder`
 
 - **OptionList props**: `zIndex`
 
@@ -88,7 +88,7 @@ export const CustomTrigger = (args) => {
   return (
     <Dropdown {...args} onChange={(e, newValue) => setSelectedValue(newValue)}>
       <Dropdown.Trigger>
-        <IconButton>
+        <IconButton variant="white">
           <MoreVertIcon />
         </IconButton>
       </Dropdown.Trigger>
@@ -113,10 +113,10 @@ Dropdown.Trigger의 `children`으로 custom UI 컴포넌트를 사용할 수 있
 
 ---
 
-Dropdown.Trigger는 `children` 컴포넌트에게 ref, expanded, disabled 속성을 전달합니다.
+Dropdown.Trigger는 `children` 컴포넌트에게 ref, data-expanded, disabled 속성을 전달합니다.
 
 ```jsx
-return React.cloneElement(children, { ...children.props, expanded, disabled, ref: triggerRef });
+return React.cloneElement(children, { ...children.props, disabled, 'data-expanded': expanded, ref: triggerRef });
 ```
 
 export const customTriggerCode = `
