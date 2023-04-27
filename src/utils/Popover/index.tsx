@@ -1,122 +1,50 @@
 import { createContext, useState, useRef, useContext, useMemo } from 'react';
-import { PopoverContentType, PopoverContextType, PopoverTriggerType, PopoverTypes } from './type';
+import { PopoverContentProps, PopoverContextProps, PopoverTriggerProp, PopoverProps } from './type';
 import { generateUniqueId } from '../../functions/uniqueId';
 import { Portal } from '..';
-import { useClick, useHover, useKeyDown } from './hooks';
+import { useCalculatePosition, useClick, useHover } from './hooks';
 import { ContentWrapper } from './styles';
 import useAnimation from '../../functions/useAnimation';
 
-export const DEFAULT_POSITION: PopoverTypes['position'] = {
+type PopoverStatus = 'opening' | 'closing' | 'opened' | 'closed';
+const DEFAULT_POSITION: PopoverProps['position'] = {
   anchor: { vertical: 'top', horizontal: 'right' },
   transform: { vertical: 'top', horizontal: 'left' },
 };
-const PopoverContext = createContext<PopoverContextType | undefined>(undefined);
+const KEYFRAMES: Record<'SCALE' | 'SCALE_Y', NonNullable<PopoverProps['keyframes']>> = {
+  SCALE: [
+    { opacity: 0, scale: 0.8 },
+    { opacity: 1, scale: 1 },
+  ],
+  SCALE_Y: [
+    { opacity: 0, transform: 'scaleY(0)' },
+    { opacity: 1, transform: 'scaleY(1)' },
+  ],
+};
+
+const PopoverContext = createContext<PopoverContextProps | undefined>(undefined);
 export const Popover = ({
   children,
-  disabled,
+  keyframes = KEYFRAMES.SCALE,
+  disabled = false,
   position = DEFAULT_POSITION,
   triggerType = 'click',
   offset = 0,
+  enterDelay = 0,
+  outDelay = 0,
+  duration = 300,
+  easing = 'cubic-bezier(0.4, 0, 0.2, 1)',
   offsetDirection = 'right',
-  duration = 200,
-}: PopoverTypes) => {
+}: PopoverProps) => {
   const triggerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const animation = useRef<Animation | null>(null);
+  const status = useRef<PopoverStatus>('closed');
 
   // portal
-  const [container, setContainer] = useState<PopoverContextType['container']>(null);
+  const [container, setContainer] = useState<PopoverContextProps['container']>(null);
   const uniqueId = useMemo(() => generateUniqueId(), []);
-  const isOpen = container !== null;
-
-  const calculatePosition = () => {
-    const $trigger = triggerRef?.current;
-    const $content = contentRef?.current;
-    if (!$content || !$trigger) return;
-
-    const windowScrollY = window.scrollY;
-    const windowScrollX = window.scrollX;
-    const windowScrollWidth = document.body.scrollWidth;
-    const windowClientWidth = document.body.clientWidth;
-    const triggerBoundingRect = $trigger.getBoundingClientRect();
-
-    const popoverPosition = {
-      position: {
-        x:
-          position.anchor.horizontal === 'left'
-            ? triggerBoundingRect.left
-            : position.anchor.horizontal === 'right'
-            ? triggerBoundingRect.right
-            : (triggerBoundingRect.left + triggerBoundingRect.right) / 2,
-        y:
-          position.anchor.vertical === 'top'
-            ? triggerBoundingRect.top
-            : position.anchor.vertical === 'bottom'
-            ? triggerBoundingRect.bottom
-            : (triggerBoundingRect.bottom + triggerBoundingRect.top) / 2,
-      },
-      transform: {
-        x: position.transform.horizontal === 'left' ? 0 : position.transform.horizontal === 'center' ? '-50%' : '-100%',
-        y: position.transform.vertical === 'top' ? 0 : position.transform.vertical === 'center' ? '-50%' : '-100%',
-      },
-    };
-
-    if (offsetDirection === 'left') popoverPosition.position.x -= offset;
-    if (offsetDirection === 'right') popoverPosition.position.x += offset;
-    if (offsetDirection === 'top') popoverPosition.position.y -= offset;
-    if (offsetDirection === 'bottom') popoverPosition.position.y += offset;
-
-    $content.style.top = `${windowScrollY + popoverPosition.position.y}px`;
-    $content.style.left = `${windowScrollX + popoverPosition.position.x}px`;
-    $content.style.transform = `translate(${popoverPosition.transform.x}, ${popoverPosition.transform.y})`;
-
-    const contentBoundingRect = contentRef.current?.getBoundingClientRect();
-    if (contentBoundingRect.width >= windowClientWidth) {
-      // popper의 너비가 viewport 너비보다 클 경우
-      $content.style.width = '100%';
-      $content.style.left = `${windowScrollX}px`;
-      $content.style.transform = `translate(0, ${popoverPosition.transform.y})`;
-    } else if (windowScrollX + contentBoundingRect.left < 0) {
-      // window 왼쪽으로 벗어났을 경우
-      $content.style.left = `${windowScrollX + offset}px`;
-      $content.style.transform = `translate(0, ${popoverPosition.transform.y})`;
-    } else if (windowScrollX + contentBoundingRect.right > windowScrollWidth) {
-      // window 오른쪽으로 벗어났을 경우
-      $content.style.left = `${windowScrollWidth - (contentBoundingRect.width + offset)}px`;
-      $content.style.transform = `translate(0, ${popoverPosition.transform.y})`;
-    }
-
-    if (contentBoundingRect.y < 0) {
-      $content.style.top = `${offset}px`;
-      $content.style.transform = `translate(0, 0)`;
-    }
-
-    // style.transform을 없애기 위한 재할당
-    const finalStyles = $content.getBoundingClientRect();
-    $content.style.top = `${finalStyles.top}px`;
-    $content.style.left = `${finalStyles.left}px`;
-    $content.style.transform = 'unset';
-    // transform origin + scale 의 자연스러운 애니메이션을 위해 transform을 unset한 것임
-    $content.style.transformOrigin = `${position.transform.vertical} ${position.transform.horizontal}`;
-  };
-  const setAnimation = () => {
-    const $popover = contentRef.current;
-    if (!$popover) return; // 없을경우 애니메이션 동작 안함
-    animation.current = $popover.animate(
-      [
-        { opacity: 0, scale: 0.8 },
-        { opacity: 1, scale: 1 },
-      ],
-      {
-        duration,
-        easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
-      },
-    );
-    animation.current.onfinish = () => {
-      $popover.style.opacity = '1';
-      animation.current = null;
-    };
-  };
+  const isOpen = !!container && (status.current === 'opened' || status.current === 'opening');
 
   const createPopover = () => {
     const newContainer = document.createElement('div');
@@ -127,64 +55,86 @@ export const Popover = ({
   const removePopover = () => {
     const targetContainer = document.getElementById(uniqueId);
     targetContainer?.remove();
+    container?.remove();
     setContainer(null);
-    window.removeEventListener('resize', calculatePosition);
   };
 
   const open = () => {
-    createPopover();
-    calculatePosition();
-    setAnimation();
-    window.addEventListener('resize', calculatePosition);
-    if (triggerType === 'click') {
-      document.body.style.overflow = 'hidden';
+    status.current = 'opening';
+    if (!container) {
+      setTimeout(() => createPopover(), enterDelay);
     }
   };
   const close = () => {
-    document.body.style.overflow = 'initial';
-
-    const $popover = contentRef.current;
-    if (!$popover) removePopover();
-    else {
-      animation.current = $popover.animate(
-        [
-          { opacity: 1, scale: 1 },
-          { opacity: 0, scale: 0.8 },
-        ],
-        {
-          duration,
-          easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
-        },
-      );
-      animation.current.onfinish = () => {
-        removePopover();
-        animation.current = null;
-      };
-    }
+    status.current = 'closing';
+    setTimeout(() => setAnimation(false), outDelay);
   };
+
   const toggle = () => {
     if (disabled) return;
-    isOpen ? close() : open();
+    if (status.current === 'closed' || status.current === 'closing') {
+      open();
+    } else if (status.current === 'opened' || status.current === 'opening') {
+      close();
+    }
+  };
+
+  const setAnimation = (isOpening: boolean) => {
+    const $content = contentRef.current;
+    if (!$content) return;
+    const targetKey = isOpening ? [...keyframes] : [...keyframes].reverse();
+
+    if (!animation.current) {
+      animation.current = $content.animate(targetKey, { duration, easing });
+    } else {
+      const currentTiming = animation.current.currentTime as number;
+      animation.current.cancel(); // NOTE: 기존의 animation의 onFinish등의 side effect를 완전히 제거하기 위함
+      animation.current = $content.animate(targetKey, { duration, easing });
+      animation.current.currentTime = duration - currentTiming;
+    }
+    animation.current.onfinish = onAnimationFinished;
+  };
+
+  const onAnimationFinished = () => {
+    const isOpening = status.current === 'opening';
+    if (isOpening) {
+      if (contentRef.current) contentRef.current.style.opacity = '1';
+      if (triggerType === 'click') document.body.style.overflow = 'hidden';
+    } else {
+      removePopover();
+      if (triggerType === 'click') document.body.style.overflow = 'initial';
+    }
+    // clear
+    animation.current = null;
+    status.current = isOpening ? 'opened' : 'closed';
   };
 
   useAnimation();
-  useClick({ triggerType, triggerRef, contentRef, isOpen, close, toggle, disabled });
+  useClick({ triggerType, triggerRef, contentRef, close, toggle, disabled });
   useHover({ triggerType, triggerRef, close, toggle, disabled, container });
-  useKeyDown({ triggerRef, contentRef, close, toggle, disabled });
+  useCalculatePosition({
+    container,
+    triggerRef,
+    contentRef,
+    position,
+    offset,
+    offsetDirection,
+    setOpenAnimation: () => setAnimation(true),
+  });
 
   return (
     <PopoverContext.Provider value={{ container, triggerRef, contentRef, isOpen }}>{children}</PopoverContext.Provider>
   );
 };
 
-export const usePopover = (): PopoverContextType => {
+export const usePopover = (): PopoverContextProps => {
   const context = useContext(PopoverContext);
   if (!context) throw new Error('The sub-components of the Popover component must be used within a Popover component.');
 
   return context;
 };
 
-Popover.Trigger = function PopoverTrigger({ children }: PopoverTriggerType) {
+Popover.Trigger = function PopoverTrigger({ children }: PopoverTriggerProp) {
   const { isOpen, triggerRef } = usePopover();
   return (
     <div tabIndex={0} ref={triggerRef} style={{ display: 'flex', width: 'fit-content' }}>
@@ -193,7 +143,7 @@ Popover.Trigger = function PopoverTrigger({ children }: PopoverTriggerType) {
   );
 };
 
-Popover.Content = function PopoverContent({ children }: PopoverContentType) {
+Popover.Content = function PopoverContent({ children }: PopoverContentProps) {
   const { container, contentRef } = usePopover();
   return (
     <Portal container={container}>
@@ -201,3 +151,5 @@ Popover.Content = function PopoverContent({ children }: PopoverContentType) {
     </Portal>
   );
 };
+
+Popover.KEYFRAMES = KEYFRAMES;

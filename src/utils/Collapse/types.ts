@@ -1,6 +1,6 @@
 export type AnimateStatus = 'expanding' | 'shrinking';
 
-export type TransitionProps = {
+export type CollapseProps = {
   /** 여닫은 상태 */
   isExpanded: boolean;
   orientation?: 'vertical' | 'horizontal';
