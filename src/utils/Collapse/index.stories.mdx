@@ -1,0 +1,76 @@
+import { useState } from 'react';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { Collapse } from './index.tsx';
+import { Button, Switch } from '../../components/index.ts';
+import { generateTable } from '../../storybook-props';
+import { blue500, blue100, blue300 } from '../../core/colors/blue';
+import { LoplatLogo } from '../../assets/Logo';
+
+<Meta
+  title="Utils/Collapse"
+  component={Collapse}
+  argTypes={{
+    isExpanded: { ...generateTable({ defaultValue: true }) },
+    collapsedSize: { ...generateTable({ defaultValue: 0 }) },
+    duration: { ...generateTable({ defaultValue: 300 }) },
+    orientation: { ...generateTable({ defaultValue: 'vertical' }) },
+  }}
+/>
+
+export const Template = (args) => {
+  const [isOpen, setIsOpen] = useState(args.isExpanded ?? true);
+  const toggle = () => setIsOpen((prev) => !prev);
+  return (
+    <div style={{ height: 300, width: 250, display: 'flex', flexDirection: 'column' }}>
+      <div style={{ display: 'flex', alignItems: 'center', marginBottom: 16 }}>
+        <Switch checked={isOpen} onChange={toggle} variant="outlined" />
+      </div>
+      <Collapse {...args} isExpanded={isOpen}>
+        <div
+          style={{
+            width: 200,
+            height: 200,
+            backgroundColor: blue100,
+            border: '1px solid',
+            borderColor: blue300,
+            borderRadius: 12,
+            display: 'flex',
+            alignItems: 'center',
+            padding: 20,
+          }}
+        >
+          <LoplatLogo width={200} />
+        </div>
+      </Collapse>
+    </div>
+  );
+};
+
+# Collapse
+
+세로, 가로 방향으로 여닫을 수 있는 컴포넌트입니다.
+
+<Canvas>
+  <Story name="default" args={{ isExpanded: true }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+## 예시
+
+<Canvas columns={2}>
+  <Story name="horizontal" args={{ isExpanded: true, orientation: 'horizontal' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="vertical" args={{ isExpanded: true, orientation: 'vertical' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="horizontal 50" args={{ isExpanded: false, orientation: 'horizontal', collapsedSize: 50 }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="vertical 50" args={{ isExpanded: false, orientation: 'vertical', collapsedSize: 50 }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>

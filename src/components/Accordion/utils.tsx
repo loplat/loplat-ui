@@ -2,6 +2,7 @@ import { useRef, createContext, useContext, useMemo, useEffect } from 'react';
 import type { MouseEvent } from 'react';
 import type { AccordionContextReturnType, AccordionContextProviderProps, Keyframe, AnimateStatus } from './types';
 import { generateUniqueId } from '../../functions/uniqueId';
+import useAnimation from '../../functions/useAnimation';
 
 export const AccordionContext = createContext<AccordionContextReturnType | undefined>(undefined);
 export const AccordionContextProvider = ({
@@ -23,13 +24,7 @@ export const AccordionContextProvider = ({
     [],
   );
 
-  useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    // eslint-disable-next-line import/no-unresolved
-    import('web-animations-js');
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
+  useAnimation();
   useEffect(() => {
     if (!isMounted.current) {
       isMounted.current = true;
