@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef } from 'react';
-import { PopoverContextType, PopoverTypes } from './type';
+import { PopoverContextType } from './type';
 
 type PopoverEventParams = Pick<
   PopoverContextType,

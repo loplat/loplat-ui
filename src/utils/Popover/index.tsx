@@ -125,8 +125,13 @@ export const Popover = ({
     calculatePosition();
     setAnimation();
     window.addEventListener('resize', calculatePosition);
+    if (triggerType === 'click') {
+      document.body.style.overflow = 'hidden';
+    }
   };
   const close = () => {
+    document.body.style.overflow = 'initial';
+
     const $popover = contentRef.current;
     if (!$popover) removePopover();
     else {

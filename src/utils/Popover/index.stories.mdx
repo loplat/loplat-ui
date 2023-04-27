@@ -8,6 +8,15 @@ import { blue300, blue100, blue500, grayscale200, grayscale500, grayscale900, te
 
 # Popover
 
+스타일이 입혀지지 않은 util입니다.
+`<Popover />`는 하나의 컴포넌트 위에 다른 컴포넌트를 띄울 때 사용합니다.
+
+## 주의사항
+
+- `<Portal />` util을 기반으로 작성되었습니다.
+- `Web animation API` 를 사용합니다.
+- `triggerType = 'click'` 이고 `Popover`이 열려져있을 때, 도큐먼트의 스크롤이벤트는 동작하지 않습니다.
+
 export const Template = (args) => {
   return (
     <Popover {...args}>
