@@ -80,6 +80,11 @@ export const Popover = ({
       $content.style.transform = `translate(0, ${popoverPosition.transform.y})`;
     }
 
+    if (contentBoundingRect.y < 0) {
+      $content.style.top = `${offset}px`;
+      $content.style.transform = `translate(0, 0)`;
+    }
+
     // style.transform을 없애기 위한 재할당
     const finalStyles = $content.getBoundingClientRect();
     $content.style.top = `${finalStyles.top}px`;
