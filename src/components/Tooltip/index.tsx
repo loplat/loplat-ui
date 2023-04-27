@@ -78,7 +78,7 @@ export const Tooltip = ({
         }
 
         // show popper
-        animation.current = popperRef.current.animate([{ opacity: 0 }, { opacity: 1 }], {
+        animation.current = popperElement.animate([{ opacity: 0 }, { opacity: 1 }], {
           duration: 300,
           easing: 'cubic-bezier(0.31, -0.06, 0.68, 1)',
         });

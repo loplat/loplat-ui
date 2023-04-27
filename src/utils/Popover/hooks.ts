@@ -3,8 +3,9 @@ import { PopoverContextType, PopoverTypes } from './type';
 
 type PopoverEventParams = Pick<
   PopoverContextType,
-  'triggerType' | 'triggerRef' | 'contentRef' | 'isOpen' | 'disabled' | 'container'
+  'triggerType' | 'triggerRef' | 'contentRef' | 'isOpen' | 'container'
 > & {
+  disabled: boolean;
   toggle: () => void;
   close: () => void;
 };
