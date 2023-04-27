@@ -3,6 +3,7 @@ import { spacing, tooltipZIndex } from '../../core';
 import { Portal } from '../../utils';
 import { TooltipProps } from './types';
 import { Popper, Wrapper } from './styles';
+import useAnimation from '../../functions/useAnimation';
 
 export const Tooltip = ({
   children,
@@ -18,12 +19,7 @@ export const Tooltip = ({
   const popperRef = useRef<HTMLDivElement>(null);
   const animation = useRef<Animation | null>(null);
 
-  useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    // eslint-disable-next-line import/no-unresolved
-    import('web-animations-js');
-  }, []);
+  useAnimation();
 
   const renderTooltip = () => {
     if (disabled) return;

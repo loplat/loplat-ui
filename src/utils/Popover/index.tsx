@@ -1,9 +1,10 @@
-import { createContext, useState, useRef, useContext, useMemo, useEffect } from 'react';
+import { createContext, useState, useRef, useContext, useMemo } from 'react';
 import { PopoverContentType, PopoverContextType, PopoverTriggerType, PopoverTypes } from './type';
 import { generateUniqueId } from '../../functions/uniqueId';
 import { Portal } from '..';
 import { useClick, useHover, useKeyDown, usePopoverPosition } from './hooks';
 import { ContentWrapper } from './styles';
+import useAnimation from '../../functions/useAnimation';
 
 export const DEFAULT_POSITION: PopoverTypes['position'] = {
   anchor: { vertical: 'top', horizontal: 'right' },
@@ -25,13 +26,6 @@ export const Popover = ({
   const [container, setContainer] = useState<PopoverContextType['container']>(null);
   const uniqueId = useMemo(() => generateUniqueId(), []);
   const isOpen = container !== null;
-
-  useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    // eslint-disable-next-line import/no-unresolved
-    import('web-animations-js');
-  }, []);
 
   const open = () => {
     const newContainer = document.createElement('div');
@@ -85,6 +79,7 @@ export const Popover = ({
     isOpen ? close() : open();
   };
 
+  useAnimation();
   useClick({ triggerType, triggerRef, contentRef, isOpen, close, toggle, disabled });
   useHover({ triggerType, triggerRef, close, toggle, disabled, container });
   useKeyDown({ triggerRef, contentRef, close, toggle, disabled });
