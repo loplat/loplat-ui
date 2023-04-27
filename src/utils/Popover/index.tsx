@@ -17,6 +17,7 @@ export const Popover = ({
   position = DEFAULT_POSITION,
   triggerType = 'click',
   offset = 0,
+  offsetDirection = 'right',
   duration = 200,
 }: PopoverTypes) => {
   const triggerRef = useRef<HTMLDivElement>(null);
@@ -59,6 +60,11 @@ export const Popover = ({
         y: position.transform.vertical === 'top' ? 0 : position.transform.vertical === 'center' ? '-50%' : '-100%',
       },
     };
+
+    if (offsetDirection === 'left') popoverPosition.position.x -= offset;
+    if (offsetDirection === 'right') popoverPosition.position.x += offset;
+    if (offsetDirection === 'top') popoverPosition.position.y -= offset;
+    if (offsetDirection === 'bottom') popoverPosition.position.y += offset;
 
     $content.style.top = `${windowScrollY + popoverPosition.position.y}px`;
     $content.style.left = `${windowScrollX + popoverPosition.position.x}px`;
@@ -157,6 +163,7 @@ export const Popover = ({
     }
   };
   const toggle = () => {
+    if (disabled) return;
     isOpen ? close() : open();
   };
 
@@ -193,9 +200,4 @@ Popover.Content = function PopoverContent({ children }: PopoverContentType) {
       <ContentWrapper ref={contentRef}>{children}</ContentWrapper>
     </Portal>
   );
-};
-
-// optional 시간남을 때 작성하기
-Popover.Arrow = function PopoverArrow() {
-  return <div>Arrow</div>;
 };

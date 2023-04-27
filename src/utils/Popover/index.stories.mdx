@@ -71,6 +71,8 @@ export const Example = () => {
     anchor: { vertical: anchorVertical, horizontal: anchorHorizontal },
     transform: { vertical: transformVertical, horizontal: transformHorizontal },
   };
+  const [offset, setOffset] = useState(0);
+  const [direction, setDireciton] = useState('right');
   return (
     <div
       style={{
@@ -80,9 +82,10 @@ export const Example = () => {
         justifyContent: 'center',
         maxWidth: 700,
         margin: 'auto',
+        padding: 20,
       }}
     >
-      <Popover position={position}>
+      <Popover position={position} offsetDirection={direction} offset={offset}>
         <Popover.Trigger>
           {(open) => (
             <div
@@ -131,7 +134,7 @@ export const Example = () => {
           </div>
         </Popover.Content>
       </Popover>
-      <section style={{ marginTop: '1rem', marginBottom: '1rem', display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+      <section style={{ marginTop: '3rem', marginBottom: '1rem', display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
         <fieldset style={{ flexBasis: '45%', maxWidth: '50%', border: 'none' }}>
           <legend style={{ color: teal }}>anchor origin vertical</legend>
           <div>
@@ -192,6 +195,36 @@ export const Example = () => {
                 { value: 'left', label: 'left' },
                 { value: 'center', label: 'center' },
                 { value: 'right', label: 'right' },
+              ]}
+            />
+          </div>
+        </fieldset>
+        <fieldset style={{ flexBasis: '45%', maxWidth: '50%', border: 'none' }}>
+          <label htmlFor="offset" style={{ color: blue500 }}>
+            offset
+          </label>
+          <div>
+            <input
+              id="offset"
+              type="number"
+              value={offset}
+              onChange={(e) => setOffset(Number(e.currentTarget.value))}
+            />
+          </div>
+        </fieldset>
+        <fieldset style={{ flexBasis: '45%', maxWidth: '50%', border: 'none' }}>
+          <legend style={{ color: blue500 }}>offset direction</legend>
+          <div>
+            <RadioButtonGroup
+              selectedValue={direction}
+              onChange={(e) => setDireciton(e.currentTarget.value)}
+              name="offset-direction"
+              direction="direction"
+              list={[
+                { value: 'left', label: 'left' },
+                { value: 'right', label: 'right' },
+                { value: 'top', label: 'top' },
+                { value: 'bottom', label: 'bottom' },
               ]}
             />
           </div>
