@@ -8,7 +8,7 @@ import useAnimation from '../../functions/useAnimation';
 
 export const DEFAULT_POSITION: PopoverTypes['position'] = {
   anchor: { vertical: 'top', horizontal: 'right' },
-  portal: { vertical: 'top', horizontal: 'left' },
+  transform: { vertical: 'top', horizontal: 'left' },
 };
 const PopoverContext = createContext<PopoverContextType | undefined>(undefined);
 export const Popover = ({
@@ -17,6 +17,7 @@ export const Popover = ({
   position = DEFAULT_POSITION,
   triggerType = 'click',
   offset = 0,
+  duration = 200,
 }: PopoverTypes) => {
   const triggerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -54,8 +55,8 @@ export const Popover = ({
             : (triggerBoundingRect.bottom + triggerBoundingRect.top) / 2,
       },
       transform: {
-        x: position.portal.horizontal === 'left' ? 0 : position.portal.horizontal === 'center' ? '-50%' : '-100%',
-        y: position.portal.vertical === 'top' ? 0 : position.portal.vertical === 'center' ? '-50%' : '-100%',
+        x: position.transform.horizontal === 'left' ? 0 : position.transform.horizontal === 'center' ? '-50%' : '-100%',
+        y: position.transform.vertical === 'top' ? 0 : position.transform.vertical === 'center' ? '-50%' : '-100%',
       },
     };
 
@@ -78,17 +79,25 @@ export const Popover = ({
       $content.style.left = `${windowScrollWidth - (contentBoundingRect.width + offset)}px`;
       $content.style.transform = `translate(0, ${popoverPosition.transform.y})`;
     }
+
+    // style.transform을 없애기 위한 재할당
+    const finalStyles = $content.getBoundingClientRect();
+    $content.style.top = `${finalStyles.top}px`;
+    $content.style.left = `${finalStyles.left}px`;
+    $content.style.transform = 'unset';
+    // transform origin + scale 의 자연스러운 애니메이션을 위해 transform을 unset한 것임
+    $content.style.transformOrigin = `${position.transform.vertical} ${position.transform.horizontal}`;
   };
   const setAnimation = () => {
     const $popover = contentRef.current;
     if (!$popover) return; // 없을경우 애니메이션 동작 안함
     animation.current = $popover.animate(
       [
-        { opacity: 0, scale: 0.7 },
+        { opacity: 0, scale: 0.8 },
         { opacity: 1, scale: 1 },
       ],
       {
-        duration: 200,
+        duration,
         easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
       },
     );
@@ -108,12 +117,14 @@ export const Popover = ({
     const targetContainer = document.getElementById(uniqueId);
     targetContainer?.remove();
     setContainer(null);
+    window.removeEventListener('resize', calculatePosition);
   };
 
   const open = () => {
     createPopover();
     calculatePosition();
     setAnimation();
+    window.addEventListener('resize', calculatePosition);
   };
   const close = () => {
     const $popover = contentRef.current;
@@ -122,10 +133,10 @@ export const Popover = ({
       animation.current = $popover.animate(
         [
           { opacity: 1, scale: 1 },
-          { opacity: 0, scale: 0.7 },
+          { opacity: 0, scale: 0.8 },
         ],
         {
-          duration: 200,
+          duration,
           easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
         },
       );

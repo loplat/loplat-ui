@@ -11,9 +11,10 @@ export type PopoverContextType = {
 export type PopoverTypes = {
   children: ReactNode;
   disabled: boolean;
-  position: { anchor: PositionType; portal: PositionType };
+  position: { anchor: PositionType; transform: PositionType };
   triggerType?: PopoverContextType['triggerType'];
   offset?: number;
+  duration?: number;
 };
 export type PopoverContentType = {
   children: ReactNode;

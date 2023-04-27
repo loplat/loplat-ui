@@ -56,14 +56,14 @@ export const Template = (args) => {
 export const Example = () => {
   const [anchorVertical, setAnchorVertical] = useState('top');
   const [anchorHorizontal, setAnchorHorizontal] = useState('right');
-  const [portalVertical, setPortalVertical] = useState('top');
-  const [portalHorizontal, setPortalHorizontal] = useState('left');
+  const [transformVertical, setTransformVertical] = useState('top');
+  const [transformHorizontal, setTransformHorizontal] = useState('left');
   const position = {
     anchor: { vertical: anchorVertical, horizontal: anchorHorizontal },
-    portal: { vertical: portalVertical, horizontal: portalHorizontal },
+    transform: { vertical: transformVertical, horizontal: transformHorizontal },
   };
   return (
-    <div>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
       <section style={{ marginBottom: '1rem', display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
         <fieldset style={{ flexBasis: '45%', maxWidth: '50%', border: 'none' }}>
           <legend style={{ color: teal }}>anchor origin vertical</legend>
@@ -98,11 +98,11 @@ export const Example = () => {
           </div>
         </fieldset>
         <fieldset style={{ flexBasis: '45%', maxWidth: '50%', border: 'none' }}>
-          <legend style={{ color: grayscale500 }}>portal origin vertical</legend>
+          <legend style={{ color: grayscale500 }}>transform origin vertical</legend>
           <div>
             <RadioButtonGroup
-              selectedValue={portalVertical}
-              onChange={(e) => setPortalVertical(e.currentTarget.value)}
+              selectedValue={transformVertical}
+              onChange={(e) => setTransformVertical(e.currentTarget.value)}
               name="portal/vertical"
               direction="row"
               list={[
@@ -114,11 +114,11 @@ export const Example = () => {
           </div>
         </fieldset>
         <fieldset style={{ flexBasis: '45%', maxWidth: '50%', border: 'none' }}>
-          <legend style={{ color: grayscale500 }}>portal origin horizontal</legend>
+          <legend style={{ color: grayscale500 }}>transform origin horizontal</legend>
           <div>
             <RadioButtonGroup
-              selectedValue={portalHorizontal}
-              onChange={(e) => setPortalHorizontal(e.currentTarget.value)}
+              selectedValue={transformHorizontal}
+              onChange={(e) => setTransformHorizontal(e.currentTarget.value)}
               name="portal/horizontal"
               direction="row"
               list={[
