@@ -2,7 +2,7 @@ import { createContext, useState, useRef, useContext, useMemo } from 'react';
 import { PopoverContentType, PopoverContextType, PopoverTriggerType, PopoverTypes } from './type';
 import { generateUniqueId } from '../../functions/uniqueId';
 import { Portal } from '..';
-import { useClick, useHover, useKeyDown, usePopoverPosition } from './hooks';
+import { useClick, useHover, useKeyDown } from './hooks';
 import { ContentWrapper } from './styles';
 import useAnimation from '../../functions/useAnimation';
 
@@ -27,12 +27,59 @@ export const Popover = ({
   const uniqueId = useMemo(() => generateUniqueId(), []);
   const isOpen = container !== null;
 
-  const open = () => {
-    const newContainer = document.createElement('div');
-    newContainer.id = uniqueId;
-    document.body.appendChild(newContainer);
-    setContainer(newContainer);
+  const calculatePosition = () => {
+    const $trigger = triggerRef?.current;
+    const $content = contentRef?.current;
+    if (!$content || !$trigger) return;
 
+    const windowScrollY = window.scrollY;
+    const windowScrollX = window.scrollX;
+    const windowScrollWidth = document.body.scrollWidth;
+    const windowClientWidth = document.body.clientWidth;
+    const triggerBoundingRect = $trigger.getBoundingClientRect();
+
+    const popoverPosition = {
+      position: {
+        x:
+          position.anchor.horizontal === 'left'
+            ? triggerBoundingRect.left
+            : position.anchor.horizontal === 'right'
+            ? triggerBoundingRect.right
+            : (triggerBoundingRect.left + triggerBoundingRect.right) / 2,
+        y:
+          position.anchor.vertical === 'top'
+            ? triggerBoundingRect.top
+            : position.anchor.vertical === 'bottom'
+            ? triggerBoundingRect.bottom
+            : (triggerBoundingRect.bottom + triggerBoundingRect.top) / 2,
+      },
+      transform: {
+        x: position.portal.horizontal === 'left' ? 0 : position.portal.horizontal === 'center' ? '-50%' : '-100%',
+        y: position.portal.vertical === 'top' ? 0 : position.portal.vertical === 'center' ? '-50%' : '-100%',
+      },
+    };
+
+    $content.style.top = `${windowScrollY + popoverPosition.position.y}px`;
+    $content.style.left = `${windowScrollX + popoverPosition.position.x}px`;
+    $content.style.transform = `translate(${popoverPosition.transform.x}, ${popoverPosition.transform.y})`;
+
+    const contentBoundingRect = contentRef.current?.getBoundingClientRect();
+    if (contentBoundingRect.width >= windowClientWidth) {
+      // popper의 너비가 viewport 너비보다 클 경우
+      $content.style.width = '100%';
+      $content.style.left = `${windowScrollX}px`;
+      $content.style.transform = `translate(0, ${popoverPosition.transform.y})`;
+    } else if (windowScrollX + contentBoundingRect.left < 0) {
+      // window 왼쪽으로 벗어났을 경우
+      $content.style.left = `${windowScrollX + offset}px`;
+      $content.style.transform = `translate(0, ${popoverPosition.transform.y})`;
+    } else if (windowScrollX + contentBoundingRect.right > windowScrollWidth) {
+      // window 오른쪽으로 벗어났을 경우
+      $content.style.left = `${windowScrollWidth - (contentBoundingRect.width + offset)}px`;
+      $content.style.transform = `translate(0, ${popoverPosition.transform.y})`;
+    }
+  };
+  const setAnimation = () => {
     const $popover = contentRef.current;
     if (!$popover) return; // 없을경우 애니메이션 동작 안함
     animation.current = $popover.animate(
@@ -50,10 +97,23 @@ export const Popover = ({
       animation.current = null;
     };
   };
+
+  const createPopover = () => {
+    const newContainer = document.createElement('div');
+    newContainer.id = uniqueId;
+    document.body.appendChild(newContainer);
+    setContainer(newContainer);
+  };
   const removePopover = () => {
     const targetContainer = document.getElementById(uniqueId);
     targetContainer?.remove();
     setContainer(null);
+  };
+
+  const open = () => {
+    createPopover();
+    calculatePosition();
+    setAnimation();
   };
   const close = () => {
     const $popover = contentRef.current;
@@ -83,7 +143,6 @@ export const Popover = ({
   useClick({ triggerType, triggerRef, contentRef, isOpen, close, toggle, disabled });
   useHover({ triggerType, triggerRef, close, toggle, disabled, container });
   useKeyDown({ triggerRef, contentRef, close, toggle, disabled });
-  usePopoverPosition({ container, triggerRef, contentRef, position, offset });
 
   return (
     <PopoverContext.Provider value={{ container, triggerRef, contentRef, isOpen }}>{children}</PopoverContext.Provider>

@@ -44,7 +44,7 @@ export const useClick = ({
     return () => {
       document.removeEventListener('click', handleClick);
     };
-  }, [close, contentRef, disabled, isOpen, toggle, triggerRef, triggerType]);
+  });
 };
 
 export const useHover = ({
@@ -66,7 +66,7 @@ export const useHover = ({
       isHovered.current = false;
       close();
     }, 500);
-  }, []);
+  }, [close]);
 
   useEffect(() => {
     if (disabled || triggerType === 'click') return;
@@ -85,7 +85,7 @@ export const useHover = ({
       triggerRef.current?.removeEventListener('mouseenter', toggleConditionally);
       triggerRef.current?.removeEventListener('mouseleave', closeSlow);
     };
-  }, []);
+  });
 
   useEffect(() => {
     if (disabled || triggerType === 'click') return;
@@ -99,7 +99,7 @@ export const useHover = ({
       container.removeEventListener('mouseenter', stayOpen);
       container.removeEventListener('mouseleave', closeSlow);
     };
-  }, [container]);
+  }, [closeSlow, container, disabled, triggerType]);
 };
 
 export const useKeyDown = ({
@@ -140,78 +140,4 @@ export const useKeyDown = ({
       document.removeEventListener('keydown', handleKeyDown);
     };
   });
-};
-
-type PopoverPositionParams = Required<
-  Pick<PopoverContextType, 'container' | 'triggerRef' | 'contentRef' | 'position'>
-> &
-  Required<Pick<PopoverTypes, 'offset'>>;
-export const usePopoverPosition = ({ container, triggerRef, contentRef, position, offset }: PopoverPositionParams) => {
-  const changePopoverPosition = useCallback(() => {
-    const $trigger = triggerRef?.current;
-    const $content = contentRef?.current;
-    if (!$content || !$trigger) return;
-
-    $content.style.transform = 'scale(0.75)';
-    $content.style.opacity = '0';
-
-    const windowScrollY = window.scrollY;
-    const windowScrollX = window.scrollX;
-    const windowScrollWidth = document.body.scrollWidth;
-    const triggerBoundingRect = $trigger.getBoundingClientRect();
-
-    $content.style.minWidth = `${triggerBoundingRect.width}px`;
-
-    const yPosition =
-      position.anchor.vertical === 'top'
-        ? triggerBoundingRect.top
-        : position.anchor.vertical === 'bottom'
-        ? triggerBoundingRect.bottom
-        : (triggerBoundingRect.bottom + triggerBoundingRect.top) / 2;
-
-    const xPosition =
-      position.anchor.horizontal === 'left'
-        ? triggerBoundingRect.left
-        : position.anchor.horizontal === 'right'
-        ? triggerBoundingRect.right
-        : (triggerBoundingRect.left + triggerBoundingRect.right) / 2;
-
-    const yTransform =
-      position.portal.vertical === 'top' ? 0 : position.portal.vertical === 'center' ? '-50%' : '-100%';
-    const xTransform =
-      position.portal.horizontal === 'left' ? 0 : position.portal.horizontal === 'center' ? '-50%' : '-100%';
-
-    $content.style.top = `${windowScrollY + yPosition}px`;
-    $content.style.left = `${windowScrollX + xPosition}px`;
-    $content.style.transform = `translate(${xTransform}, ${yTransform})`;
-
-    const contentBoundingRect = $content.getBoundingClientRect();
-    // window 오른쪽으로 벗어났을 경우
-    if (windowScrollX + contentBoundingRect.right > windowScrollWidth) {
-      $content.style.left = `${triggerBoundingRect.right - $content.offsetWidth}px`;
-    }
-
-    $content.style.opacity = '1';
-  }, [
-    triggerRef,
-    contentRef,
-    position.anchor.vertical,
-    position.anchor.horizontal,
-    position.portal.vertical,
-    position.portal.horizontal,
-  ]);
-
-  useEffect(() => {
-    if (container) {
-      changePopoverPosition();
-    }
-  }, [changePopoverPosition, container]);
-
-  useEffect(() => {
-    window.addEventListener('resize', changePopoverPosition);
-    return () => {
-      window.removeEventListener('resize', changePopoverPosition);
-      close();
-    };
-  }, [changePopoverPosition]);
 };
