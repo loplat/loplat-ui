@@ -12,3 +12,5 @@ export type LoadingProps = {
 };
 
 export type Loading = LoadingProps & AriaAttributes;
+
+export type CircleLoadingType = Loading & { strokeWidth?: number };
