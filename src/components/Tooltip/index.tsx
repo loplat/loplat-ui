@@ -62,16 +62,33 @@ export const Tooltip = ({
     const wrapperHorizontalCenter = windowScrollX + wrapperBoundingRect.left + wrapperBoundingRect.width / 2;
 
     const popperElement = popperRef.current;
+    const gap = spacing(2);
     if (popperElement) {
       // 기본 위치
       if (placement === 'top') {
-        popperElement.style.top = `${wrapperTop - spacing(2)}px`;
+        popperElement.style.top = `${wrapperTop - gap}px`;
         popperElement.style.left = `${wrapperHorizontalCenter}px`;
         popperElement.style.transform = 'translate(-50%, -100%)';
       } else if (placement === 'bottom') {
-        popperElement.style.top = `${wrapperBottom + spacing(2)}px`;
+        popperElement.style.top = `${wrapperBottom + gap}px`;
         popperElement.style.left = `${wrapperHorizontalCenter}px`;
         popperElement.style.transform = 'translate(-50%, 0)';
+      } else if (placement === 'right') {
+        popperElement.style.top = `${(wrapperBoundingRect.bottom + wrapperBoundingRect.top) / 2}px`;
+        popperElement.style.left = `${windowScrollX + wrapperBoundingRect.right + gap}px`;
+        popperElement.style.transform = `translate(0, -50%)`;
+        const { left, top } = popperElement.getBoundingClientRect();
+        popperElement.style.left = `${left}px`;
+        popperElement.style.top = `${top}px`;
+        popperElement.style.transform = 'unset';
+      } else if (placement === 'left') {
+        popperElement.style.top = `${(wrapperBoundingRect.bottom + wrapperBoundingRect.top) / 2}px`;
+        popperElement.style.left = `${windowScrollX + wrapperBoundingRect.right}px`;
+        popperElement.style.transform = `translate(calc(-100% - ${wrapperBoundingRect.width}px - ${gap}px), -50%)`;
+        const { left, top } = popperElement.getBoundingClientRect();
+        popperElement.style.left = `${left}px`;
+        popperElement.style.top = `${top}px`;
+        popperElement.style.transform = 'unset';
       }
 
       // 기본 위치가 window를 벗어났을 경우
@@ -83,12 +100,19 @@ export const Tooltip = ({
         popperElement.style.transform = `translate(0, ${placement === 'top' ? '-100%' : '0'})`;
       } else if (windowScrollX + popperBoundingRect.left < 0) {
         // window 왼쪽으로 벗어났을 경우
-        popperElement.style.left = `${windowScrollX + spacing(2)}px`;
+        popperElement.style.left = `0px`;
         popperElement.style.transform = `translate(0, ${placement === 'top' ? '-100%' : '0'})`;
       } else if (windowScrollX + popperBoundingRect.right > windowScrollWidth) {
         // window 오른쪽으로 벗어났을 경우
-        popperElement.style.left = `${windowScrollWidth - (popperBoundingRect.width + spacing(2))}px`;
+        popperElement.style.left = `${windowScrollWidth - (popperBoundingRect.width + gap)}px`;
         popperElement.style.transform = `translate(0, ${placement === 'top' ? '-100%' : '0'})`;
+      }
+
+      if (popperBoundingRect.y < 0) {
+        const { left } = popperElement.getBoundingClientRect();
+        popperElement.style.top = `0px`;
+        popperElement.style.left = `${left}px`;
+        popperElement.style.transform = `translate(0, 0)`;
       }
 
       // show popper

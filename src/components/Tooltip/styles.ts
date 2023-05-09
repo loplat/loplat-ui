@@ -17,6 +17,7 @@ export const Popper = styled.div`
   opacity: 0;
 
   overflow-wrap: break-word;
+  word-break: keep-all;
 
   box-sizing: border-box;
   padding: ${spacing(3)}px;
