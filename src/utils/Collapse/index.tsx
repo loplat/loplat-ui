@@ -34,6 +34,7 @@ export const Collapse = ({
       } else {
         setShrinkStyle();
         transition.classList.add('collapsed');
+        changeAccessibility(false);
       }
       toggleClassName(initialOpen ? 'expanding' : 'shrinking');
     } else {
@@ -108,10 +109,12 @@ export const Collapse = ({
       setExpandedStyle();
       targetElem.classList.add('expanded');
       onExpandFinished && onExpandFinished();
+      changeAccessibility(true);
     } else {
       setShrinkStyle();
       targetElem.classList.add('collapsed');
       onCollapseFinished && onCollapseFinished();
+      changeAccessibility(false);
     }
 
     // clear
@@ -131,9 +134,20 @@ export const Collapse = ({
     targetElem.style[targetStyleKey] = `${collapsedSize}px`;
   };
 
+  const changeAccessibility = (isOpen: boolean) => {
+    const element = collapseElementRef.current;
+    if (!element) return;
+    const tabbableTagList = element.querySelectorAll(TABBABLE_TAGS.join(', '));
+    tabbableTagList.forEach((node) => {
+      if (isOpen) node.setAttribute('tabindex', '1');
+      else node.setAttribute('tabindex', '-1');
+    });
+  };
+
   return (
     <div ref={collapseElementRef} style={{ overflow: 'hidden', display: 'flex' }}>
       {children}
     </div>
   );
 };
+const TABBABLE_TAGS = ['a', 'input', 'select', 'button', 'textarea', 'details'];
