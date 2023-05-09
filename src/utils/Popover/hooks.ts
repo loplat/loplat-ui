@@ -51,7 +51,7 @@ export const useHover = ({
   const timer = useRef<ReturnType<typeof setTimeout>>();
   const isHovered = useRef(false);
 
-  const closeSlow = useCallback(() => {
+  const closeSlowly = useCallback(() => {
     clearTimeout(timer.current);
     isHovered.current = false;
     timer.current = setTimeout(() => {
@@ -63,22 +63,24 @@ export const useHover = ({
 
   useEffect(() => {
     if (disabled || triggerType === 'click') return;
-    if (!triggerRef.current) return;
+    const $trigger = triggerRef.current;
+    if (!$trigger) return;
 
-    function toggleConditionally() {
+    const openConditionally = () => {
       if (isHovered.current) return;
       isHovered.current = true;
       toggle();
-    }
-
-    triggerRef.current.addEventListener('mouseenter', toggleConditionally);
-    triggerRef.current.addEventListener('mouseleave', closeSlow);
-    () => {
-      clearTimeout(timer.current);
-      triggerRef.current?.removeEventListener('mouseenter', toggleConditionally);
-      triggerRef.current?.removeEventListener('mouseleave', closeSlow);
     };
-  });
+
+    $trigger.addEventListener('mouseenter', openConditionally);
+    $trigger.addEventListener('mouseleave', closeSlowly);
+
+    return () => {
+      $trigger.removeEventListener('mouseenter', openConditionally);
+      $trigger.removeEventListener('mouseleave', closeSlowly);
+      clearTimeout(timer.current);
+    };
+  }, [closeSlowly, disabled, toggle, triggerRef, triggerType]);
 
   useEffect(() => {
     if (disabled || triggerType === 'click') return;
@@ -87,12 +89,13 @@ export const useHover = ({
     const stayOpen = () => (isHovered.current = true);
 
     container.addEventListener('mouseenter', stayOpen);
-    container.addEventListener('mouseleave', closeSlow);
+    container.addEventListener('mouseleave', closeSlowly);
+
     return () => {
       container.removeEventListener('mouseenter', stayOpen);
-      container.removeEventListener('mouseleave', closeSlow);
+      container.removeEventListener('mouseleave', closeSlowly);
     };
-  });
+  }, [closeSlowly, container, disabled, triggerType]);
 };
 
 type PopoverPositionParams = Pick<PopoverContextProps, 'triggerRef' | 'contentRef' | 'container'> &
