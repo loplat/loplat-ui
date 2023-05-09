@@ -2,7 +2,7 @@ import { createContext, useState, useRef, useContext, useMemo } from 'react';
 import { PopoverContentProps, PopoverContextProps, PopoverTriggerProp, PopoverProps } from './type';
 import { generateUniqueId } from '../../functions/uniqueId';
 import { Portal } from '..';
-import { useCalculatePosition, useClick, useHover } from './hooks';
+import { useCalculatePosition, useClick, useHover, useKeydown } from './hooks';
 import { ContentWrapper } from './styles';
 import useAnimation from '../../functions/useAnimation';
 
@@ -115,6 +115,7 @@ export const Popover = ({
   };
 
   useAnimation();
+  useKeydown({ toggle, triggerRef, close, disabled });
   useClick({ triggerType, triggerRef, contentRef, close, toggle, disabled });
   useHover({ triggerType, triggerRef, close, toggle, disabled, container });
   useCalculatePosition({

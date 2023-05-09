@@ -98,6 +98,37 @@ export const useHover = ({
   }, [closeSlowly, container, disabled, triggerType]);
 };
 
+export const useKeydown = ({
+  triggerRef,
+  close,
+  toggle,
+  disabled,
+}: Pick<PopoverEventParams, 'triggerRef' | 'toggle' | 'close' | 'disabled'>) => {
+  useEffect(() => {
+    if (disabled) return;
+
+    function handleKeydown(e: KeyboardEvent) {
+      const $focused = document.activeElement as HTMLElement;
+      const $trigger = triggerRef?.current;
+      const triggerIsFocused = $trigger && $trigger.contains($focused);
+
+      if (e.code == 'Enter' || e.code === 'Space') {
+        if (triggerIsFocused) {
+          toggle();
+          e.preventDefault();
+        }
+      } else if (e.code === 'Escape') {
+        close();
+      }
+    }
+
+    document.addEventListener('keydown', handleKeydown);
+    return () => {
+      document.removeEventListener('keydown', handleKeydown);
+    };
+  });
+};
+
 type PopoverPositionParams = Pick<PopoverContextProps, 'triggerRef' | 'contentRef' | 'container'> &
   Required<Pick<PopoverProps, 'position' | 'offset' | 'offsetDirection'>> & {
     setOpenAnimation: () => void;
