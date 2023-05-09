@@ -3,6 +3,7 @@ import { spacing, tooltipZIndex } from '../../core';
 import { Portal } from '../../utils';
 import { TooltipProps } from './types';
 import { Popper, Wrapper } from './styles';
+import useAnimation from '../../functions/useAnimation';
 
 export const Tooltip = ({
   children,
@@ -17,76 +18,106 @@ export const Tooltip = ({
   const wrapperRef = useRef<HTMLDivElement>(null);
   const popperRef = useRef<HTMLDivElement>(null);
   const animation = useRef<Animation | null>(null);
-
-  useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    // eslint-disable-next-line import/no-unresolved
-    import('web-animations-js');
-  }, []);
+  useAnimation();
 
   const renderTooltip = () => {
     if (disabled) return;
 
-    // popper 생성, 렌더링
-    if (animation.current === null) createPopper();
-    if (animation.current) {
-      animation.current.cancel();
-      return;
-    }
-
-    // popper 위치 계산
-    setTimeout(() => {
-      const windowScrollY = window.scrollY;
-      const windowScrollX = window.scrollX;
-      const windowScrollWidth = document.body.scrollWidth;
-      const windowClientWidth = document.body.clientWidth;
-
-      const wrapperBoundingRect = wrapperRef.current!.getBoundingClientRect(); // eslint-disable-line @typescript-eslint/no-non-null-assertion
-      const wrapperTop = windowScrollY + wrapperBoundingRect.top;
-      const wrapperBottom = windowScrollY + wrapperBoundingRect.bottom;
-      const wrapperHorizontalCenter = windowScrollX + wrapperBoundingRect.left + wrapperBoundingRect.width / 2;
-
-      const popperElement = popperRef.current;
-      if (popperElement) {
-        // 기본 위치
-        if (placement === 'top') {
-          popperElement.style.top = `${wrapperTop - spacing(2)}px`;
-          popperElement.style.left = `${wrapperHorizontalCenter}px`;
-          popperElement.style.transform = 'translate(-50%, -100%)';
-        } else if (placement === 'bottom') {
-          popperElement.style.top = `${wrapperBottom + spacing(2)}px`;
-          popperElement.style.left = `${wrapperHorizontalCenter}px`;
-          popperElement.style.transform = 'translate(-50%, 0)';
-        }
-
-        // 기본 위치가 window를 벗어났을 경우
-        const popperBoundingRect = popperElement.getBoundingClientRect();
-        if (popperBoundingRect.width >= windowClientWidth) {
-          // popper의 너비가 viewport 너비보다 클 경우
-          popperElement.style.width = '100%';
-          popperElement.style.left = `${windowScrollX}px`;
-          popperElement.style.transform = `translate(0, ${placement === 'top' ? '-100%' : '0'})`;
-        } else if (windowScrollX + popperBoundingRect.left < 0) {
-          // window 왼쪽으로 벗어났을 경우
-          popperElement.style.left = `${windowScrollX + spacing(2)}px`;
-          popperElement.style.transform = `translate(0, ${placement === 'top' ? '-100%' : '0'})`;
-        } else if (windowScrollX + popperBoundingRect.right > windowScrollWidth) {
-          // window 오른쪽으로 벗어났을 경우
-          popperElement.style.left = `${windowScrollWidth - (popperBoundingRect.width + spacing(2))}px`;
-          popperElement.style.transform = `translate(0, ${placement === 'top' ? '-100%' : '0'})`;
-        }
-
-        // show popper
-        animation.current = popperRef.current.animate([{ opacity: 0 }, { opacity: 1 }], {
-          duration: 300,
-          easing: 'cubic-bezier(0.31, -0.06, 0.68, 1)',
-        });
-        animation.current.onfinish = () => {
-          popperElement.style.opacity = '1';
-        };
+    if (!container) {
+      createPopper();
+      setTimeout(() => calculatePosition(), enterDelay);
+    } else {
+      if (animation.current) {
+        animation.current.currentTime = 300;
+        animation.current.pause();
+      } else {
+        setAnimationOpen();
       }
-    }, enterDelay);
+    }
+  };
+
+  const setAnimationOpen = () => {
+    const popperElement = popperRef.current;
+    if (!popperElement) return;
+
+    animation.current = popperElement.animate([{ opacity: 0 }, { opacity: 1 }], {
+      duration: 300,
+      easing: 'cubic-bezier(0.31, -0.06, 0.68, 1)',
+    });
+    animation.current.onfinish = () => {
+      popperElement.style.opacity = '1';
+      animation.current = null;
+    };
+  };
+
+  const calculatePosition = () => {
+    const windowScrollY = window.scrollY;
+    const windowScrollX = window.scrollX;
+    const windowScrollWidth = document.body.scrollWidth;
+    const windowClientWidth = document.body.clientWidth;
+
+    const wrapperBoundingRect = wrapperRef.current!.getBoundingClientRect(); // eslint-disable-line @typescript-eslint/no-non-null-assertion
+    const wrapperTop = windowScrollY + wrapperBoundingRect.top;
+    const wrapperBottom = windowScrollY + wrapperBoundingRect.bottom;
+    const wrapperHorizontalCenter = windowScrollX + wrapperBoundingRect.left + wrapperBoundingRect.width / 2;
+
+    const popperElement = popperRef.current;
+    const gap = spacing(2);
+    if (popperElement) {
+      // 기본 위치
+      if (placement === 'top') {
+        popperElement.style.top = `${wrapperTop - gap}px`;
+        popperElement.style.left = `${wrapperHorizontalCenter}px`;
+        popperElement.style.transform = 'translate(-50%, -100%)';
+      } else if (placement === 'bottom') {
+        popperElement.style.top = `${wrapperBottom + gap}px`;
+        popperElement.style.left = `${wrapperHorizontalCenter}px`;
+        popperElement.style.transform = 'translate(-50%, 0)';
+      } else if (placement === 'right') {
+        popperElement.style.top = `${(wrapperBoundingRect.bottom + wrapperBoundingRect.top) / 2}px`;
+        popperElement.style.left = `${windowScrollX + wrapperBoundingRect.right + gap}px`;
+        popperElement.style.transform = `translate(0, -50%)`;
+        const { left, top } = popperElement.getBoundingClientRect();
+        popperElement.style.left = `${left}px`;
+        popperElement.style.top = `${top}px`;
+        popperElement.style.transform = 'unset';
+      } else if (placement === 'left') {
+        popperElement.style.top = `${(wrapperBoundingRect.bottom + wrapperBoundingRect.top) / 2}px`;
+        popperElement.style.left = `${windowScrollX + wrapperBoundingRect.right}px`;
+        popperElement.style.transform = `translate(calc(-100% - ${wrapperBoundingRect.width}px - ${gap}px), -50%)`;
+        const { left, top } = popperElement.getBoundingClientRect();
+        popperElement.style.left = `${left}px`;
+        popperElement.style.top = `${top}px`;
+        popperElement.style.transform = 'unset';
+      }
+
+      // 기본 위치가 window를 벗어났을 경우
+      const popperBoundingRect = popperElement.getBoundingClientRect();
+      if (popperBoundingRect.width >= windowClientWidth) {
+        // popper의 너비가 viewport 너비보다 클 경우
+        popperElement.style.width = '100%';
+        popperElement.style.left = `${windowScrollX}px`;
+        popperElement.style.transform = `translate(0, ${placement === 'top' ? '-100%' : '0'})`;
+      } else if (windowScrollX + popperBoundingRect.left < 0) {
+        // window 왼쪽으로 벗어났을 경우
+        popperElement.style.left = `0px`;
+        popperElement.style.transform = `translate(0, ${placement === 'top' ? '-100%' : '0'})`;
+      } else if (windowScrollX + popperBoundingRect.right > windowScrollWidth) {
+        // window 오른쪽으로 벗어났을 경우
+        popperElement.style.left = `${windowScrollWidth - (popperBoundingRect.width + gap)}px`;
+        popperElement.style.transform = `translate(0, ${placement === 'top' ? '-100%' : '0'})`;
+      }
+
+      if (popperBoundingRect.y < 0) {
+        const { left } = popperElement.getBoundingClientRect();
+        popperElement.style.top = `0px`;
+        popperElement.style.left = `${left}px`;
+        popperElement.style.transform = `translate(0, 0)`;
+      }
+
+      // show popper
+      setAnimationOpen();
+    }
   };
 
   const onMouseOver = (e: React.MouseEvent) => {
@@ -136,6 +167,7 @@ export const Tooltip = ({
 
   const removePopper = useCallback(() => {
     if (!popperRef.current) return;
+
     animation.current = popperRef.current.animate([{ opacity: 1 }, { opacity: 0 }], {
       duration: 300,
       easing: 'cubic-bezier(0.31, -0.06, 0.68, 1)',
@@ -150,9 +182,7 @@ export const Tooltip = ({
 
   useEffect(() => {
     const onmouseover = () => {
-      if (animation.current) {
-        animation.current.cancel();
-      }
+      if (animation.current) animation.current.cancel();
     };
     const onmouseleave = () => removePopper();
 
