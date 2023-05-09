@@ -74,6 +74,8 @@ export const Collapse = ({
     const targetElem = getTargetNode();
 
     toggleClassName(status);
+    if (status === 'expanding') onExpand && onExpand();
+    if (status === 'shrinking') onCollapse && onCollapse();
 
     if (animationRef.current) animationRef.current.cancel();
 
@@ -95,11 +97,9 @@ export const Collapse = ({
     if (status == 'expanding') {
       targetElem.classList.add('expanded');
       targetElem.classList.remove('collapsed');
-      onExpand && onExpand();
     } else {
       targetElem.classList.add('collapsed');
       targetElem.classList.remove('expanded');
-      onCollapse && onCollapse();
     }
   };
 
