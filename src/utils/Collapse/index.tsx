@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import useAnimation from '../../functions/useAnimation';
 import type { TransitionProps, AnimateStatus } from './types';
+import { getTabbableElements } from '../../functions/getTabbableElements';
 
 const DEFAULT_DURATION = 300;
 const DEFAULT_ORIENTATION: TransitionProps['orientation'] = 'horizontal';
@@ -137,7 +138,7 @@ export const Collapse = ({
   const changeAccessibility = (isOpen: boolean) => {
     const element = collapseElementRef.current;
     if (!element) return;
-    const tabbableTagList = element.querySelectorAll(TABBABLE_TAGS.join(', '));
+    const tabbableTagList = getTabbableElements(element);
     tabbableTagList.forEach((node) => {
       if (isOpen) node.setAttribute('tabindex', '1');
       else node.setAttribute('tabindex', '-1');
@@ -150,4 +151,3 @@ export const Collapse = ({
     </div>
   );
 };
-const TABBABLE_TAGS = ['a', 'input', 'select', 'button', 'textarea', 'details'];
