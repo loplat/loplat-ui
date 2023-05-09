@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import { Portal } from '../Portal';
 import { generateUniqueId } from '../../functions/uniqueId';
 import { modalZIndex } from '../../core';
+import { getTabbableElements } from '../../functions/getTabbableElements';
 
 export interface ModalProps {
   isOpen: boolean;
@@ -11,7 +12,6 @@ export interface ModalProps {
   children: React.ReactElement;
 }
 
-const TABBABLE_TAGS = ['a', 'input', 'select', 'button', 'textarea', 'details'];
 const changeAccessibility = (root: HTMLElement, modalStatus: 'open' | 'close') => {
   if (modalStatus === 'open') {
     root.setAttribute('aria-hidden', 'true');
@@ -21,7 +21,7 @@ const changeAccessibility = (root: HTMLElement, modalStatus: 'open' | 'close') =
     root.removeAttribute('aria-disabled');
   }
 
-  const tabbableTagList = root.querySelectorAll(TABBABLE_TAGS.join(', '));
+  const tabbableTagList = getTabbableElements(root);
   tabbableTagList.forEach((node) => {
     if (modalStatus === 'open') node.setAttribute('tabindex', '-1');
     else node.removeAttribute('tabindex');
