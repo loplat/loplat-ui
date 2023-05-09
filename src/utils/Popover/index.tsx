@@ -82,7 +82,7 @@ export const Popover = ({
   const setAnimation = (isOpening: boolean) => {
     const $content = contentRef.current;
     if (!$content) return;
-    const targetKey = isOpening ? [...keyframes] : [...keyframes].reverse();
+    const targetKey = isOpening ? keyframes : [...keyframes].reverse();
 
     if (!animation.current) {
       animation.current = $content.animate(targetKey, { duration, easing });
@@ -109,6 +109,11 @@ export const Popover = ({
     status.current = isOpening ? 'opened' : 'closed';
   };
 
+  const setOpenAnimation = () => {
+    if (status.current === 'opened') return;
+    setAnimation(true);
+  };
+
   useAnimation();
   useClick({ triggerType, triggerRef, contentRef, close, toggle, disabled });
   useHover({ triggerType, triggerRef, close, toggle, disabled, container });
@@ -119,7 +124,7 @@ export const Popover = ({
     position,
     offset,
     offsetDirection,
-    setOpenAnimation: () => setAnimation(true),
+    setOpenAnimation,
   });
 
   return (
