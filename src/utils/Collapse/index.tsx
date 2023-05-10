@@ -140,7 +140,7 @@ export const Collapse = ({
     if (!element) return;
     const tabbableTagList = getTabbableElements(element);
     tabbableTagList.forEach((node) => {
-      if (isOpen) node.setAttribute('tabindex', '1');
+      if (isOpen) node.setAttribute('tabindex', '0');
       else node.setAttribute('tabindex', '-1');
     });
   };
