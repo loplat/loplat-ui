@@ -26,11 +26,16 @@ export const Tooltip = ({
 
     if (!container) {
       createPopper();
-      setTimeout(() => calculatePosition(), enterDelay);
+      setTimeout(() => {
+        calculatePosition();
+        setAnimationOpen();
+      }, enterDelay);
     } else {
       if (animation.current) {
-        animation.current.currentTime = 300;
+        animation.current.cancel();
+        setAnimationOpen();
         animation.current.pause();
+        animation.current.currentTime = 300;
       } else {
         setAnimationOpen();
       }
@@ -115,16 +120,13 @@ export const Tooltip = ({
         popperElement.style.left = `${left}px`;
         popperElement.style.transform = `translate(0, 0)`;
       }
-
-      // show popper
-      setAnimationOpen();
     }
   };
 
-  const onMouseOver = (e: React.MouseEvent) => {
+  const onMouseEnter = (e: React.MouseEvent) => {
     // children의 eventHandler 먼저 실행
-    if (children.props.onMouseOver) {
-      children.props.onMouseOver(e);
+    if (children.props.onMouseEnter) {
+      children.props.onMouseEnter(e);
     }
     if (disabled) return;
 
@@ -182,17 +184,19 @@ export const Tooltip = ({
   }, [container]);
 
   useEffect(() => {
-    const onmouseover = () => {
-      if (animation.current) animation.current.cancel();
+    const onmouseenter = () => {
+      animation.current?.cancel();
     };
-    const onmouseleave = () => removePopper();
+    const onmouseleave = () => {
+      removePopper();
+    };
 
     if (container) {
-      container.addEventListener('mouseover', onmouseover);
+      container.addEventListener('mouseenter', onmouseenter);
       container.addEventListener('mouseleave', onmouseleave);
 
       return () => {
-        container.removeEventListener('mouseover', onmouseover);
+        container.removeEventListener('mouseenter', onmouseenter);
         container.removeEventListener('mouseleave', onmouseleave);
       };
     }
@@ -213,7 +217,7 @@ export const Tooltip = ({
     <Wrapper ref={wrapperRef}>
       {React.cloneElement(children, {
         ...children.props,
-        onMouseOver,
+        onMouseEnter,
         onMouseLeave,
         tabIndex: 0,
         onFocus,
