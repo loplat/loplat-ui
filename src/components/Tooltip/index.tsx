@@ -18,6 +18,7 @@ export const Tooltip = ({
   const wrapperRef = useRef<HTMLDivElement>(null);
   const popperRef = useRef<HTMLDivElement>(null);
   const animation = useRef<Animation | null>(null);
+
   useAnimation();
 
   const renderTooltip = () => {

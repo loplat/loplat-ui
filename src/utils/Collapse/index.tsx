@@ -1,10 +1,10 @@
 import { useEffect, useRef } from 'react';
 import useAnimation from '../../functions/useAnimation';
-import type { TransitionProps, AnimateStatus } from './types';
+import type { CollapseProps, AnimateStatus } from './types';
 import { getTabbableElements } from '../../functions/getTabbableElements';
 
 const DEFAULT_DURATION = 300;
-const DEFAULT_ORIENTATION: TransitionProps['orientation'] = 'horizontal';
+const DEFAULT_ORIENTATION: CollapseProps['orientation'] = 'horizontal';
 const DEFAULT_EASING = 'cubic-bezier(0.4, 0, 0.2, 1)';
 export const Collapse = ({
   children,
@@ -17,7 +17,7 @@ export const Collapse = ({
   duration = DEFAULT_DURATION,
   easing = DEFAULT_EASING,
   collapsedSize = 0,
-}: TransitionProps) => {
+}: CollapseProps) => {
   const isMounted = useRef<boolean>(false);
   const collapseElementRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<Animation | null>(null);
