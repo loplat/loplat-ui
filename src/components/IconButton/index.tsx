@@ -8,7 +8,7 @@ export type IconButtonProps = CommonButtonProps & {
 
 export const IconButton = React.forwardRef(
   (
-    { variant = 'primary1', children, ...props }: IconButtonProps,
+    { variant = 'white', children, ...props }: IconButtonProps,
     ref: ForwardedRef<HTMLButtonElement>,
   ): React.ReactElement => {
     return (
