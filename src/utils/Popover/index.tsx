@@ -3,7 +3,7 @@ import { PopoverContentProps, PopoverContextProps, PopoverTriggerProp, PopoverPr
 import { generateUniqueId } from '../../functions/uniqueId';
 import { Portal } from '..';
 import { useCalculatePosition, useClick, useHover, useKeydown } from './hooks';
-import { ContentWrapper } from './styles';
+import { ContentWrapper, TriggerWrapper } from './styles';
 import useAnimation from '../../functions/useAnimation';
 
 type PopoverStatus = 'opening' | 'closing' | 'opened' | 'closed';
@@ -11,7 +11,7 @@ const DEFAULT_POSITION: PopoverProps['position'] = {
   anchor: { vertical: 'top', horizontal: 'right' },
   transform: { vertical: 'top', horizontal: 'left' },
 };
-const KEYFRAMES: Record<'SCALE' | 'SCALE_Y', NonNullable<PopoverProps['keyframes']>> = {
+const KEYFRAMES: Record<'SCALE' | 'SCALE_Y' | 'SCALE_X', NonNullable<PopoverProps['keyframes']>> = {
   SCALE: [
     { opacity: 0, scale: 0.8 },
     { opacity: 1, scale: 1 },
@@ -19,6 +19,10 @@ const KEYFRAMES: Record<'SCALE' | 'SCALE_Y', NonNullable<PopoverProps['keyframes
   SCALE_Y: [
     { opacity: 0, transform: 'scaleY(0)' },
     { opacity: 1, transform: 'scaleY(1)' },
+  ],
+  SCALE_X: [
+    { opacity: 0, transform: 'scaleX(0)' },
+    { opacity: 1, transform: 'scaleX(1)' },
   ],
 };
 
@@ -140,20 +144,22 @@ export const usePopover = (): PopoverContextProps => {
   return context;
 };
 
-Popover.Trigger = function PopoverTrigger({ children }: PopoverTriggerProp) {
+Popover.Trigger = function PopoverTrigger({ children, ...props }: PopoverTriggerProp) {
   const { isOpen, triggerRef } = usePopover();
   return (
-    <div tabIndex={0} ref={triggerRef} style={{ display: 'flex', width: 'fit-content' }}>
+    <TriggerWrapper tabIndex={0} ref={triggerRef} {...props}>
       {children(isOpen)}
-    </div>
+    </TriggerWrapper>
   );
 };
 
-Popover.Content = function PopoverContent({ children }: PopoverContentProps) {
+Popover.Content = function PopoverContent({ children, ...props }: PopoverContentProps) {
   const { container, contentRef } = usePopover();
   return (
     <Portal container={container}>
-      <ContentWrapper ref={contentRef}>{children}</ContentWrapper>
+      <ContentWrapper ref={contentRef} {...props}>
+        {children}
+      </ContentWrapper>
     </Portal>
   );
 };

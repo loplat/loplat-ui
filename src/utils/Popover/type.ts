@@ -1,4 +1,4 @@
-import type { ReactNode, RefObject } from 'react';
+import type { ReactNode, RefObject, HTMLAttributes } from 'react';
 import type { Keyframe } from '../../components/Accordion/types';
 
 export type PopoverPosition = { vertical: 'top' | 'center' | 'bottom'; horizontal: 'left' | 'center' | 'right' };
@@ -32,7 +32,7 @@ export type PopoverProps = {
 };
 export type PopoverContentProps = {
   children: ReactNode;
-};
+} & Omit<HTMLAttributes<HTMLDivElement>, 'children'>;
 export type PopoverTriggerProp = {
   children: (isOpen: boolean) => ReactNode;
-};
+} & Omit<HTMLAttributes<HTMLDivElement>, 'children'>;
