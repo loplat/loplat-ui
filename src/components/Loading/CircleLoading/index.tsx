@@ -35,8 +35,8 @@ export const CircleLoading = ({
         height={`${originalSize}px`}
         viewBox={`0 0 ${originalSize} ${originalSize}`}
       >
-        <circle cx="20" cy="20" fill="none" stroke={color} stroke-width={strokeWidth} r={14} opacity="0.2" />
-        <circle cx="20" cy="20" fill="none" stroke={color} stroke-width={strokeWidth} r={14} stroke-dasharray="10 1000">
+        <circle cx="20" cy="20" fill="none" stroke={color} strokeWidth={strokeWidth} r={14} opacity="0.2" />
+        <circle cx="20" cy="20" fill="none" stroke={color} strokeWidth={strokeWidth} r={14} strokeDasharray="10 1000">
           <animateTransform
             attributeName="transform"
             type="rotate"
