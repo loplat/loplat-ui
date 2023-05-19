@@ -3,7 +3,6 @@ import { Modal } from '../../../utils';
 import { Button } from '../../Button';
 import { grayscale900 } from '../../../core/colors';
 import { primary } from '../../../core';
-import { generateCustomIcon } from '../core/utils';
 import { WrapperCommonStyle, Dialog, ButtonWrapper } from '../core/commonStyle';
 import { Popup2Props, DialogProps } from '../core/types';
 import { spacing } from '../../../core';
@@ -11,18 +10,16 @@ import { spacing } from '../../../core';
 export const Popup2Component = ({
   children,
   title,
-  icon = 'check',
+  icon,
   color = primary,
-  leftButtonColor = 'ghost2',
+  leftButtonVariant = 'ghost2',
   onClickLeftButton,
   leftButtonLabel = '취소',
   onClickRightButton,
-  rightButtonColor = 'primary1',
+  rightButtonVariant = 'primary1',
   rightButtonLabel = '확인',
   ...props
 }: Popup2Props): JSX.Element => {
-  const CustomIcon = generateCustomIcon(icon, color);
-
   return (
     <Dialog
       role="dialog"
@@ -33,15 +30,15 @@ export const Popup2Component = ({
       {...props}
     >
       <Wrapper color={color}>
-        {CustomIcon}
+        {icon ? icon : null}
         <h1 id="dialogTitle">{title}</h1>
         {typeof children === 'string' ? <p id="dialogDesc">{children}</p> : <div id="dialogDesc">{children}</div>}
       </Wrapper>
       <ButtonWrapper>
-        <Button fullWidth variant={leftButtonColor} tabIndex={0} onClick={onClickLeftButton}>
+        <Button fullWidth variant={leftButtonVariant} tabIndex={0} onClick={onClickLeftButton}>
           {leftButtonLabel}
         </Button>
-        <Button fullWidth variant={rightButtonColor} onClick={onClickRightButton}>
+        <Button fullWidth variant={rightButtonVariant} onClick={onClickRightButton}>
           {rightButtonLabel}
         </Button>
       </ButtonWrapper>

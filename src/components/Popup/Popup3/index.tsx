@@ -15,11 +15,11 @@ export const Popup3Component = ({
   children,
   title,
   showCloseButton = true,
-  leftButtonColor = 'ghost2',
+  leftButtonVariant = 'ghost2',
   onClickLeftButton,
   leftButtonLabel = '취소',
   onClickRightButton,
-  rightButtonColor = 'primary1',
+  rightButtonVariant = 'primary1',
   rightButtonLabel = '확인',
   ...props
 }: Popup3Props): JSX.Element => {
@@ -45,10 +45,10 @@ export const Popup3Component = ({
         {typeof children === 'string' ? <p id="dialogDesc">{children}</p> : <div id="dialogDesc">{children}</div>}
       </Wrapper>
       <StyledButtonWrapper>
-        <Button variant={leftButtonColor} onClick={onClickLeftButton}>
+        <Button variant={leftButtonVariant} onClick={onClickLeftButton}>
           {leftButtonLabel}
         </Button>
-        <Button variant={rightButtonColor} onClick={onClickRightButton}>
+        <Button variant={rightButtonVariant} onClick={onClickRightButton}>
           {rightButtonLabel}
         </Button>
       </StyledButtonWrapper>

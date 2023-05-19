@@ -33,14 +33,9 @@ export const popupIcon = {
   icon: {
     ...generateTable({
       category: 'icon',
-      type: '"check" | "warning" | React.ReactElement',
+      type: 'React.ReactElement',
       detail: '`loplat ui`의 아이콘을 사용하실 것을 권장합니다.',
-      defaultValue: 'check',
     }),
-    description:
-      '`<Popup/>`의 상단정중앙 아이콘을 `check`, `warning`으로 정해진 아이콘을 설정하거나 직접 아이콘을 주입할 수 있습니다.',
-    options: ['check', 'warning'],
-    control: 'radio',
   },
 };
 

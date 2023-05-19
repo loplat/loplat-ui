@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 import { bluescale500, white } from '../../../core/colors';
-import { Large, Small } from '../../../core/styles/mediaQuery';
+import { NotMobile, Small } from '../../../core/styles/mediaQuery';
 import { spacing } from '../../../core';
 
 export const WrapperCommonStyle = css`
@@ -24,7 +24,10 @@ export const Dialog = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100vw;
+
+  width: fit-content;
+  max-width: 100vw;
+  padding: ${spacing(4)}px ${spacing(6)}px;
 
   .close_dialog {
     svg g path {
@@ -32,13 +35,9 @@ export const Dialog = styled.div`
     }
   }
 
-  ${Large} {
+  ${NotMobile} {
     max-width: 400px;
     padding: ${spacing(6)}px ${spacing(8)}px;
-  }
-  ${Small} {
-    max-width: 100%;
-    padding: ${spacing(4)}px ${spacing(6)}px;
   }
 `;
 

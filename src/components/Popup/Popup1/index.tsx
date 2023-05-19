@@ -2,24 +2,26 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { Button } from '../../Button';
 import { black as black500, bluescale500 } from '../../../core/colors';
-import { primary, danger } from '../../../core/styles/palette';
 import { Popup1Props, DialogProps } from '../core/types';
-import { generateCustomIcon } from '../core/utils';
 import { WrapperCommonStyle, Dialog } from '../core/commonStyle';
 import { spacing } from '../../../core';
 import { Modal } from '../../../utils';
 
 export const Popup1Component = ({
-  color = 'primary',
+  variant = 'primary',
   title,
   children,
-  icon = 'check',
+  icon,
   onClose,
+  buttonLabel = '확인',
+  buttonVariant = 'primary1',
+  onClickButton,
   ...props
 }: Popup1Props): React.ReactElement => {
-  const [mainColor, buttonColor] =
-    color === 'danger' ? ([danger, 'danger1'] as const) : ([primary, 'primary1'] as const);
-  const CustomIcon = generateCustomIcon(icon, mainColor);
+  const confirm = (e: React.MouseEvent<HTMLButtonElement>) => {
+    onClickButton && onClickButton(e);
+    onClose(e);
+  };
 
   return (
     <Dialog
@@ -29,8 +31,8 @@ export const Popup1Component = ({
       aria-labelledby={title ? 'dialogTitle' : 'dialogDesc'}
       {...props}
     >
-      <Wrapper color={mainColor} onlyTitle={!children} onlyContent={!title}>
-        {CustomIcon}
+      <Wrapper color={variant} onlyTitle={!children} onlyContent={!title}>
+        {icon ? icon : null}
         {title && <h1 id="dialogTitle">{title}</h1>}
         {children && typeof children === 'string' ? (
           <p id="dialogDesc">{children}</p>
@@ -38,8 +40,8 @@ export const Popup1Component = ({
           <div id="dialogDesc">{children}</div>
         )}
       </Wrapper>
-      <Button fullWidth variant={buttonColor} tabIndex={0} onClick={onClose}>
-        확인
+      <Button fullWidth variant={buttonVariant} tabIndex={0} onClick={confirm}>
+        {buttonLabel}
       </Button>
     </Dialog>
   );
@@ -74,6 +76,7 @@ export const Wrapper = styled.section<{ color: string; onlyTitle: boolean; onlyC
     color: ${bluescale500};
     font-size: 0.875rem;
     line-height: 21px;
+    text-align: center;
 
     ${({ onlyContent }) =>
       onlyContent
