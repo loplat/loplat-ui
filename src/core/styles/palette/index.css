@@ -1,0 +1,69 @@
+* {
+  --black: #222222;
+  --white: #ffffff;
+
+  --background100: #f7f7f7;
+  --background200: #fafbfc;
+  --background300: #eef0f3;
+
+  --blue100: #ebf6ff;
+  --blue200: #cce8ff;
+  --blue300: #8cc6ff;
+  --blue400: #61aaff;
+  --blue500: #1678ff;
+  --blue600: #0b63e5;
+
+  --bluescale50: #fafbfc;
+  --bluescale100: #f5f7fa;
+  --bluescale200: #ebeff5;
+  --bluescale300: #dce3ed;
+  --bluescale400: #cfd9e6;
+  --bluescale500: #bfc8d6;
+  --bluescale600: #9ca7b8;
+  --bluescale700: #818da1;
+  --bluescale800: #6b778c;
+  --bluescale900: #626b7a;
+
+  --grayscale50: #f7f7f7;
+  --grayscale100: #f0f0f0;
+  --grayscale200: #e1e1e1;
+  --grayscale300: #d1d1d1;
+  --grayscale400: #c1c1c1;
+  --grayscale500: #b5b5b5;
+  --grayscale600: #aaaaaa;
+  --grayscale700: #888888;
+  --grayscale800: #666666;
+  --grayscale900: #444444;
+
+  --green100: #eff8eb;
+  --green200: #94d573;
+  --green300: #67c23a;
+  --green400: #529a2e;
+
+  --red100: #f7d7de;
+  --red200: #e57a92;
+  --red300: #d83a5e;
+  --red400: #ba2547;
+
+  --yellow100: #fff1cd;
+  --yellow200: #fecf4f;
+  --yellow300: #ffba00;
+  --yellow400: #cd9500;
+
+  --purple: #d999ff;
+  --teal: #2cd1ac;
+  --pink: #d26aaf;
+  --orange: #ffa25c;
+  --olive: #b4be52;
+  --turquoise: #98a8ff;
+  --yellowgreen: #7adb63;
+
+  --success: var(--green300);
+  --danger: var(--red300);
+  --warning: var(--yellow300);
+  --info: var(--blue500);
+  --primaryLighter: var(--blue100);
+  --primaryLight: var(--blue300);
+  --primary: var(--blue500);
+  --primaryDark: var(--blue600);
+}
