@@ -13,11 +13,11 @@ export type CollapseProps = {
    *  easing style default: 'cubic-bezier(0.4, 0, 0.2, 1)' */
   easing?: string;
   /** 열릴 때 실행되는 함수 */
-  onExpand?: () => void;
+  onExpand?: (element: HTMLDivElement) => void;
   /** 열리고 나서 실행되는 함수 */
-  onExpandFinished?: () => void;
+  onExpandFinished?: (element: HTMLDivElement) => void;
   /** 닫힐 때 실행되는 함수 */
-  onCollapse?: () => void;
+  onCollapse?: (element: HTMLDivElement) => void;
   /** 닫히고 나서 실행되는 함수 */
-  onCollapseFinished?: () => void;
+  onCollapseFinished?: (element: HTMLDivElement) => void;
 };

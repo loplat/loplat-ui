@@ -74,8 +74,8 @@ export const Collapse = ({
     const targetElem = getTargetNode();
 
     toggleClassName(status);
-    if (status === 'expanding') onExpand && onExpand();
-    if (status === 'shrinking') onCollapse && onCollapse();
+    if (status === 'expanding') onExpand && onExpand(targetElem);
+    if (status === 'shrinking') onCollapse && onCollapse(targetElem);
 
     if (animationRef.current) animationRef.current.cancel();
 
@@ -109,12 +109,12 @@ export const Collapse = ({
     if (status === 'expanding') {
       setExpandedStyle();
       targetElem.classList.add('expanded');
-      onExpandFinished && onExpandFinished();
+      onExpandFinished && onExpandFinished(targetElem);
       changeAccessibility(true);
     } else {
       setShrinkStyle();
       targetElem.classList.add('collapsed');
-      onCollapseFinished && onCollapseFinished();
+      onCollapseFinished && onCollapseFinished(targetElem);
       changeAccessibility(false);
     }
 
