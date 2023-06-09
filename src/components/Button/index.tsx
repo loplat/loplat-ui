@@ -241,7 +241,7 @@ export const BaseButton = styled.button<BaseButtonProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: ${({ padding }) => padding};
+  padding: ${spacing(2)}px ${spacing(4)}px;
   ${marginSpacingStyle};
   cursor: pointer;
 
@@ -262,8 +262,7 @@ export const BaseButton = styled.button<BaseButtonProps>`
   }
 
   span {
-    font-size: 1.125rem;
-    line-height: 1;
+    font-size: 1rem;
   }
 
   div {
@@ -309,6 +308,7 @@ export const BaseButton = styled.button<BaseButtonProps>`
   }
 
   ${NotMobile} {
+    padding: ${({ padding }) => padding};
     &:hover:not(:disabled, :active) {
       color: ${({ text }) => text.hover};
       border-color: ${({ border, borderless }) => (borderless ? 'transparent' : border.hover)};

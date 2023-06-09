@@ -82,6 +82,7 @@ const Message = styled.p<{ color: string }>`
   margin: 3px 0 0 0;
   width: 100%;
   color: ${({ color }) => color};
+  text-align: left;
 `;
 
 export const Input = React.forwardRef(

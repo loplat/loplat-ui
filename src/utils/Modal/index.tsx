@@ -10,6 +10,7 @@ export interface ModalProps {
   onClose: () => void;
   zIndex?: number;
   children: React.ReactElement;
+  showMask?: boolean;
 }
 
 const changeAccessibility = (root: HTMLElement, modalStatus: 'open' | 'close') => {
@@ -28,7 +29,13 @@ const changeAccessibility = (root: HTMLElement, modalStatus: 'open' | 'close') =
   });
 };
 
-export function Modal({ isOpen, onClose, zIndex = modalZIndex, children }: ModalProps): React.ReactElement | null {
+export function Modal({
+  isOpen,
+  onClose,
+  zIndex = modalZIndex,
+  children,
+  showMask = true,
+}: ModalProps): React.ReactElement | null {
   const portalId = useMemo(() => `loplat-ui-modal_${generateUniqueId()}`, []);
   const [container, setContainer] = useState<Element | null>(null);
 
@@ -75,7 +82,7 @@ export function Modal({ isOpen, onClose, zIndex = modalZIndex, children }: Modal
   return (
     <Portal container={container}>
       <ModalWrapper zIndex={zIndex}>
-        <div className="background" onClick={onClose} />
+        <div className={`background ${showMask ? 'mask' : ''}`} onClick={onClose} />
         <div className="content">{children}</div>
       </ModalWrapper>
     </Portal>
@@ -89,11 +96,14 @@ const ModalWrapper = styled.div<Pick<ModalProps, 'zIndex'>>`
   left: 0;
   right: 0;
   z-index: ${({ zIndex }) => zIndex};
+  box-sizing: border-box;
 
   & > .background {
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
+    &.mask {
+      background-color: rgba(0, 0, 0, 0.4);
+    }
   }
 
   & > .content {
@@ -101,5 +111,6 @@ const ModalWrapper = styled.div<Pick<ModalProps, 'zIndex'>>`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    max-width: 100vw;
   }
 `;

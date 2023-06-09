@@ -1,0 +1,114 @@
+import { useState } from 'react';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { Popup } from './index';
+import { Button } from '../Button/index.tsx';
+import { primary, danger, bluescale500 } from '../../core';
+import { CheckCircleFillIcon, SearchIcon } from '../../assets/Icon';
+import { Input } from '../Input';
+
+<Meta title="Components/Popup" component={Popup} />
+
+export const Template = (args) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const toggle = () => setIsOpen(!isOpen);
+  const close = () => setIsOpen(false);
+  return (
+    <div>
+      <Button onClick={toggle}>Popup 열기</Button>
+      <Popup isOpen={isOpen} onClose={close} {...args}>
+        <Popup.Header icon={<CheckCircleFillIcon fillColor={primary} size={30} />}>타이틀이 들어가는 자리</Popup.Header>
+        <Popup.Content>내용을 입력해주세요.</Popup.Content>
+        <Popup.Footer>
+          <Button variant="primary1" fullWidth onClick={close}>
+            확인
+          </Button>
+        </Popup.Footer>
+      </Popup>
+    </div>
+  );
+};
+
+# Popup
+
+닫을 수 있는 경고, 확인 및 기타 상호작용이 가능한 컴포넌트입니다. 화면 정중앙에 렌더링이 됩니다.
+
+`<Modal/>`을 기반으로 만들어졌습니다.
+
+<Canvas withSource="none" args={{}}>
+  <Story name="default">{Template.bind({})}</Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+## 예제
+
+<Canvas>
+  <Story name="two buttons">
+    {() => {
+      const [isOpen, setIsOpen] = useState(false);
+      const toggle = () => setIsOpen(!isOpen);
+      const close = () => setIsOpen(false);
+      return (
+        <div>
+          <Button onClick={toggle}>Popup 열기</Button>
+          <Popup isOpen={isOpen} onClose={close}>
+            <Popup.Header icon={<CheckCircleFillIcon fillColor={primary} size={30} />}>
+              타이틀이 들어가는 자리
+            </Popup.Header>
+            <Popup.Content>내용을 입력해주세요.</Popup.Content>
+            <Popup.Footer>
+              <Button variant="ghost1" fullWidth onClick={close}>
+                취소
+              </Button>
+              <Button variant="primary1" fullWidth onClick={close}>
+                확인
+              </Button>
+            </Popup.Footer>
+          </Popup>
+        </div>
+      );
+    }}
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="custom footer">
+    {() => {
+      const [isOpen, setIsOpen] = useState(false);
+      const toggle = () => setIsOpen(!isOpen);
+      const close = () => setIsOpen(false);
+      return (
+        <div>
+          <Button onClick={toggle}>Popup 열기</Button>
+          <Popup isOpen={isOpen} onClose={close}>
+            <Popup.Header>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <CheckCircleFillIcon fillColor={primary} size={16} mr={2} />
+                타이틀이 들어가는 자리
+              </div>
+            </Popup.Header>
+            <Popup.Content>
+              <Input
+                placeholder="한글 기본 텍스트"
+                helperText="한글 기본 도움말"
+                isIconVisible
+                rightIcon={<SearchIcon fillColor={bluescale500} />}
+              />
+            </Popup.Content>
+            <Popup.Footer>
+              <Button variant="white" onClick={() => console.log('test')} mr={10}>
+                다운로드
+              </Button>
+              <Button variant="ghost1" fullWidth onClick={close}>
+                취소
+              </Button>
+              <Button variant="primary1" fullWidth onClick={close}>
+                확인
+              </Button>
+            </Popup.Footer>
+          </Popup>
+        </div>
+      );
+    }}
+  </Story>
+</Canvas>
