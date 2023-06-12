@@ -4,7 +4,7 @@
   "description": "A React UI Component Library, powered by loplat Frontend Team.",
   "author": "loplat",
   "engines": {
-    "node": ">= 16.14.0 <18"
+    "node": ">= 16.14.0"
   },
   "license": "MIT",
   "homepage": "https://ui.loplat.com",
