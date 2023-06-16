@@ -18,6 +18,7 @@ export const Tooltip = ({
   const wrapperRef = useRef<HTMLDivElement>(null);
   const popperRef = useRef<HTMLDivElement>(null);
   const animation = useRef<Animation | null>(null);
+  const tooltipDelayTimer = useRef<NodeJS.Timer | null>(null);
 
   useAnimation();
 
@@ -26,7 +27,7 @@ export const Tooltip = ({
 
     if (!container) {
       createPopper();
-      setTimeout(() => {
+      tooltipDelayTimer.current = setTimeout(() => {
         calculatePosition();
         setAnimationOpen();
       }, enterDelay);
@@ -53,6 +54,7 @@ export const Tooltip = ({
     animation.current.onfinish = () => {
       popperElement.style.opacity = '1';
       animation.current = null;
+      clearTooltipDelay();
     };
   };
 
@@ -124,41 +126,27 @@ export const Tooltip = ({
   };
 
   const onMouseEnter = (e: React.MouseEvent) => {
-    // children의 eventHandler 먼저 실행
-    if (children.props.onMouseEnter) {
-      children.props.onMouseEnter(e);
-    }
-    if (disabled) return;
+    children.props.onMouseEnter?.(e);
 
+    if (disabled) return;
+    renderTooltip();
+  };
+
+  const onFocus = (e: React.FocusEvent<HTMLElement>) => {
+    animation.current?.cancel();
+    children.props.onFocus?.(e);
     renderTooltip();
   };
 
   const onMouseLeave = (e: React.MouseEvent) => {
-    // children의 eventHandler 먼저 실행
-    if (children.props.onMouseLeave) {
-      children.props.onMouseLeave(e);
-    }
-    // popper 제거
+    children.props.onMouseLeave?.(e);
+    clearTooltipDelay();
     removePopper();
   };
 
-  const onFocus = (e: React.FocusEvent<HTMLElement>) => {
-    if (animation.current) {
-      animation.current.cancel();
-    }
-
-    if (children.props.onFocus) {
-      children.props.onFocus(e);
-    }
-
-    renderTooltip();
-  };
-
   const onBlur = (e: React.FocusEvent<HTMLElement>) => {
-    if (children.props.onBlur) {
-      children.props.onBlur(e);
-    }
-
+    children.props.onBlur?.(e);
+    clearTooltipDelay();
     removePopper();
   };
 
@@ -167,6 +155,12 @@ export const Tooltip = ({
     document.body.appendChild(newContainer);
     setContainer(newContainer);
   }, []);
+
+  const clearTooltipDelay = () => {
+    if (!tooltipDelayTimer.current) return;
+    clearTimeout(tooltipDelayTimer.current);
+    tooltipDelayTimer.current = null;
+  };
 
   const removePopper = useCallback(() => {
     if (!popperRef.current) return;
@@ -194,12 +188,12 @@ export const Tooltip = ({
     if (container) {
       container.addEventListener('mouseenter', onmouseenter);
       container.addEventListener('mouseleave', onmouseleave);
-
-      return () => {
-        container.removeEventListener('mouseenter', onmouseenter);
-        container.removeEventListener('mouseleave', onmouseleave);
-      };
     }
+
+    return () => {
+      container?.removeEventListener('mouseenter', onmouseenter);
+      container?.removeEventListener('mouseleave', onmouseleave);
+    };
   }, [container, removePopper]);
 
   useEffect(() => {
@@ -217,9 +211,9 @@ export const Tooltip = ({
     <Wrapper ref={wrapperRef}>
       {React.cloneElement(children, {
         ...children.props,
+        tabIndex: 0,
         onMouseEnter,
         onMouseLeave,
-        tabIndex: 0,
         onFocus,
         onBlur,
       })}
