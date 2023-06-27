@@ -1,3 +1,5 @@
+'use client';
+
 import React, { ForwardedRef } from 'react';
 import styled from '@emotion/styled';
 import { primary, danger } from '../../core/styles';

@@ -1,3 +1,5 @@
+'use client';
+
 import React, { ForwardedRef } from 'react';
 import type { SwitchProps } from './types';
 import { Wrapper, ThumbWrapper, Thumb, Track } from './styles';

@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import type { TabListProps, DecoratorPosition, TabListStyles, DefaultTabValue } from './types';
 import { TabListDiv, Tab, allDefaultStyles } from './styles';

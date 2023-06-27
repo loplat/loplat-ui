@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { spacing, tooltipZIndex } from '../../core';
 import { Portal } from '../../utils';

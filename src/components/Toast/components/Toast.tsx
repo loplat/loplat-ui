@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useCallback, useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import { MarginSpacing, marginSpacingProps, marginSpacingStyle } from '../../../core/Spacing';

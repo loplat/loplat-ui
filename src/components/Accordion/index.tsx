@@ -1,3 +1,5 @@
+'use client';
+
 import React, { forwardRef, HTMLAttributes, useEffect, useRef, useState } from 'react';
 import type { ReactNode, FunctionComponentElement } from 'react';
 import type { AccordionIndicatorProps, AccordionProps, AccordionTitleProps, IconPosition } from './types';

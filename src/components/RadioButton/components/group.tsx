@@ -1,3 +1,5 @@
+'use client';
+
 import { RadioButtonGroupProps } from '../core/types';
 import { RadioButton } from './single';
 import { BoxSpacing, boxSpacingStyle } from '../../../core/Spacing';

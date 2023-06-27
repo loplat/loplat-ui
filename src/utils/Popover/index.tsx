@@ -1,3 +1,5 @@
+'use client';
+
 import { createContext, useState, useRef, useContext, useMemo } from 'react';
 import { PopoverContentProps, PopoverContextProps, PopoverTriggerProp, PopoverProps } from './type';
 import { generateUniqueId } from '../../functions/uniqueId';
