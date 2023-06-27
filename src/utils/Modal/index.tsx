@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useEffect, useMemo, useState } from 'react';
 import styled from '@emotion/styled';
 import { Portal } from '../Portal';

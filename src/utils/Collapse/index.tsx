@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useRef } from 'react';
 import useAnimation from '../../functions/useAnimation';
 import type { CollapseProps, AnimateStatus } from './types';
