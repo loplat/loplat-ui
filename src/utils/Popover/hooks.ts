@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect } from 'react';
 import { PopoverContextProps, PopoverProps } from './type';
 
 type PopoverEventParams = Pick<PopoverContextProps, 'triggerType' | 'triggerRef' | 'contentRef' | 'container'> & {
@@ -38,64 +38,6 @@ export const useClick = ({
       document.removeEventListener('click', handleClick);
     };
   }, [close, contentRef, disabled, toggle, triggerRef, triggerType]);
-};
-
-export const useHover = ({
-  triggerType,
-  triggerRef,
-  container,
-  toggle,
-  close,
-  disabled,
-}: Omit<PopoverEventParams, 'isOpen' | 'contentRef'>) => {
-  const timer = useRef<ReturnType<typeof setTimeout>>();
-  const isHovered = useRef(false);
-
-  const closeSlowly = useCallback(() => {
-    clearTimeout(timer.current);
-    isHovered.current = false;
-    timer.current = setTimeout(() => {
-      if (isHovered.current) return;
-      isHovered.current = false;
-      close();
-    }, 300);
-  }, [close]);
-
-  useEffect(() => {
-    if (disabled || triggerType === 'click') return;
-    const $trigger = triggerRef.current;
-    if (!$trigger) return;
-
-    const openConditionally = () => {
-      if (isHovered.current) return;
-      isHovered.current = true;
-      toggle();
-    };
-
-    $trigger.addEventListener('mouseenter', openConditionally);
-    $trigger.addEventListener('mouseleave', closeSlowly);
-
-    return () => {
-      $trigger.removeEventListener('mouseenter', openConditionally);
-      $trigger.removeEventListener('mouseleave', closeSlowly);
-      clearTimeout(timer.current);
-    };
-  }, [closeSlowly, disabled, toggle, triggerRef, triggerType]);
-
-  useEffect(() => {
-    if (disabled || triggerType === 'click') return;
-    if (!container) return;
-
-    const stayOpen = () => (isHovered.current = true);
-
-    container.addEventListener('mouseenter', stayOpen);
-    container.addEventListener('mouseleave', closeSlowly);
-
-    return () => {
-      container.removeEventListener('mouseenter', stayOpen);
-      container.removeEventListener('mouseleave', closeSlowly);
-    };
-  }, [closeSlowly, container, disabled, triggerType]);
 };
 
 export const useKeydown = ({
