@@ -1,10 +1,10 @@
 'use client';
 
-import { createContext, useState, useRef, useContext, useMemo } from 'react';
+import { createContext, useState, useRef, useContext, useMemo, useEffect } from 'react';
 import { PopoverContentProps, PopoverContextProps, PopoverTriggerProp, PopoverProps } from './type';
 import { generateUniqueId } from '../../functions/uniqueId';
 import { Portal } from '..';
-import { useCalculatePosition, useClick, useHover, useKeydown } from './hooks';
+import { useCalculatePosition, useClick, useKeydown } from './hooks';
 import { ContentWrapper, TriggerWrapper } from './styles';
 import useAnimation from '../../functions/useAnimation';
 
@@ -47,6 +47,9 @@ export const Popover = ({
   const animation = useRef<Animation | null>(null);
   const status = useRef<PopoverStatus>('closed');
 
+  const openTimer = useRef<NodeJS.Timer | null>(null);
+  const closeTimer = useRef<NodeJS.Timer | null>(null);
+
   // portal
   const [container, setContainer] = useState<PopoverContextProps['container']>(null);
   const uniqueId = useMemo(() => generateUniqueId(), []);
@@ -68,12 +71,17 @@ export const Popover = ({
   const open = () => {
     status.current = 'opening';
     if (!container) {
-      setTimeout(() => createPopover(), enterDelay);
+      if (openTimer.current) clearTimeout(openTimer.current);
+      openTimer.current = setTimeout(() => createPopover(), enterDelay);
     }
   };
   const close = () => {
     status.current = 'closing';
-    setTimeout(() => setAnimation(false), outDelay);
+
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    closeTimer.current = setTimeout(() => {
+      setAnimation(false);
+    }, outDelay);
   };
 
   const toggle = () => {
@@ -106,6 +114,7 @@ export const Popover = ({
     if (isOpening) {
       if (contentRef.current) contentRef.current.style.opacity = '1';
       if (triggerType === 'click') document.body.style.overflow = 'hidden';
+      if (openTimer.current) clearTimeout(openTimer.current);
     } else {
       removePopover();
       if (triggerType === 'click') document.body.style.overflow = 'initial';
@@ -123,7 +132,6 @@ export const Popover = ({
   useAnimation();
   useKeydown({ toggle, triggerRef, close, disabled });
   useClick({ triggerType, triggerRef, contentRef, close, toggle, disabled });
-  useHover({ triggerType, triggerRef, close, toggle, disabled, container });
   useCalculatePosition({
     container,
     triggerRef,
@@ -132,6 +140,58 @@ export const Popover = ({
     offset,
     offsetDirection,
     setOpenAnimation,
+  });
+
+  // 이하 trigger type = hover 일 때의 로직
+  const isHovered = useRef(false);
+
+  const closeSlowly = () => {
+    isHovered.current = false;
+    if (openTimer.current) clearTimeout(openTimer.current);
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    closeTimer.current = setTimeout(() => {
+      if (isHovered.current) return;
+      isHovered.current = false;
+      close();
+    }, 300);
+  };
+
+  useEffect(() => {
+    if (disabled || triggerType === 'click') return;
+    const $trigger = triggerRef.current;
+    if (!$trigger) return;
+
+    const openConditionally = () => {
+      isHovered.current = true;
+      if (openTimer.current) clearTimeout(openTimer.current);
+      if (closeTimer.current) clearTimeout(closeTimer.current);
+      openTimer.current = setTimeout(() => {
+        if (isHovered.current) open();
+      }, 0);
+    };
+
+    $trigger.addEventListener('mouseenter', openConditionally);
+    $trigger.addEventListener('mouseleave', closeSlowly);
+
+    return () => {
+      $trigger.removeEventListener('mouseenter', openConditionally);
+      $trigger.removeEventListener('mouseleave', closeSlowly);
+    };
+  });
+
+  useEffect(() => {
+    if (disabled || triggerType === 'click') return;
+    if (!container) return;
+
+    const stayOpen = () => (isHovered.current = true);
+
+    container.addEventListener('mouseenter', stayOpen);
+    container.addEventListener('mouseleave', closeSlowly);
+
+    return () => {
+      container.removeEventListener('mouseenter', stayOpen);
+      container.removeEventListener('mouseleave', closeSlowly);
+    };
   });
 
   return (
