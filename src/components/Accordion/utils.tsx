@@ -137,20 +137,6 @@ export const AccordionContextProvider = ({
     iconAnimationRef.current = iconAnimation;
   };
 
-  const getAccordionTitleProps = () => {
-    return {
-      id: titleId,
-      'aria-controls': contentId,
-    };
-  };
-  const getAccordionBodyProps = () => {
-    return {
-      id: contentId,
-      'aria-labelledby': titleId,
-      role: 'region',
-    };
-  };
-
   const value = useMemo(
     () => ({
       toggle,
@@ -164,8 +150,6 @@ export const AccordionContextProvider = ({
       value={{
         ...value,
         contentRef,
-        getAccordionBodyProps,
-        getAccordionTitleProps,
         variant,
       }}
     >
