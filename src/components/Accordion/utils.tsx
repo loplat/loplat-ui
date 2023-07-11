@@ -1,7 +1,6 @@
 import { useRef, createContext, useContext, useMemo, useEffect } from 'react';
 import type { MouseEvent } from 'react';
 import type { AccordionContextReturnType, AccordionContextProviderProps, Keyframe, AnimateStatus } from './types';
-import { generateUniqueId } from '../../functions/uniqueId';
 import useAnimation from '../../functions/useAnimation';
 
 export const AccordionContext = createContext<AccordionContextReturnType | undefined>(undefined);
@@ -19,10 +18,6 @@ export const AccordionContextProvider = ({
   const contentRef = useRef<HTMLDivElement>(null);
   const accordionAnimationRef = useRef<Animation | null>(null);
   const iconAnimationRef = useRef<Animation | null>(null);
-  const [titleId, contentId] = useMemo(
-    () => ['title', 'content'].map((type) => `loplat-ui__${type}__${generateUniqueId()}`),
-    [],
-  );
 
   useAnimation();
   useEffect(() => {
@@ -79,8 +74,7 @@ export const AccordionContextProvider = ({
 
   const setAccordionAnimation = (status: AnimateStatus, start: number, end: number) => {
     const { accordion, content } = domRequirements();
-    if (status == 'expanding') {
-      if (accordion.classList.contains('expanded')) return;
+    if (status == 'expanding' && !accordion.classList.contains('expanded')) {
       accordion.classList.add('expanded');
     } else {
       accordion.classList.remove('expanded');
