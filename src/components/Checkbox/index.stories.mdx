@@ -21,11 +21,9 @@ import { runTest, runGroupTest } from './storybookTest.ts';
 />
 
 export const Template = (args) => {
-  const [checked, setChecked] = useState(false);
-  const toggle = (e) => {
-    setChecked(e.target.checked);
-  };
-  return <Checkbox checked={checked} {...args} onChange={toggle} />;
+  const [checked, setChecked] = useState(args.checked ?? false);
+  const toggle = (e, checked) => setChecked(checked);
+  return <Checkbox {...args} checked={checked} onChange={toggle} />;
 };
 
 export const Group = (args) => {
@@ -56,7 +54,7 @@ export const Group = (args) => {
   return (
     <>
       {list.map((props) => (
-        <Checkbox {...props} onChange={(e) => toggle(props.children, e.target.checked)} key={props.name} mb={2} />
+        <Checkbox {...props} onChange={(e, checked) => toggle(props.children, checked)} key={props.name} mb={2} />
       ))}
     </>
   );
