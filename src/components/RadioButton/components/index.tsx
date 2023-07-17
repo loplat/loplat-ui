@@ -2,8 +2,7 @@
 
 import React from 'react';
 import styled from '@emotion/styled';
-import { grayscale50, grayscale800, grayscale200, grayscale500 } from '../../../core/colors';
-import { blue100 } from '../../../core/colors/blue';
+import { grayscale50, grayscale800, grayscale200, grayscale500, blue100 } from '../../../core/colors';
 import { primary } from '../../../core/styles/palette';
 import { MarginSpacing, marginSpacingProps, marginSpacingStyle } from '../../../core/Spacing';
 import { RadioButtonProps } from '../core/types';
