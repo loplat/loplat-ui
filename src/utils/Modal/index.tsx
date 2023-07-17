@@ -1,15 +1,18 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import styled from '@emotion/styled';
+'use client';
+
+import { useEffect, useMemo, useState, ReactElement } from 'react';
+
 import { Portal } from '../Portal';
 import { generateUniqueId } from '../../functions/uniqueId';
 import { modalZIndex } from '../../core';
 import { getTabbableElements } from '../../functions/getTabbableElements';
+import { ModalWrapper } from './styles';
 
 export interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   zIndex?: number;
-  children: React.ReactElement;
+  children: ReactElement;
   showMask?: boolean;
 }
 
@@ -35,7 +38,7 @@ export function Modal({
   zIndex = modalZIndex,
   children,
   showMask = true,
-}: ModalProps): React.ReactElement | null {
+}: ModalProps): ReactElement | null {
   const portalId = useMemo(() => `loplat-ui-modal_${generateUniqueId()}`, []);
   const [container, setContainer] = useState<Element | null>(null);
 
@@ -88,29 +91,3 @@ export function Modal({
     </Portal>
   );
 }
-
-const ModalWrapper = styled.div<Pick<ModalProps, 'zIndex'>>`
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: ${({ zIndex }) => zIndex};
-  box-sizing: border-box;
-
-  & > .background {
-    width: 100%;
-    height: 100%;
-    &.mask {
-      background-color: rgba(0, 0, 0, 0.4);
-    }
-  }
-
-  & > .content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    max-width: 100vw;
-  }
-`;

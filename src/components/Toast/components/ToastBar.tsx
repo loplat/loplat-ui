@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useEffect, useMemo, useRef } from 'react';
 import { Body } from '../../../core/Typography/Body';
 import { Close as CloseIcon } from '../../../assets/Icon/generated/Close';

@@ -1,3 +1,5 @@
+'use client';
+
 import React, { ForwardedRef } from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
@@ -19,13 +21,13 @@ export const Checkbox = React.forwardRef(
       <CheckboxWrapper className={className} isIntermediate={isIntermediate} {...marginSpacingProps(props)}>
         <input
           type="checkbox"
-          name={name}
-          id={id}
-          checked={isChecked}
-          onChange={onChange}
           {...props}
           ref={ref}
+          id={id}
+          name={name}
+          checked={isChecked}
           disabled={disabled}
+          onChange={(e) => onChange?.(e, e.currentTarget.checked)}
         />
         <Label htmlFor={id} disabled={disabled}>
           <Checkmark className="checkmark" />
@@ -38,6 +40,7 @@ export const Checkbox = React.forwardRef(
 
 const CheckboxWrapper = styled.div<MarginSpacing & { isIntermediate: boolean }>`
   ${marginSpacingStyle};
+  position: relative;
   display: flex;
 
   input[type='checkbox'] {
@@ -56,6 +59,7 @@ const CheckboxWrapper = styled.div<MarginSpacing & { isIntermediate: boolean }>`
         box-sizing: border-box;
       }
     }
+
     &:not(:checked) ~ label .checkmark {
       ${({ isIntermediate }) =>
         isIntermediate
@@ -73,22 +77,23 @@ const CheckboxWrapper = styled.div<MarginSpacing & { isIntermediate: boolean }>`
           : ''}
     }
 
-    ${({ isIntermediate }) =>
-      isIntermediate
-        ? ``
-        : css`
-            &:hover:not(:checked) ~ label .checkmark {
+    &:hover:not(:checked) ~ label .checkmark {
+      ${({ isIntermediate }) =>
+        isIntermediate
+          ? ''
+          : css`
               border-color: ${grayscale400};
-            }
-          `}
+            `}
+    }
 
     &:focus-visible ~ label .checkmark {
       outline: 2px solid ${primary};
     }
+
     &:disabled ~ label .checkmark {
       border-color: ${grayscale200};
       background-color: ${grayscale100};
-      &::after {
+      ::after {
         border-color: ${grayscale500};
       }
     }
@@ -101,8 +106,16 @@ const Label = styled.label<Pick<BaseLabel, 'disabled'>>`
   align-items: center;
   font-size: 1rem;
 
-  color: ${({ disabled }) => (disabled ? grayscale500 : grayscale800)};
-  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
+  ${({ disabled }) =>
+    disabled
+      ? css`
+          color: ${grayscale500};
+          cursor: not-allowed;
+        `
+      : css`
+          color: ${grayscale800};
+          cursor: pointer;
+        `}
 `;
 
 const Checkmark = styled.span`
@@ -115,7 +128,7 @@ const Checkmark = styled.span`
   background-color: white;
   margin-right: 0.5rem;
 
-  :after {
+  ::after {
     content: '';
     position: absolute;
     top: 50%;

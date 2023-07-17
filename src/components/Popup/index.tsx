@@ -1,3 +1,5 @@
+'use client';
+
 import { Modal } from '../../utils';
 import { IconButton } from '../IconButton';
 import { CloseIcon } from '../../assets/Icon/export.generated';

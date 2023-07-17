@@ -37,7 +37,5 @@ export type AccordionContextProviderProps = {
 export type AccordionContextReturnType = {
   toggle: NonNullable<AccordionBase['onToggle']>;
   contentRef: MutableRefObject<HTMLDivElement | null>;
-  getAccordionTitleProps: () => Record<string, string | number>;
-  getAccordionBodyProps: () => Record<string, string | number>;
   setIconAnimation: (keyframes: Keyframe[], iconElement: HTMLDivElement) => void;
 } & Pick<AccordionBase, 'variant'>;

@@ -1,7 +1,7 @@
 import { useState, Fragment } from 'react';
 import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs';
 import { Popover } from './index.tsx';
-import { RadioButtonGroup } from '../../components/RadioButton/';
+import { RadioButton } from '../../components/RadioButton/';
 import { blue300, blue100, blue500, grayscale200, grayscale500, grayscale900, teal } from '../../core/colors';
 
 <Meta title="Utils/Popover" component={Popover} />
@@ -141,65 +141,105 @@ export const Example = () => {
       <section style={{ marginTop: '3rem', marginBottom: '1rem', display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
         <fieldset style={{ flexBasis: '45%', maxWidth: '50%', border: 'none' }}>
           <legend style={{ color: teal }}>anchor origin vertical</legend>
-          <div>
-            <RadioButtonGroup
-              selectedValue={anchorVertical}
+          <div style={{ display: 'flex', gap: 10 }}>
+            <RadioButton
               onChange={(e) => setAnchorVertical(e.currentTarget.value)}
+              value="top"
+              label="top"
               name="anchor/vertical"
-              direction="row"
-              list={[
-                { value: 'top', label: 'top' },
-                { value: 'center', label: 'center' },
-                { value: 'bottom', label: 'bottom' },
-              ]}
+              checked={anchorVertical === 'top'}
+            />
+            <RadioButton
+              onChange={(e) => setAnchorVertical(e.currentTarget.value)}
+              value="center"
+              label="center"
+              name="anchor/vertical"
+              checked={anchorVertical === 'center'}
+            />
+            <RadioButton
+              onChange={(e) => setAnchorVertical(e.currentTarget.value)}
+              value="bottom"
+              label="bottom"
+              name="anchor/vertical"
+              checked={anchorVertical === 'bottom'}
             />
           </div>
         </fieldset>
         <fieldset style={{ flexBasis: '45%', maxWidth: '50%', border: 'none' }}>
           <legend style={{ color: teal }}>anchor origin horizontal</legend>
-          <div>
-            <RadioButtonGroup
-              selectedValue={anchorHorizontal}
+          <div style={{ display: 'flex', gap: 10 }}>
+            <RadioButton
               onChange={(e) => setAnchorHorizontal(e.currentTarget.value)}
+              value="left"
+              label="left"
               name="anchor/horizontal"
-              direction="row"
-              list={[
-                { value: 'left', label: 'left' },
-                { value: 'center', label: 'center' },
-                { value: 'right', label: 'right' },
-              ]}
+              checked={anchorHorizontal === 'left'}
+            />
+            <RadioButton
+              onChange={(e) => setAnchorHorizontal(e.currentTarget.value)}
+              value="center"
+              label="center"
+              name="anchor/horizontal"
+              checked={anchorHorizontal === 'center'}
+            />
+            <RadioButton
+              onChange={(e) => setAnchorHorizontal(e.currentTarget.value)}
+              value="right"
+              label="right"
+              name="anchor/horizontal"
+              checked={anchorHorizontal === 'right'}
             />
           </div>
         </fieldset>
         <fieldset style={{ flexBasis: '45%', maxWidth: '50%', border: 'none' }}>
           <legend style={{ color: grayscale500 }}>transform origin vertical</legend>
-          <div>
-            <RadioButtonGroup
-              selectedValue={transformVertical}
+          <div style={{ display: 'flex', gap: 10 }}>
+            <RadioButton
               onChange={(e) => setTransformVertical(e.currentTarget.value)}
+              value="top"
+              label="top"
               name="portal/vertical"
-              direction="row"
-              list={[
-                { value: 'top', label: 'top' },
-                { value: 'center', label: 'center' },
-                { value: 'bottom', label: 'bottom' },
-              ]}
+              checked={transformVertical === 'top'}
+            />
+            <RadioButton
+              onChange={(e) => setTransformVertical(e.currentTarget.value)}
+              value="center"
+              label="center"
+              name="portal/vertical"
+              checked={transformVertical === 'center'}
+            />
+            <RadioButton
+              onChange={(e) => setTransformVertical(e.currentTarget.value)}
+              value="bottom"
+              label="bottom"
+              name="portal/vertical"
+              checked={transformVertical === 'bottom'}
             />
           </div>
         </fieldset>
         <fieldset style={{ flexBasis: '45%', maxWidth: '50%', border: 'none' }}>
           <legend style={{ color: grayscale500 }}>transform origin horizontal</legend>
-          <div>
-            <RadioButtonGroup
-              selectedValue={transformHorizontal}
+          <div style={{ display: 'flex', gap: 10 }}>
+            <RadioButton
               onChange={(e) => setTransformHorizontal(e.currentTarget.value)}
+              value="left"
+              label="left"
               name="portal/horizontal"
-              direction="row"
-              list={[
-                { value: 'left', label: 'left' },
-                { value: 'center', label: 'center' },
-                { value: 'right', label: 'right' },
-              ]}
+              checked={transformHorizontal === 'left'}
+            />
+            <RadioButton
+              onChange={(e) => setTransformHorizontal(e.currentTarget.value)}
+              value="center"
+              label="center"
+              name="portal/horizontal"
+              checked={transformHorizontal === 'center'}
+            />
+            <RadioButton
+              onChange={(e) => setTransformHorizontal(e.currentTarget.value)}
+              value="right"
+              label="right"
+              name="portal/horizontal"
+              checked={transformHorizontal === 'right'}
             />
           </div>
         </fieldset>
@@ -218,18 +258,34 @@ export const Example = () => {
         </fieldset>
         <fieldset style={{ flexBasis: '45%', maxWidth: '50%', border: 'none' }}>
           <legend style={{ color: blue500 }}>offset direction</legend>
-          <div>
-            <RadioButtonGroup
-              selectedValue={direction}
+          <div style={{ display: 'flex', gap: 10 }}>
+            <RadioButton
               onChange={(e) => setDireciton(e.currentTarget.value)}
+              value="left"
+              label="left"
               name="offset-direction"
-              direction="direction"
-              list={[
-                { value: 'left', label: 'left' },
-                { value: 'right', label: 'right' },
-                { value: 'top', label: 'top' },
-                { value: 'bottom', label: 'bottom' },
-              ]}
+              checked={direction === 'left'}
+            />
+            <RadioButton
+              onChange={(e) => setDireciton(e.currentTarget.value)}
+              value="right"
+              label="right"
+              name="offset-direction"
+              checked={direction === 'right'}
+            />
+            <RadioButton
+              onChange={(e) => setDireciton(e.currentTarget.value)}
+              value="top"
+              label="top"
+              name="offset-direction"
+              checked={direction === 'top'}
+            />
+            <RadioButton
+              onChange={(e) => setDireciton(e.currentTarget.value)}
+              value="bottom"
+              label="bottom"
+              name="offset-direction"
+              checked={direction === 'bottom'}
             />
           </div>
         </fieldset>

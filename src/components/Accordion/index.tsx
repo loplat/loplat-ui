@@ -1,3 +1,5 @@
+'use client';
+
 import React, { forwardRef, HTMLAttributes, useEffect, useRef, useState } from 'react';
 import type { ReactNode, FunctionComponentElement } from 'react';
 import type { AccordionIndicatorProps, AccordionProps, AccordionTitleProps, IconPosition } from './types';
@@ -36,7 +38,7 @@ const AccordionTitle = forwardRef<HTMLDivElement, AccordionTitleProps>(function 
   { children, ...props },
   ref,
 ) {
-  const { toggle, getAccordionTitleProps } = useAccordion();
+  const { toggle } = useAccordion();
   const [iconPosition, setIconPosition] = useState<IconPosition | null>(null);
 
   useEffect(() => {
@@ -49,7 +51,6 @@ const AccordionTitle = forwardRef<HTMLDivElement, AccordionTitleProps>(function 
   return (
     <Summary
       {...props}
-      {...getAccordionTitleProps()}
       onClick={(e) => {
         e.preventDefault();
         e.stopPropagation();
@@ -67,15 +68,10 @@ const AccordionContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElemen
   { children, ...props },
   ref,
 ) {
-  const { contentRef, getAccordionBodyProps, variant } = useAccordion();
+  const { contentRef, variant } = useAccordion();
 
   return (
-    <Content
-      {...props}
-      className={`${props.className ?? ''} ${variant ?? ''}`}
-      {...getAccordionBodyProps()}
-      ref={contentRef}
-    >
+    <Content {...props} className={`${props.className ?? ''} ${variant ?? ''}`} ref={contentRef}>
       {/* NOTE: padding 을 포함한 기하학 height을 정확히 구하기 위한 div wrapper */}
       <div ref={ref}>{children}</div>
     </Content>
