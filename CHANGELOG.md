@@ -1,3 +1,18 @@
+# 1.11.0-beta.1 (2023-07-17)
+
+## Added
+
+- client component 적용
+
+## Fixed
+
+- 라디오버튼그룹 컴포넌트 삭제
+- 아코디언이 펼쳐지고 height:auto이 적용안되는 버그 수정
+- 아코디언의 aria속성 삭제
+- Popover컴포넌트 triggerType=hover일때, hover중일때만 hover이벤트가 발동되도록 수정
+- modal 켜질때 애니메이션 적용
+- 툴팁의 enterDelay가 적용되도, 호버상태일때만 툴팁이 뜨도록 수정
+
 # 1.11.0 (2023-06-14)
 
 ## Added
