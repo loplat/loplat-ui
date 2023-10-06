@@ -71,7 +71,7 @@ const AccordionContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElemen
   const { contentRef, variant } = useAccordion();
 
   return (
-    <Content {...props} className={`${props.className ?? ''} ${variant ?? ''}`} ref={contentRef}>
+    <Content role="region" {...props} className={`${props.className ?? ''} ${variant ?? ''}`} ref={contentRef}>
       {/* NOTE: padding 을 포함한 기하학 height을 정확히 구하기 위한 div wrapper */}
       <div ref={ref}>{children}</div>
     </Content>

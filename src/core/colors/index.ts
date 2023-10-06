@@ -15,6 +15,7 @@ import { white } from './white';
 import { yellow } from './yellow';
 import { yellowGreen } from './yellowGreen';
 import { background } from './background';
+import { slate } from './slate';
 
 export const colors = {
   black,
@@ -34,6 +35,7 @@ export const colors = {
   yellow,
   yellowGreen,
   background,
+  slate
 };
 
 export * from './black';
@@ -54,3 +56,4 @@ export * from './white';
 export * from './yellow';
 export * from './yellowGreen';
 export * from './background';
+export * from "./slate"
