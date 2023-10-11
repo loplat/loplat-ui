@@ -1,54 +1,7 @@
 {
-  "name": "loplat-ui",
-  "version": "1.11.0-beta.1",
-  "description": "A React UI Component Library, powered by loplat Frontend Team.",
   "author": "loplat",
-  "engines": {
-    "node": ">= 16.14.0"
-  },
-  "license": "MIT",
-  "homepage": "https://ui.loplat.com",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/loplat/loplat-ui"
-  },
   "bugs": {
     "url": "https://github.com/loplat/loplat-ui/issues"
-  },
-  "keywords": [
-    "react",
-    "react-component",
-    "design-system",
-    "ui-library",
-    "ui",
-    "loplat"
-  ],
-  "main": "index.js",
-  "module": "esm/index.js",
-  "types": "index.d.ts",
-  "sideEffects": false,
-  "files": [
-    "esm",
-    "assets",
-    "components",
-    "core",
-    "utils",
-    "*.js",
-    "*.js.map",
-    "index.d.ts",
-    "CHANGELOG.md"
-  ],
-  "scripts": {
-    "build": "rollup -c",
-    "postpublish": "sh clean-build-files.sh",
-    "icon": "cd src/assets/Icon && sh generate-icon.sh",
-    "logo": "cd src/assets/Logo && sh generate-logo.sh",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
-    "publish-storybook": "firebase deploy",
-    "test-storybook": "test-storybook --stories-json",
-    "test": "jest --watch --env=jsdom",
-    "prepare": "husky install"
   },
   "dependencies": {
     "@emotion/css": "^11.1.3",
@@ -56,13 +9,7 @@
     "@emotion/styled": "^11.3.0",
     "web-animations-js": "^2.3.2"
   },
-  "peerDependencies": {
-    "@emotion/css": ">=11.x",
-    "@emotion/react": ">=11.x",
-    "@emotion/styled": ">=11.x",
-    "react": ">=17.x",
-    "react-dom": ">=17.x"
-  },
+  "description": "A React UI Component Library, powered by loplat Frontend Team.",
   "devDependencies": {
     "@rollup/plugin-commonjs": "^21.0.2",
     "@rollup/plugin-node-resolve": "^13.1.3",
@@ -112,16 +59,69 @@
     "ts-jest": "^26.5.3",
     "typescript": "~4.6.2"
   },
+  "engines": {
+    "node": ">= 16.14.0"
+  },
+  "files": [
+    "esm",
+    "assets",
+    "components",
+    "core",
+    "utils",
+    "*.js",
+    "*.js.map",
+    "index.d.ts",
+    "CHANGELOG.md"
+  ],
+  "homepage": "https://ui.loplat.com",
+  "jest": {
+    "preset": "ts-jest",
+    "setupFilesAfterEnv": [
+      "@testing-library/jest-dom/extend-expect"
+    ]
+  },
+  "keywords": [
+    "react",
+    "react-component",
+    "design-system",
+    "ui-library",
+    "ui",
+    "loplat"
+  ],
+  "license": "MIT",
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "eslint --cache --fix",
       "prettier --write"
     ]
   },
-  "jest": {
-    "preset": "ts-jest",
-    "setupFilesAfterEnv": [
-      "@testing-library/jest-dom/extend-expect"
-    ]
-  }
+  "main": "index.js",
+  "module": "esm/index.js",
+  "name": "loplat-ui",
+  "peerDependencies": {
+    "@emotion/css": ">=11.x",
+    "@emotion/react": ">=11.x",
+    "@emotion/styled": ">=11.x",
+    "react": ">=17.x",
+    "react-dom": ">=17.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/loplat/loplat-ui"
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "build-storybook": "build-storybook",
+    "icon": "cd src/assets/Icon && sh generate-icon.sh",
+    "logo": "cd src/assets/Logo && sh generate-logo.sh",
+    "postpublish": "sh clean-build-files.sh",
+    "prepare": "husky install",
+    "publish-storybook": "firebase deploy",
+    "storybook": "start-storybook -p 6006",
+    "test": "jest --watch --env=jsdom",
+    "test-storybook": "test-storybook --stories-json"
+  },
+  "sideEffects": false,
+  "types": "index.d.ts",
+  "version": "1.11.1-rc"
 }
