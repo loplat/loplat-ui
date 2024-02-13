@@ -59,6 +59,7 @@ export { DoubleChevronRight as DoubleChevronRightIcon } from './generated/Double
 export { DoubleChevronUp as DoubleChevronUpIcon } from './generated/DoubleChevronUp';
 export { Download as DownloadIcon } from './generated/Download';
 export { Download2 as Download2Icon } from './generated/Download2';
+export { Dynamic as DynamicIcon } from './generated/Dynamic';
 export { Edit as EditIcon } from './generated/Edit';
 export { EmojiEvent as EmojiEventIcon } from './generated/EmojiEvent';
 export { Feed as FeedIcon } from './generated/Feed';
