@@ -205,7 +205,6 @@ export const useOptionListPosition = ({
     window.addEventListener('resize', changeOptionListPosition);
     return () => {
       window.removeEventListener('resize', changeOptionListPosition);
-      close();
     };
   }, [changeOptionListPosition]);
 };
