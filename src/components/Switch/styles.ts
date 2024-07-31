@@ -13,7 +13,7 @@ import {
   background300,
   grayscale100,
 } from '../../core';
-import { marginSpacingStyle } from '../../core/Spacing';
+import { MarginSpacing, marginSpacingStyle } from '../../core/Spacing';
 import type { Variant, SwitchProps } from './types';
 
 type Set = {
@@ -21,7 +21,7 @@ type Set = {
   track: { borderColor: string; background: string };
 };
 type ColorSet = Record<'checked' | 'notChecked' | 'disabled', Set>;
-type StyledProps = Required<Pick<SwitchProps, 'variant' | 'checked' | 'width' | 'height'>>;
+type StyledProps = Required<Pick<SwitchProps, 'variant' | 'checked'>>;
 
 const colorSet: Record<Variant, ColorSet> = {
   outlined: {
@@ -72,7 +72,7 @@ const colorSet: Record<Variant, ColorSet> = {
   },
 };
 
-export const Wrapper = styled.div<SwitchProps>`
+export const Wrapper = styled.div<MarginSpacing & { height: number; width: number }>`
   ${marginSpacingStyle};
   position: relative;
   box-sizing: border-box;
@@ -82,7 +82,7 @@ export const Wrapper = styled.div<SwitchProps>`
   width: ${({ width }: { width: number }) => width}px;
 `;
 
-export const ThumbWrapper = styled.span<Pick<StyledProps, 'variant' | 'width' | 'height'>>`
+export const ThumbWrapper = styled.span<Pick<StyledProps, 'variant'> & { height: number }>`
   display: flex;
   align-items: center;
   position: absolute;
@@ -123,7 +123,7 @@ export const ThumbWrapper = styled.span<Pick<StyledProps, 'variant' | 'width' | 
   }
 `;
 
-export const Thumb = styled.span<Pick<SwitchProps, 'width' | 'height'>>`
+export const Thumb = styled.span<{ height: number }>`
   display: block;
   box-sizing: border-box;
   z-index: 1;

@@ -13,9 +13,9 @@ export const Switch = React.forwardRef(
   ) => {
     return (
       <Wrapper {...marginSpacingProps(props)} height={height} width={width}>
-        <ThumbWrapper variant={variant} width={width} height={height} className={props.disabled ? 'disabled' : ''}>
+        <ThumbWrapper variant={variant} height={height} className={props.disabled ? 'disabled' : ''}>
           <input ref={ref} type="checkbox" {...props} checked={checked} onChange={onChange} />
-          <Thumb onClick={(e) => e.stopPropagation()} height={height} width={width} />
+          <Thumb onClick={(e) => e.stopPropagation()} height={height} />
         </ThumbWrapper>
         <Track variant={variant} checked={checked} />
       </Wrapper>
