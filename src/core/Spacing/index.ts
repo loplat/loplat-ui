@@ -31,8 +31,9 @@ const isNumberValue = (entry: [string, unknown]): entry is [string, number] => {
 // Margin
 const marginSpacingOptions = ['mt', 'mb', 'ml', 'mr', 'my', 'mx'] as const;
 export type MarginSpacing = {
-  [key in typeof marginSpacingOptions[number]]?: number;
+  [key in (typeof marginSpacingOptions)[number]]?: number;
 };
+
 export const marginSpacingProps = (props: MarginSpacing): MarginSpacing =>
   marginSpacingOptions.reduce(
     (prev, curr) => ({
@@ -58,7 +59,7 @@ export const marginSpacingStyle = (props: MarginSpacing): SerializedStyles => {
 // Padding
 const paddingSpacingOptions = ['pt', 'pb', 'pl', 'pr', 'py', 'px'] as const;
 export type PaddingSpacing = {
-  [key in typeof paddingSpacingOptions[number]]?: number;
+  [key in (typeof paddingSpacingOptions)[number]]?: number;
 };
 export const paddingSpacingProps = (props: PaddingSpacing): PaddingSpacing =>
   paddingSpacingOptions.reduce(
