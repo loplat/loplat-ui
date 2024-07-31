@@ -13,7 +13,7 @@ import {
   background300,
   grayscale100,
 } from '../../core';
-import { MarginSpacing, marginSpacingStyle } from '../../core/Spacing';
+import { marginSpacingStyle } from '../../core/Spacing';
 import type { Variant, SwitchProps } from './types';
 
 type Set = {
@@ -21,7 +21,7 @@ type Set = {
   track: { borderColor: string; background: string };
 };
 type ColorSet = Record<'checked' | 'notChecked' | 'disabled', Set>;
-type StyledProps = Required<Pick<SwitchProps, 'variant' | 'checked'>>;
+type StyledProps = Required<Pick<SwitchProps, 'variant' | 'checked' | 'width' | 'height'>>;
 
 const colorSet: Record<Variant, ColorSet> = {
   outlined: {
@@ -72,17 +72,17 @@ const colorSet: Record<Variant, ColorSet> = {
   },
 };
 
-export const Wrapper = styled.div<MarginSpacing>`
+export const Wrapper = styled.div<SwitchProps>`
   ${marginSpacingStyle};
   position: relative;
   box-sizing: border-box;
   display: inline-flex;
   vertical-align: middle;
-  height: 40px;
-  width: 76px;
+  height: ${({ height }: { height: number }) => height}px;
+  width: ${({ width }: { width: number }) => width}px;
 `;
 
-export const ThumbWrapper = styled.span<Pick<StyledProps, 'variant'>>`
+export const ThumbWrapper = styled.span<Pick<StyledProps, 'variant' | 'width' | 'height'>>`
   display: flex;
   align-items: center;
   position: absolute;
@@ -99,7 +99,7 @@ export const ThumbWrapper = styled.span<Pick<StyledProps, 'variant'>>`
     height: 100%;
     cursor: pointer;
     &:checked ~ span {
-      left: 50%;
+      left: calc(100% - ${({ height }: { height: number }) => height}px);
       background-color: ${({ variant }) => colorSet[variant].checked.thumb.background};
     }
     &:not(:checked) ~ span {
@@ -123,7 +123,7 @@ export const ThumbWrapper = styled.span<Pick<StyledProps, 'variant'>>`
   }
 `;
 
-export const Thumb = styled.span`
+export const Thumb = styled.span<Pick<SwitchProps, 'width' | 'height'>>`
   display: block;
   box-sizing: border-box;
   z-index: 1;
@@ -131,8 +131,9 @@ export const Thumb = styled.span`
   inset: 0;
   top: ${spacing(1)}px;
   left: ${spacing(1)}px;
-  width: 32px;
-  height: 32px;
+  width: ${({ height }: { height: number }) => height - spacing(2)}px;
+  height: ${({ height }: { height: number }) => height - spacing(2)}px;
+
   border-radius: 50%;
   border: ${spacing(1)}px solid transparent;
   transition: left 0.3s ease;
