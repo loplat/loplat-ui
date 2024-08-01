@@ -70,7 +70,7 @@ const BADGE_PALETTE: Record<Variant, Record<StylingProps, string>> = {
   done1: { background: bluescale400, border: bluescale400, text: white },
   done2: { background: transparent, border: bluescale500, text: bluescale500 },
   selected: { background: white, border: primary, text: black },
-  orange: { background: '##FFECD9', border: '##FFECD9', text: '#E58339' },
+  orange: { background: '#FFECD9', border: '#FFECD9', text: '#E58339' },
   turquoise: { background: '#EBEEFF', border: '#EBEEFF', text: '#6D82F2' },
 };
 
