@@ -1,6 +1,12 @@
-# 1.11.0-beta.2 (2024-07-31)
+# 1.12.2-3
 
-## Fixed
+## Added
+
+- badge에서 props 추가, variant 등
+
+# 1.12.1
+
+## Added
 
 - switch에서 높이 넓이 바꿀 수 있도록 수정
 
