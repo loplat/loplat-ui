@@ -24,19 +24,29 @@ type Variant =
   | 'light2'
   | 'done1'
   | 'done2'
-  | 'selected';
-type Size = 'small' | 'large';
+  | 'selected'
+  | 'orange'
+  | 'turquoise';
+
+type Size = 'small' | 'large' | 'smallest';
 
 export type BadgeBaseProps = {
   variant?: Variant;
   size?: Size;
+  radius?: number;
 };
 
 export type BadgeProps = BadgeBaseProps & MarginSpacing & React.HTMLAttributes<HTMLDivElement>;
 
-export const Badge = ({ size = 'small', variant = 'primary1', children, ...props }: BadgeProps): React.ReactElement => {
+export const Badge = ({
+  size = 'small',
+  radius = 4,
+  variant = 'primary1',
+  children,
+  ...props
+}: BadgeProps): React.ReactElement => {
   return (
-    <BadgeWrapper variant={variant} size={size} {...marginSpacingProps(props)} {...props}>
+    <BadgeWrapper variant={variant} size={size} radius={radius} {...marginSpacingProps(props)} {...props}>
       {children}
     </BadgeWrapper>
   );
@@ -45,6 +55,7 @@ export const Badge = ({ size = 'small', variant = 'primary1', children, ...props
 const BADGE_STYLE: Record<Size, { padding: string; minWidth: string }> = {
   small: { padding: '4px 8px', minWidth: '68px' },
   large: { padding: '8px', minWidth: '104px' },
+  smallest: { padding: '2px 8px', minWidth: '34px' },
 };
 type StylingProps = 'background' | 'border' | 'text';
 const BADGE_PALETTE: Record<Variant, Record<StylingProps, string>> = {
@@ -59,6 +70,8 @@ const BADGE_PALETTE: Record<Variant, Record<StylingProps, string>> = {
   done1: { background: bluescale400, border: bluescale400, text: white },
   done2: { background: transparent, border: bluescale500, text: bluescale500 },
   selected: { background: white, border: primary, text: black },
+  orange: { background: '##FFECD9', border: '##FFECD9', text: '#E58339' },
+  turquoise: { background: '#EBEEFF', border: '#EBEEFF', text: '#6D82F2' },
 };
 
 const BadgeWrapper = styled.div<Required<BadgeBaseProps> & MarginSpacing>`
@@ -68,7 +81,7 @@ const BadgeWrapper = styled.div<Required<BadgeBaseProps> & MarginSpacing>`
   font-size: 0.75rem;
   line-height: 1.125rem;
   box-sizing: border-box;
-  border-radius: 4px;
+  border-radius: ${({ radius }) => `${radius}px`};
   border: 1px solid transparent;
   width: max-content;
   ${({ size }) => `padding: ${BADGE_STYLE[size].padding}; min-width: ${BADGE_STYLE[size].minWidth}`};
