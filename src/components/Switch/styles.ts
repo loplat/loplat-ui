@@ -99,7 +99,7 @@ export const ThumbWrapper = styled.span<Pick<StyledProps, 'variant'> & { height:
     height: 100%;
     cursor: pointer;
     &:checked ~ span {
-      left: calc(100% - ${({ height }: { height: number }) => height}px);
+      left: calc(100% + 4px - ${({ height }: { height: number }) => height}px);
       background-color: ${({ variant }) => colorSet[variant].checked.thumb.background};
     }
     &:not(:checked) ~ span {
