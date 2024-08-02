@@ -12,6 +12,8 @@ import {
   bluescale300,
   background300,
   grayscale100,
+  bluescale100,
+  bluescale600,
 } from '../../core';
 import { MarginSpacing, marginSpacingStyle } from '../../core/Spacing';
 import type { Variant, SwitchProps } from './types';
@@ -35,15 +37,15 @@ const colorSet: Record<Variant, ColorSet> = {
     notChecked: {
       thumb: { background: bluescale400 },
       track: {
-        borderColor: bluescale300,
+        borderColor: bluescale600,
         background: background300,
       },
     },
     disabled: {
-      thumb: { background: grayscale200 },
+      thumb: { background: bluescale100 },
       track: {
-        borderColor: grayscale100,
-        background: grayscale100,
+        borderColor: bluescale400,
+        background: bluescale400,
       },
     },
   },
@@ -58,15 +60,15 @@ const colorSet: Record<Variant, ColorSet> = {
     notChecked: {
       thumb: { background: white },
       track: {
-        borderColor: bluescale400,
-        background: bluescale400,
+        borderColor: bluescale600,
+        background: bluescale600,
       },
     },
     disabled: {
-      thumb: { background: grayscale200 },
+      thumb: { background: bluescale100 },
       track: {
-        borderColor: grayscale100,
-        background: grayscale100,
+        borderColor: bluescale400,
+        background: bluescale400,
       },
     },
   },
