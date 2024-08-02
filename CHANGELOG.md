@@ -1,3 +1,9 @@
+# 1.12.5
+
+## Added
+
+- badge에서 props 추가, variant 등
+
 # 1.12.2-3
 
 ## Added
