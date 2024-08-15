@@ -1,3 +1,9 @@
+# 1.12.8
+
+## Fixed
+
+- tooltip의 기본 z-index를 60으로 수정합니다.
+
 # 1.12.7
 
 ## Fixed
