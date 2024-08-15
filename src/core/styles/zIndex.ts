@@ -31,7 +31,7 @@ export const popperZIndex = headerZIndex + 1;
 export const modalZIndex = headerZIndex + 10;
 export const loadingZIndex = headerZIndex + 1;
 export const toastZIndex = headerZIndex + 1000;
-export const tooltipZIndex = headerZIndex + 1;
+export const tooltipZIndex = headerZIndex + 10;
 
 export const zIndex = {
   popper: popperZIndex,
