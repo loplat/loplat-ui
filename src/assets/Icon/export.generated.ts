@@ -170,6 +170,7 @@ export { VolumeOn as VolumeOnIcon } from './generated/VolumeOn';
 export { Wallet as WalletIcon } from './generated/Wallet';
 export { WarningCircleFill as WarningCircleFillIcon } from './generated/WarningCircleFill';
 export { WarningCircleOutline as WarningCircleOutlineIcon } from './generated/WarningCircleOutline';
+export { WarningTriangleOutline as WarningTriangleOutlineIcon } from './generated/WarningTriangleOutline';
 export { Watch as WatchIcon } from './generated/Watch';
 export { Water as WaterIcon } from './generated/Water';
 export { Wave as WaveIcon } from './generated/Wave';
