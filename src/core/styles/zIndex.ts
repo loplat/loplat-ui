@@ -29,6 +29,8 @@ const headerZIndex = 50;
 
 export const popperZIndex = headerZIndex + 1;
 export const modalZIndex = headerZIndex + 10;
+// header z-index 55
+export const overHeaderZIndex = headerZIndex + 6;
 export const loadingZIndex = headerZIndex + 1;
 export const toastZIndex = headerZIndex + 1000;
 export const tooltipZIndex = headerZIndex + 10;
@@ -37,6 +39,7 @@ export const zIndex = {
   popper: popperZIndex,
   modal: modalZIndex,
   loading: loadingZIndex,
+  overHeader: overHeaderZIndex,
   toast: toastZIndex,
   tooltip: tooltipZIndex,
 } as const;
