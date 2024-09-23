@@ -1,3 +1,9 @@
+# 1.13.2
+
+## Fixed
+
+- Dropdown OptionList z-index를 기본 56으로 수정합니다.
+
 # 1.13.0
 
 ## Added
