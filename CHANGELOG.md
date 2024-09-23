@@ -2,7 +2,7 @@
 
 ## Added
 
-- 
+- WarningCircleOutline 아이콘이 추가되었습니다.
 
 # 1.12.8
 
