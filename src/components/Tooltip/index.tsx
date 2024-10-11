@@ -87,12 +87,8 @@ export const Tooltip = ({
         popperElement.style.top = `${(wrapperBoundingRect.bottom + wrapperBoundingRect.top) / 2}px`;
         popperElement.style.left = `${windowScrollX + wrapperBoundingRect.right + gap}px`;
         popperElement.style.transform = `translate(0, -50%)`;
-        const { left, top } = popperElement.getBoundingClientRect();
-        popperElement.style.left = `${left}px`;
-        popperElement.style.top = `${top}px`;
-        popperElement.style.transform = 'unset';
       } else if (placement === 'left') {
-        popperElement.style.top = `${(wrapperBoundingRect.bottom + wrapperBoundingRect.top) / 2}px`;
+        popperElement.style.top = `${(wrapperBoundingRect.bottom + wrapperBoundingRect.top) / 2 + windowScrollY}px`;
         popperElement.style.left = `${windowScrollX + wrapperBoundingRect.right}px`;
         popperElement.style.transform = `translate(calc(-100% - ${wrapperBoundingRect.width}px - ${gap}px), -50%)`;
       }

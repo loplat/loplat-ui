@@ -1,3 +1,9 @@
+# 1.13.4
+
+## Fixed
+
+- tooltip에 placement를 left로 주었을 경우, scrollY를 계산하지 않는 로직을 수정했습니다.
+
 # 1.13.2
 
 ## Fixed
