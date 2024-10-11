@@ -95,10 +95,6 @@ export const Tooltip = ({
         popperElement.style.top = `${(wrapperBoundingRect.bottom + wrapperBoundingRect.top) / 2}px`;
         popperElement.style.left = `${windowScrollX + wrapperBoundingRect.right}px`;
         popperElement.style.transform = `translate(calc(-100% - ${wrapperBoundingRect.width}px - ${gap}px), -50%)`;
-        const { left, top } = popperElement.getBoundingClientRect();
-        popperElement.style.left = `${left}px`;
-        popperElement.style.top = `${top}px`;
-        popperElement.style.transform = 'unset';
       }
 
       // 기본 위치가 window를 벗어났을 경우
