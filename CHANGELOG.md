@@ -1,3 +1,9 @@
+# 1.13.6
+
+## Fixed
+
+- tooltip의 `fullWidth` prop을 optional로 변경했습니다.
+
 # 1.13.5
 
 ## Added

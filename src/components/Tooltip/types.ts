@@ -14,5 +14,5 @@ export type TooltipProps = {
   /** 호버를 해도 tooltip이 열리지 않습니다. */
   disabled?: boolean;
   /** true로 주어질 시 Wrapper에 width:100%를 적용합니다. */
-  fullWidth: boolean;
+  fullWidth?: boolean;
 } & Omit<React.HTMLAttributes<HTMLDivElement>, 'title'>;
