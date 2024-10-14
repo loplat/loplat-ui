@@ -14,6 +14,7 @@ export const Tooltip = ({
   enterDelay = 0,
   zIndex = tooltipZIndex,
   disabled = false,
+  fullWidth = false,
   ...props
 }: TooltipProps): React.ReactElement => {
   const [container, setContainer] = useState<Element | null>(null);
@@ -202,7 +203,7 @@ export const Tooltip = ({
   }, [removePopper]);
 
   return (
-    <Wrapper ref={wrapperRef}>
+    <Wrapper ref={wrapperRef} fullWidth={fullWidth}>
       {React.cloneElement(children, {
         ...children.props,
         tabIndex: 0,

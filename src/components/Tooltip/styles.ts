@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 import { blue100, bluescale600, MarginSpacing, marginSpacingStyle, spacing } from '../../core';
 
-export const Wrapper = styled.div<MarginSpacing>`
+export const Wrapper = styled.div<MarginSpacing & { fullWidth: boolean }>`
   position: relative;
-  width: fit-content;
+  width: ${(props) => (props.fullWidth ? '100%' : 'fit-content')};
   display: flex;
 
   ${marginSpacingStyle};

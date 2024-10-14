@@ -1,3 +1,9 @@
+# 1.13.5
+
+## Added
+
+- tooltip의 Wrapper에 `fullWidth` prop을 추가했습니다.
+
 # 1.13.4
 
 ## Fixed
