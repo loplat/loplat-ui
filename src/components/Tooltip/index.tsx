@@ -67,7 +67,8 @@ export const Tooltip = ({
     const windowScrollWidth = document.body.scrollWidth;
     const windowClientWidth = document.body.clientWidth;
 
-    const wrapperBoundingRect = wrapperRef.current!.getBoundingClientRect(); // eslint-disable-line @typescript-eslint/no-non-null-assertion
+    const defaultDomRect = new DOMRect(0, 0, 0, 0);
+    const wrapperBoundingRect = wrapperRef.current ? wrapperRef.current.getBoundingClientRect() : defaultDomRect;
     const wrapperTop = windowScrollY + wrapperBoundingRect.top;
     const wrapperBottom = windowScrollY + wrapperBoundingRect.bottom;
     const wrapperHorizontalCenter = windowScrollX + wrapperBoundingRect.left + wrapperBoundingRect.width / 2;
