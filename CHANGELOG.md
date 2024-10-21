@@ -1,3 +1,9 @@
+# 1.13.7
+
+## Fixed
+
+- tooltip의 `calculatePosition` 에서, `wrapperRef.current`가 할당되지 않았을 경우 방어로직을 추가했습니다.
+
 # 1.13.6
 
 ## Fixed
