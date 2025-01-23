@@ -1,5 +1,11 @@
 # 1.13.7
 
+## Added
+
+- 'DropDown' 컴포넌트에 'isOpen' 과 'onClose' prop을 추가했습니다. -> controlled 방식으로 사용할 수 있습니다.
+
+# 1.13.7
+
 ## Fixed
 
 - tooltip의 `calculatePosition` 에서, `wrapperRef.current`가 할당되지 않았을 경우 방어로직을 추가했습니다.
