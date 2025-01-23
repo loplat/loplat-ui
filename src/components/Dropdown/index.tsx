@@ -37,6 +37,8 @@ export const Dropdown = <T extends string = DefaultDropdownValue>({
   onChange,
   disabled = false,
   multiple = false,
+  isOpen, // 외부에서 드롭다운 상태 제어
+  onClose, // 닫힘 콜백
 }: DropdownProps<T>) => {
   // refs
   const triggerRef = useRef<HTMLElement>(null);
@@ -44,21 +46,29 @@ export const Dropdown = <T extends string = DefaultDropdownValue>({
 
   // optionList portal
   const [container, setContainer] = useState<DropdownTypes['container']>(null);
-  const expanded = container !== null;
+  const isControlled = typeof isOpen === 'boolean'; // 상태가 외부에서 제어되는지 확인
+  const expanded = isControlled ? isOpen : container !== null; // 내부 상태와 props 결합
   const uniqueId = useMemo(() => generateUniqueId(), []);
 
   // open/close
   const open = () => {
+    if (isControlled) return; // 외부에서 제어될 경우 내부에서 open() 호출 안 함
     const newContainer = document.createElement('div');
     newContainer.id = uniqueId;
     document.body.appendChild(newContainer);
     setContainer(newContainer);
   };
+
   const close = () => {
+    if (isControlled) {
+      onClose?.(); // 외부에서 상태를 관리하는 경우 onClose 콜백 호출
+      return;
+    }
     const container = document.getElementById(uniqueId);
     container?.remove();
     setContainer(null);
   };
+
   const toggle = () => {
     expanded ? close() : open();
   };

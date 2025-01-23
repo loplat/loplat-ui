@@ -21,6 +21,8 @@ export type DropdownProps<T extends string = DefaultDropdownValue> = {
   onChange: DropdownTypes<T>['onChange'];
   disabled?: boolean;
   multiple?: boolean;
+  isOpen?: boolean;
+  onClose?: () => void;
 } & Children;
 
 export type DropdownBarProps<T extends string = DefaultDropdownValue> = {
